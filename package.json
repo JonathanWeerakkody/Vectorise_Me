@@ -1,25 +1,20 @@
 {
-  "name": "vectorise-me",  
-  "version": "1.0.0",
-  "description": "A web app to convert raster images (PNG, JPG, WEBP) to customizable SVG using Potrace.",
+  "name": "vectorise-me",
+  "version": "1.1.0",  
+  "description": "Live browser-based image to SVG conversion using vtracer WASM.",
   "main": "server.js",
+  "type": "commonjs", // Ensure this is commonjs for the basic server.js
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "svg",
-    "vector",
-    "image",
-    "converter",
-    "potrace",
-    "vectorize"
+    "svg", "vector", "image", "converter", "vtracer", "wasm", "live", "preview"
   ],
   "author": "", 
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2", 
-    "multer": "^1.4.5-lts.1" 
+    "express": "^4.18.2" 
   }
 }
