@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Easily convert JPG, PNG, WEBP images to clean, customizable SVG vector files online with vectorise.me.">
+
+    <title>vectorise.me - Image to SVG Converter</title>
+
+    <!-- Favicon Links - Place your files in /assets/images/ -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <!-- Add other sizes if you have them (e.g., 192x192) -->
+    <!-- <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png"> -->
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
+
+        <h1>vectorise.me</h1>
+        <p>Upload your JPG, PNG, or WEBP image. We'll trace it into a simple SVG vector file that you can customize and download.</p>
+
+        <!-- Upload Area -->
+        <div class="upload-area">
+            <label for="imageInput" class="file-label">Choose Image (Max 10MB)</label>
+            <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp">
+            <span id="fileName">No file chosen</span>
+        </div>
+
+        <!-- Image Preview -->
+        <div class="preview-area" id="imagePreviewArea" style="display: none;">
+            <h2>Image Preview:</h2>
+            <img id="imagePreview" src="#" alt="Preview of uploaded image" />
+        </div>
+
+        <!-- Convert Button -->
+        <button id="convertBtn" disabled>Vectorise It!</button>
+
+        <!-- Result and Customization Area -->
+        <div class="result-container" id="resultContainer" style="display: none;">
+
+            <!-- Customization Controls -->
+            <div class="controls-area" id="controlsArea">
+                <h2>Customize SVG</h2>
+                <div class="control-item">
+                    <label for="svgColor">Shape Color:</label>
+                    <input type="color" id="svgColor" value="#000000">
+                    <span>← Pick a color for the vector shapes</span>
+                </div>
+                <!-- Add more controls here later if needed -->
+            </div>
+
+            <!-- SVG Preview -->
+            <div class="result-area" id="resultArea">
+                <h2>SVG Preview:</h2>
+                <div id="svgOutput">
+                    <!-- Live SVG preview loaded here -->
+                </div>
+            </div>
+
+            <!-- Download and Copy Actions -->
+             <div class="actions-area">
+                 <button id="downloadBtn">Download SVG</button>
+                 <button id="copyBtn">Copy SVG Code</button>
+                 <a id="downloadLink" style="display: none;"></a> <!-- Hidden link -->
+                 <textarea id="svgCode" readonly rows="6" placeholder="Customized SVG code appears here..."></textarea>
+            </div>
+        </div> <!-- End Result Container -->
+
+        <!-- Status Area -->
+        <div class="status-area" id="statusArea"></div>
+
+    </div> <!-- End Container -->
+
+    <script src="script.js"></script>
+</body>
+</html>
