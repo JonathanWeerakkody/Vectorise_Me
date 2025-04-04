@@ -1,345 +1,292 @@
-/* --- Reset & Basic Setup --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-    --primary-color: #007bff; /* Blue */
-    --primary-dark: #0056b3;
-    --secondary-color: #6c757d; /* Grey */
-    --success-color: #28a745; /* Green */
-    --success-dark: #1e7e34;
-    --light-bg: #f8f9fa;
-    --light-grey: #e9ecef;
-    --medium-grey: #dee2e6;
-    --dark-grey: #495057;
-    --text-color: #212529;
-    --white: #ffffff;
-    --border-radius: 8px;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-}
+// public/script.js - UPDATED for New UI/UX
 
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.6;
-    background-color: var(--light-bg);
-    color: var(--text-color);
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Get DOM Elements ---
+    const landingSection = document.getElementById('landingSection');
+    const appSection = document.getElementById('appSection');
+    const imageInput = document.getElementById('imageInput');
+    const fileNameDisplay = document.getElementById('fileName'); // In landing/progress
+    const imagePreviewArea = document.getElementById('imagePreviewArea'); // In backend HTML, remove if not using
+    const imagePreview = document.getElementById('imagePreview'); // In backend HTML, remove if not using
+    const optionsForm = document.getElementById('optionsForm');
+    const convertBtn = document.getElementById('convertBtn'); // Now "Update SVG" button
+    const statusArea = document.getElementById('statusArea'); // Status in app section
+    const landingStatusArea = document.getElementById('landingStatusArea'); // Status in landing section
+    const svgOutputDiv = document.getElementById('svgOutput');
+    const svgCodeTextarea = document.getElementById('svgCode');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadLink = document.getElementById('downloadLink');
+    const uploadNewBtn = document.getElementById('uploadNewBtn'); // Button in app header
 
-.app-container {
-    width: 100%;
-    max-width: 1600px; /* Wider max for app view */
-    padding: 1rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
+    // Upload Area Elements
+    const uploadArea = document.getElementById('uploadArea');
+    const dropZone = document.getElementById('dropZone');
+    const uploadProgress = document.getElementById('uploadProgress');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const fileNameProgress = document.getElementById('fileName'); // Also used in progress bar display
 
-/* --- Utility Classes --- */
-.hidden {
-    display: none !important; /* Force hide */
-}
+    // Controlling option elements
+    const modeSelect = document.getElementById('optMode');
+    const colormodeSelect = document.getElementById('optColormode');
 
-/* --- Header Styles --- */
-.app-header { /* Landing header */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 0 1.5rem 0;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-#appLogo { max-height: 50px; width: auto; margin-right: 1rem; }
-.app-header h1 { font-size: 2.2rem; color: #343a40; font-weight: 600; margin: 0; line-height: 1.2; }
-
-.app-header-sticky { /* App view header */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--white);
-    border-bottom: 1px solid var(--light-grey);
-    box-shadow: var(--shadow-sm);
-    position: sticky; /* Optional: make it stick */
-    top: 0;
-    z-index: 100;
-    margin-bottom: 1.5rem; /* Space below sticky header */
-}
-.app-header-sticky .header-left { display: flex; align-items: center; gap: 0.75rem; }
-#appLogoSmall { max-height: 30px; width: auto; }
-.app-header-sticky h3 { font-size: 1.2rem; font-weight: 600; margin: 0; color: #343a40;}
-.app-header-sticky .header-right {}
-
-/* --- Button Styles --- */
-.button-primary, .button-secondary, .action-button {
-    display: inline-block;
-    border: none;
-    padding: 0.7rem 1.4rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.95em;
-    font-weight: 500;
-    transition: all 0.2s ease-out;
-    text-align: center;
-    text-decoration: none; /* For label used as button */
-}
-.button-primary {
-    background: linear-gradient(145deg, var(--primary-color), var(--primary-dark));
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
-}
-.button-primary:hover:not(:disabled) {
-    background: linear-gradient(145deg, #0069d9, #004a99);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
-}
-.button-secondary {
-    background-color: var(--light-grey);
-    color: var(--text-color);
-    border: 1px solid var(--medium-grey);
-}
-.button-secondary:hover:not(:disabled) {
-    background-color: var(--medium-grey);
-    border-color: #adb5bd;
-}
-.action-button:disabled {
-    background-color: #adb5bd !important;
-    background-image: none !important;
-    color: #6c757d;
-    cursor: not-allowed;
-    opacity: 0.65;
-    box-shadow: none;
-    transform: none;
-}
-.convert-button { /* Specific styles for update button */
-     background: linear-gradient(145deg, #17a2b8, #117a8b);
-     color: white;
-     box-shadow: 0 2px 4px rgba(23, 162, 184, 0.2);
-     width: 100%;
-     margin-top: 1rem;
-}
-.convert-button:hover:not(:disabled) { background: linear-gradient(145deg, #138496, #0f6070); /* ... */ }
-
-.download-button { background: linear-gradient(145deg, var(--success-color), var(--success-dark)); color: white; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2); }
-.download-button:hover:not(:disabled) { background: linear-gradient(145deg, #218838, #1e7e34); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); }
-
-.copy-button { background: linear-gradient(145deg, #6c757d, #5a6268); color: white; box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2); }
-.copy-button:hover:not(:disabled) { background: linear-gradient(145deg, #5a6268, #4e555b); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3); }
-
-/* --- Landing Section --- */
-.landing-section {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1; /* Use available space */
-}
-.hero-content {
-    max-width: 700px;
-    margin: 1rem auto 2rem auto;
-}
-.hero-content h2 {
-    font-size: 2.4rem;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 1rem;
-    line-height: 1.3;
-}
-.hero-content p {
-    font-size: 1.15rem;
-    color: var(--dark-grey);
-    margin-bottom: 2.5rem;
-}
-
-/* --- Upload Area & Drop Zone --- */
-.upload-area {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--light-grey);
-    width: 100%;
-    max-width: 600px; /* Control max width */
-    margin: 0 auto; /* Center */
-}
-.drop-zone {
-    border: 3px dashed var(--medium-grey);
-    border-radius: var(--border-radius);
-    padding: 2.5rem 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-.drop-zone.dragover { /* Style when dragging over */
-    border-color: var(--primary-color);
-    background-color: #e7f3ff;
-}
-.upload-icon {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-.upload-text {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--dark-grey);
-    margin-bottom: 0.5rem;
-}
-.upload-or {
-    margin: 0.75rem 0;
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-}
-.upload-subtext {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: var(--secondary-color);
-}
-
-/* --- Progress Bar --- */
-.upload-progress {
-    margin-top: 1.5rem;
-    text-align: left;
-}
-.file-name-progress {
-    display: block;
-    font-size: 0.9em;
-    color: var(--dark-grey);
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: var(--light-grey);
-    border-radius: 5px;
-    overflow: hidden; /* Clip the inner bar */
-    margin-bottom: 0.5rem;
-}
-.progress-bar::before { /* The actual progress indicator */
-    content: '';
-    display: block;
-    height: 100%;
-    width: var(--progress, 0%); /* Controlled by JS */
-    background: linear-gradient(90deg, var(--primary-color), #00bfff); /* Example gradient */
-    border-radius: 5px;
-    transition: width 0.3s ease-out;
-}
-.progress-text {
-    font-size: 0.85em;
-    color: var(--secondary-color);
-}
-
-/* --- App Section --- */
-.app-section {
-    /* Styles applied when .hidden is removed */
-    width: 100%;
-}
-.processing-layout {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping */
-    gap: 1.5rem; /* Space between panels */
-    width: 100%;
-}
-
-/* --- Options Panel (App View) --- */
-.options-panel {
-    flex: 1; /* Adjust flex basis as needed */
-    min-width: 300px;
-    max-width: 380px;
-    background-color: var(--white);
-    padding: 1.25rem 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--light-grey);
-    height: fit-content; /* Adjust height */
-}
-.options-panel h2 { /* Slightly smaller header */
-    font-size: 1.3em; text-align: left; font-weight: 600; color: #343a40; margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--light-grey);
-}
-/* Inherit .option-group, .slider-group styles from previous CSS */
-/* Minor tweaks for app view */
-.option-group { margin-bottom: 1.1rem; }
-.option-group label { font-size: 0.88rem; margin-bottom: 0.4rem;}
-.option-group select, .slider-group input[type="range"] { /* Smaller controls */
-    font-size: 0.9rem;
-}
-.option-group select { padding: 0.5rem 0.6rem; }
-.slider-group .slider-value { font-size: 0.8rem; }
-
-/* Disabled styling (kept from previous CSS) */
-.option-group.disabled { opacity: 0.5; pointer-events: none; user-select: none; }
-/* ... other disabled styles ... */
+    // Dependent option group elements (keep same refs as before)
+    const splineThresholdGroup = document.getElementById('groupSplineThreshold');
+    // ... (get references for ALL other conditional groups: spliceThresholdGroup, segmentLengthGroup, etc.) ...
+     const spliceThresholdGroup = document.getElementById('groupSpliceThreshold');
+     const segmentLengthGroup = document.getElementById('groupSegmentLength');
+     const hierarchicalGroup = document.getElementById('groupHierarchical');
+     const gradientStepGroup = document.getElementById('groupGradientStep');
+     const colorPrecisionGroup = document.getElementById('groupColorPrecision');
+     const cornerThresholdGroup = document.getElementById('groupCornerThreshold');
 
 
-/* --- Result Panel (App View) --- */
-.result-panel {
-    flex: 3; /* Take more space */
-    min-width: 400px;
-    background-color: var(--white);
-    padding: 1.25rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--light-grey);
-    display: flex;
-    flex-direction: column;
-}
-.result-panel h2 { font-size: 1.3em; text-align: left; /* ... rest same as options h2 */ margin-bottom: 0.8rem; }
+    // --- State Variables ---
+    let currentFile = null; // Store the selected/dropped File object
+    let currentFilenameBase = 'vectorised-image';
+    let currentSvgContent = '';
 
-.status-area.app-status { /* Specific style for app status area */
-    margin-bottom: 1rem;
-    min-height: 36px; /* Adjust height */
-    font-size: 0.9em;
-}
-.result-container {
-    flex-grow: 1;
-    border: 1px solid var(--medium-grey);
-    background-color: var(--light-bg); /* Lighter checkerboard */
-     background-image: linear-gradient(45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(-45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--light-grey) 75%), linear-gradient(-45deg, transparent 75%, var(--light-grey) 75%);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-    border-radius: 6px;
-    overflow: auto; /* Allow scroll/pan if SVG is large */
-    min-height: 350px; /* Ensure decent preview height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.25rem;
-    position: relative;
-}
-#svgOutput { /* Keep most styles */ width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 10px; }
-#svgOutput svg { max-width: 100%; max-height: 100%; display: block; }
-#svgOutput .placeholder-text { color: var(--secondary-color); font-style: italic; }
+    // --- Initial UI Setup ---
+    showLandingView(); // Start with the landing page visible
+    updateOptionsAvailability(); // Set initial disabled state of options
 
-.result-controls { display: flex; gap: 1rem; justify-content: center; }
-.result-controls .action-button { font-size: 0.9rem; padding: 0.6rem 1.2rem; } /* Slightly smaller buttons */
+    // --- Drag and Drop Event Listeners ---
+    dropZone.addEventListener('dragenter', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault(); // Necessary to allow drop
+        dropZone.classList.add('dragover');
+    });
+    dropZone.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+    });
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFile(files[0]); // Process the first dropped file
+        }
+    });
+    // Also trigger file input click when drop zone itself is clicked
+     dropZone.addEventListener('click', (e) => {
+         // Prevent triggering if the click is on the button/label inside
+         if (e.target.id !== 'imageInput' && e.target.tagName !== 'LABEL') {
+            imageInput.click();
+        }
+    });
+
+    // --- Standard File Input Listener ---
+    imageInput.addEventListener('change', (event) => {
+        if (event.target.files.length > 0) {
+            handleFile(event.target.files[0]);
+        }
+    });
+
+    // --- Control Button Listeners ---
+    convertBtn.addEventListener('click', handleConvert); // "Update SVG"
+    downloadBtn.addEventListener('click', handleDownload);
+    copyBtn.addEventListener('click', handleCopy);
+    uploadNewBtn.addEventListener('click', resetAppToLanding); // "Upload New" button
+
+    // --- Option Change Listeners ---
+    modeSelect.addEventListener('change', updateOptionsAvailability);
+    colormodeSelect.addEventListener('change', updateOptionsAvailability);
+    // Add input listener to sliders to enable update button
+    optionsForm.querySelectorAll('input[type="range"], select').forEach(input => {
+        input.addEventListener('change', () => {
+             if (currentFile) { // Only enable update if there's a processed image
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Update SVG'; // Change text to reflect action
+            }
+        });
+    });
+     // --- Slider Value Display Updates (Keep this logic) ---
+     optionsForm.querySelectorAll('input[type="range"]').forEach(slider => { /* ... same slider value display update code ... */ });
 
 
-/* --- Footer --- */
-.app-footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--medium-grey); font-size: 0.9em; color: var(--secondary-color); }
-.app-footer a { color: var(--primary-color); text-decoration: none; }
-.app-footer a:hover { text-decoration: underline; }
+    // --- Core Functions ---
 
-/* --- Responsive --- */
-@media (max-width: 992px) { /* Stack app panels earlier */
-    .processing-layout { flex-direction: column; }
-    .options-panel { max-width: none; order: 2; } /* Options below */
-    .result-panel { order: 1; }
-}
-@media (max-width: 600px) {
-    body { font-size: 15px; }
-    .app-container { padding: 0.75rem; }
-    .app-header h1 { font-size: 1.8rem; }
-    .hero-content h2 { font-size: 1.9rem; }
-    .hero-content p { font-size: 1rem; margin-bottom: 1.5rem;}
-    .drop-zone { padding: 1.5rem; }
-    .options-panel, .result-panel { padding: 1rem; }
-    .button-primary, .button-secondary, .action-button { padding: 0.6rem 1rem; font-size: 0.9rem; }
-    .result-controls { flex-direction: column; gap: 0.5rem; align-items: center; }
-    .result-controls .action-button { width: 80%; max-width: 250px;}
-    .app-header-sticky { padding: 0.5rem 1rem;}
-    .app-header-sticky h3 { font-size: 1rem; }
-}
+    // Handles file selection from input OR drag/drop
+    function handleFile(file) {
+        if (!file) {
+            resetAppToLanding();
+            return;
+        }
+        currentFile = file; // Store the file object
+
+        // Clear previous status/results
+        resetResultArea();
+        landingStatusArea.textContent = ''; // Clear landing status
+
+        // Validation
+        if (file.size > 15 * 1024 * 1024) {
+            showLandingError('Error: File exceeds 15MB limit.');
+            resetAppToLanding(); return;
+        }
+        if (!['image/jpeg', 'image/png', 'image/webp', 'image/bmp'].includes(file.type)) {
+             showLandingError(`Error: Unsupported file type (${file.type||'?'}).`);
+             resetAppToLanding(); return;
+        }
+
+        fileNameDisplay.textContent = file.name; // Show file name early
+        fileNameProgress.textContent = file.name; // Show in progress bar area too
+        currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
+
+        // Show progress bar area, hide drop zone
+        dropZone.style.display = 'none';
+        uploadProgress.style.display = 'block';
+        simulateUploadProgress(() => {
+            // Transition to app view AFTER simulated progress
+            showAppView();
+            handleConvert(); // Trigger initial conversion
+        });
+    }
+
+    // Simulate upload progress (replace with real progress if backend supported it)
+    function simulateUploadProgress(callback) {
+        let progress = 0;
+        progressBar.style.setProperty('--progress', `0%`);
+        progressText.textContent = `Processing... 0%`; // Change text
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 15 + 5; // Simulate variable progress
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                 progressText.textContent = `Processing... 100%`;
+                 progressBar.style.setProperty('--progress', `100%`);
+                // Short delay before calling callback
+                 setTimeout(callback, 300);
+            } else {
+                 progressText.textContent = `Processing... ${Math.round(progress)}%`;
+                 progressBar.style.setProperty('--progress', `${progress}%`);
+            }
+        }, 100); // Update progress interval
+    }
+
+    // Main conversion logic (sends to backend)
+    async function handleConvert() {
+        if (!currentFile) {
+            updateStatus('No file selected for conversion.', 'error');
+            return;
+        }
+
+        updateStatus('Vectorizing your image...', 'loading'); // App status
+        convertBtn.disabled = true;
+        convertBtn.textContent = 'Working...';
+        downloadBtn.disabled = true; // Disable while processing
+        copyBtn.disabled = true;
+        resetResultArea(false); // Clear previous SVG, keep status
+
+        const formData = new FormData();
+        formData.append('imageFile', currentFile); // Send the stored File object
+
+        const optionsData = new FormData(optionsForm);
+        for (let [key, value] of optionsData.entries()) {
+            const element = optionsForm.elements[key];
+            if (element && !element.disabled && value !== '' && value !== null) {
+                formData.append(key, value);
+            }
+        }
+
+        console.log("Sending data to backend /convert endpoint...");
+        try {
+            const response = await fetch('/convert', { method: 'POST', body: formData });
+            const result = await response.json();
+            if (!response.ok) { throw new Error(result.error || `Server error: ${response.status}`); }
+
+            if (result.svg) {
+                currentSvgContent = result.svg;
+                svgOutputDiv.innerHTML = currentSvgContent;
+                svgCodeTextarea.value = currentSvgContent;
+                 svgOutputDiv.classList.remove('placeholder-text');
+                updateStatus('Vectorization Complete!', 'success', 3000);
+                downloadBtn.disabled = false; copyBtn.disabled = false; // Enable results buttons
+                 convertBtn.textContent = 'Update SVG'; // Ready for re-runs
+                 convertBtn.disabled = true; // Disable until an option changes
+            } else { throw new Error("Server response ok but no SVG data."); }
+
+        } catch (error) {
+            console.error('Conversion Request Failed:', error);
+            updateStatus(`Error: ${error.message}`, 'error');
+            resetResultArea(false); downloadBtn.disabled = true; copyBtn.disabled = true;
+             convertBtn.textContent = 'Update SVG'; // Reset text even on error
+            // Keep convertBtn disabled on error until file re-selected? Or allow retry? Let's allow retry if file is present
+             convertBtn.disabled = !currentFile;
+
+        }
+        // Note: We don't re-enable convertBtn in finally, only on success or if file still exists after error
+    }
+
+    // --- UI State Changes ---
+    function showLandingView() {
+        landingSection.classList.remove('hidden');
+        appSection.classList.add('hidden');
+        // Reset upload area specific elements
+         resetUploadArea();
+    }
+
+    function showAppView() {
+        landingSection.classList.add('hidden');
+        appSection.classList.remove('hidden');
+        updateOptionsAvailability(); // Ensure options are correctly enabled/disabled
+        resetResultArea(); // Clear any previous results in app view
+         statusArea.textContent = ''; // Clear app status too
+    }
+
+    function resetAppToLanding() {
+        currentFile = null;
+        currentSvgContent = '';
+        imageInput.value = ''; // Clear file input
+         fileNameDisplay.textContent = 'No file chosen'; // For progress area reset
+        showLandingView();
+         updateStatus('', ''); // Clear any lingering app status
+         landingStatusArea.textContent = ''; // Clear landing status
+    }
+
+     function resetUploadArea(){
+        dropZone.style.display = 'block';
+        uploadProgress.style.display = 'none';
+        progressBar.style.setProperty('--progress', `0%`);
+        progressText.textContent = 'Processing... 0%';
+        fileNameProgress.textContent = '';
+    }
+
+
+    // --- Conditional Options Logic (Keep exact same as previous version) ---
+    function updateOptionsAvailability() { /* ... same logic ... */ }
+    function toggleOptionGroup(groupElement, enable) { /* ... same logic ... */ }
+
+    // --- Download and Copy Logic (Keep exact same as previous version) ---
+    function handleDownload() { /* ... same logic ... */ }
+    function handleCopy() { /* ... same logic ... */ }
+
+    // --- Utility Functions (Keep existing) ---
+    let statusClearTimer;
+    function updateStatus(message, type, clearDelay = 0) { /* ... */ } // Main app status
+    function showLandingError(message){ // Specific helper for landing status
+        landingStatusArea.textContent = message;
+        landingStatusArea.className = 'status-area landing-status error';
+    }
+    function resetFileSelection() { /* (Included in resetAppToLanding) */ }
+    function resetResultArea(clearStatusToo = true) { /* ... (Modified slightly) */
+         svgOutputDiv.innerHTML = '<p class="placeholder-text">Processing image...</p>'; // Change placeholder for app view
+         svgOutputDiv.classList.add('placeholder-text');
+         svgCodeTextarea.value = ''; currentSvgContent = '';
+         downloadBtn.disabled = true; copyBtn.disabled = true;
+         if (clearStatusToo) {
+             updateStatus('', ''); // Clear app status
+         }
+    }
+
+    // --- Initial State Call ---
+    // updateOptionsAvailability is called initially by showLandingView->resetAppToLanding
+    // (No, need to call it explicitly)
+    updateOptionsAvailability();
+
+}); // End DOMContentLoaded
