@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Instantly convert images to customizable SVG vector files using vtracer in your browser. Adjust settings and preview live.">
-    <title>vectorise.me - Live Image to SVG Converter (vtracer)</title>
+    <meta name="description" content="Convert images (JPG, PNG, WEBP) to customizable SVG vector files using server-side vtracer.">
+    <title>vectorise.me - Image to SVG Converter</title>
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -15,120 +15,103 @@
     <div class="app-container">
         <header class="app-header">
             <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
-            <h1>vectorise.me <span class="beta-tag">Live Preview</span></h1>
+            <h1>vectorise.me</h1>
         </header>
 
         <div class="upload-section">
-            <label for="imageInput" class="file-label">Choose Image (Processed in Browser)</label>
+            <label for="imageInput" class="file-label">Choose Image (Max 15MB)</label>
             <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp">
+            <div id="imagePreviewArea" class="image-preview-area" style="display: none;">
+                <img id="imagePreview" src="#" alt="Image Preview"/>
+            </div>
             <span id="fileName">No file chosen</span>
-            <div id="statusArea" class="status-area">Initializing Vectorizer...</div> <!-- Initial Status -->
         </div>
 
         <main class="main-content">
             <!-- Options Panel -->
-            <aside class="options-panel" id="optionsPanel">
+            <aside class="options-panel">
                 <h2>Vectorization Options</h2>
                 <form id="optionsForm">
-                    <!-- Mode -->
                     <div class="option-group">
-                        <label for="optMode" title="Polygon mode outputs straight line segments. Spline mode outputs smooth quadratic bezier curves.">Mode:</label>
+                        <label for="optMode">Mode:</label>
                         <select id="optMode" name="mode">
                             <option value="spline" selected>Spline (Curved)</option>
                             <option value="polygon">Polygon (Segmented)</option>
                         </select>
                     </div>
-
-                    <!-- Color Mode -->
-                    <div class="option-group">
-                        <label for="optColormode" title="Color mode traces regions of different colors. Binary mode treats the image as black and white.">Color Mode:</label>
+                     <div class="option-group">
+                        <label for="optColormode">Color Mode:</label>
                         <select id="optColormode" name="color_mode">
                             <option value="color" selected>Color</option>
                             <option value="binary">Binary (B&W)</option>
                         </select>
                     </div>
-
-                    <!-- Corner Threshold -->
-                    <div class="option-group slider-group">
-                        <label for="optCornerThreshold" title="Minimum angle between tangents to be considered a corner (degrees).">Corner Threshold:</label>
-                        <div class="slider-wrapper">
-                            <input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1">
+                     <div class="option-group slider-group">
+                        <label for="optCornerThreshold">Corner Threshold:</label>
+                         <div class="slider-wrapper">
+                             <input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1">
                             <span class="slider-value" id="cornerThresholdValue">60°</span>
                         </div>
                     </div>
-
-                    <!-- Spline Threshold -->
                     <div class="option-group slider-group">
-                        <label for="optSplineThreshold" title="Controls how tightly paths follow pixel boundaries. Lower values are tighter.">Spline Threshold:</label>
-                         <div class="slider-wrapper">
-                            <input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01">
-                            <span class="slider-value" id="splineThresholdValue">0.75</span>
-                        </div>
-                    </div>
-
-                     <!-- Filter Speckle -->
-                     <div class="option-group slider-group">
-                        <label for="optFilterSpeckle" title="Ignore regions smaller than this number of pixels.">Filter Speckle:</label>
-                         <div class="slider-wrapper">
-                            <input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1">
-                            <span class="slider-value" id="filterSpeckleValue">4 px</span>
+                        <label for="optSplineThreshold">Spline Threshold:</label>
+                        <div class="slider-wrapper">
+                             <input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01">
+                             <span class="slider-value" id="splineThresholdValue">0.75</span>
                          </div>
                     </div>
-
-                     <!-- Color Precision -->
                      <div class="option-group slider-group">
-                        <label for="optColorPrecision" title="Number of bits per color channel to consider during segmentation.">Color Precision:</label>
-                        <div class="slider-wrapper">
-                           <input type="range" id="optColorPrecision" name="color_precision" min="1" max="8" value="6" step="1">
-                           <span class="slider-value" id="colorPrecisionValue">6 bits</span>
-                        </div>
+                        <label for="optFilterSpeckle">Filter Speckle:</label>
+                         <div class="slider-wrapper">
+                             <input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1">
+                             <span class="slider-value" id="filterSpeckleValue">4 px</span>
+                         </div>
                     </div>
-
-                    <!-- Path Precision -->
-                    <div class="option-group slider-group">
-                        <label for="optPathPrecision" title="Number of decimal places for coordinates in the output SVG.">Path Precision:</label>
+                     <div class="option-group slider-group">
+                        <label for="optColorPrecision">Color Precision:</label>
+                        <div class="slider-wrapper">
+                             <input type="range" id="optColorPrecision" name="color_precision" min="1" max="8" value="6" step="1">
+                             <span class="slider-value" id="colorPrecisionValue">6 bits</span>
+                         </div>
+                    </div>
+                     <div class="option-group slider-group">
+                        <label for="optPathPrecision">Path Precision:</label>
                          <div class="slider-wrapper">
                             <input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1">
                             <span class="slider-value" id="pathPrecisionValue">3 dec</span>
-                         </div>
+                        </div>
                     </div>
-
-                    <!-- Show Segments Checkbox -->
-                    <div class="option-group checkbox-group">
-                         <input type="checkbox" id="optSegmentView" name="segment_view">
-                         <label for="optSegmentView" title="Overlay path segments and points on the preview.">Show Segments</label>
-                    </div>
-
+                    <!-- Segment view option removed as preview isn't live -->
                 </form>
-                 <div class="options-disabled-overlay" id="optionsDisabledOverlay">Please upload an image</div>
+                 <button id="convertBtn" class="action-button convert-button" disabled>Convert to SVG</button>
             </aside>
 
-            <!-- Preview Panel -->
-            <section class="preview-panel">
-                <h2>Preview</h2>
-                 <div class="preview-container">
+            <!-- Result Panel -->
+            <section class="result-panel">
+                <h2>Result</h2>
+                 <div id="statusArea" class="status-area"></div>
+                 <div class="result-container">
                     <div id="svgOutput" class="svg-output">
-                         <p class="placeholder-text">Upload an image to see the preview</p>
+                         <p class="placeholder-text">SVG result will appear here</p>
                     </div>
-                    <!-- Optional: Original Image overlay can be added here if desired -->
-                    <!-- <img id="originalImage" src="#" alt="Original image"/> -->
                  </div>
-                 <div class="preview-controls">
-                     <button id="downloadBtn" class="action-button" disabled>Download SVG</button>
+                 <div class="result-controls">
+                     <button id="downloadBtn" class="action-button download-button" disabled>Download SVG</button>
+                      <button id="copyBtn" class="action-button copy-button" disabled>Copy SVG Code</button>
                  </div>
-                 <div id="svgSizeInfo" class="svg-size-info"></div>
+                 <textarea id="svgCode" readonly rows="5" placeholder="SVG code..." style="display:none;"></textarea> <!-- Hidden but used for copy -->
             </section>
         </main>
 
         <footer class="app-footer">
-            Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a> (WASM v0.6.4) © vectorise.me
+            Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a> (v0.6.4) © vectorise.me
         </footer>
 
         <!-- Hidden link for download -->
         <a id="downloadLink" style="display: none;"></a>
     </div> <!-- End App Container -->
 
-    <!-- Load the WASM Glue code AS MODULE -->
-    <script type="module" src="script.js"></script>
+    <!-- Load standard JS, NO type="module" needed for this simpler script -->
+    <script src="script.js"></script>
 </body>
 </html>
