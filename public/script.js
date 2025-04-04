@@ -1,4 +1,4 @@
-// public/script.js - For Backend Processing Model
+// public/script.js - Updated with Conditional Options
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Get DOM Elements ---
@@ -10,270 +10,237 @@ document.addEventListener('DOMContentLoaded', () => {
     const convertBtn = document.getElementById('convertBtn');
     const statusArea = document.getElementById('statusArea');
     const svgOutputDiv = document.getElementById('svgOutput');
-    const svgCodeTextarea = document.getElementById('svgCode'); // Hidden textarea
+    const svgCodeTextarea = document.getElementById('svgCode'); // Hidden
     const downloadBtn = document.getElementById('downloadBtn');
     const copyBtn = document.getElementById('copyBtn');
-    const downloadLink = document.getElementById('downloadLink'); // Hidden link for downloads
+    const downloadLink = document.getElementById('downloadLink'); // Hidden
 
+    // -- Get CONTROLLING elements --
+    const modeSelect = document.getElementById('optMode');
+    const colormodeSelect = document.getElementById('optColormode');
+
+    // -- Get PARENT GROUP elements of conditional options --
+    const splineThresholdGroup = document.getElementById('groupSplineThreshold');
+    const spliceThresholdGroup = document.getElementById('groupSpliceThreshold');
+    const segmentLengthGroup = document.getElementById('groupSegmentLength');
+    const hierarchicalGroup = document.getElementById('groupHierarchical');
+    const gradientStepGroup = document.getElementById('groupGradientStep');
+    const colorPrecisionGroup = document.getElementById('groupColorPrecision');
+    // Add others here if needed (like corner threshold if we disable for pixel)
+    const cornerThresholdGroup = document.getElementById('groupCornerThreshold');
+
+
+    // --- State Variables ---
     let currentFilenameBase = 'vectorised-image';
-    let currentSvgContent = ''; // Store the latest valid SVG result from backend
+    let currentSvgContent = '';
 
     // --- Slider Value Display Updates ---
-    // Find all range inputs within the options form
     optionsForm.querySelectorAll('input[type="range"]').forEach(slider => {
-        const valueDisplayId = `${slider.id}Value`; // Assumes matching ID convention (e.g., optCornerThresholdValue)
+        const valueDisplayId = `${slider.id}Value`;
         const valueDisplay = document.getElementById(valueDisplayId);
-        if (!valueDisplay) {
-             console.warn("Missing value display for slider:", slider.id);
-             return; // Skip if no display element found
-        }
-
-        // Function to format the display value based on slider ID
+        if (!valueDisplay) return;
         const updateDisplay = () => {
             let displayValue = slider.value;
              switch (slider.id) {
-                 case 'optCornerThreshold': displayValue += '°'; break;
-                 case 'optFilterSpeckle': displayValue += ' px'; break;
-                 case 'optColorPrecision': displayValue += ' bits'; break;
-                 case 'optPathPrecision': displayValue += ' dec'; break;
-                 // Add cases for other sliders if needed
+                case 'optCornerThreshold': displayValue += '°'; break;
+                case 'optFilterSpeckle': displayValue += ' px'; break;
+                case 'optColorPrecision': displayValue += ' bits'; break;
+                case 'optPathPrecision': displayValue += ' dec'; break;
+                case 'optSpliceThreshold': displayValue += '°'; break;
+                case 'optSegmentLength': displayValue = parseFloat(displayValue).toFixed(1); break; // Ensure one decimal
+                case 'optGradientStep': displayValue = parseFloat(displayValue).toFixed(1); break; // Ensure one decimal
              }
             valueDisplay.textContent = displayValue;
         };
-
-        updateDisplay(); // Set initial value on page load
-        slider.addEventListener('input', updateDisplay); // Update continuously as slider moves
+        updateDisplay();
+        slider.addEventListener('input', updateDisplay);
     });
+
+    // --- Function to Update Conditional Options Visibility/Disabled State ---
+    function updateOptionsAvailability() {
+        const currentMode = modeSelect.value; // spline, polygon, pixel
+        const currentColorMode = colormodeSelect.value; // color, bw
+
+        console.log(`Updating options for Mode: ${currentMode}, Color Mode: ${currentColorMode}`);
+
+        // --- Logic based on vtracer options ---
+        const isSpline = currentMode === 'spline';
+        const isPixel = currentMode === 'pixel';
+        const isColor = currentColorMode === 'color';
+
+        // Spline Threshold: Only for spline
+        toggleOptionGroup(splineThresholdGroup, isSpline);
+
+        // Splice Threshold: Only for spline
+        toggleOptionGroup(spliceThresholdGroup, isSpline);
+
+        // Segment Length: Primarily for spline
+        toggleOptionGroup(segmentLengthGroup, isSpline);
+
+        // Corner Threshold: Not needed for pixel mode
+        toggleOptionGroup(cornerThresholdGroup, !isPixel);
+
+        // Hierarchical: Only for color mode
+        toggleOptionGroup(hierarchicalGroup, isColor);
+
+        // Gradient Step: Only for color mode
+        toggleOptionGroup(gradientStepGroup, isColor);
+
+        // Color Precision: Only for color mode
+        toggleOptionGroup(colorPrecisionGroup, isColor);
+
+        // Add logic for other options if needed
+    }
+
+    // Helper function to enable/disable a group and its controls
+    function toggleOptionGroup(groupElement, enable) {
+        if (!groupElement) return; // Skip if element not found
+
+        const controls = groupElement.querySelectorAll('input, select');
+
+        if (enable) {
+            groupElement.classList.remove('disabled');
+            controls.forEach(control => control.disabled = false);
+        } else {
+            groupElement.classList.add('disabled');
+            controls.forEach(control => control.disabled = true);
+        }
+    }
+
 
     // --- Event Listeners ---
+    imageInput.addEventListener('change', handleImageUpload);
+    convertBtn.addEventListener('click', handleConvert);
+    downloadBtn.addEventListener('click', handleDownload);
+    copyBtn.addEventListener('click', handleCopy);
 
-    // Handle File Selection Change
-    imageInput.addEventListener('change', (event) => {
+    // --- Add Listeners to Controlling Selects ---
+    modeSelect.addEventListener('change', updateOptionsAvailability);
+    colormodeSelect.addEventListener('change', updateOptionsAvailability);
+
+
+    // --- Core Functions ---
+
+    function handleImageUpload(event) {
         const file = event.target.files[0];
-        resetResultArea(); // Clear previous results and status when a new file is chosen/cleared
-
+        resetResultArea(); // Clear results first
         if (file) {
-            // --- Client-Side File Validation ---
-            if (file.size > 15 * 1024 * 1024) { // Match server limit (e.g., 15MB)
-                updateStatus('Error: File exceeds 15MB limit.', 'error');
-                resetFileSelection(); // Clear the invalid selection
-                return;
-            }
-            // Allow common image types (can be refined)
-            if (!['image/jpeg', 'image/png', 'image/webp', 'image/bmp'].includes(file.type)) {
-                updateStatus(`Error: Unsupported file type (${file.type || 'unknown'}). Use JPG, PNG, WEBP, BMP.`, 'error');
-                resetFileSelection();
-                return;
-            }
+             if (file.size > 15 * 1024 * 1024) { updateStatus('Error: File exceeds 15MB limit.', 'error'); resetFileSelection(); return; }
+             if (!['image/jpeg', 'image/png', 'image/webp', 'image/bmp'].includes(file.type)) { updateStatus(`Error: Unsupported file type (${file.type||'?'}).`, 'error'); resetFileSelection(); return; }
 
             fileNameDisplay.textContent = file.name;
-            // Extract filename without extension for download suggestion
             currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
-            convertBtn.disabled = false; // Enable the convert button
-
-            // --- Show Image Preview ---
+            convertBtn.disabled = false;
             const reader = new FileReader();
-            reader.onload = (e) => {
-                imagePreview.src = e.target.result;
-                imagePreviewArea.style.display = 'block'; // Show preview area
-            };
-            reader.onerror = () => {
-                 updateStatus('Error reading image preview.', 'error');
-                 resetFileSelection(); // Clear selection on reader error
-            }
+            reader.onload = (e) => { imagePreview.src = e.target.result; imagePreviewArea.style.display = 'block'; };
+            reader.onerror = () => { updateStatus('Error reading preview.', 'error'); resetFileSelection(); }
             reader.readAsDataURL(file);
-
         } else {
-            // No file selected or selection cleared
             resetFileSelection();
         }
-    });
+        updateOptionsAvailability(); // Update options based on default selects after handling file change
+    }
 
-    // Handle "Convert to SVG" Button Click
-    convertBtn.addEventListener('click', async () => {
+    async function handleConvert() {
         const file = imageInput.files[0];
-        if (!file) {
-            updateStatus('Please select an image first.', 'error');
-            return; // Should not happen if button is disabled correctly, but good check
-        }
+        if (!file) { updateStatus('Please select an image first.', 'error'); return; }
 
-        // --- UI Updates for Processing ---
         updateStatus('Uploading and converting...', 'loading');
-        convertBtn.disabled = true;
-        convertBtn.textContent = 'Converting...';
-        resetResultArea(false); // Clear previous SVG output but keep status message
+        convertBtn.disabled = true; convertBtn.textContent = 'Converting...';
+        resetResultArea(false);
 
-        // --- Prepare Data for Server ---
         const formData = new FormData();
-        formData.append('imageFile', file); // The image itself
+        formData.append('imageFile', file);
 
-        // Append selected options from the form
+        // Append ONLY ENABLED options
         const optionsData = new FormData(optionsForm);
         for (let [key, value] of optionsData.entries()) {
-             // Only send options that have a value
-             if (value !== '' && value !== null) {
-                formData.append(key, value);
-                console.log(`Appending option: ${key} = ${value}`); // Debug log
+             const element = optionsForm.elements[key];
+             // Check element exists and is not disabled within its group
+             if (element && !element.disabled && value !== '' && value !== null) {
+                 formData.append(key, value);
+                 console.log(`Appending option: ${key} = ${value}`);
+             } else if (element && element.disabled){
+                  console.log(`Skipping disabled option: ${key}`);
              }
         }
 
         console.log("Sending data to backend /convert endpoint...");
-
-        // --- Send Request to Backend ---
         try {
-            const response = await fetch('/convert', { // Fetch the backend endpoint
-                method: 'POST',
-                body: formData // FormData sets headers automatically
-            });
-
-            // Attempt to parse response as JSON regardless of status code for error messages
+            const response = await fetch('/convert', { method: 'POST', body: formData });
             const result = await response.json();
+            if (!response.ok) { throw new Error(result.error || `Server error: ${response.status}`); }
 
-            if (!response.ok) {
-                // If response status is not 2xx, throw an error using the message from the JSON body
-                throw new Error(result.error || `Server error: ${response.status} ${response.statusText}`);
-            }
-
-            // --- Handle Successful Response ---
             if (result.svg) {
-                currentSvgContent = result.svg; // Store the valid SVG content
-                svgOutputDiv.innerHTML = currentSvgContent; // Display the SVG in the preview div
-                svgCodeTextarea.value = currentSvgContent; // Update hidden textarea for copy functionality
-                svgOutputDiv.classList.remove('placeholder-text'); // Ensure placeholder is not shown
-                updateStatus('Conversion successful!', 'success', 3000); // Show success message, clear after 3 secs
-                downloadBtn.disabled = false; // Enable download
-                copyBtn.disabled = false; // Enable copy
-            } else {
-                 // Should not happen if response.ok is true, but handle just in case
-                 throw new Error("Server response was successful but contained no SVG data.");
-            }
+                currentSvgContent = result.svg;
+                svgOutputDiv.innerHTML = currentSvgContent;
+                svgCodeTextarea.value = currentSvgContent;
+                svgOutputDiv.classList.remove('placeholder-text');
+                updateStatus('Conversion successful!', 'success', 3000);
+                downloadBtn.disabled = false; copyBtn.disabled = false;
+            } else { throw new Error("Server response ok but no SVG data."); }
 
         } catch (error) {
-            // --- Handle Fetch Errors or Server Errors ---
             console.error('Conversion Request Failed:', error);
-            updateStatus(`Error: ${error.message}`, 'error'); // Display the error message from backend or fetch
-            resetResultArea(false); // Clear potentially broken SVG preview
-             // Keep result buttons disabled on error
-            downloadBtn.disabled = true;
-            copyBtn.disabled = true;
-
+            updateStatus(`Error: ${error.message}`, 'error');
+            resetResultArea(false); downloadBtn.disabled = true; copyBtn.disabled = true;
         } finally {
-            // --- UI Cleanup After Request ---
-            // Re-enable convert button ONLY if a file is still selected
-            convertBtn.disabled = !imageInput.files[0];
-            convertBtn.textContent = 'Convert to SVG'; // Reset button text
+            convertBtn.disabled = !imageInput.files[0]; convertBtn.textContent = 'Convert to SVG';
         }
-    });
+    }
 
-    // --- Handle Download Button Click ---
-    downloadBtn.addEventListener('click', () => {
-        if (!currentSvgContent) {
-            console.warn("Download skipped: No SVG content available.");
-            return;
-        }
+    function handleDownload() {
+        if (!currentSvgContent) return;
         try {
-             // Create a Blob from the SVG string
-             const svgBlob = new Blob([currentSvgContent], { type: 'image/svg+xml;charset=utf-8' });
-             // Create a temporary URL for the Blob
-             const url = URL.createObjectURL(svgBlob);
+            const svgBlob = new Blob([currentSvgContent],{type:'image/svg+xml;charset=utf-8'});
+            const url=URL.createObjectURL(svgBlob);
+            downloadLink.href=url; downloadLink.download=`${currentFilenameBase}_vectorised.svg`;
+            downloadLink.click(); URL.revokeObjectURL(url);
+        } catch(e){console.error("Download failed:", e); updateStatus('Error downloading','error');}
+    }
 
-             // Configure and trigger the hidden download link
-             downloadLink.href = url;
-             downloadLink.download = `${currentFilenameBase}_vectorised.svg`; // Suggest filename
-             downloadLink.click(); // Simulate click to start download
-
-             // Release the temporary URL
-             URL.revokeObjectURL(url);
-             console.log("SVG Download Triggered");
-        } catch (error) {
-              console.error("Download failed:", error);
-              updateStatus('Error preparing download link.', 'error');
-        }
-    });
-
-    // --- Handle Copy SVG Code Button Click ---
-    copyBtn.addEventListener('click', () => {
-         if (!svgCodeTextarea.value) {
-              console.warn("Copy skipped: No SVG code available.");
-             return;
-         }
-
-         navigator.clipboard.writeText(svgCodeTextarea.value).then(() => {
-             // Success feedback on the button
-             const originalText = copyBtn.textContent;
-             const originalBg = copyBtn.style.backgroundColor;
-             copyBtn.textContent = 'Copied!';
-             copyBtn.style.backgroundColor = '#28a745'; // Green feedback
-             copyBtn.style.color = 'white';
-
-             // Reset button after a short delay
-             setTimeout(() => {
-                 copyBtn.textContent = originalText;
-                 copyBtn.style.backgroundColor = originalBg;
-                 copyBtn.style.color = ''; // Reset color if needed
-             }, 1500);
-         }).catch(err => {
-             // Handle potential clipboard errors (e.g., browser permissions)
-             console.error('Failed to copy SVG code to clipboard:', err);
-             updateStatus('Failed to copy code. Check browser permissions or copy manually.', 'error');
-         });
-     });
-
+    function handleCopy() {
+        if (!svgCodeTextarea.value) return;
+        navigator.clipboard.writeText(svgCodeTextarea.value).then(()=>{
+            const originalText = copyBtn.textContent;
+            const originalBg = copyBtn.style.backgroundColor;
+            copyBtn.textContent='Copied!'; copyBtn.style.backgroundColor='#28a745'; copyBtn.style.color='white';
+            setTimeout(()=>{ copyBtn.textContent=originalText; copyBtn.style.backgroundColor=originalBg; copyBtn.style.color=''; }, 1500);
+        }).catch(e=>{ console.error('Failed to copy:',e); updateStatus('Failed to copy code','error'); });
+    }
 
     // --- Utility Functions ---
-
-    let statusClearTimer; // Timer for clearing non-error status messages
-
-    // Updates the status message area
+    let statusClearTimer;
     function updateStatus(message, type, clearDelay = 0) {
-        clearTimeout(statusClearTimer); // Clear existing timeout if any
+        clearTimeout(statusClearTimer);
         statusArea.textContent = message;
-        // Set class for styling (e.g., 'loading', 'success', 'error')
         statusArea.className = `status-area ${type}`;
-
-        // Automatically clear non-error messages after a delay
         if (type !== 'error' && clearDelay > 0 && message !== '') {
             statusClearTimer = setTimeout(() => {
-                // Check if the message is still the same before clearing
-                if (statusArea.textContent === message) {
-                    updateStatus('', ''); // Clear the status
-                }
+                if (statusArea.textContent === message) updateStatus('', '');
             }, clearDelay);
         }
-        // Log errors for easier debugging
-        if (type === 'error') {
-           console.error("UI Status Update (Error):", message);
-        }
+        if(type === 'error'){ console.error("UI Status:", message); }
     }
 
-    // Resets the file input elements and associated state
     function resetFileSelection() {
-        imageInput.value = ''; // Clears the selected file in the input element
-        fileNameDisplay.textContent = 'No file chosen';
-        imagePreviewArea.style.display = 'none'; // Hide preview area
-        imagePreview.src = '#'; // Reset preview image source
-        convertBtn.disabled = true; // Disable convert button
-        resetResultArea(); // Also clear any previous conversion results
+        imageInput.value = ''; fileNameDisplay.textContent = 'No file chosen';
+        imagePreviewArea.style.display = 'none'; imagePreview.src = '#';
+        convertBtn.disabled = true;
+        resetResultArea();
+        updateOptionsAvailability(); // Reset options enabled state too
     }
 
-    // Resets the SVG result/output area
     function resetResultArea(clearStatusToo = true) {
-        // Restore placeholder text
         svgOutputDiv.innerHTML = '<p class="placeholder-text">SVG result will appear here</p>';
-        svgOutputDiv.classList.add('placeholder-text'); // Ensure class is set for styling
-        svgCodeTextarea.value = ''; // Clear hidden textarea
-        currentSvgContent = ''; // Clear stored SVG
-        downloadBtn.disabled = true; // Disable download button
-        copyBtn.disabled = true; // Disable copy button
-
-        // Optionally clear status messages as well
-        if (clearStatusToo) {
-            updateStatus('', '');
-        }
+        svgOutputDiv.classList.add('placeholder-text');
+        svgCodeTextarea.value = ''; currentSvgContent = '';
+        downloadBtn.disabled = true; copyBtn.disabled = true;
+        if (clearStatusToo) updateStatus('', '');
     }
 
     // --- Initial State Setup ---
-    // Ensure the app starts in a clean state when the page loads
-    resetFileSelection();
+    resetFileSelection(); // Reset form/results
+    updateOptionsAvailability(); // Set initial enabled/disabled state for options
 
 }); // End DOMContentLoaded
