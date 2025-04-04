@@ -1,292 +1,80 @@
-// public/script.js - UPDATED for New UI/UX
+/* --- Reset & Basic Setup --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; line-height: 1.6; background-color: #f8f9fa; color: #212529; font-size: 16px; }
+.app-container { max-width: 1300px; margin: 0 auto; padding: 1rem; }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Get DOM Elements ---
-    const landingSection = document.getElementById('landingSection');
-    const appSection = document.getElementById('appSection');
-    const imageInput = document.getElementById('imageInput');
-    const fileNameDisplay = document.getElementById('fileName'); // In landing/progress
-    const imagePreviewArea = document.getElementById('imagePreviewArea'); // In backend HTML, remove if not using
-    const imagePreview = document.getElementById('imagePreview'); // In backend HTML, remove if not using
-    const optionsForm = document.getElementById('optionsForm');
-    const convertBtn = document.getElementById('convertBtn'); // Now "Update SVG" button
-    const statusArea = document.getElementById('statusArea'); // Status in app section
-    const landingStatusArea = document.getElementById('landingStatusArea'); // Status in landing section
-    const svgOutputDiv = document.getElementById('svgOutput');
-    const svgCodeTextarea = document.getElementById('svgCode');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const copyBtn = document.getElementById('copyBtn');
-    const downloadLink = document.getElementById('downloadLink');
-    const uploadNewBtn = document.getElementById('uploadNewBtn'); // Button in app header
+/* --- Header --- */
+.app-header { display: flex; align-items: center; justify-content: center; padding: 0.75rem 0 1.5rem 0; border-bottom: 1px solid #dee2e6; margin-bottom: 1.5rem; }
+#appLogo { max-height: 45px; width: auto; margin-right: 1rem; }
+.app-header h1 { font-size: 2rem; color: #343a40; font-weight: 600; margin: 0; line-height: 1.2; }
 
-    // Upload Area Elements
-    const uploadArea = document.getElementById('uploadArea');
-    const dropZone = document.getElementById('dropZone');
-    const uploadProgress = document.getElementById('uploadProgress');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const fileNameProgress = document.getElementById('fileName'); // Also used in progress bar display
+/* --- Upload Section --- */
+.upload-section { background-color: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; margin-bottom: 1.75rem; border: 1px solid #e9ecef; }
+.upload-section .file-label { display: inline-block; background: linear-gradient(145deg, #007bff, #0056b3); color: white; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; transition: all 0.2s ease-out; font-weight: 500; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2); }
+.upload-section .file-label:hover { background: linear-gradient(145deg, #0069d9, #004a99); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); }
+.upload-section input[type="file"] { display: none; }
+.upload-section #fileName { display: block; margin-top: 0.5rem; font-style: italic; color: #6c757d; min-height: 1.2em; }
+.image-preview-area { margin-top: 1rem; min-height: 100px; /* Ensure space even if no img */ }
+#imagePreview { display: block; /* Prevents extra space */ margin: 0 auto; max-width: 90%; max-height: 150px; border: 1px solid #dee2e6; border-radius: 4px; }
 
-    // Controlling option elements
-    const modeSelect = document.getElementById('optMode');
-    const colormodeSelect = document.getElementById('optColormode');
+/* --- Main Content Layout --- */
+.main-content { display: flex; flex-wrap: wrap; gap: 1.75rem; }
 
-    // Dependent option group elements (keep same refs as before)
-    const splineThresholdGroup = document.getElementById('groupSplineThreshold');
-    // ... (get references for ALL other conditional groups: spliceThresholdGroup, segmentLengthGroup, etc.) ...
-     const spliceThresholdGroup = document.getElementById('groupSpliceThreshold');
-     const segmentLengthGroup = document.getElementById('groupSegmentLength');
-     const hierarchicalGroup = document.getElementById('groupHierarchical');
-     const gradientStepGroup = document.getElementById('groupGradientStep');
-     const colorPrecisionGroup = document.getElementById('groupColorPrecision');
-     const cornerThresholdGroup = document.getElementById('groupCornerThreshold');
+/* --- Options Panel --- */
+.options-panel { flex: 1; min-width: 300px; max-width: 400px; background-color: #ffffff; padding: 1.5rem 1.75rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #e9ecef; display: flex; flex-direction: column; }
+.options-panel h2 { font-size: 1.5em; color: #343a40; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid #eee; text-align: center; font-weight: 600; }
+#optionsForm { flex-grow: 1; }
+.option-group { margin-bottom: 1.25rem; transition: opacity 0.3s ease; } /* Added transition */
+.option-group label { display: block; font-weight: 500; color: #495057; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.option-group label[title] { cursor: help; }
+.option-group select { display: block; width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #ced4da; border-radius: 5px; font-size: 0.95em; background-color: #fff; transition: border-color 0.2s ease, background-color 0.2s ease; }
+.option-group select:focus { border-color: #80bdff; outline: 0; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
+.slider-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+.slider-wrapper { display: flex; align-items: center; gap: 0.75rem; }
+.slider-group input[type="range"] { flex-grow: 1; height: 6px; cursor: pointer; appearance: none; background: #dee2e6; border-radius: 3px; outline: none; transition: opacity .2s, background .2s ease; }
+.slider-group input[type="range"]:hover { opacity: 0.9; }
+.slider-group input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; background: #007bff; border-radius: 50%; cursor: pointer; transition: background-color 0.2s ease; }
+.slider-group input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: #007bff; border-radius: 50%; cursor: pointer; border: none; transition: background-color 0.2s ease; }
+.slider-group .slider-value { font-weight: 500; color: #495057; font-size: 0.85em; min-width: 50px; text-align: right; background-color: #e9ecef; padding: 2px 6px; border-radius: 4px; }
 
+/* --- Styling for Disabled Options --- */
+.option-group.disabled { opacity: 0.45; pointer-events: none; user-select: none; }
+.option-group.disabled label, .option-group.disabled .slider-value { color: #adb5bd; cursor: not-allowed; }
+.option-group.disabled input[type="range"] { background: #e9ecef; cursor: not-allowed; }
+.option-group.disabled input[type="range"]::-webkit-slider-thumb { background: #adb5bd; cursor: not-allowed; }
+.option-group.disabled input[type="range"]::-moz-range-thumb { background: #adb5bd; cursor: not-allowed; }
+.option-group.disabled select { background-color: #e9ecef; cursor: not-allowed; }
 
-    // --- State Variables ---
-    let currentFile = null; // Store the selected/dropped File object
-    let currentFilenameBase = 'vectorised-image';
-    let currentSvgContent = '';
+/* Action Button Base Styles */
+.action-button { display: block; width: 100%; text-align: center; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-size: 1.05em; font-weight: 500; transition: all 0.2s ease-out; margin-top: 1rem; } /* Added margin-top */
+.convert-button { background: linear-gradient(145deg, #17a2b8, #117a8b); color: white; box-shadow: 0 2px 4px rgba(23, 162, 184, 0.2); margin-top: 1.5rem; }
+.convert-button:hover:not(:disabled) { background: linear-gradient(145deg, #138496, #0f6070); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3); }
+.action-button:disabled { background-color: #adb5bd !important; /* Use important to override gradient */ background-image: none !important; color: #6c757d; cursor: not-allowed; opacity: 0.65; box-shadow: none; transform: none; }
 
-    // --- Initial UI Setup ---
-    showLandingView(); // Start with the landing page visible
-    updateOptionsAvailability(); // Set initial disabled state of options
+/* --- Result Panel --- */
+.result-panel { flex: 2; min-width: 400px; background-color: #ffffff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #e9ecef; display: flex; flex-direction: column; }
+.result-panel h2 { font-size: 1.5em; color: #343a40; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #eee; text-align: center; font-weight: 600; }
+.status-area { padding: 0.6rem 1rem; border-radius: 5px; font-weight: 500; font-size: 0.95em; text-align: center; margin-bottom: 1rem; min-height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid transparent; }
+.status-area:empty { padding: 0; min-height: 0; border: none; margin-bottom: 0; }
+.status-area.loading { color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb; }
+.status-area.error { color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; }
+.status-area.success { color: #155724; background-color: #d4edda; border-color: #c3e6cb; }
+.result-container { flex-grow: 1; border: 1px solid #dee2e6; background-color: #f1f3f5; border-radius: 6px; overflow: hidden; min-height: 300px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem; background-image: linear-gradient(45deg, #e9ecef 25%, transparent 25%), linear-gradient(-45deg, #e9ecef 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e9ecef 75%), linear-gradient(-45deg, transparent 75%, #e9ecef 75%); background-size: 24px 24px; background-position: 0 0, 0 12px, 12px -12px, -12px 0px; }
+#svgOutput { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 5px; }
+#svgOutput svg { max-width: 100%; max-height: 98%; display: block; object-fit: contain; }
+#svgOutput .placeholder-text { color: #6c757d; font-style: italic; font-size: 1.1em; padding: 20px; text-align: center; }
+.result-controls { display: flex; gap: 1rem; justify-content: center; }
+.download-button { background: linear-gradient(145deg, #28a745, #218838); color: white; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2); }
+.download-button:hover:not(:disabled) { background: linear-gradient(145deg, #218838, #1e7e34); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); }
+.copy-button { background: linear-gradient(145deg, #6c757d, #5a6268); color: white; box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2); }
+.copy-button:hover:not(:disabled) { background: linear-gradient(145deg, #5a6268, #4e555b); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3); }
+#svgCode { display: none; } /* Hidden textarea for copy function */
 
-    // --- Drag and Drop Event Listeners ---
-    dropZone.addEventListener('dragenter', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('dragover');
-    });
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault(); // Necessary to allow drop
-        dropZone.classList.add('dragover');
-    });
-    dropZone.addEventListener('dragleave', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-    });
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            handleFile(files[0]); // Process the first dropped file
-        }
-    });
-    // Also trigger file input click when drop zone itself is clicked
-     dropZone.addEventListener('click', (e) => {
-         // Prevent triggering if the click is on the button/label inside
-         if (e.target.id !== 'imageInput' && e.target.tagName !== 'LABEL') {
-            imageInput.click();
-        }
-    });
+/* --- Footer --- */
+.app-footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #dee2e6; font-size: 0.9em; color: #6c757d; }
+.app-footer a { color: #007bff; text-decoration: none; }
+.app-footer a:hover { text-decoration: underline; }
 
-    // --- Standard File Input Listener ---
-    imageInput.addEventListener('change', (event) => {
-        if (event.target.files.length > 0) {
-            handleFile(event.target.files[0]);
-        }
-    });
-
-    // --- Control Button Listeners ---
-    convertBtn.addEventListener('click', handleConvert); // "Update SVG"
-    downloadBtn.addEventListener('click', handleDownload);
-    copyBtn.addEventListener('click', handleCopy);
-    uploadNewBtn.addEventListener('click', resetAppToLanding); // "Upload New" button
-
-    // --- Option Change Listeners ---
-    modeSelect.addEventListener('change', updateOptionsAvailability);
-    colormodeSelect.addEventListener('change', updateOptionsAvailability);
-    // Add input listener to sliders to enable update button
-    optionsForm.querySelectorAll('input[type="range"], select').forEach(input => {
-        input.addEventListener('change', () => {
-             if (currentFile) { // Only enable update if there's a processed image
-                convertBtn.disabled = false;
-                convertBtn.textContent = 'Update SVG'; // Change text to reflect action
-            }
-        });
-    });
-     // --- Slider Value Display Updates (Keep this logic) ---
-     optionsForm.querySelectorAll('input[type="range"]').forEach(slider => { /* ... same slider value display update code ... */ });
-
-
-    // --- Core Functions ---
-
-    // Handles file selection from input OR drag/drop
-    function handleFile(file) {
-        if (!file) {
-            resetAppToLanding();
-            return;
-        }
-        currentFile = file; // Store the file object
-
-        // Clear previous status/results
-        resetResultArea();
-        landingStatusArea.textContent = ''; // Clear landing status
-
-        // Validation
-        if (file.size > 15 * 1024 * 1024) {
-            showLandingError('Error: File exceeds 15MB limit.');
-            resetAppToLanding(); return;
-        }
-        if (!['image/jpeg', 'image/png', 'image/webp', 'image/bmp'].includes(file.type)) {
-             showLandingError(`Error: Unsupported file type (${file.type||'?'}).`);
-             resetAppToLanding(); return;
-        }
-
-        fileNameDisplay.textContent = file.name; // Show file name early
-        fileNameProgress.textContent = file.name; // Show in progress bar area too
-        currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
-
-        // Show progress bar area, hide drop zone
-        dropZone.style.display = 'none';
-        uploadProgress.style.display = 'block';
-        simulateUploadProgress(() => {
-            // Transition to app view AFTER simulated progress
-            showAppView();
-            handleConvert(); // Trigger initial conversion
-        });
-    }
-
-    // Simulate upload progress (replace with real progress if backend supported it)
-    function simulateUploadProgress(callback) {
-        let progress = 0;
-        progressBar.style.setProperty('--progress', `0%`);
-        progressText.textContent = `Processing... 0%`; // Change text
-
-        const interval = setInterval(() => {
-            progress += Math.random() * 15 + 5; // Simulate variable progress
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                 progressText.textContent = `Processing... 100%`;
-                 progressBar.style.setProperty('--progress', `100%`);
-                // Short delay before calling callback
-                 setTimeout(callback, 300);
-            } else {
-                 progressText.textContent = `Processing... ${Math.round(progress)}%`;
-                 progressBar.style.setProperty('--progress', `${progress}%`);
-            }
-        }, 100); // Update progress interval
-    }
-
-    // Main conversion logic (sends to backend)
-    async function handleConvert() {
-        if (!currentFile) {
-            updateStatus('No file selected for conversion.', 'error');
-            return;
-        }
-
-        updateStatus('Vectorizing your image...', 'loading'); // App status
-        convertBtn.disabled = true;
-        convertBtn.textContent = 'Working...';
-        downloadBtn.disabled = true; // Disable while processing
-        copyBtn.disabled = true;
-        resetResultArea(false); // Clear previous SVG, keep status
-
-        const formData = new FormData();
-        formData.append('imageFile', currentFile); // Send the stored File object
-
-        const optionsData = new FormData(optionsForm);
-        for (let [key, value] of optionsData.entries()) {
-            const element = optionsForm.elements[key];
-            if (element && !element.disabled && value !== '' && value !== null) {
-                formData.append(key, value);
-            }
-        }
-
-        console.log("Sending data to backend /convert endpoint...");
-        try {
-            const response = await fetch('/convert', { method: 'POST', body: formData });
-            const result = await response.json();
-            if (!response.ok) { throw new Error(result.error || `Server error: ${response.status}`); }
-
-            if (result.svg) {
-                currentSvgContent = result.svg;
-                svgOutputDiv.innerHTML = currentSvgContent;
-                svgCodeTextarea.value = currentSvgContent;
-                 svgOutputDiv.classList.remove('placeholder-text');
-                updateStatus('Vectorization Complete!', 'success', 3000);
-                downloadBtn.disabled = false; copyBtn.disabled = false; // Enable results buttons
-                 convertBtn.textContent = 'Update SVG'; // Ready for re-runs
-                 convertBtn.disabled = true; // Disable until an option changes
-            } else { throw new Error("Server response ok but no SVG data."); }
-
-        } catch (error) {
-            console.error('Conversion Request Failed:', error);
-            updateStatus(`Error: ${error.message}`, 'error');
-            resetResultArea(false); downloadBtn.disabled = true; copyBtn.disabled = true;
-             convertBtn.textContent = 'Update SVG'; // Reset text even on error
-            // Keep convertBtn disabled on error until file re-selected? Or allow retry? Let's allow retry if file is present
-             convertBtn.disabled = !currentFile;
-
-        }
-        // Note: We don't re-enable convertBtn in finally, only on success or if file still exists after error
-    }
-
-    // --- UI State Changes ---
-    function showLandingView() {
-        landingSection.classList.remove('hidden');
-        appSection.classList.add('hidden');
-        // Reset upload area specific elements
-         resetUploadArea();
-    }
-
-    function showAppView() {
-        landingSection.classList.add('hidden');
-        appSection.classList.remove('hidden');
-        updateOptionsAvailability(); // Ensure options are correctly enabled/disabled
-        resetResultArea(); // Clear any previous results in app view
-         statusArea.textContent = ''; // Clear app status too
-    }
-
-    function resetAppToLanding() {
-        currentFile = null;
-        currentSvgContent = '';
-        imageInput.value = ''; // Clear file input
-         fileNameDisplay.textContent = 'No file chosen'; // For progress area reset
-        showLandingView();
-         updateStatus('', ''); // Clear any lingering app status
-         landingStatusArea.textContent = ''; // Clear landing status
-    }
-
-     function resetUploadArea(){
-        dropZone.style.display = 'block';
-        uploadProgress.style.display = 'none';
-        progressBar.style.setProperty('--progress', `0%`);
-        progressText.textContent = 'Processing... 0%';
-        fileNameProgress.textContent = '';
-    }
-
-
-    // --- Conditional Options Logic (Keep exact same as previous version) ---
-    function updateOptionsAvailability() { /* ... same logic ... */ }
-    function toggleOptionGroup(groupElement, enable) { /* ... same logic ... */ }
-
-    // --- Download and Copy Logic (Keep exact same as previous version) ---
-    function handleDownload() { /* ... same logic ... */ }
-    function handleCopy() { /* ... same logic ... */ }
-
-    // --- Utility Functions (Keep existing) ---
-    let statusClearTimer;
-    function updateStatus(message, type, clearDelay = 0) { /* ... */ } // Main app status
-    function showLandingError(message){ // Specific helper for landing status
-        landingStatusArea.textContent = message;
-        landingStatusArea.className = 'status-area landing-status error';
-    }
-    function resetFileSelection() { /* (Included in resetAppToLanding) */ }
-    function resetResultArea(clearStatusToo = true) { /* ... (Modified slightly) */
-         svgOutputDiv.innerHTML = '<p class="placeholder-text">Processing image...</p>'; // Change placeholder for app view
-         svgOutputDiv.classList.add('placeholder-text');
-         svgCodeTextarea.value = ''; currentSvgContent = '';
-         downloadBtn.disabled = true; copyBtn.disabled = true;
-         if (clearStatusToo) {
-             updateStatus('', ''); // Clear app status
-         }
-    }
-
-    // --- Initial State Call ---
-    // updateOptionsAvailability is called initially by showLandingView->resetAppToLanding
-    // (No, need to call it explicitly)
-    updateOptionsAvailability();
-
-}); // End DOMContentLoaded
+/* --- Responsive --- */
+@media (max-width: 900px) { .main-content { flex-direction: column; } .options-panel, .result-panel { max-width: none; } }
+@media (max-width: 576px) { body { font-size: 15px; } .app-container { padding: 0.75rem; } .app-header h1 { font-size: 1.6rem; } #appLogo { max-height: 35px; } .options-panel, .result-panel, .upload-section { padding: 1rem; } .action-button, .upload-section .file-label { padding: 0.6rem 1.2rem; font-size: 0.9em; } .result-controls { flex-direction: column; } }
