@@ -1,4 +1,4 @@
-/* Basic Reset & Font */
+/* --- Reset & Basic Setup --- */
 * {
     margin: 0;
     padding: 0;
@@ -6,310 +6,428 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
-    background-color: #f8f9fa; /* Slightly off-white */
-    color: #343a40; /* Darker grey */
-    padding: 20px;
+    background-color: #f8f9fa; /* Lighter background */
+    color: #212529; /* Darker text */
+    font-size: 16px;
+}
+
+.app-container {
+    max-width: 1500px; /* Allow wide layout */
+    margin: 0 auto;
+    padding: 1rem; /* Use rem units */
+}
+
+/* --- Header --- */
+.app-header {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding-bottom: 50px;
+    padding: 0.75rem 0 1.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 1.5rem;
 }
-
-.container {
-    background-color: #ffffff;
-    padding: 30px 40px; /* More horizontal padding */
-    border-radius: 12px; /* More rounded */
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Softer shadow */
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    border: 1px solid #e9ecef; /* Subtle border */
-}
-
-/* Logo Styling */
 #appLogo {
-    max-width: 160px; /* Adjust as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 5px; /* Space below logo */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    max-height: 45px;
+    width: auto;
+    margin-right: 1rem;
 }
-
-
-h1, h2 {
-    color: #212529; /* Bootstrap's near-black */
-    margin-bottom: 10px; /* Tighter spacing below H1 */
+.app-header h1 {
+    font-size: 2rem;
+    color: #343a40;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
 }
-h1 {
-     font-size: 2.2em; /* Larger main title */
-     font-weight: 600;
-     margin-top: 0; /* Remove default margin if logo is above */
-}
-h2 {
-     font-size: 1.6em;
-     font-weight: 500;
-     margin-bottom: 20px; /* Space below H2 */
-     border-bottom: 1px solid #eee; /* Separator line */
-     padding-bottom: 8px;
-     margin-top: 15px; /* Space above H2 */
-}
-
-
-p {
-    margin-bottom: 25px;
-    color: #495057; /* Slightly lighter text */
-    font-size: 1.1em;
-}
-
-/* Upload Area Styling */
-.upload-area {
-    margin-bottom: 25px;
-    border: 2px dashed #adb5bd; /* Updated color */
-    padding: 25px 20px; /* More padding */
-    border-radius: 8px; /* Rounded */
-    background-color: #f1f3f5; /* Light grey */
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.upload-area:hover {
-    background-color: #e9ecef;
-    border-color: #6c757d;
-}
-
-.upload-area input[type="file"] {
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.upload-area .file-label {
-    font-weight: 600; /* Bolder label */
-    color: #007bff; /* Primary blue */
-    display: block;
-    margin-bottom: 8px;
-    cursor: pointer;
-    font-size: 1.1em;
-}
-.upload-area #fileName {
-     display: block;
-     font-style: italic;
-     color: #6c757d; /* Muted text */
-     margin-top: 5px;
-}
-
-/* Preview Area */
-.preview-area {
-    margin-bottom: 25px;
-    text-align: center;
-}
-#imagePreview {
-    max-width: 90%; /* Slightly smaller max */
-    max-height: 280px;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    margin-top: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-/* Buttons */
-button {
-    background-color: #007bff; /* Primary blue */
-    color: white;
-    border: none;
-    padding: 12px 28px; /* More padding */
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.05em; /* Slightly larger text */
+.beta-tag {
+    font-size: 0.7rem;
+    color: #fd7e14; /* Orange */
+    vertical-align: middle;
+    margin-left: 0.5rem;
     font-weight: 500;
-    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-    margin: 10px 5px; /* Consistent margin */
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+    background-color: #fff3e0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    border: 1px solid #ffe0b2;
 }
 
-button:hover:not(:disabled) {
-    background-color: #0056b3; /* Darker blue */
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
-}
-
-button:active:not(:disabled) {
-     transform: translateY(0px);
-      box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
-}
-
-
-button:disabled {
-    background-color: #6c757d; /* Muted grey */
-    cursor: not-allowed;
-    opacity: 0.7;
-     box-shadow: none;
-}
-
-/* Result Container */
-.result-container {
-    margin-top: 35px;
-    border-top: 2px solid #dee2e6;
-    padding-top: 25px;
-}
-
-/* Controls Area Styling */
-.controls-area {
-    margin-bottom: 30px; /* More space below controls */
-    padding: 25px;
-    background-color: #f8f9fa;
+/* --- Upload Section --- */
+.upload-section {
+    background-color: #fff;
+    padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05);
     text-align: center;
+    margin-bottom: 1.75rem;
+    border: 1px solid #e9ecef;
+}
+.upload-section .file-label {
+    display: inline-block;
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+.upload-section .file-label:hover {
+    background: linear-gradient(145deg, #0069d9, #004a99);
+    transform: translateY(-1px);
+     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+.upload-section input[type="file"] {
+    display: none;
+}
+.upload-section #fileName {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #6c757d;
+    min-height: 1.2em; /* Prevent layout shift */
 }
 
-.control-item {
-    display: inline-block;
-    margin: 10px 20px; /* More spacing */
+/* --- Status Area --- */
+.status-area {
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.95em;
+    text-align: center;
+    min-height: 40px; /* Reserve space */
+    display: flex; /* Center text vertically */
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    border: 1px solid transparent; /* Base border */
+}
+.status-area:empty {
+    padding: 0;
+    min-height: 0;
+    border: none;
+}
+.status-area.loading {
+    color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb;
+}
+.status-area.error {
+    color: #721c24; background-color: #f8d7da; border-color: #f5c6cb;
+}
+.status-area.success {
+     color: #155724; background-color: #d4edda; border-color: #c3e6cb;
+}
+
+/* --- Main Content Layout --- */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem; /* More space */
+}
+
+/* --- Options Panel --- */
+.options-panel {
+    flex: 1;
+    min-width: 320px;
+    max-width: 400px; /* Max width for options */
+    background-color: #ffffff;
+    padding: 1.5rem 1.75rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+    position: relative; /* Needed for the overlay */
+}
+.options-panel h2 {
+    font-size: 1.5em;
+    color: #343a40;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-weight: 600;
+}
+.option-group {
+    margin-bottom: 1.25rem; /* Consistent spacing */
+}
+.option-group label {
+    display: block;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem; /* Slightly smaller label */
+}
+.option-group label[title] {
+    cursor: help; /* Indicate tooltip */
+}
+
+.option-group select, .option-group input[type="checkbox"] {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 0.95em;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+}
+.option-group select:focus {
+     border-color: #80bdff;
+     outline: 0;
+     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+.option-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
     vertical-align: middle;
 }
-.controls-area label {
-     margin-right: 10px;
-     font-weight: 500;
-     color: #495057;
-}
-.controls-area input[type="color"] {
-     margin-left: 5px;
+.checkbox-group label {
+     display: inline-block;
+     margin-bottom: 0;
+     font-weight: normal; /* Regular weight for checkbox label */
+     color: #212529;
+     font-size: 0.95em;
      vertical-align: middle;
      cursor: pointer;
-     border: 1px solid #ced4da;
-     padding: 2px;
-     width: 48px; /* Slightly larger */
-     height: 32px;
-     border-radius: 4px;
 }
-.control-item span {
-    font-size: 0.9em;
+
+.slider-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.slider-group input[type="range"] {
+    flex-grow: 1;
+    height: 6px;
+    cursor: pointer;
+    appearance: none;
+    background: #dee2e6;
+    border-radius: 3px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .2s;
+}
+.slider-group input[type="range"]:hover {
+    opacity: 1;
+}
+/* Chrome, Edge, Safari */
+.slider-group input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* Firefox */
+.slider-group input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+.slider-group .slider-value {
+    font-weight: 500;
+    color: #495057;
+    font-size: 0.85em;
+    min-width: 50px; /* Align values */
+    text-align: right;
+    background-color: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Options Disabled Overlay */
+.options-disabled-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+    display: flex; /* Hidden by default via JS */
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
     color: #6c757d;
-    margin-left: 12px;
-}
-
-
-/* SVG Preview Area Styling */
-.result-area {
-    margin-bottom: 30px;
-}
-#svgOutput {
-    border: 1px solid #dee2e6;
-    background-color: #ffffff;
+    border-radius: 8px; /* Match parent */
+    z-index: 10; /* Above controls */
+    text-align: center;
     padding: 20px;
-    margin: 15px auto 25px auto; /* Center horizontally */
-    min-height: 150px;
-    max-height: 450px;
-    overflow: auto;
+    pointer-events: none; /* Allow clicks through if needed? no */
+    opacity: 0; /* Hidden */
+    transition: opacity 0.3s ease;
+}
+.options-panel.disabled .options-disabled-overlay {
+    opacity: 1; /* Show overlay */
+    pointer-events: all;
+}
+.options-panel.disabled form {
+    filter: blur(1px); /* Optional: blur controls when disabled */
+}
+
+
+/* --- Preview Panel --- */
+.preview-panel {
+    flex: 3; /* Takes more space */
+    min-width: 450px;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+}
+.preview-panel h2 {
+    font-size: 1.5em;
+    color: #343a40;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+     font-weight: 600;
+}
+
+.preview-container {
+    flex-grow: 1;
+    position: relative;
+    border: 1px solid #dee2e6;
+    background-color: #f1f3f5;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px; /* Match rounding */
-    background-image:
-      linear-gradient(45deg, #f1f3f5 25%, transparent 25%),
-      linear-gradient(-45deg, #f1f3f5 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #f1f3f5 75%),
-      linear-gradient(-45deg, transparent 75%, #f1f3f5 75%);
-    background-size: 24px 24px; /* Slightly larger checkerboard */
+    background-image: /* Subtle checkerboard */
+      linear-gradient(45deg, #e9ecef 25%, transparent 25%),
+      linear-gradient(-45deg, #e9ecef 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e9ecef 75%),
+      linear-gradient(-45deg, transparent 75%, #e9ecef 75%);
+    background-size: 24px 24px;
     background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
-     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
-     max-width: 95%; /* Ensure some padding within container */
+}
+
+#svgOutput {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px; /* Small padding inside */
 }
 #svgOutput svg {
     max-width: 100%;
-    max-height: 430px;
+    max-height: 100%;
     display: block;
-    margin: auto;
+    object-fit: contain; /* Scale SVG down if needed */
 }
-
-/* Actions Area (Download/Copy) Styling */
-.actions-area {
-     margin-top: 20px;
-     padding: 25px 20px;
-     background-color: #f8f9fa;
-     border-radius: 8px;
-     border: 1px solid #e9ecef;
-     text-align: center;
-}
-.actions-area button {
-     /* Inherits general button style, specific margins adjusted above */
-}
-.actions-area textarea {
-    width: 100%;
-    margin-top: 20px;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; /* Better monospace stack */
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    padding: 12px;
-    resize: vertical;
-    min-height: 120px; /* Larger default size */
-    color: #343a40;
-     font-size: 0.9em; /* Slightly smaller code font */
-     line-height: 1.5;
-}
-
-
-/* Status/Error Messages */
-.status-area {
-    margin-top: 25px;
-    padding: 12px 15px;
-    border-radius: 5px;
-    font-weight: 500; /* Slightly bolder */
+#svgOutput .placeholder-text {
+    color: #6c757d;
+    font-style: italic;
+    font-size: 1.1em;
+    padding: 20px;
     text-align: center;
-    display: none; /* Hidden by default */
 }
-.status-area.success {
-    background-color: #d4edda; /* Bootstrap success */
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-.status-area.error {
-    background-color: #f8d7da; /* Bootstrap danger */
-    color: #721c24;
-     border: 1px solid #f5c6cb;
-}
-.status-area.loading {
-    background-color: #d1ecf1; /* Bootstrap info */
-    color: #0c5460;
-     border: 1px solid #bee5eb;
+#svgOutput .placeholder-text.error-text {
+    color: #dc3545; /* Error color */
+    font-style: normal;
+    font-weight: 500;
 }
 
-
-/* Responsive Design */
-@media (max-width: 700px) {
-     .container {
-         padding: 20px;
-     }
-     h1 { font-size: 1.8em; }
-     h2 { font-size: 1.4em; }
-     p { font-size: 1em; }
-     #appLogo { max-width: 120px; }
+/* Styles for segment view */
+#svgOutput.segment-view svg path {
+    stroke: rgba(0, 100, 255, 0.6); /* Segment line color */
+    stroke-width: 0.5px; /* Thin lines */
+    vector-effect: non-scaling-stroke; /* Keep stroke thin on zoom */
+    fill-opacity: 0.75;
 }
 
-@media (max-width: 600px) {
-    body { padding: 10px; }
-    .container { padding: 15px; }
-     #appLogo { max-width: 100px; }
-     h1 { font-size: 1.6em; }
-     h2 { font-size: 1.3em; }
-    button { padding: 10px 20px; font-size: 1em; }
-    .control-item {
-        display: block;
-        margin: 15px 0;
+.preview-controls {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.action-button {
+    background: linear-gradient(145deg, #28a745, #218838);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.2s ease-out;
+     box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+.action-button:hover:not(:disabled) {
+    background: linear-gradient(145deg, #218838, #1e7e34);
+     transform: translateY(-1px);
+     box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+.action-button:disabled {
+    background: #adb5bd; /* Muted grey */
+    cursor: not-allowed;
+    opacity: 0.65;
+    box-shadow: none;
+}
+.svg-size-info {
+    text-align: center;
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-top: 0.75rem;
+    min-height: 1.2em; /* Prevent layout shift */
+}
+
+/* --- Footer --- */
+.app-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+.app-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+.app-footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1000px) { /* Stack panels earlier */
+    .main-content {
+        flex-direction: column;
     }
-     .control-item span { display: block; margin-left: 0; margin-top: 5px; }
-    #svgOutput { min-height: 120px; max-height: 300px; }
-    .actions-area textarea { min-height: 100px; }
-     .actions-area button { display: block; width: 80%; margin: 10px auto; } /* Stack buttons */
+    .options-panel {
+        max-width: none; /* Allow options to take full width */
+        order: 2; /* Move options below preview */
+    }
+     .preview-panel {
+         order: 1;
+         min-width: unset;
+     }
+}
+
+@media (max-width: 576px) {
+    body { font-size: 15px; }
+    .app-container { padding: 0.75rem; }
+    .app-header h1 { font-size: 1.6rem; }
+    #appLogo { max-height: 35px; }
+    .upload-section, .options-panel, .preview-panel { padding: 1rem; }
+    .action-button, .upload-section .file-label { padding: 0.6rem 1.2rem; font-size: 0.9em; }
+    .slider-wrapper { flex-direction: column; align-items: stretch; gap: 0.3rem;}
+    .slider-group .slider-value { text-align: center; min-width: unset; }
+     .preview-container { min-height: 300px; }
 }
