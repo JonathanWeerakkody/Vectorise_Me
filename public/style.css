@@ -1,80 +1,345 @@
 /* --- Reset & Basic Setup --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; line-height: 1.6; background-color: #f8f9fa; color: #212529; font-size: 16px; }
-.app-container { max-width: 1300px; margin: 0 auto; padding: 1rem; }
+:root {
+    --primary-color: #007bff; /* Blue */
+    --primary-dark: #0056b3;
+    --secondary-color: #6c757d; /* Grey */
+    --success-color: #28a745; /* Green */
+    --success-dark: #1e7e34;
+    --light-bg: #f8f9fa;
+    --light-grey: #e9ecef;
+    --medium-grey: #dee2e6;
+    --dark-grey: #495057;
+    --text-color: #212529;
+    --white: #ffffff;
+    --border-radius: 8px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
 
-/* --- Header --- */
-.app-header { display: flex; align-items: center; justify-content: center; padding: 0.75rem 0 1.5rem 0; border-bottom: 1px solid #dee2e6; margin-bottom: 1.5rem; }
-#appLogo { max-height: 45px; width: auto; margin-right: 1rem; }
-.app-header h1 { font-size: 2rem; color: #343a40; font-weight: 600; margin: 0; line-height: 1.2; }
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
 
-/* --- Upload Section --- */
-.upload-section { background-color: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; margin-bottom: 1.75rem; border: 1px solid #e9ecef; }
-.upload-section .file-label { display: inline-block; background: linear-gradient(145deg, #007bff, #0056b3); color: white; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; transition: all 0.2s ease-out; font-weight: 500; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2); }
-.upload-section .file-label:hover { background: linear-gradient(145deg, #0069d9, #004a99); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); }
-.upload-section input[type="file"] { display: none; }
-.upload-section #fileName { display: block; margin-top: 0.5rem; font-style: italic; color: #6c757d; min-height: 1.2em; }
-.image-preview-area { margin-top: 1rem; min-height: 100px; /* Ensure space even if no img */ }
-#imagePreview { display: block; /* Prevents extra space */ margin: 0 auto; max-width: 90%; max-height: 150px; border: 1px solid #dee2e6; border-radius: 4px; }
+.app-container {
+    width: 100%;
+    max-width: 1600px; /* Wider max for app view */
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
 
-/* --- Main Content Layout --- */
-.main-content { display: flex; flex-wrap: wrap; gap: 1.75rem; }
+/* --- Utility Classes --- */
+.hidden {
+    display: none !important; /* Force hide */
+}
 
-/* --- Options Panel --- */
-.options-panel { flex: 1; min-width: 300px; max-width: 400px; background-color: #ffffff; padding: 1.5rem 1.75rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #e9ecef; display: flex; flex-direction: column; }
-.options-panel h2 { font-size: 1.5em; color: #343a40; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid #eee; text-align: center; font-weight: 600; }
-#optionsForm { flex-grow: 1; }
-.option-group { margin-bottom: 1.25rem; transition: opacity 0.3s ease; } /* Added transition */
-.option-group label { display: block; font-weight: 500; color: #495057; margin-bottom: 0.5rem; font-size: 0.9rem; }
-.option-group label[title] { cursor: help; }
-.option-group select { display: block; width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #ced4da; border-radius: 5px; font-size: 0.95em; background-color: #fff; transition: border-color 0.2s ease, background-color 0.2s ease; }
-.option-group select:focus { border-color: #80bdff; outline: 0; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
-.slider-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
-.slider-wrapper { display: flex; align-items: center; gap: 0.75rem; }
-.slider-group input[type="range"] { flex-grow: 1; height: 6px; cursor: pointer; appearance: none; background: #dee2e6; border-radius: 3px; outline: none; transition: opacity .2s, background .2s ease; }
-.slider-group input[type="range"]:hover { opacity: 0.9; }
-.slider-group input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; background: #007bff; border-radius: 50%; cursor: pointer; transition: background-color 0.2s ease; }
-.slider-group input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: #007bff; border-radius: 50%; cursor: pointer; border: none; transition: background-color 0.2s ease; }
-.slider-group .slider-value { font-weight: 500; color: #495057; font-size: 0.85em; min-width: 50px; text-align: right; background-color: #e9ecef; padding: 2px 6px; border-radius: 4px; }
+/* --- Header Styles --- */
+.app-header { /* Landing header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0 1.5rem 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+#appLogo { max-height: 50px; width: auto; margin-right: 1rem; }
+.app-header h1 { font-size: 2.2rem; color: #343a40; font-weight: 600; margin: 0; line-height: 1.2; }
 
-/* --- Styling for Disabled Options --- */
-.option-group.disabled { opacity: 0.45; pointer-events: none; user-select: none; }
-.option-group.disabled label, .option-group.disabled .slider-value { color: #adb5bd; cursor: not-allowed; }
-.option-group.disabled input[type="range"] { background: #e9ecef; cursor: not-allowed; }
-.option-group.disabled input[type="range"]::-webkit-slider-thumb { background: #adb5bd; cursor: not-allowed; }
-.option-group.disabled input[type="range"]::-moz-range-thumb { background: #adb5bd; cursor: not-allowed; }
-.option-group.disabled select { background-color: #e9ecef; cursor: not-allowed; }
+.app-header-sticky { /* App view header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--light-grey);
+    box-shadow: var(--shadow-sm);
+    position: sticky; /* Optional: make it stick */
+    top: 0;
+    z-index: 100;
+    margin-bottom: 1.5rem; /* Space below sticky header */
+}
+.app-header-sticky .header-left { display: flex; align-items: center; gap: 0.75rem; }
+#appLogoSmall { max-height: 30px; width: auto; }
+.app-header-sticky h3 { font-size: 1.2rem; font-weight: 600; margin: 0; color: #343a40;}
+.app-header-sticky .header-right {}
 
-/* Action Button Base Styles */
-.action-button { display: block; width: 100%; text-align: center; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-size: 1.05em; font-weight: 500; transition: all 0.2s ease-out; margin-top: 1rem; } /* Added margin-top */
-.convert-button { background: linear-gradient(145deg, #17a2b8, #117a8b); color: white; box-shadow: 0 2px 4px rgba(23, 162, 184, 0.2); margin-top: 1.5rem; }
-.convert-button:hover:not(:disabled) { background: linear-gradient(145deg, #138496, #0f6070); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3); }
-.action-button:disabled { background-color: #adb5bd !important; /* Use important to override gradient */ background-image: none !important; color: #6c757d; cursor: not-allowed; opacity: 0.65; box-shadow: none; transform: none; }
+/* --- Button Styles --- */
+.button-primary, .button-secondary, .action-button {
+    display: inline-block;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: all 0.2s ease-out;
+    text-align: center;
+    text-decoration: none; /* For label used as button */
+}
+.button-primary {
+    background: linear-gradient(145deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+.button-primary:hover:not(:disabled) {
+    background: linear-gradient(145deg, #0069d9, #004a99);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+.button-secondary {
+    background-color: var(--light-grey);
+    color: var(--text-color);
+    border: 1px solid var(--medium-grey);
+}
+.button-secondary:hover:not(:disabled) {
+    background-color: var(--medium-grey);
+    border-color: #adb5bd;
+}
+.action-button:disabled {
+    background-color: #adb5bd !important;
+    background-image: none !important;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.65;
+    box-shadow: none;
+    transform: none;
+}
+.convert-button { /* Specific styles for update button */
+     background: linear-gradient(145deg, #17a2b8, #117a8b);
+     color: white;
+     box-shadow: 0 2px 4px rgba(23, 162, 184, 0.2);
+     width: 100%;
+     margin-top: 1rem;
+}
+.convert-button:hover:not(:disabled) { background: linear-gradient(145deg, #138496, #0f6070); /* ... */ }
 
-/* --- Result Panel --- */
-.result-panel { flex: 2; min-width: 400px; background-color: #ffffff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #e9ecef; display: flex; flex-direction: column; }
-.result-panel h2 { font-size: 1.5em; color: #343a40; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #eee; text-align: center; font-weight: 600; }
-.status-area { padding: 0.6rem 1rem; border-radius: 5px; font-weight: 500; font-size: 0.95em; text-align: center; margin-bottom: 1rem; min-height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid transparent; }
-.status-area:empty { padding: 0; min-height: 0; border: none; margin-bottom: 0; }
-.status-area.loading { color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb; }
-.status-area.error { color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; }
-.status-area.success { color: #155724; background-color: #d4edda; border-color: #c3e6cb; }
-.result-container { flex-grow: 1; border: 1px solid #dee2e6; background-color: #f1f3f5; border-radius: 6px; overflow: hidden; min-height: 300px; display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem; background-image: linear-gradient(45deg, #e9ecef 25%, transparent 25%), linear-gradient(-45deg, #e9ecef 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e9ecef 75%), linear-gradient(-45deg, transparent 75%, #e9ecef 75%); background-size: 24px 24px; background-position: 0 0, 0 12px, 12px -12px, -12px 0px; }
-#svgOutput { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 5px; }
-#svgOutput svg { max-width: 100%; max-height: 98%; display: block; object-fit: contain; }
-#svgOutput .placeholder-text { color: #6c757d; font-style: italic; font-size: 1.1em; padding: 20px; text-align: center; }
-.result-controls { display: flex; gap: 1rem; justify-content: center; }
-.download-button { background: linear-gradient(145deg, #28a745, #218838); color: white; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2); }
+.download-button { background: linear-gradient(145deg, var(--success-color), var(--success-dark)); color: white; box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2); }
 .download-button:hover:not(:disabled) { background: linear-gradient(145deg, #218838, #1e7e34); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); }
+
 .copy-button { background: linear-gradient(145deg, #6c757d, #5a6268); color: white; box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2); }
 .copy-button:hover:not(:disabled) { background: linear-gradient(145deg, #5a6268, #4e555b); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3); }
-#svgCode { display: none; } /* Hidden textarea for copy function */
+
+/* --- Landing Section --- */
+.landing-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Use available space */
+}
+.hero-content {
+    max-width: 700px;
+    margin: 1rem auto 2rem auto;
+}
+.hero-content h2 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+.hero-content p {
+    font-size: 1.15rem;
+    color: var(--dark-grey);
+    margin-bottom: 2.5rem;
+}
+
+/* --- Upload Area & Drop Zone --- */
+.upload-area {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--light-grey);
+    width: 100%;
+    max-width: 600px; /* Control max width */
+    margin: 0 auto; /* Center */
+}
+.drop-zone {
+    border: 3px dashed var(--medium-grey);
+    border-radius: var(--border-radius);
+    padding: 2.5rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.drop-zone.dragover { /* Style when dragging over */
+    border-color: var(--primary-color);
+    background-color: #e7f3ff;
+}
+.upload-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.upload-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--dark-grey);
+    margin-bottom: 0.5rem;
+}
+.upload-or {
+    margin: 0.75rem 0;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+.upload-subtext {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+}
+
+/* --- Progress Bar --- */
+.upload-progress {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+.file-name-progress {
+    display: block;
+    font-size: 0.9em;
+    color: var(--dark-grey);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--light-grey);
+    border-radius: 5px;
+    overflow: hidden; /* Clip the inner bar */
+    margin-bottom: 0.5rem;
+}
+.progress-bar::before { /* The actual progress indicator */
+    content: '';
+    display: block;
+    height: 100%;
+    width: var(--progress, 0%); /* Controlled by JS */
+    background: linear-gradient(90deg, var(--primary-color), #00bfff); /* Example gradient */
+    border-radius: 5px;
+    transition: width 0.3s ease-out;
+}
+.progress-text {
+    font-size: 0.85em;
+    color: var(--secondary-color);
+}
+
+/* --- App Section --- */
+.app-section {
+    /* Styles applied when .hidden is removed */
+    width: 100%;
+}
+.processing-layout {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 1.5rem; /* Space between panels */
+    width: 100%;
+}
+
+/* --- Options Panel (App View) --- */
+.options-panel {
+    flex: 1; /* Adjust flex basis as needed */
+    min-width: 300px;
+    max-width: 380px;
+    background-color: var(--white);
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--light-grey);
+    height: fit-content; /* Adjust height */
+}
+.options-panel h2 { /* Slightly smaller header */
+    font-size: 1.3em; text-align: left; font-weight: 600; color: #343a40; margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--light-grey);
+}
+/* Inherit .option-group, .slider-group styles from previous CSS */
+/* Minor tweaks for app view */
+.option-group { margin-bottom: 1.1rem; }
+.option-group label { font-size: 0.88rem; margin-bottom: 0.4rem;}
+.option-group select, .slider-group input[type="range"] { /* Smaller controls */
+    font-size: 0.9rem;
+}
+.option-group select { padding: 0.5rem 0.6rem; }
+.slider-group .slider-value { font-size: 0.8rem; }
+
+/* Disabled styling (kept from previous CSS) */
+.option-group.disabled { opacity: 0.5; pointer-events: none; user-select: none; }
+/* ... other disabled styles ... */
+
+
+/* --- Result Panel (App View) --- */
+.result-panel {
+    flex: 3; /* Take more space */
+    min-width: 400px;
+    background-color: var(--white);
+    padding: 1.25rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--light-grey);
+    display: flex;
+    flex-direction: column;
+}
+.result-panel h2 { font-size: 1.3em; text-align: left; /* ... rest same as options h2 */ margin-bottom: 0.8rem; }
+
+.status-area.app-status { /* Specific style for app status area */
+    margin-bottom: 1rem;
+    min-height: 36px; /* Adjust height */
+    font-size: 0.9em;
+}
+.result-container {
+    flex-grow: 1;
+    border: 1px solid var(--medium-grey);
+    background-color: var(--light-bg); /* Lighter checkerboard */
+     background-image: linear-gradient(45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(-45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--light-grey) 75%), linear-gradient(-45deg, transparent 75%, var(--light-grey) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    border-radius: 6px;
+    overflow: auto; /* Allow scroll/pan if SVG is large */
+    min-height: 350px; /* Ensure decent preview height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+#svgOutput { /* Keep most styles */ width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 10px; }
+#svgOutput svg { max-width: 100%; max-height: 100%; display: block; }
+#svgOutput .placeholder-text { color: var(--secondary-color); font-style: italic; }
+
+.result-controls { display: flex; gap: 1rem; justify-content: center; }
+.result-controls .action-button { font-size: 0.9rem; padding: 0.6rem 1.2rem; } /* Slightly smaller buttons */
+
 
 /* --- Footer --- */
-.app-footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #dee2e6; font-size: 0.9em; color: #6c757d; }
-.app-footer a { color: #007bff; text-decoration: none; }
+.app-footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--medium-grey); font-size: 0.9em; color: var(--secondary-color); }
+.app-footer a { color: var(--primary-color); text-decoration: none; }
 .app-footer a:hover { text-decoration: underline; }
 
 /* --- Responsive --- */
-@media (max-width: 900px) { .main-content { flex-direction: column; } .options-panel, .result-panel { max-width: none; } }
-@media (max-width: 576px) { body { font-size: 15px; } .app-container { padding: 0.75rem; } .app-header h1 { font-size: 1.6rem; } #appLogo { max-height: 35px; } .options-panel, .result-panel, .upload-section { padding: 1rem; } .action-button, .upload-section .file-label { padding: 0.6rem 1.2rem; font-size: 0.9em; } .result-controls { flex-direction: column; } }
+@media (max-width: 992px) { /* Stack app panels earlier */
+    .processing-layout { flex-direction: column; }
+    .options-panel { max-width: none; order: 2; } /* Options below */
+    .result-panel { order: 1; }
+}
+@media (max-width: 600px) {
+    body { font-size: 15px; }
+    .app-container { padding: 0.75rem; }
+    .app-header h1 { font-size: 1.8rem; }
+    .hero-content h2 { font-size: 1.9rem; }
+    .hero-content p { font-size: 1rem; margin-bottom: 1.5rem;}
+    .drop-zone { padding: 1.5rem; }
+    .options-panel, .result-panel { padding: 1rem; }
+    .button-primary, .button-secondary, .action-button { padding: 0.6rem 1rem; font-size: 0.9rem; }
+    .result-controls { flex-direction: column; gap: 0.5rem; align-items: center; }
+    .result-controls .action-button { width: 80%; max-width: 250px;}
+    .app-header-sticky { padding: 0.5rem 1rem;}
+    .app-header-sticky h3 { font-size: 1rem; }
+}
