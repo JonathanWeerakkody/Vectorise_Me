@@ -3,117 +3,120 @@ const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs');
-const { execFile } = require('child_process'); // To run external commands like potrace
+const fs = require('fs').promises; // Use promise version
+const { execFile } = require('child_process');
+// const sharp = require('sharp'); // <-- Can likely remove or comment out sharp
 
 // Create an Express application
 const app = express();
-const port = process.env.PORT || 3000; // Use environment port or 3000
+const port = process.env.PORT || 3000;
 
 // --- Middleware ---
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files (HTML, CSS, JS, Assets)
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Configure Multer for file uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const uploadPath = path.join(__dirname, 'uploads');
-        fs.mkdirSync(uploadPath, { recursive: true });
-        cb(null, uploadPath);
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
-});
+// Configure Multer (keep as is)
+const storage = multer.diskStorage({ /* ... as before ... */ });
+const imageFileFilter = (req, file, cb) => { /* ... as before ... */ };
+const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: { fileSize: 10 * 1024 * 1024 } });
 
-const imageFileFilter = (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
-        cb(null, true);
-    } else {
-        cb(new Error('Only image files (JPG, PNG, WEBP etc.) are allowed!'), false);
-    }
-};
-
-const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: { fileSize: 10 * 1024 * 1024 } }); // Add file size limit (e.g., 10MB)
-
-// --- API Endpoint for Image Conversion ---
-app.post('/convert', upload.single('imageFile'), (req, res) => {
+// --- API Endpoint for Image Conversion (Make it async) ---
+app.post('/convert', upload.single('imageFile'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send({ error: 'No image file uploaded.' });
     }
 
     const inputImagePath = req.file.path;
-    const outputSvgPath = inputImagePath + '.svg'; // Temporary SVG path
+    // No intermediate BMP needed now
+    const outputSvgPath = inputImagePath + '.svg';
 
-    // Potrace arguments (Simple B&W tracing)
-    // -s: SVG output, -o: output file, input file last
-    // --turdsize 2: Suppress small speckles (adjust as needed)
-    const potraceArgs = ['-s', '-o', outputSvgPath, inputImagePath, '--turdsize', '2'];
+    // Define file paths for easier cleanup
+    const filesToDelete = [inputImagePath, outputSvgPath]; // Only input and output now
 
-    console.log(`[vectorise.me] Running Potrace: potrace ${potraceArgs.join(' ')}`);
+    try {
+        // --- Step 1: Run vtracer on the original input image ---
+        // vtracer options:
+        // -i : input file
+        // -o : output file
+        // --mode spline : output using bezier curves (smoother than polygon default)
+        // --color_mode color : enable color tracing (default)
+        // --filter_speckle 4 : ignore details smaller than 4 pixels (optional, adjust)
+        // --path_precision 3 : digits of precision for path data (optional, adjust)
 
-    // Execute Potrace
-    execFile('potrace', potraceArgs, (error, stdout, stderr) => {
-        // --- INPUT FILE DELETION ---
-        fs.unlink(inputImagePath, (unlinkErr) => {
-            if (unlinkErr) console.error("[vectorise.me] Error deleting input image:", unlinkErr);
-            else console.log("[vectorise.me] Deleted input image:", inputImagePath);
-        });
-        // -----------------------------
+        const vtracerArgs = [
+            '-i', inputImagePath,
+            '-o', outputSvgPath,
+            '--mode', 'spline', // Or 'polygon'
+            // '--color_mode', 'color', // It's the default, so often optional
+            // '--filter_speckle', '4', // Experiment with this
+            // '--path_precision', '3'  // Experiment with this
+        ];
 
-        if (error) {
-            console.error(`[vectorise.me] Potrace execution error: ${error}`);
-            console.error(`[vectorise.me] Potrace stderr: ${stderr}`);
-             // Cleanup attempt for potentially created (but invalid) SVG
-            fs.unlink(outputSvgPath, () => {}); // Ignore error if file doesn't exist
+        console.log(`[vectorise.me] Running VTracer: vtracer ${vtracerArgs.join(' ')}`);
 
-            if (error.code === 'ENOENT') {
-                 return res.status(500).send({ error: 'Conversion tool (Potrace) not found on server. Deployment setup might be needed.' });
-            }
-            return res.status(500).send({ error: `Image conversion failed. Error: ${stderr || error.message}` });
-        }
-
-         if (stderr) {
-            console.warn(`[vectorise.me] Potrace stderr (might be warnings): ${stderr}`);
-        }
-
-        console.log('[vectorise.me] Potrace finished successfully.');
-
-        // Read the generated SVG file
-        fs.readFile(outputSvgPath, 'utf8', (readErr, svgData) => {
-            // --- OUTPUT SVG FILE DELETION ---
-            fs.unlink(outputSvgPath, (unlinkSvgErr) => {
-                if (unlinkSvgErr) console.error("[vectorise.me] Error deleting SVG file:", unlinkSvgErr);
-                 else console.log("[vectorise.me] Deleted output SVG:", outputSvgPath);
+        const vtracerPromise = new Promise((resolve, reject) => {
+            execFile('vtracer', vtracerArgs, (error, stdout, stderr) => { // <-- Use 'vtracer' executable
+                // Vtracer often outputs progress/info to stderr even on success
+                if (stderr && !error) {
+                    console.warn(`[vectorise.me] VTracer stderr (info/warnings): ${stderr}`);
+                }
+                if (error) {
+                    console.error(`[vectorise.me] VTracer execution error: ${error}`);
+                    console.error(`[vectorise.me] VTracer stderr: ${stderr}`);
+                    error.stderr = stderr; // Attach stderr for better error reporting
+                    return reject(error);
+                }
+                console.log('[vectorise.me] VTracer finished successfully.');
+                console.log(`[vectorise.me] VTracer stdout: ${stdout}`);
+                resolve(stdout);
             });
-            // ------------------------------
-
-            if (readErr) {
-                console.error("[vectorise.me] Error reading SVG file:", readErr);
-                return res.status(500).send({ error: 'Could not read conversion result.' });
-            }
-
-            // Send the SVG data back to the frontend
-            res.send({ svg: svgData });
         });
-    });
-});
 
-// --- Error Handling Middleware ---
-app.use((err, req, res, next) => {
-    if (err instanceof multer.MulterError) {
-        console.error("[vectorise.me] Multer error:", err);
-        return res.status(400).send({ error: `File upload error: ${err.message}${err.code === 'LIMIT_FILE_SIZE' ? '. Max size 10MB.' : ''}` });
-    } else if (err) {
-        console.error("[vectorise.me] General error:", err);
-         return res.status(400).send({ error: err.message || 'An unexpected error occurred.' });
+        await vtracerPromise; // Wait for vtracer to finish
+
+        // --- Step 2: Read the generated SVG ---
+        console.log(`[vectorise.me] Reading SVG file: ${outputSvgPath}`);
+        const svgData = await fs.readFile(outputSvgPath, 'utf8');
+
+        // --- Send SVG back to client ---
+        res.send({ svg: svgData });
+
+    } catch (error) {
+        console.error("[vectorise.me] Error during vtracer conversion process:", error);
+        let userMessage = 'Image vectorization failed.';
+         // Check for common vtracer or file system errors
+         if (error.stderr && error.stderr.toLowerCase().includes('unsupported image format')) {
+             userMessage = 'Uploaded image format is not supported by vtracer.';
+         } else if (error.stderr && error.stderr.toLowerCase().includes('error')) {
+             // Try to grab a useful part of the stderr
+             userMessage = `Vectorization tool failed: ${error.stderr.split('\n')[0]}`;
+         } else if (error.code === 'ENOENT') { // vtracer command not found
+              userMessage = 'Vectorization tool (vtracer) not found on server.';
+         } else if (error.message.includes('limit')) {
+             userMessage = 'Image might be too large or complex to process.';
+         }
+
+        res.status(500).send({ error: userMessage });
+
+    } finally {
+         // --- Step 3: Cleanup temporary files ---
+         console.log('[vectorise.me] Cleaning up temporary files...');
+         for (const filePath of filesToDelete) {
+             try {
+                 await fs.unlink(filePath);
+                 console.log(`[vectorise.me] Deleted: ${filePath}`);
+             } catch (unlinkErr) {
+                 if (unlinkErr.code !== 'ENOENT') {
+                     console.error(`[vectorise.me] Error deleting file ${filePath}:`, unlinkErr);
+                 }
+             }
+         }
+         console.log('[vectorise.me] Cleanup complete.');
     }
-    next();
 });
 
+// --- Error Handling Middleware (keep as is) ---
+app.use((err, req, res, next) => { /* ... as before ... */ });
 
-// --- Start the Server ---
-app.listen(port, () => {
-    console.log(`[vectorise.me] Server listening at http://localhost:${port}`);
-});
+// --- Start the Server (keep as is) ---
+app.listen(port, () => { /* ... as before ... */ });
