@@ -3,7 +3,7 @@
   "version": "1.1.0",  
   "description": "Live browser-based image to SVG conversion using vtracer WASM.",
   "main": "server.js",
-  "type": "commonjs", // Ensure this is commonjs for the basic server.js
+  "type": "commonjs", 
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
