@@ -41,7 +41,7 @@ body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Sego
 .upload-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; opacity: 0.8; }
 .upload-text { font-size: 1.2rem; font-weight: 500; color: var(--text-color); margin-bottom: 1.5rem; }
 .upload-subtext { margin-top: 1rem; font-size: 0.85rem; color: var(--text-light); }
-.file-label-button { margin-top: 1rem; /* Style inherits .button-primary */ }
+.file-label-button { margin-top: 1rem; }
 .file-info-area { display: flex; align-items: center; justify-content: space-between; background-color: var(--medium-bg); padding: 0.75rem 1rem; border-radius: var(--border-radius); margin-top: 1.5rem; border: 1px solid var(--light-border); }
 #fileName { font-weight: 500; color: var(--text-color); font-size: 0.95em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 0.5rem; }
 .upload-progress { margin-top: 0.5rem; height: 8px; background-color: var(--light-border); border-radius: 4px; overflow: hidden; }
@@ -92,24 +92,25 @@ body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Sego
 .result-panel { flex: 3; min-width: 400px; background-color: var(--white); padding: 1.25rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--light-border); display: flex; flex-direction: column; }
 .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-border); }
 .result-header h2 { font-size: 1.1rem; font-weight: 600; margin: 0; }
-/* Zoom Controls REMOVED */
 
-/* --- Comparison Container (Overlay Fix Version - No Zoom Container) --- */
+/* --- Comparison Container (Overlay Fix Version) --- */
 .comparison-container {
     flex-grow: 1; position: relative; overflow: hidden; border: 1px solid var(--light-border); background-color: var(--medium-bg); background-image: linear-gradient(45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(-45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--light-grey) 75%), linear-gradient(-45deg, transparent 75%, var(--light-grey) 75%); background-size: 16px 16px; border-radius: var(--border-radius); min-height: 350px; margin-bottom: 1.25rem; user-select: none;
-    /* Center the inner content wrapper */
     display: flex; justify-content: center; align-items: center;
 }
-/* Wrapper holds the aligned content, sized by JS */
+/* Wrapper centers content and takes size from JS */
 .comparison-content-wrapper { position: relative; width: auto; height: auto; display: block; line-height: 0; max-width: 100%; max-height: 100%; }
-/* Base layer */
-.comparison-base-layer { width: 100%; height: 100%; }
-/* Original Image - Positioned within wrapper */
-.original-image-layer img#comparisonOriginalImage { display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%; /* Width/Height set by JS */}
-/* SVG Layer */
-.comparison-overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; clip-path: inset(0 50% 0 0); }
-/* SVG Output Wrapper - Positioned within overlay */
-.svg-output-wrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%; /* Width/Height set by JS */ display: flex; justify-content: center; align-items: center; }
+/* Base layer and Overlay Layer use absolute positioning */
+.comparison-base-layer, .comparison-overlay-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+/* Center content WITHIN the absolutely positioned layers */
+.comparison-base-layer, .comparison-overlay-layer { display: flex; justify-content: center; align-items: center; }
+
+/* Original Image Styling */
+.original-image-layer img#comparisonOriginalImage { display: block; /* Required */ /* Positioned by parent layer's flexbox, sized by JS */ max-width: 100%; max-height: 100%; object-fit: contain; /* Let JS set width/height */ }
+/* SVG Result Layer Styling */
+.svg-result-layer { clip-path: inset(0 50% 0 0); }
+/* SVG Output Wrapper Styling */
+.svg-output-wrapper { width: 100%; height: 100%; /* Fill parent layer */ display: flex; justify-content: center; align-items: center; /* Width/Height set by JS */}
 #svgOutput {}
 #svgOutput svg { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; /* SVG scales intrinsically */ }
 #svgOutput .placeholder-text { color: var(--text-light); font-style: italic; text-align: center; padding: 1rem;}
