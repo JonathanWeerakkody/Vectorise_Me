@@ -123,33 +123,29 @@
                 <section class="result-panel">
                      <div class="result-header">
                          <h2>Preview & Compare</h2>
-                         <!-- NO Zoom Controls -->
+                         <!-- No Zoom Controls -->
                     </div>
                     <div id="statusArea" class="status-area app-status"></div>
                     <!-- Comparison Container -->
                     <div id="comparisonContainer" class="comparison-container">
-                         <!-- Wrapper for alignment -->
-                         <div class="comparison-content-wrapper">
-                             <!-- Base Layer -->
-                            <div class="comparison-base-layer">
-                                <img id="comparisonOriginalImage" src="#" alt="Original Uploaded Image" />
-                            </div>
-                             <!-- Overlay Layer -->
-                            <div id="comparisonSvgLayer" class="comparison-overlay-layer svg-result-layer">
-                                 <div id="svgOutputWrapper" class="svg-output-wrapper">
-                                    <div id="svgOutput" class="svg-output">
-                                        <p class="placeholder-text">Processing...</p>
-                                    </div>
+                         <!-- NO inner content wrapper -->
+                         <!-- Base Layer - Original Image -->
+                         <div class="comparison-layer original-image-layer">
+                            <img id="comparisonOriginalImage" src="#" alt="Original Uploaded Image" />
+                         </div>
+                         <!-- Overlay Layer - Vectorized SVG -->
+                         <div id="comparisonSvgLayer" class="comparison-overlay-layer svg-result-layer">
+                              <div id="svgOutputWrapper" class="svg-output-wrapper">
+                                 <div id="svgOutput" class="svg-output">
+                                     <p class="placeholder-text">Processing...</p>
                                  </div>
-                            </div>
-                            <!-- Labels -->
-                            <div class="layer-label original-label">Original</div>
-                            <div class="layer-label vector-label">Vectorized</div>
-                        </div> <!-- End Content Wrapper -->
+                              </div>
+                         </div>
+                         <!-- Labels -->
+                         <div class="layer-label original-label">Original</div>
+                         <div class="layer-label vector-label">Vectorized</div>
                          <!-- Slider -->
-                        <div id="comparisonSlider" class="comparison-slider">
-                            <div class="comparison-handle"></div>
-                        </div>
+                         <div id="comparisonSlider" class="comparison-slider"><div class="comparison-handle"></div></div>
                     </div> <!-- End Comparison Container -->
                     <div class="result-controls">
                          <button id="downloadBtn" class="action-button download-button" disabled>Download SVG</button>

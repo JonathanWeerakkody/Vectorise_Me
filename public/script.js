@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const svgOutputWrapper = document.getElementById('svgOutputWrapper');
     const comparisonSlider = document.getElementById('comparisonSlider');
     const downloadLink = document.getElementById('downloadLink');
-    const comparisonContentWrapper = document.querySelector('.comparison-content-wrapper'); // Crucial wrapper
+    const comparisonContentWrapper = document.querySelector('.comparison-content-wrapper');
 
     // Option Controllers & Groups
     const modeSelect = document.getElementById('optMode');
@@ -49,23 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (missingElement) { alert("UI Initialization Error. Check console (F12)."); return; }
     console.log("Initial element checks passed.");
 
+
     // --- State Variables ---
     let currentFile = null;
     let currentFileObjectURL = null;
     let currentFilenameBase = 'vectorised-image';
     let currentSvgContent = '';
     const defaultOptions = {};
-    // Removed zoom/pan state
     let currentImageDimensions = { width: 0, height: 0 };
 
+
     // --- Helper: Safe Event Listener ---
-    function safeAddListener(element, event, handler, options) { if (element && typeof handler === 'function') element.addEventListener(event, handler, options); else if (!element) console.warn(`Element not found for listener: ${event}`); }
+    function safeAddListener(element, event, handler, options) { if (element && typeof handler === 'function') element.addEventListener(event, handler, options); else if(!element) console.warn(`Element not found for listener: ${event}`); }
 
     // --- Initial UI Setup ---
     showLandingView();
     storeDefaultOptions();
     updateOptionsAvailability();
-    setupComparisonSlider(); // Setup slider only
+    setupComparisonSlider();
+
 
     // --- Comparison Image Load Listener ---
     safeAddListener(comparisonOriginalImage, 'load', () => {
@@ -76,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateAndApplyDimensions();
     });
     safeAddListener(comparisonOriginalImage, 'error', () => { console.error("Failed to load original comparison image."); if (comparisonOriginalImage) comparisonOriginalImage.src = '#'; });
+
 
     // --- Drag and Drop ---
     function handleDragEnter(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
@@ -97,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     safeAddListener(colormodeSelect, 'change', updateOptionsAvailability);
     safeAddListener(svgOutputDiv, 'mouseover', handleSvgPathHover);
     safeAddListener(svgOutputDiv, 'mouseout', handleSvgPathHover);
+    // No Zoom Listeners
 
     // Option form change listener
     if (optionsForm) {
@@ -107,23 +111,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Window Resize Listener
     let resizeTimeout; window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(calculateAndApplyDimensions, 150); });
 
+
     // --- File Handling ---
     function handleFileSelectChange(event) { if (event.target.files && event.target.files.length > 0) handleFile(event.target.files[0]); else resetAppToLanding(); }
     function handleFile(file) {
-        if (!file) { resetAppToLanding(); return; } if(landingStatusArea) landingStatusArea.textContent = ''; const validationError = validateFile(file); if (validationError) { showLandingError(validationError); resetAppToLanding(); return; }
+        if (!file) { resetAppToLanding(); return; } if (landingStatusArea) landingStatusArea.textContent = ''; const validationError = validateFile(file); if (validationError) { showLandingError(validationError); resetAppToLanding(); return; }
         currentFile = file; currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name; if (currentFileObjectURL) URL.revokeObjectURL(currentFileObjectURL); currentImageDimensions = { width: 0, height: 0 }; // Reset dimensions until image loads if (comparisonOriginalImage) { comparisonOriginalImage.style.width=''; comparisonOriginalImage.style.height='';} if(svgOutputWrapper) { svgOutputWrapper.style.width=''; svgOutputWrapper.style.height=''; } if (comparisonContentWrapper) { comparisonContentWrapper.style.width=''; comparisonContentWrapper.style.height=''; } // Clear styles
-        currentFileObjectURL = URL.createObjectURL(file); if (comparisonOriginalImage) comparisonOriginalImage.src = currentFileObjectURL;
+        currentFileObjectURL = URL.createObjectURL(file); if (comparisonOriginalImage) comparisonOriginalImage.src = currentFileObjectURL; // -> onload listener triggers dimension calc
         if (fileNameDisplay) fileNameDisplay.textContent = file.name; if (fileInfoArea) fileInfoArea.classList.remove('hidden'); if (dropZone) dropZone.style.display = 'none'; if (uploadProgress) uploadProgress.classList.add('hidden'); if (startConversionBtn) startConversionBtn.classList.remove('hidden'); if (uploadArea) uploadArea.classList.add('file-selected');
     }
     function validateFile(file) { if (!file) return "No file."; if (file.size > 15 * 1024 * 1024) return 'Error: File > 15MB.'; if (!['image/jpeg', 'image/png', 'image/webp', 'image/bmp'].includes(file.type)) return `Error: Unsupported type (${file.type||'?'}).`; return null; }
 
     // --- Conversion ---
     function triggerConversionFromLanding() { if (!currentFile || !startConversionBtn || !uploadProgress || !fileInfoArea) return; startConversionBtn.classList.add('hidden'); if (fileInfoArea) fileInfoArea.style.display = 'none'; uploadProgress.classList.remove('hidden'); simulateUploadProgress(() => { showAppView(); handleConvert(true); }); }
-    async function handleConvert(isInitial = false) { if (!currentFile || !convertBtn || !downloadBtn || !copyBtn) return; updateStatus(isInitial ? 'Vectorizing...' : 'Updating...', 'loading'); convertBtn.disabled = true; convertBtn.textContent = 'Working...'; downloadBtn.disabled = true; copyBtn.disabled = true; if (svgOutputDiv) svgOutputDiv.innerHTML = `<p class="placeholder-text">${isInitial ? 'Processing...' : 'Updating preview...'}</p>`; const formData = new FormData(); formData.append('imageFile', currentFile); if (optionsForm) { const data = new FormData(optionsForm); for (let [key, value] of data.entries()) { const el = optionsForm.elements[key]; if (el && !el.disabled && value !== '' && value !== null) formData.append(key, value); } } console.log("Sending data..."); try { const res = await fetch('/convert', { method: 'POST', body: formData }); const result = await res.json(); if (!res.ok) throw new Error(result.error || `Server error: ${res.status}`); if (result.svg) { currentSvgContent = result.svg; if (svgOutputDiv) svgOutputDiv.innerHTML = currentSvgContent; if (svgCodeTextarea) svgCodeTextarea.value = currentSvgContent; updateStatus('Complete!', 'success', 3000); if (downloadBtn) downloadBtn.disabled = false; if (copyBtn) copyBtn.disabled = false; if (convertBtn) { convertBtn.textContent = 'Update Vectorization'; convertBtn.disabled = true; } if (currentImageDimensions.width > 0) setTimeout(calculateAndApplyDimensions, 50); else console.warn("Original dims missing after convert."); resetComparisonSlider(); } else throw new Error("No SVG data."); } catch (error) { console.error('Conversion Failed:', error); updateStatus(`Error: ${error.message}`, 'error'); if(svgOutputDiv) { if(isInitial) resetResultArea(false); else svgOutputDiv.innerHTML = `<p class="placeholder-text" style="color:var(--danger-color);">Update Failed</p>`; } if (downloadBtn) downloadBtn.disabled = true; if (copyBtn) copyBtn.disabled = true; if (convertBtn) convertBtn.disabled = !currentFile; if (convertBtn) convertBtn.textContent = 'Update Vectorization'; } }
+    async function handleConvert(isInitial = false) {
+        if (!currentFile) { updateStatus('No file selected.', 'error'); return; } if (!convertBtn || !downloadBtn || !copyBtn) { console.error("Conversion buttons missing"); return; }
+        updateStatus(isInitial ? 'Vectorizing...' : 'Updating...', 'loading'); convertBtn.disabled = true; convertBtn.textContent = 'Working...'; downloadBtn.disabled = true; copyBtn.disabled = true; if (svgOutputDiv) svgOutputDiv.innerHTML = `<p class="placeholder-text">${isInitial ? 'Processing...' : 'Updating preview...'}</p>`; const formData = new FormData(); formData.append('imageFile', currentFile); if (optionsForm) { const data = new FormData(optionsForm); for (let [key, value] of data.entries()) { const el = optionsForm.elements[key]; if (el && !el.disabled && value !== '' && value !== null) formData.append(key, value); } } console.log("Sending data...");
+        try {
+            const res = await fetch('/convert', { method: 'POST', body: formData }); const result = await res.json(); if (!res.ok) throw new Error(result.error || `Server error: ${res.status}`);
+            if (result.svg) { currentSvgContent = result.svg; if (svgOutputDiv) svgOutputDiv.innerHTML = currentSvgContent; if (svgCodeTextarea) svgCodeTextarea.value = currentSvgContent; updateStatus('Complete!', 'success', 3000); if (downloadBtn) downloadBtn.disabled = false; if (copyBtn) copyBtn.disabled = false; if (convertBtn) { convertBtn.textContent = 'Update Vectorization'; convertBtn.disabled = true; } if (currentImageDimensions.width > 0) setTimeout(calculateAndApplyDimensions, 50); else console.warn("Cannot apply dims after convert, original dims missing"); resetComparisonSlider(); } else throw new Error("No SVG data.");
+        } catch (error) { console.error('Conversion Failed:', error); updateStatus(`Error: ${error.message}`, 'error'); if(svgOutputDiv){ if(isInitial) resetResultArea(false); else svgOutputDiv.innerHTML = `<p class="placeholder-text" style="color:var(--danger-color);">Update Failed</p>`; } if (downloadBtn) downloadBtn.disabled = true; if (copyBtn) copyBtn.disabled = true; if (convertBtn) convertBtn.disabled = !currentFile; if (convertBtn) convertBtn.textContent = 'Update Vectorization'; }
+    }
     function simulateUploadProgress(callback) { if (!uploadProgress || !progressBar ) return; let p = 0; progressBar.style.width = `0%`; const i = setInterval(() => { p += Math.random()*15+10; if (p>=100){ p=100; clearInterval(i); progressBar.style.width=`100%`; setTimeout(callback,200); } else progressBar.style.width=`${p}%`; }, 80); }
 
-    // --- Dimension Calculation (Keep EXACTLY as before) ---
-    function calculateAndApplyDimensions() { if (!comparisonContainer || !comparisonOriginalImage || !svgOutputWrapper || !currentImageDimensions.width || currentImageDimensions.width <= 0 || !comparisonContentWrapper) return; const cw = comparisonContainer.clientWidth; const ch = comparisonContainer.clientHeight; if (cw <= 0 || ch <= 0) return; const imgRatio = currentImageDimensions.width / currentImageDimensions.height; const contRatio = cw / ch; let tw, th; if (imgRatio > contRatio) { tw = cw; th = tw / imgRatio; } else { th = ch; tw = th * imgRatio; } tw = Math.max(1, Math.floor(tw)); th = Math.max(1, Math.floor(th)); console.log(`Applying dimensions - W: ${tw}px, H: ${th}px`); if(comparisonOriginalImage) { comparisonOriginalImage.style.width = `${tw}px`; comparisonOriginalImage.style.height = `${th}px`; } if(svgOutputWrapper) { svgOutputWrapper.style.width = `${tw}px`; svgOutputWrapper.style.height = `${th}px`; } if (comparisonContentWrapper) { comparisonContentWrapper.style.width = `${tw}px`; comparisonContentWrapper.style.height = `${th}px`; } }
+
+    // --- Dimension Calculation ---
+    function calculateAndApplyDimensions() {
+        if (!comparisonContainer || !comparisonOriginalImage || !svgOutputWrapper || !currentImageDimensions.width || currentImageDimensions.width <= 0 || !comparisonContentWrapper) return;
+        const containerWidth = comparisonContainer.clientWidth; const containerHeight = comparisonContainer.clientHeight; if (containerWidth <= 0 || containerHeight <= 0) return;
+        const imgRatio = currentImageDimensions.width / currentImageDimensions.height; const containerRatio = containerWidth / containerHeight;
+        let targetWidth, targetHeight; if (imgRatio > containerRatio) { targetWidth = containerWidth; targetHeight = targetWidth / imgRatio; } else { targetHeight = containerHeight; targetWidth = targetHeight * imgRatio; }
+        targetWidth = Math.max(1, Math.floor(targetWidth)); targetHeight = Math.max(1, Math.floor(targetHeight));
+        console.log(`Applying dimensions - Target W: ${targetWidth}px, Target H: ${targetHeight}px`);
+        if(comparisonOriginalImage) { comparisonOriginalImage.style.width = `${targetWidth}px`; comparisonOriginalImage.style.height = `${targetHeight}px`; }
+        if(svgOutputWrapper) { svgOutputWrapper.style.width = `${targetWidth}px`; svgOutputWrapper.style.height = `${targetHeight}px`; }
+        if (comparisonContentWrapper) { comparisonContentWrapper.style.width = `${targetWidth}px`; comparisonContentWrapper.style.height = `${targetHeight}px`; }
+    }
 
     // --- Comparison Slider Logic ---
     function setupComparisonSlider() { if (!comparisonSlider || !comparisonContainer || !comparisonSvgLayer) return; let isDragging = false; const moveSlider = (clientX) => { const rect = comparisonContainer.getBoundingClientRect(); const x = Math.max(0, Math.min(rect.width, clientX - rect.left)); let p = (x / rect.width) * 100; comparisonSlider.style.left = `${p}%`; comparisonSvgLayer.style.clipPath = `inset(0 ${100 - p}% 0 0)`; }; const onPointerDown = (e) => { if (e.button !== 0 && e.type !== 'touchstart') return; e.preventDefault(); e.stopPropagation(); isDragging = true; comparisonSlider.classList.add('dragging'); moveSlider(e.clientX ?? e.touches?.[0]?.clientX); window.addEventListener('mousemove', onPointerMove); window.addEventListener('touchmove', onPointerMove, { passive: false }); window.addEventListener('mouseup', onPointerUp); window.addEventListener('touchend', onPointerUp); }; const onPointerMove = (e) => { if (!isDragging) return; e.preventDefault(); moveSlider(e.clientX ?? e.touches?.[0]?.clientX); }; const onPointerUp = () => { if (!isDragging) return; isDragging = false; comparisonSlider.classList.remove('dragging'); window.removeEventListener('mousemove', onPointerMove); window.removeEventListener('touchmove', onPointerMove); window.removeEventListener('mouseup', onPointerUp); window.removeEventListener('touchend', onPointerUp); }; safeAddListener(comparisonSlider, 'mousedown', onPointerDown); safeAddListener(comparisonSlider, 'touchstart', onPointerDown, { passive: false }); }
@@ -148,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Download and Copy Logic ---
     function handleDownload() { if (!currentSvgContent || !downloadLink) return; try { const b=new Blob([currentSvgContent],{type:'image/svg+xml;charset=utf-8'}); const u=URL.createObjectURL(b); downloadLink.href=u; downloadLink.download=`${currentFilenameBase}_vectorised.svg`; downloadLink.click(); URL.revokeObjectURL(u); } catch(e){ console.error(e); updateStatus('Error downloading','error');} }
-    function handleCopy() { if (!svgCodeTextarea || !svgCodeTextarea.value || !copyBtn) return; navigator.clipboard.writeText(svgCodeTextarea.value).then(()=>{ const oT=copyBtn.textContent, oB=copyBtn.style.backgroundColor; copyBtn.textContent='Copied!'; copyBtn.style.backgroundColor='var(--success-color)'; copyBtn.style.color='white'; setTimeout(()=>{ copyBtn.textContent=oT; copyBtn.style.backgroundColor=oB; copyBtn.style.color=''; }, 1500); }).catch(e=>{ console.error(e); updateStatus('Failed to copy','error'); }); }
+    function handleCopy() { if (!svgCodeTextarea || !svgCodeTextarea.value || !copyBtn) return; navigator.clipboard.writeText(svgCodeTextarea.value).then(()=>{ const oT=copyBtn.textContent, oB=copyBtn.style.backgroundColor; copyBtn.textContent='Copied!'; copyBtn.style.backgroundColor='var(--success-color)'; copyBtn.style.color='white'; setTimeout(()=>{ copyBtn.textContent=oT; copyBtn.style.backgroundColor=oB; copyBtn.style.color=''; }, 1500); }).catch(e=>{ console.error('Failed to copy:',e); updateStatus('Failed to copy code','error'); }); }
 
     // --- Utility Functions ---
     let statusClearTimer;
