@@ -1,7 +1,7 @@
 {
   "name": "vectorise-me",
-  "version": "1.2.0",
-  "description": "Server-side image to SVG conversion using vtracer.",
+  "version": "1.2.1",
+  "description": "Server-side image to SVG conversion using vtracer with conditional UI.",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
