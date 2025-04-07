@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Convert JPG, PNG, WEBP images to high-quality SVG vectors online. Compare before and after results with an interactive slider.">
-    <title>Image to SVG Converter</title>
+    <title>vectorise.me - Image to SVG Converter</title>
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -28,7 +28,7 @@
         <!-- ===== Landing / Upload View ===== -->
         <section id="landingView" class="view landing-view">
              <div class="landing-content">
-                 <h2>FREE Unlimited Image Vectorization</h2>
+                 <h2>Unlimited Image Vectorization</h2>
                  <p>Convert JPG, PNG, WEBP files into crisp, scalable SVG vectors using advanced tracing technology.</p>
                  <div id="uploadArea" class="upload-area">
                      <div id="dropZone" class="drop-zone">
@@ -122,13 +122,13 @@
                 <!-- Result Panel -->
                 <section class="result-panel">
                      <div class="result-header">
-                         <h2>Preview & Compare</h2> <!-- Kept Compare in Title -->
-                         <!-- REMOVED Zoom Controls -->
+                         <h2>Preview & Compare</h2>
+                         <!-- No Zoom controls -->
                     </div>
                     <div id="statusArea" class="status-area app-status"></div>
-                    <!-- Comparison Container - NO outer zoom wrapper -->
+                    <!-- Comparison Container -->
                     <div id="comparisonContainer" class="comparison-container">
-                         <div class="comparison-content-wrapper">
+                         <div class="comparison-content-wrapper"> <!-- Wrapper for alignment -->
                             <div class="comparison-base-layer">
                                 <img id="comparisonOriginalImage" src="#" alt="Original Uploaded Image" />
                             </div>
@@ -143,7 +143,7 @@
                             <div class="layer-label vector-label">Vectorized</div>
                         </div> <!-- End Content Wrapper -->
                         <div id="comparisonSlider" class="comparison-slider">
-                            <div class="comparison-handle"></div>
+                             <div class="comparison-handle"></div>
                         </div>
                     </div> <!-- End Comparison Container -->
                     <div class="result-controls">
