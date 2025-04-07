@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Convert images to high-quality SVG vectors online. View original and vectorized results side-by-side.">
-    <title>vectorise.me - Modern Image to SVG Converter</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <title>vectorise.me - Image to SVG Converter</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
 </head>
 <body>
     <div class="page-container">
+        <!-- Header -->
         <header class="app-header">
              <div class="header-content">
                  <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
@@ -24,56 +21,65 @@
 
         <!-- Landing View -->
         <section id="landingView" class="view landing-view">
-            <div class="landing-content">
-                 <div class="logo-large-container">
-                     <img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large">
-                 </div>
+             <div class="landing-content">
+                 <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
                  <h1>Turn Pixels into Perfection</h1>
                  <p>Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced AI tracing.</p>
                  <div id="uploadArea" class="upload-area">
                      <div id="dropZone" class="drop-zone">
                          <div class="drop-zone-content">
-                            <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" /></svg>
-                            <p class="upload-text">Drag & Drop Image or <span class="browse-link">Browse Files</span></p>
-                            <p class="upload-subtext">Max 15MB (JPG, PNG, WEBP, BMP)</p>
-                        </div>
-                        <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp" hidden>
+                             <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" /></svg>
+                             <p class="upload-text">Drag & Drop Image or <span class="browse-link">Browse Files</span></p>
+                             <p class="upload-subtext">Max 15MB (JPG, PNG, WEBP, BMP)</p>
+                         </div>
+                         <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp" hidden>
                      </div>
                      <div id="fileInfoArea" class="file-info-area hidden"><span id="fileName"></span><button id="cancelUploadBtn" class="button-cancel" title="Cancel Selection">×</button></div>
                      <div id="uploadProgress" class="upload-progress hidden"><div id="progressBar" class="progress-bar"></div></div>
                  </div>
                  <div id="landingStatusArea" class="status-area landing-status"></div>
                  <button id="startConversionBtn" class="button button-primary start-button hidden">Vectorize Image</button>
-            </div>
+             </div>
         </section>
 
         <!-- App View -->
         <section id="appView" class="view app-view hidden">
              <div class="processing-layout">
-                <!-- Options Panel -->
+                 <!-- Options Panel -->
                 <aside class="options-panel">
                     <div class="options-header"><h2>Options</h2><button id="resetOptionsBtn" class="button button-tertiary" title="Reset options">Reset</button></div>
-                    <form id="optionsForm"> /* ... All Option Groups ... */ </form>
+                    <form id="optionsForm">
+                        <!-- ALL Option groups correctly defined here -->
+                        <div class="option-group" id="groupMode"><label for="optMode">Mode:</label><select id="optMode" name="mode"><option value="spline" selected>Spline</option><option value="polygon">Polygon</option><option value="pixel">Pixel</option></select></div>
+                        <div class="option-group" id="groupColorMode"><label for="optColormode">Color Mode:</label><select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary</option></select></div>
+                        <div class="option-group slider-group" id="groupCornerThreshold"><label for="optCornerThreshold">Corner Threshold:</label><div class="slider-wrapper"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><span class="slider-value" id="optCornerThresholdValue">60°</span></div></div>
+                        <div class="option-group slider-group" id="groupFilterSpeckle"><label for="optFilterSpeckle">Filter Speckle:</label><div class="slider-wrapper"><input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1"><span class="slider-value" id="optFilterSpeckleValue">4 px</span></div></div>
+                        <div class="option-group slider-group" id="groupPathPrecision"><label for="optPathPrecision">Path Precision:</label><div class="slider-wrapper"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><span class="slider-value" id="optPathPrecisionValue">3 dec</span></div></div>
+                        <div class="option-group slider-group" id="groupSplineThreshold"><label for="optSplineThreshold">Spline Threshold:</label><div class="slider-wrapper"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><span class="slider-value" id="optSplineThresholdValue">0.75</span></div></div>
+                        <div class="option-group slider-group" id="groupSpliceThreshold"><label for="optSpliceThreshold">Splice Threshold:</label><div class="slider-wrapper"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><span class="slider-value" id="optSpliceThresholdValue">45°</span></div></div>
+                        <div class="option-group slider-group" id="groupSegmentLength"><label for="optSegmentLength">Segment Length:</label><div class="slider-wrapper"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.5"><span class="slider-value" id="optSegmentLengthValue">4.0</span></div></div>
+                        <div class="option-group" id="groupHierarchical"><label for="optHierarchical">Hierarchical:</label><select id="optHierarchical" name="hierarchical"><option value="stacked" selected>Stacked</option><option value="cutout">Cutout</option></select></div>
+                        <div class="option-group slider-group" id="groupGradientStep"><label for="optGradientStep">Gradient Step:</label><div class="slider-wrapper"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.5"><span class="slider-value" id="optGradientStepValue">2.0</span></div></div>
+                        <div class="option-group slider-group" id="groupColorPrecision"><label for="optColorPrecision">Color Precision:</label><div class="slider-wrapper"><input type="range" id="optColorPrecision" name="color_precision" min="1" max="8" value="6" step="1"><span class="slider-value" id="optColorPrecisionValue">6 bits</span></div></div>
+                   </form>
                     <button id="convertBtn" class="button button-primary convert-button">Update Vectorization</button>
                 </aside>
 
-                <!-- Result Panel -->
+                 <!-- Result Panel -->
                 <section class="result-panel">
                     <div class="result-header"><h2>Preview</h2></div>
                     <div id="statusArea" class="status-area app-status"></div>
                     <!-- Side-by-Side Preview Container -->
                     <div class="preview-comparison-container">
-                         <!-- Original Image Pane -->
                          <div class="preview-pane original-pane">
                              <div class="preview-label">Original</div>
                              <div class="image-wrapper">
                                  <img id="previewOriginalImage" src="#" alt="Original Uploaded Image"/>
                              </div>
                          </div>
-                         <!-- Vectorized SVG Pane -->
                          <div class="preview-pane vector-pane">
                               <div class="preview-label">Vectorized</div>
-                              <div class="image-wrapper"> <!-- Consistent wrapper -->
+                              <div class="image-wrapper">
                                 <div id="svgOutputWrapper" class="svg-output-wrapper">
                                     <div id="svgOutput" class="svg-output">
                                         <p class="placeholder-text">Processing...</p>
@@ -81,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- End Comparison Container -->
+                    </div>
                     <div class="result-controls">
                         <button id="downloadBtn" class="button button-success download-button" disabled>Download SVG</button>
                         <button id="copyBtn" class="button button-secondary copy-button" disabled>Copy SVG Code</button>
