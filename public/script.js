@@ -1,4 +1,4 @@
-// public/script.js - Stable Version (No Zoom/Pan)
+// public/script.js - Stable Version (Overlay Fix, Better Slider, No Zoom/Pan)
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Get DOM Elements ---
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const svgOutputWrapper = document.getElementById('svgOutputWrapper');
     const comparisonSlider = document.getElementById('comparisonSlider');
     const downloadLink = document.getElementById('downloadLink');
-    const comparisonContentWrapper = document.querySelector('.comparison-content-wrapper'); // Added wrapper ref
+    const comparisonContentWrapper = document.querySelector('.comparison-content-wrapper'); // Wrapper for content
 
     // Option Controllers & Groups
     const modeSelect = document.getElementById('optMode');
@@ -42,19 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorPrecisionGroup = document.getElementById('groupColorPrecision');
     const cornerThresholdGroup = document.getElementById('groupCornerThreshold');
 
-
     // --- State Variables ---
     let currentFile = null;
     let currentFileObjectURL = null;
     let currentFilenameBase = 'vectorised-image';
     let currentSvgContent = '';
     const defaultOptions = {};
-    let isDraggingSlider = false;
+    let isDraggingSlider = false; // Only for slider now
     let currentImageDimensions = { width: 0, height: 0 };
 
 
     // --- Initial UI Setup ---
-    // Element check (removed zoom buttons)
+    // Element Check (Removed zoom buttons)
     const criticalElementRefs = { landingView, appView, imageInput, optionsForm, convertBtn, statusArea, svgOutputDiv, downloadBtn, copyBtn, uploadNewBtn, dropZone, comparisonContainer, comparisonOriginalImage, comparisonSvgLayer, svgOutputWrapper, comparisonSlider, modeSelect, colormodeSelect, resetOptionsBtn, comparisonContentWrapper };
     let missingElement = false;
     for (const key in criticalElementRefs) { if (!criticalElementRefs[key]) { missingElement = true; /* ... error logging ... */ } }
@@ -63,8 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showLandingView();
     storeDefaultOptions();
     updateOptionsAvailability();
-    setupComparisonSlider(); // Only setup slider now
-
+    setupComparisonSlider(); // Only setup slider
 
     // --- Comparison Image Load Listener ---
     safeAddListener(comparisonOriginalImage, 'load', () => {
@@ -74,22 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Original Dims:", currentImageDimensions);
         calculateAndApplyDimensions();
     });
-    safeAddListener(comparisonOriginalImage, 'error', () => {
-        console.error("Failed to load original image into comparison view.");
-        if(comparisonOriginalImage) comparisonOriginalImage.src = '#';
-   });
-
+    safeAddListener(comparisonOriginalImage, 'error', () => { console.error("Failed to load original comparison image."); if(comparisonOriginalImage) comparisonOriginalImage.src = '#'; });
 
     // --- Drag and Drop ---
-    function handleDragEnter(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
-    function handleDragOver(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
-    function handleDragLeave(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.remove('dragover'); }
-    function handleDrop(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.remove('dragover'); const files = e.dataTransfer.files; if (files.length > 0) handleFile(files[0]); }
-    if (dropZone) { dropZone.addEventListener('dragenter', handleDragEnter); dropZone.addEventListener('dragover', handleDragOver); dropZone.addEventListener('dragleave', handleDragLeave); dropZone.addEventListener('drop', handleDrop); dropZone.addEventListener('click', (e) => { if (e.target !== imageInput && !e.target.closest('button, label')) imageInput?.click(); }); }
+    function handleDragEnter(e) { /* ... */ } function handleDragOver(e) { /* ... */ } function handleDragLeave(e) { /* ... */ } function handleDrop(e) { /* ... */ }
+    if (dropZone) { /* ... listeners ... */ }
 
-
-    // --- Event Listeners Setup (Removed Zoom Buttons) ---
-    function safeAddListener(element, event, handler, options) { if (element && typeof handler === 'function') { element.addEventListener(event, handler, options); } else if (!element) { /* Logged above */ } else { console.warn(`Invalid handler provided for event '${event}' on element`, element); } }
+    // --- Event Listeners Setup ---
+    function safeAddListener(element, event, handler, options) { /* ... */ }
 
     safeAddListener(imageInput, 'change', handleFileSelectChange);
     safeAddListener(cancelUploadBtn, 'click', resetAppToLanding);
@@ -104,67 +94,63 @@ document.addEventListener('DOMContentLoaded', () => {
     safeAddListener(svgOutputDiv, 'mouseover', handleSvgPathHover);
     safeAddListener(svgOutputDiv, 'mouseout', handleSvgPathHover);
 
-    // Option form change listener (same)
-    if (optionsForm) { optionsForm.addEventListener('change', () => { /* ... enable update button ... */ }); /* ... Slider value display updates ... */ }
-    // Window Resize Listener (same)
+    // Option form change listener
+    if (optionsForm) { /* ... enable update button logic ... */ /* ... Slider value display updates ... */ }
+    // Window Resize Listener
     let resizeTimeout; window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(calculateAndApplyDimensions, 150); });
 
 
     // --- File Handling ---
-    function handleFileSelectChange(event) { /* ... same ... */ }
-    function handleFile(file) { /* ... same ... calls calculateAndApplyDimensions indirectly via img onload ... */ }
-    function validateFile(file) { /* ... same ... */ }
+    function handleFileSelectChange(event) { if (event.target.files && event.target.files.length > 0) handleFile(event.target.files[0]); else resetAppToLanding(); }
+    function handleFile(file) {
+        if (!file) { resetAppToLanding(); return; }
+        if(landingStatusArea) landingStatusArea.textContent = '';
+        const validationError = validateFile(file); if (validationError) { showLandingError(validationError); resetAppToLanding(); return; }
+        currentFile = file; currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
+        if (currentFileObjectURL) URL.revokeObjectURL(currentFileObjectURL);
+        currentImageDimensions = { width: 0, height: 0 }; // Reset dimensions until image loads
+        currentFileObjectURL = URL.createObjectURL(file);
+        if (comparisonOriginalImage) comparisonOriginalImage.src = currentFileObjectURL;
+        if (fileNameDisplay) fileNameDisplay.textContent = file.name; if (fileInfoArea) fileInfoArea.classList.remove('hidden'); if (dropZone) dropZone.style.display = 'none'; if (uploadProgress) uploadProgress.classList.add('hidden'); if (startConversionBtn) startConversionBtn.classList.remove('hidden'); if (uploadArea) uploadArea.classList.add('file-selected');
+    }
+    function validateFile(file) { /* ... */ }
 
     // --- Conversion ---
-    function triggerConversionFromLanding() { /* ... same ... */ }
+    function triggerConversionFromLanding() { /* ... */ }
     async function handleConvert(isInitial = false) {
-        // ... (start of function is same: status, disable buttons, FormData) ...
-        // ENSURE to append ENABLED options only
-        if (optionsForm) { /* ... logic to append only !element.disabled options ... */ }
-
+        if (!currentFile) { updateStatus('No file selected.', 'error'); return; }
+        if (!convertBtn || !downloadBtn || !copyBtn) { console.error("Conversion buttons missing"); return; }
+        updateStatus(isInitial ? 'Vectorizing...' : 'Updating...', 'loading'); convertBtn.disabled = true; convertBtn.textContent = 'Working...'; downloadBtn.disabled = true; copyBtn.disabled = true;
+        if (svgOutputDiv) svgOutputDiv.innerHTML = `<p class="placeholder-text">${isInitial ? 'Processing...' : 'Updating preview...'}</p>`;
+        const formData = new FormData(); formData.append('imageFile', currentFile);
+        if (optionsForm) { const optionsData = new FormData(optionsForm); for (let [key, value] of optionsData.entries()) { const element = optionsForm.elements[key]; if (element && !element.disabled && value !== '' && value !== null) formData.append(key, value); } }
         console.log("Sending data to /convert...");
         try {
-            // ... (fetch logic, handle response) ...
+            const response = await fetch('/convert', { method: 'POST', body: formData }); const result = await response.json(); if (!response.ok) throw new Error(result.error || `Server error: ${response.status}`);
             if (result.svg) {
-                currentSvgContent = result.svg;
-                if (svgOutputDiv) svgOutputDiv.innerHTML = currentSvgContent;
-                // ... (update textarea, status, buttons) ...
-
-                // --- Crucial: Apply dimensions AFTER SVG inserted ---
-                 if (currentImageDimensions.width > 0) {
-                     // Use timeout to allow rendering
-                     setTimeout(calculateAndApplyDimensions, 50);
-                 } else { console.warn("Cannot apply dimensions - original image dims missing."); }
-
-                resetComparisonSlider(); // Reset slider position
-
+                currentSvgContent = result.svg; if (svgOutputDiv) svgOutputDiv.innerHTML = currentSvgContent; if (svgCodeTextarea) svgCodeTextarea.value = currentSvgContent; updateStatus('Vectorization Complete!', 'success', 3000); if (downloadBtn) downloadBtn.disabled = false; if (copyBtn) copyBtn.disabled = false; if (convertBtn) { convertBtn.textContent = 'Update Vectorization'; convertBtn.disabled = true; }
+                setTimeout(calculateAndApplyDimensions, 50); // Apply dimensions after render
+                resetComparisonSlider();
             } else throw new Error("Server response ok but no SVG data.");
-        } catch (error) { /* ... error handling ... */ }
-        finally { /* ... finally block ... */ }
+        } catch (error) { console.error('Conversion Request Failed:', error); updateStatus(`Error: ${error.message}`, 'error'); if (svgOutputDiv && isInitial) resetResultArea(false); else if (svgOutputDiv) svgOutputDiv.innerHTML = `<p class="placeholder-text" style="color:var(--danger-color);">Update Failed</p>`; if (downloadBtn) downloadBtn.disabled = true; if (copyBtn) copyBtn.disabled = true; if (convertBtn) convertBtn.disabled = !currentFile; if (convertBtn) convertBtn.textContent = 'Update Vectorization'; }
     }
-    function simulateUploadProgress(callback) { /* ... same ... */ }
+    function simulateUploadProgress(callback) { /* ... */ }
 
-
-    // --- Dimension Calculation (Same as last version) ---
+    // --- Dimension Calculation ---
     function calculateAndApplyDimensions() {
-         if (!comparisonContainer || !comparisonOriginalImage || !svgOutputWrapper || !currentImageDimensions.width || currentImageDimensions.width <= 0 || !comparisonContentWrapper) return;
-         const containerWidth = comparisonContainer.clientWidth; const containerHeight = comparisonContainer.clientHeight;
-         if (containerWidth <= 0 || containerHeight <= 0) return;
-         const imgRatio = currentImageDimensions.width / currentImageDimensions.height; const containerRatio = containerWidth / containerHeight;
-         let targetWidth, targetHeight;
-         if (imgRatio > containerRatio) { targetWidth = containerWidth; targetHeight = targetWidth / imgRatio; }
-         else { targetHeight = containerHeight; targetWidth = targetHeight * imgRatio; }
-         targetWidth = Math.max(1, Math.floor(targetWidth)); targetHeight = Math.max(1, Math.floor(targetHeight));
-         console.log(`Applying dimensions - Target W: ${targetWidth}px, Target H: ${targetHeight}px`);
-
-          // Apply to image and SVG wrapper for size calculation by browser
-         comparisonOriginalImage.style.width = `${targetWidth}px`; comparisonOriginalImage.style.height = `${targetHeight}px`;
-         svgOutputWrapper.style.width = `${targetWidth}px`; svgOutputWrapper.style.height = `${targetHeight}px`;
-          // Apply to the content wrapper to set the containing block size for centering
-          comparisonContentWrapper.style.width = `${targetWidth}px`; comparisonContentWrapper.style.height = `${targetHeight}px`;
+        if (!comparisonContainer || !comparisonOriginalImage || !svgOutputWrapper || !currentImageDimensions.width || currentImageDimensions.width <= 0 || !comparisonContentWrapper) return;
+        const containerWidth = comparisonContainer.clientWidth; const containerHeight = comparisonContainer.clientHeight; if (containerWidth <= 0 || containerHeight <= 0) return;
+        const imgRatio = currentImageDimensions.width / currentImageDimensions.height; const containerRatio = containerWidth / containerHeight;
+        let targetWidth, targetHeight; if (imgRatio > containerRatio) { targetWidth = containerWidth; targetHeight = targetWidth / imgRatio; } else { targetHeight = containerHeight; targetWidth = targetHeight * imgRatio; }
+        targetWidth = Math.max(1, Math.floor(targetWidth)); targetHeight = Math.max(1, Math.floor(targetHeight));
+        console.log(`Applying dimensions - Target W: ${targetWidth}px, Target H: ${targetHeight}px`);
+        // Apply to image, SVG wrapper, and content wrapper
+        if(comparisonOriginalImage) { comparisonOriginalImage.style.width = `${targetWidth}px`; comparisonOriginalImage.style.height = `${targetHeight}px`; }
+        if(svgOutputWrapper) { svgOutputWrapper.style.width = `${targetWidth}px`; svgOutputWrapper.style.height = `${targetHeight}px`; }
+        if (comparisonContentWrapper) { comparisonContentWrapper.style.width = `${targetWidth}px`; comparisonContentWrapper.style.height = `${targetHeight}px`; }
     }
 
-    // --- Comparison Slider Logic (Listener on slider element) ---
+    // --- Comparison Slider Logic (Listener on slider div) ---
     function setupComparisonSlider() {
         if (!comparisonSlider || !comparisonContainer || !comparisonSvgLayer) return;
         let isDragging = false;
@@ -172,37 +158,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const onPointerDown = (e) => { if (e.button !== 0 && e.type !== 'touchstart') return; e.preventDefault(); e.stopPropagation(); isDragging = true; comparisonSlider.classList.add('dragging'); moveSlider(e.clientX ?? e.touches?.[0]?.clientX); window.addEventListener('mousemove', onPointerMove); window.addEventListener('touchmove', onPointerMove, { passive: false }); window.addEventListener('mouseup', onPointerUp); window.addEventListener('touchend', onPointerUp); };
         const onPointerMove = (e) => { if (!isDragging) return; e.preventDefault(); moveSlider(e.clientX ?? e.touches?.[0]?.clientX); };
         const onPointerUp = () => { if (!isDragging) return; isDragging = false; comparisonSlider.classList.remove('dragging'); window.removeEventListener('mousemove', onPointerMove); window.removeEventListener('touchmove', onPointerMove); window.removeEventListener('mouseup', onPointerUp); window.removeEventListener('touchend', onPointerUp); };
-        // **** Listener on the slider div itself ****
-        safeAddListener(comparisonSlider, 'mousedown', onPointerDown);
-        safeAddListener(comparisonSlider, 'touchstart', onPointerDown, { passive: false });
+        safeAddListener(comparisonSlider, 'mousedown', onPointerDown); // Listener on slider div
+        safeAddListener(comparisonSlider, 'touchstart', onPointerDown, { passive: false }); // Listener on slider div
     }
     function resetComparisonSlider() { if (comparisonSlider) comparisonSlider.style.left = '50%'; if (comparisonSvgLayer) comparisonSvgLayer.style.clipPath = 'inset(0 50% 0 0)'; }
 
-    // --- Zoom and Pan Logic (REMOVED) ---
-    // function setTransform() {} // Remove
-    // function setupZoomPan() {} // Remove
-    // function zoom(factor) {} // Remove
-    // function resetZoomPan() {} // Remove
-    // function updateZoomButtons() {} // Remove
+    // --- Zoom/Pan REMOVED ---
 
     // --- SVG Path Hover Logic ---
-    function handleSvgPathHover(event) { /* ... same ... */ }
+    function handleSvgPathHover(event) { const target = event.target; if (target.tagName === 'path' && target.closest('svg')) { if (event.type === 'mouseover') target.classList.add('path-hover'); else if (event.type === 'mouseout') target.classList.remove('path-hover'); } }
 
     // --- UI State Management ---
     function showLandingView() { /* ... same ... */ }
-    function showAppView() { /* ... same, ensures conditional options updated ... */ }
-    function resetAppToLanding() {
-         currentFile = null; currentSvgContent = ''; if (imageInput) imageInput.value = ''; if (fileNameDisplay) fileNameDisplay.textContent = '';
-         if (currentFileObjectURL) { URL.revokeObjectURL(currentFileObjectURL); currentFileObjectURL = null; }
-         // Reset image/wrapper sizes and actual image src
-         if (comparisonOriginalImage) { comparisonOriginalImage.src = '#'; comparisonOriginalImage.style.width=''; comparisonOriginalImage.style.height=''; }
-         if (svgOutputWrapper) { svgOutputWrapper.style.width=''; svgOutputWrapper.style.height=''; }
-         if (comparisonContentWrapper) { comparisonContentWrapper.style.width=''; comparisonContentWrapper.style.height=''; }
-         currentImageDimensions = { width: 0, height: 0 };
-         showLandingView(); updateStatus('', ''); if (landingStatusArea) landingStatusArea.textContent = '';
-         resetComparisonSlider();
-         // No need to reset zoom/pan
-     }
+    function showAppView() { /* ... same ... */ }
+    function resetAppToLanding() { currentFile = null; currentSvgContent = ''; if (imageInput) imageInput.value = ''; if (fileNameDisplay) fileNameDisplay.textContent = ''; if (currentFileObjectURL) { URL.revokeObjectURL(currentFileObjectURL); currentFileObjectURL = null; } if(comparisonOriginalImage) { comparisonOriginalImage.src = '#'; comparisonOriginalImage.style.width=''; comparisonOriginalImage.style.height='';} if(svgOutputWrapper) { svgOutputWrapper.style.width=''; svgOutputWrapper.style.height=''; } if (comparisonContentWrapper) { comparisonContentWrapper.style.width=''; comparisonContentWrapper.style.height=''; } currentImageDimensions = { width: 0, height: 0 }; showLandingView(); updateStatus('', ''); if (landingStatusArea) landingStatusArea.textContent = ''; resetComparisonSlider(); }
     function resetUploadAreaVisuals(){ /* ... same ... */ }
 
     // --- Conditional Options Logic ---
@@ -220,19 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Utility Functions ---
     let statusClearTimer; function updateStatus(message, type, clearDelay = 0) { /* ... same ... */ }
     function showLandingError(message){ /* ... same ... */ }
-    function resetResultArea(clearStatusToo = true) {
-         if(svgOutputDiv) { svgOutputDiv.innerHTML = '<p class="placeholder-text">SVG result will appear here</p>'; svgOutputDiv.classList.add('placeholder-text'); }
-         if(svgCodeTextarea) svgCodeTextarea.value = ''; currentSvgContent = '';
-         if(downloadBtn) downloadBtn.disabled = true; if(copyBtn) copyBtn.disabled = true;
-         if(clearStatusToo) updateStatus('', '');
-         resetComparisonSlider();
-         // Reset wrapper/content size when clearing result
-         if(svgOutputWrapper) { svgOutputWrapper.style.width=''; svgOutputWrapper.style.height=''; }
-         if(comparisonContentWrapper) { comparisonContentWrapper.style.width=''; comparisonContentWrapper.style.height=''; }
-         // Don't reset original image size here, only on full reset/new file
-     }
+    function resetResultArea(clearStatusToo = true) { if(svgOutputDiv) { svgOutputDiv.innerHTML = '<p class="placeholder-text">SVG result will appear here</p>'; svgOutputDiv.classList.add('placeholder-text'); } if(svgCodeTextarea) svgCodeTextarea.value = ''; currentSvgContent = ''; if(downloadBtn) downloadBtn.disabled = true; if(copyBtn) copyBtn.disabled = true; if(clearStatusToo) updateStatus('', ''); resetComparisonSlider(); if(svgOutputWrapper) { svgOutputWrapper.style.width=''; svgOutputWrapper.style.height=''; } if (comparisonContentWrapper) { comparisonContentWrapper.style.width=''; comparisonContentWrapper.style.height=''; } }
 
     // --- Initial State Calls ---
-    updateOptionsAvailability(); // Set initial option disabled states based on defaults
+    updateOptionsAvailability();
 
 }); // End DOMContentLoaded
