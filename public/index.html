@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Convert JPG, PNG, WEBP images to high-quality SVG vectors online. Compare before and after results with an interactive slider.">
-    <title>vectorise.me - Compare & Convert Images to SVG</title>
+    <title>Image to SVG Converter</title>
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -17,19 +17,18 @@
 <body>
     <div class="page-container">
 
-        <!-- ===== Header (Always Visible) ===== -->
+        <!-- ===== Header ===== -->
         <header class="app-header">
              <div class="header-content">
                  <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
-                <h1>vectorise.me</h1>
-                <button id="uploadNewBtn" class="button-secondary header-button hidden">Upload New Image</button>
+                 <button id="uploadNewBtn" class="button-secondary header-button hidden">Upload New Image</button>
             </div>
         </header>
 
-        <!-- ===== Landing / Upload View (Visible Initially) ===== -->
+        <!-- ===== Landing / Upload View ===== -->
         <section id="landingView" class="view landing-view">
              <div class="landing-content">
-                 <h2>Unlimited Image Vectorization</h2>
+                 <h2>FREE Unlimited Image Vectorization</h2>
                  <p>Convert JPG, PNG, WEBP files into crisp, scalable SVG vectors using advanced tracing technology.</p>
                  <div id="uploadArea" class="upload-area">
                      <div id="dropZone" class="drop-zone">
@@ -51,7 +50,7 @@
              </div>
         </section>
 
-        <!-- ===== App / Conversion View (Hidden Initially) ===== -->
+        <!-- ===== App / Conversion View ===== -->
         <section id="appView" class="view app-view hidden">
              <div class="processing-layout">
                 <!-- Options Panel -->
@@ -61,94 +60,60 @@
                          <button id="resetOptionsBtn" class="button-tertiary" title="Reset options to default values">Reset Options</button>
                     </div>
                     <form id="optionsForm">
-                        <!-- Mode (Controller) -->
+                        <!-- Mode -->
                         <div class="option-group" id="groupMode">
                             <label for="optMode" title="Output mode: Spline (smooth curves), Polygon (straight lines), Pixel (blocky)">Mode:</label>
-                            <select id="optMode" name="mode">
-                                <option value="spline" selected>Spline</option>
-                                <option value="polygon">Polygon</option>
-                                <option value="pixel">Pixel</option>
-                            </select>
+                            <select id="optMode" name="mode"><option value="spline" selected>Spline</option><option value="polygon">Polygon</option><option value="pixel">Pixel</option></select>
                         </div>
-                        <!-- Color Mode (Controller) -->
+                        <!-- Color Mode -->
                          <div class="option-group" id="groupColorMode">
                             <label for="optColormode" title="Trace in color or black & white">Color Mode:</label>
-                            <select id="optColormode" name="color_mode"> <!-- Form sends 'color_mode', server maps to 'colormode' -->
-                                <option value="color" selected>Color</option>
-                                <option value="bw">Binary (B&W)</option>
-                            </select>
+                            <select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary (B&W)</option></select>
                         </div>
                         <!-- Corner Threshold -->
                         <div class="option-group slider-group" id="groupCornerThreshold">
                             <label for="optCornerThreshold" title="Angle considered a corner (degrees)">Corner Threshold:</label>
-                            <div class="slider-wrapper">
-                                <input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1">
-                                <span class="slider-value" id="optCornerThresholdValue">60°</span>
-                            </div>
+                            <div class="slider-wrapper"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><span class="slider-value" id="optCornerThresholdValue">60°</span></div>
                         </div>
                         <!-- Filter Speckle -->
                         <div class="option-group slider-group" id="groupFilterSpeckle">
                             <label for="optFilterSpeckle" title="Discard patches smaller than X pixels">Filter Speckle:</label>
-                            <div class="slider-wrapper">
-                                <input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1">
-                                <span class="slider-value" id="optFilterSpeckleValue">4 px</span>
-                            </div>
+                            <div class="slider-wrapper"><input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1"><span class="slider-value" id="optFilterSpeckleValue">4 px</span></div>
                         </div>
                         <!-- Path Precision -->
                         <div class="option-group slider-group" id="groupPathPrecision">
                             <label for="optPathPrecision" title="Decimal places for SVG coordinates">Path Precision:</label>
-                            <div class="slider-wrapper">
-                                <input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1">
-                                <span class="slider-value" id="optPathPrecisionValue">3 dec</span>
-                            </div>
+                            <div class="slider-wrapper"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><span class="slider-value" id="optPathPrecisionValue">3 dec</span></div>
                         </div>
                         <!-- Spline Threshold (Conditional) -->
                         <div class="option-group slider-group" id="groupSplineThreshold">
                             <label for="optSplineThreshold" title="Curve fitting accuracy (Spline Mode Only)">Spline Threshold:</label>
-                            <div class="slider-wrapper">
-                                <input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01">
-                                <span class="slider-value" id="optSplineThresholdValue">0.75</span>
-                            </div>
+                            <div class="slider-wrapper"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><span class="slider-value" id="optSplineThresholdValue">0.75</span></div>
                         </div>
                         <!-- Splice Threshold (Conditional) -->
                        <div class="option-group slider-group" id="groupSpliceThreshold">
                             <label for="optSpliceThreshold" title="Minimum angle displacement to splice splines (Spline Mode Only)">Splice Threshold:</label>
-                           <div class="slider-wrapper">
-                                <input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1">
-                                <span class="slider-value" id="optSpliceThresholdValue">45°</span>
-                           </div>
+                           <div class="slider-wrapper"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><span class="slider-value" id="optSpliceThresholdValue">45°</span></div>
                        </div>
                        <!-- Segment Length (Conditional) -->
                        <div class="option-group slider-group" id="groupSegmentLength">
                            <label for="optSegmentLength" title="Max segment length for subdivision (Spline Mode Primarily)">Segment Length:</label>
-                           <div class="slider-wrapper">
-                              <input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.5">
-                              <span class="slider-value" id="optSegmentLengthValue">4.0</span>
-                           </div>
+                           <div class="slider-wrapper"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.5"><span class="slider-value" id="optSegmentLengthValue">4.0</span></div>
                        </div>
                        <!-- Hierarchical (Conditional) -->
                        <div class="option-group" id="groupHierarchical">
                            <label for="optHierarchical" title="Layering method (Color Mode Only)">Hierarchical:</label>
-                           <select id="optHierarchical" name="hierarchical">
-                               <option value="stacked" selected>Stacked</option>
-                               <option value="cutout">Cutout</option>
-                            </select>
+                           <select id="optHierarchical" name="hierarchical"><option value="stacked" selected>Stacked</option><option value="cutout">Cutout</option></select>
                        </div>
                         <!-- Gradient Step (Conditional) -->
                        <div class="option-group slider-group" id="groupGradientStep">
                            <label for="optGradientStep" title="Color difference for gradient layers (Color Mode Only)">Gradient Step:</label>
-                            <div class="slider-wrapper">
-                               <input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.5">
-                               <span class="slider-value" id="optGradientStepValue">2.0</span>
-                           </div>
+                            <div class="slider-wrapper"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.5"><span class="slider-value" id="optGradientStepValue">2.0</span></div>
                        </div>
                        <!-- Color Precision (Conditional) -->
                        <div class="option-group slider-group" id="groupColorPrecision">
                            <label for="optColorPrecision" title="Color channel precision (bits) (Color Mode Only)">Color Precision:</label>
-                           <div class="slider-wrapper">
-                               <input type="range" id="optColorPrecision" name="color_precision" min="1" max="8" value="6" step="1">
-                               <span class="slider-value" id="optColorPrecisionValue">6 bits</span>
-                           </div>
+                           <div class="slider-wrapper"><input type="range" id="optColorPrecision" name="color_precision" min="1" max="8" value="6" step="1"><span class="slider-value" id="optColorPrecisionValue">6 bits</span></div>
                        </div>
                     </form>
                     <button id="convertBtn" class="action-button convert-button">Update Vectorization</button>
