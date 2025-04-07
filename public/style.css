@@ -1,4 +1,4 @@
-/* public/style.css - Complete Refined Styles */
+/* public/style.css - Final Complete Styles */
 
 /* --- Reset & Basic Setup --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -92,6 +92,7 @@ body {
 /* Status Area */
 .status-area { padding: 0.6rem 1rem; border-radius: var(--border-radius); font-weight: 500; font-size: 0.9em; text-align: center; margin-top: 1.5rem; min-height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid transparent; }
 .status-area:empty { padding: 0; min-height: 0; border: none; margin-top: 0; }
+.landing-status {}
 .app-status { margin-bottom: 1rem; margin-top: 0; }
 .status-area.loading { color: #055160; background-color: #cff4fc; border-color: #b6effb; }
 .status-area.error { color: #842029; background-color: #f8d7da; border-color: #f5c2c7; }
@@ -146,16 +147,20 @@ body {
 .comparison-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: center center; cursor: ew-resize; user-select: none; background-image: linear-gradient(45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(-45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--light-grey) 75%), linear-gradient(-45deg, transparent 75%, var(--light-grey) 75%); background-size: 16px 16px; }
 
 /* Layers within the container */
-.comparison-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; padding: 5px; }
-.original-image-layer img#comparisonOriginalImage { display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%; /* Width/Height set by JS */ }
+.comparison-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; /* Padding affects content positioning */ }
+/* Original Image Styling */
+.original-image-layer img#comparisonOriginalImage { display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%; /* Width/Height set by JS */ object-fit: contain; /* Added for safety */ }
+/* SVG Result Layer Styling */
 .svg-result-layer { clip-path: inset(0 50% 0 0); }
+/* SVG Output Wrapper Styling */
 .svg-output-wrapper { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%; /* Width/Height set by JS */ display: flex; justify-content: center; align-items: center; }
+/* SVG Element Styling */
 #svgOutput {}
 #svgOutput svg { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; }
 #svgOutput .placeholder-text { color: var(--text-light); font-style: italic; }
 
 /* Layer Labels */
-.layer-label { position: absolute; bottom: 10px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 3px 8px; font-size: 0.75rem; font-weight: 500; border-radius: 4px; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; z-index: 5; /* Below slider handle */ }
+.layer-label { position: absolute; bottom: 10px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 3px 8px; font-size: 0.75rem; font-weight: 500; border-radius: 4px; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; z-index: 5; }
 .comparison-container:hover .layer-label { opacity: 0.8; }
 .original-label { left: 10px; }
 .vector-label { right: 10px; }
@@ -169,10 +174,16 @@ body {
 .comparison-handle::after { border-left: 7px solid var(--white); }
 
 /* SVG Path Highlighting */
-#svgOutput svg path:hover { stroke: #F87171; /* Tailwind Red 400 */ stroke-width: 1px; stroke-opacity: 0.9; vector-effect: non-scaling-stroke; cursor: default; /* No specific action on hover */ }
-/* Add class for active highlighting */
-#svgOutput svg path.path-hover { stroke: #EF4444; /* Tailwind Red 500 */ stroke-width: 1.5px; stroke-opacity: 1; }
-
+#svgOutput svg path { transition: stroke 0.1s ease, stroke-width 0.1s ease; /* Smooth transition */ }
+#svgOutput svg path:hover,
+#svgOutput svg path.path-hover { /* Apply same style for hover state and JS added class */
+    stroke: var(--primary-color);
+    stroke-width: 1px;
+    stroke-opacity: 0.9;
+    vector-effect: non-scaling-stroke; /* Keep stroke thin */
+    /* Don't change fill: fill-opacity: 0.9; */
+    cursor: default;
+}
 
 /* Result Controls */
 .result-controls { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: auto; padding-top: 1rem; }

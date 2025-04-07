@@ -17,107 +17,106 @@
 <body>
     <div class="page-container">
 
-        <!-- ===== Header (Always Visible) ===== -->
+        <!-- ===== Header ===== -->
         <header class="app-header">
              <div class="header-content">
                  <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
-                 <!-- Removed H1 Title -->
-                 <button id="uploadNewBtn" class="button-secondary header-button hidden">Upload New Image</button>
+                 <button id="uploadNewBtn" class="button-secondary header-button hidden">Upload New Image</button> <!-- id="uploadNewBtn" -->
             </div>
         </header>
 
-        <!-- ===== Landing / Upload View (Visible Initially) ===== -->
-        <section id="landingView" class="view landing-view">
+        <!-- ===== Landing / Upload View ===== -->
+        <section id="landingView" class="view landing-view"> <!-- id="landingView" -->
              <div class="landing-content">
                  <h2>Unlimited Image Vectorization</h2>
                  <p>Convert JPG, PNG, WEBP files into crisp, scalable SVG vectors using advanced tracing technology.</p>
                  <div id="uploadArea" class="upload-area">
-                     <div id="dropZone" class="drop-zone">
+                     <div id="dropZone" class="drop-zone"> <!-- id="dropZone" -->
                          <i class="fas fa-photo-film upload-icon"></i>
                          <p class="upload-text">Drag & Drop Image or Click Here</p>
-                         <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp" hidden>
+                         <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp" hidden> <!-- id="imageInput" -->
                          <p class="upload-subtext">(Max 15MB - JPG, PNG, WEBP, BMP)</p>
                      </div>
-                     <div id="fileInfoArea" class="file-info-area hidden">
-                         <span id="fileName"></span>
-                         <button id="cancelUploadBtn" class="button-cancel" title="Cancel Selection">×</button>
+                     <div id="fileInfoArea" class="file-info-area hidden"> <!-- id="fileInfoArea" -->
+                         <span id="fileName"></span> <!-- id="fileName" -->
+                         <button id="cancelUploadBtn" class="button-cancel" title="Cancel Selection">×</button> <!-- id="cancelUploadBtn" -->
                      </div>
-                     <div id="uploadProgress" class="upload-progress hidden">
-                         <div id="progressBar" class="progress-bar"></div>
+                     <div id="uploadProgress" class="upload-progress hidden"> <!-- id="uploadProgress" -->
+                         <div id="progressBar" class="progress-bar"></div> <!-- id="progressBar" -->
                      </div>
                  </div>
-                 <div id="landingStatusArea" class="status-area landing-status"></div>
-                 <button id="startConversionBtn" class="button-primary start-button hidden">Vectorize Image</button>
+                 <div id="landingStatusArea" class="status-area landing-status"></div> <!-- id="landingStatusArea" -->
+                 <button id="startConversionBtn" class="button-primary start-button hidden">Vectorize Image</button> <!-- id="startConversionBtn" -->
              </div>
         </section>
 
-        <!-- ===== App / Conversion View (Hidden Initially) ===== -->
-        <section id="appView" class="view app-view hidden">
+        <!-- ===== App / Conversion View ===== -->
+        <section id="appView" class="view app-view hidden"> <!-- id="appView" -->
              <div class="processing-layout">
                 <!-- Options Panel -->
                 <aside class="options-panel">
                     <div class="options-header">
                          <h2>Options</h2>
-                         <button id="resetOptionsBtn" class="button-tertiary" title="Reset options to default values">Reset Options</button>
+                         <button id="resetOptionsBtn" class="button-tertiary" title="Reset options to default values">Reset Options</button> <!-- id="resetOptionsBtn" -->
                     </div>
-                    <form id="optionsForm">
+                    <form id="optionsForm"> <!-- id="optionsForm" -->
                         <!-- Mode -->
                         <div class="option-group" id="groupMode">
                             <label for="optMode" title="Output mode: Spline (smooth curves), Polygon (straight lines), Pixel (blocky)">Mode:</label>
-                            <select id="optMode" name="mode"><option value="spline" selected>Spline</option><option value="polygon">Polygon</option><option value="pixel">Pixel</option></select>
+                            <select id="optMode" name="mode"><option value="spline" selected>Spline</option><option value="polygon">Polygon</option><option value="pixel">Pixel</option></select> <!-- id="optMode" -->
                         </div>
                         <!-- Color Mode -->
                          <div class="option-group" id="groupColorMode">
                             <label for="optColormode" title="Trace in color or black & white">Color Mode:</label>
-                            <select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary (B&W)</option></select>
+                            <select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary (B&W)</option></select> <!-- id="optColormode" -->
                         </div>
                         <!-- Corner Threshold -->
-                        <div class="option-group slider-group" id="groupCornerThreshold">
+                        <div class="option-group slider-group" id="groupCornerThreshold"> <!-- id="groupCornerThreshold" -->
                             <label for="optCornerThreshold" title="Angle considered a corner (degrees)">Corner Threshold:</label>
                             <div class="slider-wrapper"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><span class="slider-value" id="optCornerThresholdValue">60°</span></div>
                         </div>
                         <!-- Filter Speckle -->
-                        <div class="option-group slider-group" id="groupFilterSpeckle">
+                        <div class="option-group slider-group" id="groupFilterSpeckle"> <!-- id="groupFilterSpeckle" -->
                             <label for="optFilterSpeckle" title="Discard patches smaller than X pixels">Filter Speckle:</label>
                             <div class="slider-wrapper"><input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1"><span class="slider-value" id="optFilterSpeckleValue">4 px</span></div>
                         </div>
                         <!-- Path Precision -->
-                        <div class="option-group slider-group" id="groupPathPrecision">
+                        <div class="option-group slider-group" id="groupPathPrecision"> <!-- id="groupPathPrecision" -->
                             <label for="optPathPrecision" title="Decimal places for SVG coordinates">Path Precision:</label>
                             <div class="slider-wrapper"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><span class="slider-value" id="optPathPrecisionValue">3 dec</span></div>
                         </div>
                         <!-- Spline Threshold (Conditional) -->
-                        <div class="option-group slider-group" id="groupSplineThreshold">
+                        <div class="option-group slider-group" id="groupSplineThreshold"> <!-- id="groupSplineThreshold" -->
                             <label for="optSplineThreshold" title="Curve fitting accuracy (Spline Mode Only)">Spline Threshold:</label>
                             <div class="slider-wrapper"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><span class="slider-value" id="optSplineThresholdValue">0.75</span></div>
                         </div>
                         <!-- Splice Threshold (Conditional) -->
-                       <div class="option-group slider-group" id="groupSpliceThreshold">
+                       <div class="option-group slider-group" id="groupSpliceThreshold"> <!-- id="groupSpliceThreshold" -->
                             <label for="optSpliceThreshold" title="Minimum angle displacement to splice splines (Spline Mode Only)">Splice Threshold:</label>
                            <div class="slider-wrapper"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><span class="slider-value" id="optSpliceThresholdValue">45°</span></div>
                        </div>
                        <!-- Segment Length (Conditional) -->
-                       <div class="option-group slider-group" id="groupSegmentLength">
+                       <div class="option-group slider-group" id="groupSegmentLength"> <!-- id="groupSegmentLength" -->
                            <label for="optSegmentLength" title="Max segment length for subdivision (Spline Mode Primarily)">Segment Length:</label>
                            <div class="slider-wrapper"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.5"><span class="slider-value" id="optSegmentLengthValue">4.0</span></div>
                        </div>
                        <!-- Hierarchical (Conditional) -->
-                       <div class="option-group" id="groupHierarchical">
+                       <div class="option-group" id="groupHierarchical"> <!-- id="groupHierarchical" -->
                            <label for="optHierarchical" title="Layering method (Color Mode Only)">Hierarchical:</label>
                            <select id="optHierarchical" name="hierarchical"><option value="stacked" selected>Stacked</option><option value="cutout">Cutout</option></select>
                        </div>
                         <!-- Gradient Step (Conditional) -->
-                       <div class="option-group slider-group" id="groupGradientStep">
+                       <div class="option-group slider-group" id="groupGradientStep"> <!-- id="groupGradientStep" -->
                            <label for="optGradientStep" title="Color difference for gradient layers (Color Mode Only)">Gradient Step:</label>
                             <div class="slider-wrapper"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.5"><span class="slider-value" id="optGradientStepValue">2.0</span></div>
                        </div>
                        <!-- Color Precision (Conditional) -->
-                       <div class="option-group slider-group" id="groupColorPrecision">
+                       <div class="option-group slider-group" id="groupColorPrecision"> <!-- id="groupColorPrecision" -->
                            <label for="optColorPrecision" title="Color channel precision (bits) (Color Mode Only)">Color Precision:</label>
                            <div class="slider-wrapper"><input type="range" id="optColorPrecision" name="color_precision" min="1" max="8" value="6" step="1"><span class="slider-value" id="optColorPrecisionValue">6 bits</span></div>
                        </div>
                     </form>
-                    <button id="convertBtn" class="action-button convert-button">Update Vectorization</button>
+                    <button id="convertBtn" class="action-button convert-button">Update Vectorization</button> <!-- id="convertBtn" -->
                 </aside>
 
                 <!-- Result Panel -->
@@ -125,38 +124,38 @@
                      <div class="result-header">
                          <h2>Preview</h2> <!-- Changed title -->
                          <div class="zoom-controls">
-                             <button id="zoomInBtn" class="button-zoom" title="Zoom In"><i class="fas fa-search-plus"></i></button>
-                             <button id="zoomOutBtn" class="button-zoom" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
-                             <button id="zoomResetBtn" class="button-zoom" title="Reset Zoom"><i class="fas fa-expand"></i></button>
+                             <button id="zoomInBtn" class="button-zoom" title="Zoom In"><i class="fas fa-search-plus"></i></button> <!-- id="zoomInBtn" -->
+                             <button id="zoomOutBtn" class="button-zoom" title="Zoom Out"><i class="fas fa-search-minus"></i></button> <!-- id="zoomOutBtn" -->
+                             <button id="zoomResetBtn" class="button-zoom" title="Reset Zoom"><i class="fas fa-expand"></i></button> <!-- id="zoomResetBtn" -->
                          </div>
                     </div>
-                    <div id="statusArea" class="status-area app-status"></div>
+                    <div id="statusArea" class="status-area app-status"></div> <!-- id="statusArea" -->
                     <!-- Zoom & Pan Wrapper -->
-                    <div id="zoomPanContainer" class="zoom-pan-container">
+                    <div id="zoomPanContainer" class="zoom-pan-container"> <!-- id="zoomPanContainer" -->
                         <!-- Comparison Slider Container -->
-                        <div id="comparisonContainer" class="comparison-container">
+                        <div id="comparisonContainer" class="comparison-container"> <!-- id="comparisonContainer" -->
                             <div class="comparison-layer original-image-layer">
-                                <img id="comparisonOriginalImage" src="#" alt="Original Uploaded Image" />
+                                <img id="comparisonOriginalImage" src="#" alt="Original Uploaded Image" /> <!-- id="comparisonOriginalImage" -->
                                 <div class="layer-label original-label">Original</div>
                             </div>
-                            <div id="comparisonSvgLayer" class="comparison-layer svg-result-layer">
-                                 <div id="svgOutputWrapper" class="svg-output-wrapper">
-                                    <div id="svgOutput" class="svg-output">
+                            <div id="comparisonSvgLayer" class="comparison-layer svg-result-layer"> <!-- id="comparisonSvgLayer" -->
+                                 <div id="svgOutputWrapper" class="svg-output-wrapper"> <!-- id="svgOutputWrapper" -->
+                                    <div id="svgOutput" class="svg-output"> <!-- id="svgOutput" -->
                                         <p class="placeholder-text">Processing...</p>
                                     </div>
                                  </div>
                                  <div class="layer-label vector-label">Vectorized</div>
                             </div>
-                            <div id="comparisonSlider" class="comparison-slider">
+                            <div id="comparisonSlider" class="comparison-slider"> <!-- id="comparisonSlider" -->
                                  <div class="comparison-handle"></div>
                             </div>
                         </div>
                     </div> <!-- End Zoom/Pan Container -->
                     <div class="result-controls">
-                         <button id="downloadBtn" class="action-button download-button" disabled>Download SVG</button>
-                         <button id="copyBtn" class="action-button copy-button" disabled>Copy SVG Code</button>
+                         <button id="downloadBtn" class="action-button download-button" disabled>Download SVG</button> <!-- id="downloadBtn" -->
+                         <button id="copyBtn" class="action-button copy-button" disabled>Copy SVG Code</button> <!-- id="copyBtn" -->
                     </div>
-                    <textarea id="svgCode" readonly style="display:none;"></textarea>
+                    <textarea id="svgCode" readonly style="display:none;"></textarea> <!-- id="svgCode" -->
                 </section>
             </div>
         </section>
@@ -165,7 +164,7 @@
              Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a> © vectorise.me
         </footer>
 
-        <a id="downloadLink" style="display: none;"></a>
+        <a id="downloadLink" style="display: none;"></a> <!-- id="downloadLink" -->
     </div>
     <script src="script.js"></script>
 </body>
