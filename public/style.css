@@ -1,128 +1,89 @@
-/* public/style.css - Final Stable Version (Side-by-Side, No Zoom/Slider/OverlayFix) */
+/* public/style.css - Final Version with Updated Options & Theme */
 
-/* --- Reset & Basic Setup --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root { /* ... CSS Variables (Can keep the purple theme or adjust) ... */
-    --primary-hue: 250; --primary-color: hsl(var(--primary-hue), 75%, 60%); --primary-light: hsl(var(--primary-hue), 80%, 95%); --primary-dark: hsl(var(--primary-hue), 70%, 50%); --secondary-color: #6B7280; --success-color: #10B981; --danger-color: #EF4444; --light-bg: #fdfcff; --medium-bg: #F3F4F6; --panel-bg: #ffffff; --light-border: #E5E7EB; --medium-border: #D1D5DB; --text-color: #111827; --text-light: #6B7280; --white: #ffffff; --border-radius: 0.5rem; --border-radius-lg: 0.75rem; --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05); --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+/* --- Base, Variables, Header, Buttons (Keep Theme) --- */
+:root {
+    --primary-hue: 260; --primary-color: hsl(var(--primary-hue), 75%, 58%); --primary-dark: hsl(var(--primary-hue), 70%, 48%); --primary-light: hsl(var(--primary-hue), 90%, 96%);
+    --secondary-color: #6B7280; --success-color: #10B981; --danger-color: #EF4444; --light-bg: #fdfcff; --medium-bg: #F3F4F6; --panel-bg: #ffffff; --light-border: #E5E7EB; --medium-border: #D1D5DB; --text-color: #111827; --text-light: #4B5563; --white: #ffffff; --border-radius: 0.5rem; --border-radius-lg: 0.75rem;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05); --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --input-bg: #F9FAFB; /* Light background for inputs */
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* --- Keep body, page-container, header, general button styles from previous version --- */
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; line-height: 1.6; background-color: var(--light-bg); color: var(--text-color); font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 .page-container { width: 100%; max-width: 1500px; margin: 0 auto; padding: 0 1rem 2rem 1rem; display: flex; flex-direction: column; min-height: 100vh; }
-
-/* --- Utility --- */
 .hidden { display: none !important; }
+.app-header { /* ... */ } .header-content { /* ... */ } #appLogo { /* ... */ } .header-button { /* ... */ }
+.button { /* ... */ } .button-primary { /* ... */ } .button-secondary { /* ... */ } .button-tertiary { /* ... */ } .button-cancel { /* ... */ } .button-success { /* ... */ } .button:disabled, .action-button:disabled { /* ... */ }
+.landing-view { /* ... */ } .landing-content { /* ... */ } .logo-large-container { /* ... */ } .logo-large { /* ... */ } .landing-content h1{ /* ... */ } .landing-content p { /* ... */ }
+.upload-area { /* ... */ } .drop-zone { /* ... */ } .drop-zone.dragover { /* ... */ } .drop-zone-content { /* ... */ } .upload-icon { /* ... */ } .upload-text { /* ... */ } .browse-link { /* ... */ } .upload-subtext { /* ... */ } .file-info-area { /* ... */ } #fileName { /* ... */ } .upload-progress { /* ... */ } .progress-bar { /* ... */ } .start-button { /* ... */ }
+.status-area { /* ... Base styles ... */ } /* ... Specific status styles ... */
+.app-view { /* ... */ } .processing-layout { /* ... */ }
 
-/* --- Header --- */
-.app-header { background-color: var(--panel-bg); border-bottom: 1px solid var(--light-border); padding: 0.7rem 1rem; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
-.header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
-#appLogo { display: block; max-height: 40px; width: auto; }
-.header-button { margin-left: auto; }
-
-/* --- Buttons --- */
-.button { display: inline-block; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius); cursor: pointer; font-size: 0.95em; font-weight: 600; transition: var(--transition); text-align: center; text-decoration: none; line-height: 1.5; }
-.button-primary { background-image: linear-gradient(to right, hsl(var(--primary-hue), 80%, 65%), hsl(var(--primary-hue), 70%, 55%)); color: white; box-shadow: var(--shadow-md), 0 0 20px hsla(var(--primary-hue), 75%, 60%, 0.3); }
-.button-primary:hover:not(:disabled) { background-image: linear-gradient(to right, hsl(var(--primary-hue), 75%, 60%), hsl(var(--primary-hue), 65%, 50%)); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-.button-secondary { background-color: var(--white); color: var(--text-color); border: 1px solid var(--medium-border); box-shadow: var(--shadow-sm); }
-.button-secondary:hover:not(:disabled) { background-color: var(--medium-bg); border-color: var(--secondary-color); }
-.button-tertiary { background-color: transparent; color: var(--secondary-color); font-size: 0.85rem; padding: 0.3rem 0.6rem; border: none; font-weight: 500; }
-.button-tertiary:hover:not(:disabled) { background-color: var(--medium-bg); color: var(--primary-dark); }
-.button-cancel { background: none; border: none; font-size: 1.5rem; color: var(--secondary-color); cursor: pointer; padding: 0 0.5rem; line-height: 1; }
-.button-cancel:hover { color: var(--danger-color); }
-.button-success { background-image: linear-gradient(to right, var(--success-color), var(--success-dark)); color: white; box-shadow: var(--shadow-sm); }
-.button-success:hover:not(:disabled) { opacity: 0.9; box-shadow: var(--shadow-md); transform: translateY(-1px); }
-.button:disabled, .action-button:disabled { /* Consistent disabled look */ background-color: #adb5bd !important; background-image: none !important; color: #6c757d !important; cursor: not-allowed; opacity: 0.65; box-shadow: none !important; transform: none !important; }
-
-/* --- Landing View --- */
-.landing-view { padding: 3rem 1rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.landing-content { max-width: 800px; margin: 0 auto; width: 100%;}
-.logo-large-container { margin-bottom: 1.5rem; }
-.logo-large { max-height: 70px; width: auto; }
-.landing-content h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.15; background: linear-gradient(90deg, hsl(var(--primary-hue), 80%, 55%), hsl(var(--primary-hue)+30, 80%, 60%)); -webkit-background-clip: text; color: transparent; }
-.landing-content p { font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--text-light); margin-bottom: 3rem; max-width: 650px; margin-left: auto; margin-right: auto; }
-
-/* Upload Area */
-.upload-area { background-color: var(--white); padding: 0.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); width: 100%; max-width: 700px; margin: 0 auto; border: 1px solid var(--light-border); }
-.drop-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed var(--medium-border); background-color: hsl(var(--primary-hue), 90%, 98%); border-radius: var(--border-radius); padding: 2.5rem 1.5rem; cursor: pointer; transition: var(--transition); }
-.drop-zone.dragover { border-color: var(--primary-color); background-color: var(--primary-light); transform: scale(1.01); box-shadow: var(--shadow-md); }
-.drop-zone-content { display: flex; flex-direction: column; align-items: center; pointer-events: none; /* Allow click on dropzone */ }
-.upload-icon { width: 50px; height: 50px; color: var(--primary-color); margin-bottom: 1rem; }
-.upload-text { font-size: 1.1rem; font-weight: 500; color: var(--text-color); margin-bottom: 0.25rem; }
-.browse-link { color: var(--primary-color); font-weight: 600; }
-.upload-subtext { margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-light); }
-.file-info-area { display: flex; align-items: center; justify-content: space-between; background-color: var(--medium-bg); padding: 0.75rem 1rem; border-radius: var(--border-radius); border: 1px solid var(--light-border); margin-top: 0.5rem; }
-#fileName { font-weight: 500; color: var(--dark-grey); font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 0.5rem; }
-.upload-progress { margin: 0.5rem 1rem 0.25rem 1rem; height: 6px; background-color: var(--light-border); border-radius: 3px; overflow: hidden; }
-.progress-bar { width: 0%; height: 100%; background: var(--primary-color); border-radius: 3px; transition: width 0.4s ease; }
-.start-button { margin-top: 1.5rem; width: 100%; max-width: 300px; padding: 0.8rem 1.5rem; }
-
-/* Status Area */
-.status-area { /* ... Base styles remain same ... */ padding: 0.7rem 1rem; margin-top: 1.5rem; }
-.status-area.loading { color: hsl(var(--primary-hue), 70%, 30%); background-color: hsl(var(--primary-hue), 80%, 93%); border-color: hsl(var(--primary-hue), 75%, 85%); }
-.status-area.error { color: #991B1B; background-color: #FEE2E2; border-color: #FECACA; }
-.status-area.success { color: #065F46; background-color: #D1FAE5; border-color: #A7F3D0; }
-
-/* --- App View --- */
-.app-view { width: 100%; flex-grow: 1; display: flex; flex-direction: column; }
-.processing-layout { display: flex; flex-wrap: nowrap; gap: 1.5rem; width: 100%; flex-grow: 1; padding-top: 1.5rem; }
-
-/* Options Panel */
-.options-panel { flex: 0 0 320px; background-color: var(--panel-bg); padding: 1.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--light-border); height: fit-content; align-self: flex-start; }
-.options-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-border); }
-.options-header h2 { font-size: 1.1rem; font-weight: 600; margin: 0; }
+/* --- Options Panel Styling --- */
+.options-panel { flex: 0 0 350px; /* Wider */ background-color: var(--panel-bg); padding: 1.5rem; /* Increased padding */ border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--light-border); height: fit-content; align-self: flex-start; }
+.options-header { /* ... same ... */ } .options-header h2 { font-size: 1.2rem; }
 #optionsForm {}
-.option-group { margin-bottom: 1.25rem; transition: opacity 0.3s ease; }
-.option-group label { display: block; font-weight: 500; color: var(--text-light); margin-bottom: 0.5rem; font-size: 0.875rem; }
+/* Fieldset for Grouping */
+.options-fieldset { border: none; padding: 1rem 0; margin: 0 0 1rem 0; border-bottom: 1px solid var(--light-border); }
+.options-fieldset:last-of-type { margin-bottom: 0.5rem; border-bottom: none; padding-bottom: 0; }
+.options-fieldset legend { font-weight: 600; font-size: 1rem; color: var(--primary-dark); padding: 0 0.25rem; margin-bottom: 1rem; }
+/* Option Group */
+.option-group { margin-bottom: 1.35rem; /* More spacing */ transition: opacity 0.3s ease; }
+.option-group label { display: block; font-weight: 500; color: var(--text-light); margin-bottom: 0.6rem; font-size: 0.9rem; }
 .option-group label[title] { cursor: help; }
-.option-group select { /* ... same */ }
-.option-group select:focus { /* ... same */ }
-.slider-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
-.slider-wrapper { display: flex; align-items: center; gap: 0.75rem; }
-.slider-group input[type="range"] { /* ... same thumb styles, maybe change track color */ background: var(--light-border); height: 6px;}
-.slider-group .slider-value { /* ... same value style */ }
+/* Select Styles */
+.option-group select { display: block; width: 100%; padding: 0.7rem 0.8rem; font-size: 0.95rem; border: 1px solid var(--medium-border); border-radius: var(--border-radius); background-color: var(--input-bg); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1em; }
+.option-group select:focus { /* ... focus style ... */ }
+/* Slider + Number Input Combo */
+.input-combo { display: flex; align-items: center; gap: 0.8rem; }
+.input-combo input[type="range"] { flex-grow: 1; }
+.input-combo input[type="number"] { width: 70px; padding: 0.5rem; font-size: 0.9rem; border: 1px solid var(--medium-border); border-radius: var(--border-radius); text-align: right; background-color: var(--input-bg); -moz-appearance: textfield; }
+.input-combo input[type="number"]::-webkit-outer-spin-button, .input-combo input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.input-combo input[type="number"]:focus { border-color: var(--primary-color); outline: 0; box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, .25); }
+.input-combo .unit { font-size: 0.85rem; color: var(--text-light); min-width: 25px; text-align: left; margin-left: -0.3rem; }
+/* Slider specific visual styles */
+.slider-group input[type="range"] { height: 6px; background: var(--light-border); cursor: pointer; appearance: none; border-radius: 3px; outline: none; }
+.slider-group input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; cursor: pointer; }
+.slider-group input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; cursor: pointer; border: none; }
+/* Checkbox Styles (BG Removal Removed, but kept for reference) */
+.checkbox-group { /* display: flex; align-items: center; ... */ } .checkbox-group input[type="checkbox"] { /* ... */ } .checkbox-group label { /* ... */ }
 /* Disabled Option Styling */
-.option-group.disabled { opacity: 0.4; pointer-events: none; user-select: none; }
-/* ... other disabled styles ... */
-.convert-button { width: 100%; margin-top: 1rem; background-color: var(--primary-color); color: white; padding: 0.7rem 1.4rem; }
-.convert-button:hover:not(:disabled) { background-color: var(--primary-dark); }
+.option-group.disabled { opacity: 0.45; pointer-events: none; user-select: none; }
+.option-group.disabled label, .option-group.disabled .input-combo .unit { color: #adb5bd; cursor: not-allowed; }
+.option-group.disabled input[type="range"], .option-group.disabled input[type="number"], .option-group.disabled select { background-color: #e9ecef !important; cursor: not-allowed; opacity: 0.7; }
+.option-group.disabled input[type="range"]::-webkit-slider-thumb { background: #adb5bd; }
+.option-group.disabled input[type="range"]::-moz-range-thumb { background: #adb5bd; }
+/* Convert button */
+.convert-button { /* ... */ width: 100%; margin-top: 1rem; padding: 0.8rem; font-size: 1rem;}
 
 /* Result Panel */
-.result-panel { flex: 1 1 auto; min-width: 0; /* Allow shrinking */ background-color: var(--panel-bg); padding: 1.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--light-border); display: flex; flex-direction: column; }
+.result-panel { /* ... */ }
 .result-header { /* ... */ }
-.app-status { margin-bottom: 1rem; margin-top: 0; }
-
-/* --- Side-by-Side Preview (No Slider, No explicit overlay fix styles) --- */
-.preview-comparison-container {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; flex-grow: 1; border: 1px solid var(--light-border); background-color: var(--medium-bg); padding: 0.75rem; border-radius: var(--border-radius); min-height: 300px; margin-bottom: 1.5rem;
-}
-.preview-pane { background-color: var(--white); border-radius: var(--border-radius); padding: 0.5rem; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--light-border); box-shadow: var(--shadow-sm); position: relative; /* For label */ }
-.preview-label { font-size: 0.7rem; font-weight: 600; color: var(--text-light); text-align: center; padding-bottom: 0.4rem; margin-bottom: 0.4rem; border-bottom: 1px dashed var(--light-border); text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
-.image-wrapper { /* Common wrapper */ flex-grow: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; background-image: linear-gradient(45deg, #eee 25%, transparent 25%), linear-gradient(-45deg, #eee 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #eee 75%), linear-gradient(-45deg, transparent 75%, #eee 75%); background-size: 16px 16px; }
-/* Target image and svg DIRECTLY for identical scaling behavior */
-.image-wrapper img,
-.image-wrapper #svgOutput svg { display: block; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; /* Critical for scaling */ flex-shrink: 0; }
-#svgOutput .placeholder-text { /* ... same ... */ }
-
-/* Comparison Slider and Wrapper REMOVED */
-
+/* Preview Area Wrapper (for zoom events) */
+.preview-area-wrapper { flex-grow: 1; overflow: hidden; position: relative; cursor: grab; background-color: var(--medium-bg); border-radius: var(--border-radius); border: 1px solid var(--light-border); margin-bottom: 1.5rem; }
+.preview-area-wrapper.grabbing { cursor: grabbing; }
+/* Side-by-Side Container */
+.preview-comparison-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; width: 100%; height: 100%; padding: 0.75rem; background-image: linear-gradient(45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(-45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--light-grey) 75%), linear-gradient(-45deg, transparent 75%, var(--light-grey) 75%); background-size: 16px 16px; min-height: 300px; }
+.preview-pane { background-color: var(--white); border-radius: var(--border-radius); padding: 0.5rem; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--light-border); box-shadow: var(--shadow-sm); position: relative; }
+.preview-label { /* ... label styles ... */ }
+/* Wrapper - This gets transformed and sized */
+.image-wrapper { flex-grow: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; width: 100%; height: 100%; transform-origin: 0 0; /* For transform calcs */ }
+/* Content scales within wrapper */
+.image-wrapper img, .image-wrapper #svgOutput svg { display: block; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; flex-shrink: 0; }
+#svgOutput .placeholder-text { /* ... */ }
 /* SVG Path Highlighting */
-#svgOutput svg path { transition: stroke 0.1s ease; }
-#svgOutput svg path:hover { stroke: var(--primary-dark); stroke-width: 1.5px; vector-effect: non-scaling-stroke; cursor: default; }
+#svgOutput svg path { /* ... transition ... */ }
+#svgOutput svg path:hover { /* ... styles ... */ }
+/* Result Controls (No Copy Button style needed) */
+.result-controls { /* ... base styles ... */ }
+.download-button { /* ... styles ... */ }
 
-/* Result Controls */
-.result-controls { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: auto; padding-top: 1rem; }
-.result-controls .action-button { /* ... use base button class + specific download/copy class */ }
-.download-button { /* Extends .button */ background-color: var(--success-color); color: white; }
-.download-button:hover:not(:disabled) { background-color: var(--success-dark); }
-.copy-button { /* Extends .button */ background-color: var(--secondary-color); color: white; }
-.copy-button:hover:not(:disabled) { background-color: var(--dark-grey); }
-#svgCode { display: none; }
+/* Footer */
+.app-footer { /* ... */ }
 
-/* --- Footer --- */
-.app-footer { /* ... same ... */ }
-
-/* --- Responsive --- */
-@media (max-width: 1024px) { .processing-layout { flex-direction: column; } .options-panel { max-width: none; order: 2; align-self: stretch; } .result-panel { order: 1; } }
-@media (max-width: 768px) { .preview-comparison-container { grid-template-columns: 1fr; min-height: 400px; /* Adjust height */ } }
-@media (max-width: 600px) { /* ... Other existing rules ... */ }
+/* Responsive */
+@media (max-width: 1024px) { /* ... stack layout ... */ }
+@media (max-width: 768px) { .preview-comparison-container { grid-template-columns: 1fr; } /* stack panes */ }
+@media (max-width: 600px) { /* ... other mobile tweaks ... */ }
