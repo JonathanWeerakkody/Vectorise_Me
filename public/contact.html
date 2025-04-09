@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vectorise.Me</title>
+    <meta name="description" content="Get in touch with Vectorise.Me or find solutions to common vectorization problems.">
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (Optional, if needed on this page) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="page-container">
+        <!-- ===== Header ===== -->
+        <header class="app-header site-header">
+             <div class="header-content">
+                 <a href="/" class="header-logo-link">
+                    <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
+                 </a>
+                 <nav class="header-nav">
+                    <a href="/">Home</a>
+                    <a href="contact.html">Contact</a>
+                 </nav>
+                 <!-- No Upload New button needed here -->
+            </div>
+        </header>
+
+        <!-- ===== Main Content ===== -->
+        <main id="mainContent" class="main-content-padding"> <!-- Added padding class -->
+
+            <!-- Contact Form Section -->
+            <section class="contact-section">
+                <h1>Contact Us</h1>
+                <div class="contact-form-container">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="Your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" name="subject" class="form-input" placeholder="Message subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="message" class="form-textarea" rows="6" placeholder="Your message" required></textarea>
+                        </div>
+                        <div id="contactFormStatus" class="form-status"></div> <!-- Status Messages Here -->
+                        <button type="submit" class="button form-submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Common Problems Section -->
+            <section class="common-issues-section">
+                <h2>Common Problems & Solutions</h2>
+                <p>Here are some common issues you might encounter and how to resolve them.</p>
+                <ul>
+                    <li>
+                        <strong>Image Quality Issues:</strong> The converted SVG doesn't match the original image quality.
+                        <br><em>Solution:</em> Adjust the settings in the vectorization process. Increasing 'Color Detail' (palette size), adjusting 'Spline Threshold' (lower for more detail), or reducing 'Filter Speckle' can help. For pixel art, ensure the 'Pixel' mode is selected. Experiment with different presets.
+                    </li>
+                    <li>
+                        <strong>Performance Issues:</strong> The conversion process is slow or unresponsive, or the resulting SVG is very large.
+                        <br><em>Solution:</em> Try reducing the image size or complexity before uploading. Large or highly detailed images take longer to process and generate larger SVGs. Lowering 'Color Detail' or increasing 'Filter Speckle' can also simplify the output and improve performance.
+                    </li>
+                    <li>
+                        <strong>Loss of Fine Detail:</strong> Small elements or thin lines disappear in the SVG.
+                        <br><em>Solution:</em> Reduce the 'Filter Speckle' value significantly (e.g., to 0 or 1). Ensure 'Path Precision' is adequate (though higher values increase file size). For spline mode, slightly lowering 'Spline Threshold' might capture more curves.
+                    </li>
+                    <li>
+                        <strong>Jagged Edges (Polygon Mode):</strong> Lines appear blocky instead of smooth.
+                        <br><em>Solution:</em> Switch the 'Mode' to 'Spline' for smoother curves. Polygon mode inherently creates straight line segments.
+                    </li>
+                    <li>
+                        <strong>Unexpected Colors:</strong> The colors in the SVG look different or posterized.
+                        <br><em>Solution:</em> Ensure 'Color Mode' is set to 'Color'. Increase the 'Color Detail' setting (higher bit precision). Check if the 'Gradient Step' is appropriate; a very high value might reduce subtle color transitions.
+                    </li>
+                    <li>
+                         <strong>Transparency Not Preserved:</strong> Background transparency from PNGs is lost.
+                         <br><em>Solution:</em> `vtracer` generally handles transparency well, especially with 'Stacked' layering. Ensure your original PNG has actual transparency. If using 'Cutout' layering, transparency might behave differently. The underlying process might sometimes quantize near-transparent colors to opaque ones depending on settings.
+                    </li>
+                     <li>
+                         <strong>Browser Rendering Differences:</strong> The SVG looks slightly different in various web browsers.
+                         <br><em>Solution:</em> This is inherent to SVG rendering engines. Ensure your SVG is well-formed. Avoid overly complex CSS or filters within the SVG if compatibility is critical. Test in major browsers.
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+        <!-- ===== Site Footer ===== -->
+        <footer class="site-footer">
+            <div class="footer-content"> <div class="footer-about"> <h3 class="footer-brand">Vectorise.Me</h3> <p class="footer-description">Free online tool to convert raster images to scalable vector graphics (SVG).</p> </div> <div class="footer-links"> <div class="link-group"> <h4 class="footer-heading">Links</h4> <ul> <li><a href="/">Home</a></li> <li><a href="contact.html">Contact</a></li> </ul> </div> <div class="link-group"> <h4 class="footer-heading">Legal</h4> <ul> <li><a href="privacy.html">Privacy Policy</a></li> <li><a href="cookies.html">Cookie Policy</a></li> <li><a href="terms.html">Terms of Service</a></li> </ul> </div> </div> </div>
+            <div class="footer-copyright"> © 2025 JonkaryStudio. All rights reserved. <span class="powered-by">Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span> </div>
+        </footer>
+    </div> <!-- End page-container -->
+    <script src="script.js"></script>
+</body>
+</html>
