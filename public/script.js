@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function safeAddListener(element, event, handler, options) { if (element && typeof handler === 'function') element.addEventListener(event, handler, options); else if(!element && event !== 'DOMContentLoaded' && event !== 'resize') console.warn(`Element not found for listener: ${event}`); } // Adjusted warning
 
     // --- Initial UI Setup ---
-    // Check if we are on the main app page (where landingView exists)
+    // Check if we are on the main app page (where landingView or appView exists)
     if (landingView || appView) {
         if (landingView) showLandingView(); // Show landing if it exists
         if (optionsForm) { // Run setup only if options form exists
@@ -187,11 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- App Specific Functions ---
     function handleOptionsFormChange() {
+        if (!optionsForm) return; // Make sure form exists
         if (paletteSelect && colorPrecisionInput) { colorPrecisionInput.value = paletteSelect.value; }
         if (currentSvgContent && convertBtn) { convertBtn.disabled = false; convertBtn.textContent = 'Update Vectorization'; }
-        updateOptionsAvailability(); // Need to update enabled/disabled state on any change
-        // Deselect preset only if the change wasn't *triggered* by selecting a preset initially
-        // This basic listener can't easily know the trigger, so manual changes *will* deselect.
+        updateOptionsAvailability();
         resetPresetSelection();
     }
     function handleDragEnter(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
@@ -209,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setTransform() { if (!originalImageWrapper || !vectorImageWrapper) return; const v=`translate(${pointX}px, ${pointY}px) scale(${scale})`; originalImageWrapper.style.transform=v; vectorImageWrapper.style.transform=v; updateZoomButtons(); }
     function setupZoomPan() { if (!previewAreaWrapper) return; const startP=(e)=>{if(e.button!==0&&e.type!=='touchstart')return; e.preventDefault(); panning=true; start={x:(e.clientX??e.touches[0].clientX)-pointX, y:(e.clientY??e.touches[0].clientY)-pointY}; previewAreaWrapper.classList.add('grabbing'); window.addEventListener('mousemove', panM); window.addEventListener('touchmove', panM, {passive:false}); window.addEventListener('mouseup', endP); window.addEventListener('touchend', endP);}; const panM=(e)=>{if(!panning)return; e.preventDefault(); pointX=(e.clientX??e.touches[0].clientX)-start.x; pointY=(e.clientY??e.touches[0].clientY)-start.y; setTransform();}; const endP=()=>{if(!panning)return; panning=false; previewAreaWrapper.classList.remove('grabbing'); window.removeEventListener('mousemove', panM); window.removeEventListener('touchmove', panM); window.removeEventListener('mouseup', endP); window.removeEventListener('touchend', endP);}; safeAddListener(previewAreaWrapper,'wheel',(e)=>{e.preventDefault();const r=previewAreaWrapper.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;const xs=(mx-pointX)/scale,ys=(my-pointY)/scale;const d=-e.deltaY,zF=1.15;let nS=(d>0)?scale*zF:scale/zF;nS=Math.max(MIN_SCALE,Math.min(MAX_SCALE,nS));if(nS===scale)return;pointX=mx-xs*nS;pointY=my-ys*nS;scale=nS;setTransform();},{passive:false}); safeAddListener(previewAreaWrapper,'mousedown', startP); safeAddListener(previewAreaWrapper,'touchstart', startP,{passive:false}); }
     function zoom(factor) { if (!previewAreaWrapper) return; const r=previewAreaWrapper.getBoundingClientRect(); const cX=r.width/2,cY=r.height/2; const xs=(cX-pointX)/scale,ys=(cY-pointY)/scale; let nS=scale*factor; nS=Math.max(MIN_SCALE,Math.min(MAX_SCALE,nS)); if(nS===scale)return; pointX=cX-xs*nS; pointY=cY-ys*nS; scale=nS; setTransform(); }
-    function resetZoomPan() { scale=1; pointX=0; pointY=0; if (previewAreaWrapper) setTransform(); calculateAndApplyWrapperSize(); } // Check if exists
+    function resetZoomPan() { scale=1; pointX=0; pointY=0; if (previewAreaWrapper) setTransform(); calculateAndApplyWrapperSize(); }
     function updateZoomButtons() { if(zoomInBtn)zoomInBtn.disabled=(scale>=MAX_SCALE); if(zoomOutBtn)zoomOutBtn.disabled=(scale<=MIN_SCALE); }
     function handleSvgPathHover(event) { const t=event.target; if(t && t.tagName==='path'&&t.closest('svg')){ if(event.type==='mouseover')t.classList.add('path-hover'); else if(event.type==='mouseout')t.classList.remove('path-hover'); } }
     function showLandingView() { if(landingView) landingView.classList.remove('hidden'); if(appView) appView.classList.add('hidden'); if(uploadNewBtn) uploadNewBtn.classList.add('hidden'); resetUploadAreaVisuals(); }
@@ -221,11 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function storeDefaultOptions() { if (!optionsForm) return; const data = new FormData(optionsForm); for (let [key, value] of data.entries()) { defaultOptions[key] = value; } if (defaultOptions.hasOwnProperty('palette_selector')) { defaultOptions['color_precision'] = defaultOptions['palette_selector']; } const defaultPreset = presets.find(p => p.name === "General / Balanced"); if (defaultPreset) { defaultPreset.options = {...defaultOptions}; } else { console.error("Could not find 'General / Balanced' preset to store defaults!"); } console.log("Stored defaults:", defaultOptions); }
     function handleResetOptions() { if (!optionsForm) return; applyOptions(defaultOptions); updateStatus('Options reset to default.', 'success', 2000, true); resetPresetSelection(); }
     function populatePresetSelect() { if (!presetSelect) return; presetSelect.innerHTML = '<option value="" disabled selected>Load Preset...</option>'; presets.forEach((preset, index) => { const option = document.createElement('option'); option.value = index.toString(); option.textContent = preset.name; presetSelect.appendChild(option); }); }
-    function handlePresetChange(event) { if (!appView) return; const selectedIndex = event.target.value; if (selectedIndex === "" || !presets[selectedIndex]) return; const selectedPreset = presets[selectedIndex]; applyOptions(selectedPreset.options); updateStatus(`Preset "${selectedPreset.name}" loaded.`, 'info', 3000, true); // Prevent deselection right after applying
+    function handlePresetChange(event) { if (!appView || !presetSelect) return; const selectedIndex = event.target.value; if (selectedIndex === "" || !presets[selectedIndex]) return; const selectedPreset = presets[selectedIndex]; applyOptions(selectedPreset.options); updateStatus(`Preset "${selectedPreset.name}" loaded.`, 'info', 3000, true); // Keep selection after applying
          setTimeout(() => { if (presetSelect) presetSelect.value = selectedIndex; }, 10); }
     function resetPresetSelection() { if(presetSelect && presetSelect.value !== "") presetSelect.value = ""; }
-    function applyOptions(optionsToApply) { if (!optionsForm) return; console.log("Applying options:", optionsToApply); let needsUpdateAvailability = false; for (const key in optionsToApply) { const value = optionsToApply[key]; const element = optionsForm.elements[key]; if (element) { if (element.type === 'radio' || element.type === 'checkbox') {} else { element.value = String(value); } if (element.type === 'range') { const numInputId = `${element.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { numInput.value = String(value); } } if (key === 'mode' || key === 'color_mode' || key === 'palette_selector') { needsUpdateAvailability = true; } // Trigger change *after* value set using timeout
-            setTimeout(() => element.dispatchEvent(new Event('change', { bubbles: true })), 0); } else { console.warn(`Option key "${key}" with value "${value}" not found in form.`); } } setTimeout(() => { if (needsUpdateAvailability) { updateOptionsAvailability(); } if (currentFile && convertBtn) { convertBtn.disabled = false; convertBtn.textContent = 'Update Vectorization'; } }, 50); } // Delay ensures changes are processed
+    function applyOptions(optionsToApply) { if (!optionsForm) return; console.log("Applying options:", optionsToApply); let needsUpdateAvailability = false; for (const key in optionsToApply) { const value = optionsToApply[key]; const element = optionsForm.elements[key]; if (element) { if (element.type === 'radio' || element.type === 'checkbox') {} else { element.value = String(value); } if (element.type === 'range') { const numInputId = `${element.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { numInput.value = String(value); } } if (key === 'mode' || key === 'color_mode' || key === 'palette_selector') { needsUpdateAvailability = true; } setTimeout(() => element.dispatchEvent(new Event('change', { bubbles: true })), 0); } else { console.warn(`Option key "${key}" with value "${value}" not found in form.`); } } setTimeout(() => { if (needsUpdateAvailability) { updateOptionsAvailability(); } if (currentFile && convertBtn) { convertBtn.disabled = false; convertBtn.textContent = 'Update Vectorization'; } }, 50); }
     function handleSaveOptions() { if (!optionsForm || !downloadLink) return; const currentOptions = {}; const formData = new FormData(optionsForm); Object.keys(defaultOptions).forEach(key => { if (formData.has(key)) { currentOptions[key] = formData.get(key); } }); try { const jsonString = JSON.stringify(currentOptions, null, 2); const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' }); const url = URL.createObjectURL(blob); downloadLink.href = url; downloadLink.download = 'vectorise-options.json'; downloadLink.click(); URL.revokeObjectURL(url); updateStatus('Settings saved.', 'success', 2000, true); } catch (e) { console.error('Error saving options:', e); updateStatus('Error saving settings.', 'error', 0, true); } }
     function handleLoadOptionsFile(event) { if (!event.target.files || event.target.files.length === 0 || !appView) return; const file = event.target.files[0]; if (file.type !== 'application/json') { updateStatus('Error: Please select a valid .json settings file.', 'error', 0, true); optionsFileInput.value = ''; return; } const reader = new FileReader(); reader.onload = (e) => { try { const loadedOptions = JSON.parse(e.target.result); if (typeof loadedOptions !== 'object' || loadedOptions === null || Array.isArray(loadedOptions)) { throw new Error("Invalid JSON structure."); } const knownKeys = Object.keys(defaultOptions); const loadedKeys = Object.keys(loadedOptions); const hasKnownKey = knownKeys.some(key => loadedKeys.includes(key)); if (!hasKnownKey) { throw new Error("JSON does not contain recognizable options."); } applyOptions(loadedOptions); updateStatus('Settings loaded successfully.', 'success', 3000, true); resetPresetSelection(); } catch (error) { console.error('Error loading options file:', error); updateStatus(`Error loading settings: ${error.message}`, 'error', 0, true); } finally { if(optionsFileInput) optionsFileInput.value = ''; } }; reader.onerror = () => { updateStatus('Error reading settings file.', 'error', 0, true); if(optionsFileInput) optionsFileInput.value = ''; }; reader.readAsText(file); }
     function handleDownload() { if (!currentSvgContent || !downloadLink) return; try { const b=new Blob([currentSvgContent],{type:'image/svg+xml;charset=utf-8'}); const u=URL.createObjectURL(b); downloadLink.href=u; downloadLink.download=`${currentFilenameBase}_vectorised.svg`; downloadLink.click(); URL.revokeObjectURL(u); } catch(e){ console.error(e); updateStatus('Error downloading','error', 0, true);} }
@@ -242,23 +240,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageInput = contactForm.elements['message'];
         const recipientEmail = "jonkarystudio@gmail.com"; // Your email
 
-        // Simple frontend validation
         let isValid = true;
         [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+             input.style.borderColor = ''; // Reset border color first
             if (!input.value.trim()) {
-                input.style.borderColor = 'var(--danger-color)'; // Highlight empty fields
+                input.style.borderColor = 'var(--danger-color)';
                 isValid = false;
-            } else {
-                input.style.borderColor = ''; // Reset border color
             }
         });
+        // Basic email format check (optional but recommended)
+        if (emailInput.value.trim() && !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
+             emailInput.style.borderColor = 'var(--danger-color)';
+             isValid = false;
+             showContactFormStatus("Please enter a valid email address.", "error");
+             return; // Stop if email is invalid format
+        }
 
         if (!isValid) {
-             showContactFormStatus("Please fill out all fields.", "error");
+             showContactFormStatus("Please fill out all required fields.", "error");
              return;
         }
-        [nameInput, emailInput, subjectInput, messageInput].forEach(input => input.style.borderColor = '');
-
 
         // *** Mailto Workaround ***
         const mailtoSubject = encodeURIComponent(subjectInput.value.trim());
@@ -268,13 +269,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
         try {
-             showContactFormStatus("Opening your email client...", "info"); // Give feedback
+             showContactFormStatus("Opening your email client...", "info");
              window.location.href = mailtoLink;
-             // Optionally clear after a delay, assuming mailto link worked
+             // Clear form after a short delay to allow mail client to open
              setTimeout(() => {
                  if (contactForm) contactForm.reset();
-                 showContactFormStatus("Please complete sending the email via your email application.", "success");
-             }, 1500);
+                 // Update status message - success might be misleading as we don't know if they actually sent it
+                 showContactFormStatus("Please complete sending the email via your email application.", "info");
+             }, 2000);
         } catch (error) {
             console.error("Failed to open mailto link:", error);
             showContactFormStatus("Could not open email client. Please copy details manually and send to " + recipientEmail, "error");
@@ -287,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactFormStatus.className = `form-status ${type}`;
         contactFormStatus.style.display = 'block';
     }
+
 
     // --- Utility Functions (Shared) ---
     let statusClearTimer;
