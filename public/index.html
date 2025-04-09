@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vectorise.me - Advanced Image to SVG Converter</title>
-    <meta name="description" content="Convert images to SVG vectors with fine-tuned controls, presets, custom settings, and side-by-side preview with zoom and pan.">
+    <title>Advanced Image to SVG Converter</title>
+    <meta name="description" content="Convert images to high-quality SVG vectors online. Adjust detailed settings, manage colors, and preview results side-by-side with zoom and pan.">
     <!-- Styles, Fonts, Favicons, Font Awesome -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,10 +27,10 @@
 
         <!-- Landing View -->
         <section id="landingView" class="view landing-view">
-            <div class="landing-content">
+             <div class="landing-content">
                  <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
-                 <h1>Turn Pixels into Perfection</h1>
-                 <p>Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced AI tracing.</p>
+                 <h1>Only FREE and Customizable Vectorizer</h1>
+                 <p>Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced tracing.</p>
                  <div id="uploadArea" class="upload-area">
                      <div id="dropZone" class="drop-zone">
                          <div class="drop-zone-content">
@@ -53,46 +53,23 @@
              <div class="processing-layout">
                 <!-- Options Panel -->
                 <aside class="options-panel">
-                    <!-- ***** PRESET SELECTOR ***** -->
-                    <div class="preset-selector-group">
-                        <label for="presetSelector">Image Style Preset:</label>
-                        <div class="preset-select-wrapper">
-                            <select id="presetSelector" name="preset_selector">
-                                <!-- Options populated by JS -->
-                                <option value="Building (Default)">Building (Default)</option> <!-- Placeholder -->
-                            </select>
-                            <button id="savePresetBtn" class="button button-tertiary save-preset-button" title="Save current settings as a new custom preset">
-                                <i class="fas fa-save"></i> <span class="button-text-small">Save</span>
-                            </button>
-                            <button id="managePresetsBtn" class="button button-tertiary manage-preset-button" title="Manage custom presets">
-                                <i class="fas fa-cog"></i> <span class="button-text-small">Manage</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Collapsible Advanced Settings -->
+                     <div class="preset-selector-group">
+                         <label for="presetSelector">Image Style Preset:</label>
+                         <div class="preset-select-wrapper">
+                             <select id="presetSelector" name="preset_selector"><option value="Building (Default)">Building (Default)</option></select>
+                             <button id="savePresetBtn" class="button button-tertiary save-preset-button" title="Save current settings"><i class="fas fa-save"></i> <span class="button-text-small">Save</span></button>
+                             <button id="managePresetsBtn" class="button button-tertiary manage-preset-button" title="Manage presets"><i class="fas fa-cog"></i> <span class="button-text-small">Manage</span></button>
+                         </div>
+                     </div>
                     <div class="advanced-options-container">
-                        <button id="toggleAdvancedBtn" class="advanced-toggle-button" aria-expanded="false" aria-controls="optionsFormWrapper"> <!-- Start collapsed -->
-                            Advanced Settings <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div id="optionsFormWrapper" class="options-form-wrapper collapsed"> <!-- Start collapsed -->
-                             <div class="options-header">
-                                 <button id="resetOptionsBtn" class="button button-tertiary" title="Reset advanced options to preset default">Reset Advanced</button>
-                             </div>
+                        <button id="toggleAdvancedBtn" class="advanced-toggle-button" aria-expanded="false" aria-controls="optionsFormWrapper"> Advanced Settings <i class="fas fa-chevron-down"></i> </button>
+                        <div id="optionsFormWrapper" class="options-form-wrapper collapsed">
+                             <div class="options-header"> <button id="resetOptionsBtn" class="button button-tertiary" title="Reset advanced options to preset default">Reset Advanced</button> </div>
                              <form id="optionsForm">
                                 <fieldset class="options-fieldset"><legend>Color Settings</legend>
-                                     <div class="option-group" id="groupPalette">
-                                        <label for="optPalette" title="Adjust color detail. Lower values reduce colors (posterized effect).">Color Detail:</label>
-                                        <select id="optPalette" name="palette_selector">
-                                            <option value="8">Full (8 bit)</option>
-                                            <option value="6" selected>Standard (6 bit)</option>
-                                            <option value="5">Reduced (5 bit)</option>
-                                            <option value="4">Limited (4 bit)</option>
-                                            <option value="3">Posterized (3 bit)</option>
-                                        </select>
-                                    </div>
-                                    <input type="hidden" id="optColorPrecision" name="color_precision" value="6">
-                                    <div class="option-group" id="groupColorMode"><label for="optColormode">Color Mode:</label><select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary</option></select></div>
+                                     <div class="option-group" id="groupPalette"><label for="optPalette" title="Adjust color detail...">Color Detail:</label><select id="optPalette" name="palette_selector"><option value="8">Full (8 bit)</option><option value="6" selected>Standard (6 bit)</option><option value="5">Reduced (5 bit)</option><option value="4">Limited (4 bit)</option><option value="3">Posterized (3 bit)</option></select></div>
+                                     <input type="hidden" id="optColorPrecision" name="color_precision" value="6">
+                                     <div class="option-group" id="groupColorMode"><label for="optColormode">Color Mode:</label><select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary</option></select></div>
                                 </fieldset>
                                 <fieldset class="options-fieldset"><legend>Tracing Parameters</legend>
                                      <div class="option-group slider-group" id="groupFilterSpeckle"><label for="optFilterSpeckle">Filter Speckle:</label><div class="input-combo"><input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1"><input type="number" id="optFilterSpeckleNum" class="input-number short" value="4" min="0" max="20" step="1"><span class="unit">px</span></div></div>
@@ -101,19 +78,19 @@
                                 <fieldset class="options-fieldset"><legend>Geometry & Path Fitting</legend>
                                      <div class="option-group slider-group" id="groupCornerThreshold"><label for="optCornerThreshold">Corner Threshold:</label><div class="input-combo"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><input type="number" id="optCornerThresholdNum" class="input-number short" value="60" min="0" max="180" step="1"><span class="unit">°</span></div></div>
                                      <div class="option-group slider-group" id="groupPathPrecision"><label for="optPathPrecision">Path Precision:</label><div class="input-combo"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1"><span class="unit">dec</span></div></div>
-                                     <div class="option-group slider-group" id="groupSplineThreshold"><label for="optSplineThreshold">Spline Threshold:</label><div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01" aria-label="Spline Threshold Value"></div></div>
+                                     <div class="option-group slider-group" id="groupSplineThreshold"><label for="optSplineThreshold">Spline Threshold:</label><div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01"></div></div>
                                      <div class="option-group slider-group" id="groupSpliceThreshold"><label for="optSpliceThreshold">Splice Threshold:</label><div class="input-combo"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><input type="number" id="optSpliceThresholdNum" class="input-number short" value="45" min="0" max="180" step="1"><span class="unit">°</span></div></div>
-                                    <div class="option-group slider-group" id="groupSegmentLength"><label for="optSegmentLength">Segment Length:</label><div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1" aria-label="Segment Length Value"></div></div>
+                                    <div class="option-group slider-group" id="groupSegmentLength"><label for="optSegmentLength">Segment Length:</label><div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div></div>
                                 </fieldset>
                                  <fieldset class="options-fieldset"><legend>Color Processing</legend>
                                      <div class="option-group" id="groupHierarchical"><label for="optHierarchical">Layering (Color Only):</label><select id="optHierarchical" name="hierarchical"><option value="stacked" selected>Stacked</option><option value="cutout">Cutout</option></select></div>
-                                     <div class="option-group slider-group" id="groupGradientStep"><label for="optGradientStep">Gradient Step (Color Only):</label><div class="input-combo"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.1"><input type="number" id="optGradientStepNum" class="input-number" value="2.0" min="0" max="10" step="0.1" aria-label="Gradient Step Value"></div></div>
-                                     <div class="option-group slider-group hidden" id="groupColorPrecision"><label>Internal Precision</label><input type="range" id="optColorPrecision" name="color_precision" value="6"><span id="optColorPrecisionNum">6</span></div> <!-- Keep hidden input -->
+                                     <div class="option-group slider-group" id="groupGradientStep"><label for="optGradientStep">Gradient Step (Color Only):</label><div class="input-combo"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.1"><input type="number" id="optGradientStepNum" class="input-number" value="2.0" min="0" max="10" step="0.1"></div></div>
+                                     <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
                                  </fieldset>
-                            </form>
+                             </form>
                         </div>
                     </div>
-                    <button id="convertBtn" class="button button-primary convert-button">Update Vectorization</button>
+                    <button id="convertBtn" class="button button-primary convert-button">Vectorize / Update</button>
                 </aside>
 
                 <!-- Result Panel -->
@@ -121,17 +98,17 @@
                     <div class="result-header"><h2>Preview</h2><div class="zoom-controls"><button id="zoomOutBtn" class="button button-zoom" title="Zoom Out"><i class="fas fa-search-minus"></i></button><button id="zoomResetBtn" class="button button-zoom" title="Reset Zoom"><i class="fas fa-expand"></i></button><button id="zoomInBtn" class="button button-zoom" title="Zoom In"><i class="fas fa-search-plus"></i></button></div></div>
                     <div id="statusArea" class="status-area app-status"></div>
                     <div id="previewAreaWrapper" class="preview-area-wrapper">
-                         <div class="preview-comparison-container">
-                              <div class="preview-pane original-pane"><div class="preview-label">Original</div><div class="image-wrapper" id="originalImageWrapper"><img id="previewOriginalImage" src="#" alt="Original"/></div></div>
-                              <div class="preview-pane vector-pane"><div class="preview-label">Vectorized</div><div class="image-wrapper" id="vectorImageWrapper"><div id="svgOutputWrapper"><div id="svgOutput" class="svg-output"><p class="placeholder-text">...</p></div></div></div></div>
-                         </div>
+                        <div class="preview-comparison-container">
+                            <div class="preview-pane original-pane"><div class="preview-label">Original</div><div class="image-wrapper" id="originalImageWrapper"><img id="previewOriginalImage" src="#" alt="Original"/></div></div>
+                            <div class="preview-pane vector-pane"><div class="preview-label">Vectorized</div><div class="image-wrapper" id="vectorImageWrapper"><div id="svgOutputWrapper"><div id="svgOutput" class="svg-output"><p class="placeholder-text">...</p></div></div></div></div>
+                        </div>
                     </div>
                     <div class="result-controls"> <button id="downloadBtn" class="button button-success download-button" disabled>Download SVG</button> </div>
                 </section>
-            </div>
+             </div>
         </section>
 
-        <footer class="app-footer"> Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a> © vectorise.me </footer>
+        <footer class="app-footer"> Powered by © vectorise.me </footer>
         <a id="downloadLink" style="display: none;"></a>
 
          <!-- Preset Modal -->
