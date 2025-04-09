@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="page-container">
@@ -20,7 +22,31 @@
         <header class="app-header site-header">
             <div class="header-content">
                  <a href="/" class="header-logo-link"><img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo"></a>
-                 <nav class="header-nav"> <a href="/">Home</a> <a href="contact.html">Contact</a> </nav>
+                 <!-- Language Selector -->
+                 <div class="language-selector">
+                    <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                    </button>
+                    <div id="languageDropdown" class="language-dropdown hidden" role="menu">
+                        <a href="#" role="menuitem" lang="de">Deutsch</a>
+                        <a href="#" role="menuitem" lang="es">Español</a>
+                        <a href="#" role="menuitem" lang="fr">Français</a>
+                        <a href="#" role="menuitem" lang="hi">हिन्दी</a>
+                        <a href="#" role="menuitem" lang="id">Indonesia</a>
+                        <a href="#" role="menuitem" lang="it">Italiano</a>
+                        <a href="#" role="menuitem" lang="ja">日本語</a>
+                        <a href="#" role="menuitem" lang="ko">한국어</a>
+                        <a href="#" role="menuitem" lang="pl">Polski</a>
+                        <a href="#" role="menuitem" lang="pt">Português</a>
+                        <a href="#" role="menuitem" lang="ru">Русский</a>
+                        <a href="#" role="menuitem" lang="th">ไทย</a>
+                        <a href="#" role="menuitem" lang="tr">Türkçe</a>
+                        <a href="#" role="menuitem" lang="vi">Tiếng Việt</a>
+                        <a href="#" role="menuitem" lang="zh-CN">简体中文</a>
+                        <a href="#" role="menuitem" lang="zh-TW">繁體中文</a>
+                        <a href="#" role="menuitem" lang="ar">العربية</a>
+                    </div>
+                 </div>
             </div>
         </header>
 
@@ -32,66 +58,64 @@
 
                 <p>Welcome to Vectorise.Me (the "Service"), operated by JonkaryStudio ("us", "we", or "our"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
 
-                <p><strong style="color: red;">Disclaimer: This is placeholder text. Consult a legal professional to create an accurate and compliant privacy policy.</strong></p>
+                <p><strong style="color: var(--danger-color);">Disclaimer: This is placeholder text. Consult a legal professional to create an accurate and compliant privacy policy.</strong></p>
 
                 <h2>Information Collection and Use</h2>
                 <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
 
                 <h3>Types of Data Collected</h3>
                 <h4>Personal Data</h4>
-                <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
+                <p>While using our Service, particularly when contacting us, we may ask you to provide us with certain personally identifiable information ("Personal Data"). This may include, but is not limited to:</p>
                 <ul>
-                    <li>Email address (if you contact us)</li>
-                    <li>Name (if you provide it when contacting us)</li>
-                    <li>Usage Data</li>
+                    <li>Email address</li>
+                    <li>Name</li>
                 </ul>
+                <p>We may also collect Usage Data as described below.</p>
 
                 <h4>Image Data</h4>
-                <p>When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you. [**Crucial Decision Needed & State Clearly:** Do you store uploaded images or SVGs? For how long? State it here. E.g., "Uploaded images and generated SVGs are temporarily stored for processing and download, and are automatically deleted from our servers within [e.g., 1 hour] after processing."] If you do *not* store them *at all* besides in-memory processing, state that clearly.</p>
+                <p>When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you. <strong style="color: var(--danger-color);">[Specify Your Policy Here - e.g., Uploaded images and generated SVGs are not stored on our servers after processing and download link generation.]</strong> Or <strong style="color: var(--danger-color);">[e.g., Uploaded images and generated SVGs are temporarily stored for a maximum of X hours to allow download and then automatically deleted.]</strong> Be precise and truthful.</p>
 
                 <h4>Usage Data</h4>
-                <p>We may also collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g., IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers, and other diagnostic data. [Specify if you use analytics tools like Google Analytics].</p>
+                <p>We may collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include your computer's IP address, browser type, browser version, the pages visited, time and date of visit, time spent on pages, unique device identifiers, and other diagnostic data. <strong style="color: var(--danger-color);">[Mention if you use analytics like Google Analytics, Plausible, etc.]</strong></p>
 
                 <h2>Use of Data</h2>
-                <p>JonkaryStudio uses the collected data for various purposes:</p>
+                <p>JonkaryStudio uses the collected data for purposes such as:</p>
                 <ul>
-                    <li>To provide and maintain the Service</li>
-                    <li>To process your image conversion requests</li>
-                    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
-                    <li>To provide customer support (if contacted)</li>
-                    <li>To gather analysis or valuable information so that we can improve the Service</li>
-                    <li>To monitor the usage of the Service</li>
-                    <li>To detect, prevent and address technical issues</li>
+                    <li>Providing and maintaining the Service.</li>
+                    <li>Processing image conversion requests.</li>
+                    <li>Responding to your contact inquiries.</li>
+                    <li>Improving the Service based on usage analysis.</li>
+                    <li>Monitoring Service usage for stability and security.</li>
+                    <li>Detecting, preventing, and addressing technical issues.</li>
                 </ul>
 
                 <h2>Transfer Of Data</h2>
-                <p>Your information, including image data during processing, may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction.</p>
-                <p>Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.</p>
-                <p>JonkaryStudio will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy.</p>
+                <p>Your information, including image data during processing, may be processed on servers located outside of your jurisdiction where data protection laws may differ. Your consent to this Privacy Policy followed by your use of the Service represents your agreement to that transfer.</p>
+                <p>We take reasonable steps to ensure data is treated securely.</p>
 
                 <h2>Disclosure Of Data</h2>
-                <p>[Describe circumstances under which data might be disclosed, e.g., legal requirements, business transfer, etc. Be specific.]</p>
+                <p><strong style="color: var(--danger-color);">[Describe limited circumstances for disclosure, e.g., to comply with legal obligations, protect rights, prevent wrongdoing, during business transfers if applicable.]</strong> We do not sell your Personal Data.</p>
 
                 <h2>Security of Data</h2>
-                <p>The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data and processed images, we cannot guarantee its absolute security.</p>
+                <p>The security of your data is important. While we strive to use commercially acceptable means (like HTTPS) to protect data, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.</p>
 
                 <h2>Service Providers</h2>
-                <p>[Mention any third-party services used, e.g., hosting provider, analytics, email service (if using backend)].</p>
+                <p><strong style="color: var(--danger-color);">[Mention necessary third-party service providers like hosting (e.g., Vercel, Netlify, AWS) and analytics, if any.]</strong></p>
 
                 <h2>Links to Other Sites</h2>
-                <p>Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
+                <p>Our Service may contain links to other sites. We have no control over and assume no responsibility for the content or practices of any third-party sites.</p>
 
                 <h2>Children's Privacy</h2>
-                <p>Our Service does not address anyone under the age of [e.g., 13 or 16, depending on jurisdiction].</p>
+                <p>Our Service does not knowingly collect personally identifiable information from children under the age of <strong style="color: var(--danger-color);">[e.g., 13 or 16]</strong>.</p>
 
                 <h2>Changes to This Privacy Policy</h2>
-                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+                <p>We may update this policy. We will notify you by posting the new policy on this page and updating the "Last Updated" date.</p>
 
                 <h2>Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <p>If you have questions, contact us:</p>
                 <ul>
                     <li>By email: jonkarystudio@gmail.com</li>
-                    <li>By visiting this page on our website: <a href="contact.html">Contact Us</a></li>
+                    <li>Via our website: <a href="contact.html">Contact Page</a></li>
                 </ul>
             </section>
         </main>

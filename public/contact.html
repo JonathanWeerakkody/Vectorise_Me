@@ -10,12 +10,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link the final CSS -->
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome (Optional, if needed on this page) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -24,18 +24,38 @@
         <header class="app-header site-header">
              <div class="header-content">
                  <a href="/" class="header-logo-link">
-                    <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
+                     <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
                  </a>
-                 <nav class="header-nav">
-                    <a href="/">Home</a>
-                    <a href="contact.html">Contact</a>
-                 </nav>
-                 <!-- No Upload New button needed here -->
+                 <!-- Language Selector -->
+                 <div class="language-selector">
+                    <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                    </button>
+                    <div id="languageDropdown" class="language-dropdown hidden" role="menu">
+                        <a href="#" role="menuitem" lang="de">Deutsch</a>
+                        <a href="#" role="menuitem" lang="es">Español</a>
+                        <a href="#" role="menuitem" lang="fr">Français</a>
+                        <a href="#" role="menuitem" lang="hi">हिन्दी</a>
+                        <a href="#" role="menuitem" lang="id">Indonesia</a>
+                        <a href="#" role="menuitem" lang="it">Italiano</a>
+                        <a href="#" role="menuitem" lang="ja">日本語</a>
+                        <a href="#" role="menuitem" lang="ko">한국어</a>
+                        <a href="#" role="menuitem" lang="pl">Polski</a>
+                        <a href="#" role="menuitem" lang="pt">Português</a>
+                        <a href="#" role="menuitem" lang="ru">Русский</a>
+                        <a href="#" role="menuitem" lang="th">ไทย</a>
+                        <a href="#" role="menuitem" lang="tr">Türkçe</a>
+                        <a href="#" role="menuitem" lang="vi">Tiếng Việt</a>
+                        <a href="#" role="menuitem" lang="zh-CN">简体中文</a>
+                        <a href="#" role="menuitem" lang="zh-TW">繁體中文</a>
+                        <a href="#" role="menuitem" lang="ar">العربية</a>
+                    </div>
+                 </div>
             </div>
         </header>
 
         <!-- ===== Main Content ===== -->
-        <main id="mainContent" class="main-content-padding"> <!-- Added padding class -->
+        <main id="mainContent" class="main-content-padding">
 
             <!-- Contact Form Section -->
             <section class="contact-section">
@@ -58,7 +78,7 @@
                             <label for="contactMessage">Message</label>
                             <textarea id="contactMessage" name="message" class="form-textarea" rows="6" placeholder="Your message" required></textarea>
                         </div>
-                        <div id="contactFormStatus" class="form-status"></div> <!-- Status Messages Here -->
+                        <div id="contactFormStatus" class="form-status" style="display: none;"></div> <!-- Status Messages Here, initially hidden -->
                         <button type="submit" class="button form-submit-btn">Send Message</button>
                     </form>
                 </div>
@@ -108,6 +128,6 @@
             <div class="footer-copyright"> © 2025 JonkaryStudio. All rights reserved. <span class="powered-by">Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span> </div>
         </footer>
     </div> <!-- End page-container -->
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link the final JS -->
 </body>
 </html>

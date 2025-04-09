@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="page-container">
@@ -20,7 +22,19 @@
         <header class="app-header site-header">
             <div class="header-content">
                  <a href="/" class="header-logo-link"><img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo"></a>
-                 <nav class="header-nav"> <a href="/">Home</a> <a href="contact.html">Contact</a> </nav>
+                 <!-- Language Selector -->
+                 <div class="language-selector">
+                    <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                    </button>
+                    <div id="languageDropdown" class="language-dropdown hidden" role="menu">
+                        <a href="#" role="menuitem" lang="de">Deutsch</a>
+                        <a href="#" role="menuitem" lang="es">Español</a>
+                        <!-- Add other languages -->
+                         <a href="#" role="menuitem" lang="zh-CN">简体中文</a>
+                         <a href="#" role="menuitem" lang="ar">العربية</a>
+                    </div>
+                 </div>
             </div>
         </header>
 
@@ -30,37 +44,56 @@
                 <h1>Cookie Policy</h1>
                 <p><strong>Last Updated: [Insert Date]</strong></p>
 
-                <p>This Cookie Policy explains how JonkaryStudio ("us", "we", or "our") uses cookies and similar technologies on the Vectorise.Me website (the "Service").</p>
+                <p>This Cookie Policy explains how JonkaryStudio ("us", "we", or "our") uses cookies and similar tracking technologies on the Vectorise.Me website (the "Service"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
 
-                 <p><strong style="color: red;">Disclaimer: This is placeholder text. Consult a legal professional to create an accurate and compliant cookie policy, especially regarding consent requirements (like GDPR/CCPA).</strong></p>
+                 <p><strong style="color: var(--danger-color);">Disclaimer: This is placeholder text. Consult a legal professional to create an accurate and compliant cookie policy, particularly regarding consent mechanisms (e.g., cookie banners) if required by laws like GDPR or CCPA.</strong></p>
 
                 <h2>What Are Cookies?</h2>
-                <p>Cookies are small text files that are stored on your device (computer, tablet, mobile phone) when you visit certain web pages. They are used to remember your preferences, help you navigate between pages efficiently, and generally improve your user experience. Cookies can also help ensure that adverts you see online are more relevant to you.</p>
+                <p>Cookies are small data files placed on your device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.</p>
+                <p>Cookies set by the website owner (in this case, JonkaryStudio) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies". Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognise your computer both when it visits the website in question and also when it visits certain other websites.</p>
 
-                <h2>How We Use Cookies</h2>
-                <p>We use cookies for the following purposes:</p>
+                <h2>Why Do We Use Cookies?</h2>
+                <p>We use first-party and possibly third-party cookies for several reasons. Some cookies are required for technical reasons for our Service to operate, and we refer to these as "essential" or "strictly necessary" cookies.</p>
+                <p><strong style="color: var(--danger-color);">[Be specific about your usage. Modify/Remove sections as needed]:</strong></p>
+                <ul>
+                    <li><strong>Essential Cookies:</strong> These are necessary to provide you with services available through our Service and to enable you to use some of its features, such as managing your session during the conversion process (if applicable) or securing the site. <strong style="color: var(--danger-color);">[Verify if your specific hosting/framework uses essential session cookies].</strong></li>
+                    <li><strong>Performance and Functionality Cookies:</strong> These are used to enhance the performance and functionality of our Service but are non-essential to their use. However, without these cookies, certain functionality (like remembering preferences if you add them later) may become unavailable. <strong style="color: var(--danger-color);">[Currently, the provided code likely doesn't use these. Remove if not applicable.]</strong></li>
+                    <li><strong>Analytics and Customization Cookies:</strong> These cookies collect information that is used either in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you. <strong style="color: var(--danger-color);">[Specify if you use Google Analytics or similar tools.]</strong></li>
+                    <li><strong>Advertising Cookies:</strong> These cookies are used to make advertising messages more relevant to you. <strong style="color: var(--danger-color);">[Remove if you do not display ads.]</strong></li>
+                </ul>
+                 <p>The specific types of first and third-party cookies served through our Service and the purposes they perform are described in more detail below <strong style="color: var(--danger-color);">[Ideally, list specific cookies if possible, especially third-party ones like Google Analytics `_ga`, `_gid`].</strong></p>
+
+
+                <h2>How Can I Control Cookies?</h2>
+                <p>You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by setting or amending your web browser controls.</p>
+                 <p>Most browsers allow you to:</p>
                  <ul>
-                    <li><strong>Strictly Necessary Cookies:</strong> [Only include if applicable] These cookies are essential for the operation of our Service. They may include, for example, cookies that enable session management if you had user accounts. Our Service currently primarily functions without requiring these for basic conversion.</li>
-                    <li><strong>Functionality Cookies:</strong> [Only include if applicable, e.g., storing user preferences like preset choices across sessions, though current implementation doesn't do this]. These are used to recognise you when you return to our Service and remember your preferences.</li>
-                    <li><strong>Analytical/Performance Cookies:</strong> [Mention if you use Analytics like Google Analytics]. These cookies allow us to recognise and count the number of visitors and to see how visitors move around our Service when they are using it. This helps us to improve the way our Service works.</li>
-                    <li><strong>Targeting/Advertising Cookies:</strong> [Only include if you run ads]. These cookies record your visit to our Service, the pages you have visited and the links you have followed. We might use this information to make advertising displayed on it more relevant to your interests.</li>
+                    <li>See what cookies you've got and delete them on an individual basis.</li>
+                    <li>Block third-party cookies.</li>
+                    <li>Block cookies from particular sites.</li>
+                    <li>Block all cookies from being set.</li>
+                    <li>Delete all cookies when you close your browser.</li>
                  </ul>
+                 <p>You should be aware that any preferences will be lost if you delete cookies. If you choose to block cookies completely, many websites will not work properly as certain functionality relies on them.</p>
+                 <p>Find out how to manage cookies on popular browsers:</p>
+                 <ul>
+                    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+                    <li><a href="https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+                    <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop?redirectslug=enable-and-disable-cookies-website-preferences&redirectlocale=en-US" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+                    <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener noreferrer">Apple Safari</a></li>
+                 </ul>
+                 <p>To find information relating to other browsers, visit the browser developer's website.</p>
+                 <p><strong style="color: var(--danger-color);">[Consider adding a Cookie Consent Banner/Tool if required by regulations like GDPR/CCPA to manage non-essential cookies.]</strong></p>
 
-                 <p><strong>Specifically for Vectorise.Me (Current State):</strong> Based on the current code, the application itself might not set persistent cookies beyond potentially those set by third-party analytics (if added) or basic session management by the web server/hosting platform which are often necessary. The core functionality of upload/conversion does not rely on cookies storing user data between visits in the provided code.</p>
-
-                <h2>Your Choices Regarding Cookies</h2>
-                <p>Most web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer. If you choose to decline cookies, you may not be able to fully experience the interactive features of this or other websites.</p>
-                <p>You can find out more information about how to change your browser cookie settings at <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener noreferrer">www.allaboutcookies.org</a>.</p>
-                <p>[Consider adding information about a Cookie Consent Banner if required by regulations like GDPR].</p>
 
                 <h2>Changes to This Cookie Policy</h2>
-                <p>We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new Cookie Policy on this page.</p>
+                <p>We may update this Cookie Policy from time to time to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed.</p>
 
                 <h2>Contact Us</h2>
-                 <p>If you have any questions about this Cookie Policy, please contact us:</p>
+                 <p>If you have any questions about our use of cookies or other technologies, please contact us:</p>
                  <ul>
                     <li>By email: jonkarystudio@gmail.com</li>
-                    <li>By visiting this page on our website: <a href="contact.html">Contact Us</a></li>
+                    <li>Via our website: <a href="contact.html">Contact Page</a></li>
                 </ul>
             </section>
         </main>
