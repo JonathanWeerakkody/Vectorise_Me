@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Image to SVG Converter</title>
-    <meta name="description" content="Convert images to high-quality SVG vectors online. View original and vectorized results side-by-side with zoom and pan.">
+    <meta name="description" content="Convert images to high-quality SVG vectors online with presets for various image types. View original and vectorized results side-by-side with zoom and pan.">
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -33,7 +33,7 @@
              <div class="landing-content">
                  <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
                  <h1>Only FREE and CUSTOMIZABLE Vectorizer</h1>
-                 <p>Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced tracing.</p>
+                 <p>Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced tracing and helpful presets.</p>
                  <div id="uploadArea" class="upload-area">
                      <div id="dropZone" class="drop-zone">
                          <div class="drop-zone-content">
@@ -49,6 +49,79 @@
                  <div id="landingStatusArea" class="status-area landing-status"></div>
                  <button id="startConversionBtn" class="button button-primary start-button hidden">Vectorize Image</button>
              </div>
+
+             <!-- ============================== -->
+             <!-- ===== Preset Examples Section ===== -->
+             <!-- ============================== -->
+             <section class="preset-examples-section">
+                <h2>Preset Examples</h2>
+                <p>See how different presets handle various image types.</p>
+                <div class="preset-examples-container">
+                    <!-- Example 1: Photograph -->
+                    <div class="preset-example-card">
+                        <h4>Photograph</h4>
+                        <div class="example-images">
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-photo-before.jpg" alt="Original Photograph Example">
+                                <span class="example-image-label">Original</span>
+                            </div>
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-photo-after.svg" alt="Vectorized Photograph Example">
+                                <span class="example-image-label">Vectorized</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example 2: Clipart / Logo -->
+                    <div class="preset-example-card">
+                        <h4>Clipart / Logo</h4>
+                         <div class="example-images">
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-clipart-before.png" alt="Original Clipart Example">
+                                <span class="example-image-label">Original</span>
+                            </div>
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-clipart-after.svg" alt="Vectorized Clipart Example">
+                                <span class="example-image-label">Vectorized</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Example 3: Pixel Art -->
+                    <div class="preset-example-card">
+                        <h4>Pixel Art</h4>
+                         <div class="example-images">
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-pixel-before.png" alt="Original Pixel Art Example">
+                                <span class="example-image-label">Original</span>
+                            </div>
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-pixel-after.svg" alt="Vectorized Pixel Art Example">
+                                <span class="example-image-label">Vectorized</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example 4: Blueprint -->
+                     <div class="preset-example-card">
+                        <h4>Technical Drawing</h4>
+                         <div class="example-images">
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-blueprint-before.jpg" alt="Original Blueprint Example">
+                                <span class="example-image-label">Original</span>
+                            </div>
+                            <div class="example-image-container">
+                                <img src="/assets/images/example-blueprint-after.svg" alt="Vectorized Blueprint Example">
+                                <span class="example-image-label">Vectorized</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Add more examples as needed -->
+
+                </div>
+             </section>
+             <!-- ===== End Preset Examples Section ===== -->
+
         </section>
 
         <!-- ===== App / Conversion View ===== -->
@@ -59,18 +132,17 @@
                     <div class="options-header">
                         <h2>Options</h2>
                         <div class="options-header-buttons">
-                            <!-- ADDED Load/Save Buttons -->
                             <button id="loadOptionsBtn" class="button button-tertiary" title="Load settings from file"><i class="fas fa-upload"></i></button>
                             <button id="saveOptionsBtn" class="button button-tertiary" title="Save current settings"><i class="fas fa-save"></i></button>
                             <button id="resetOptionsBtn" class="button button-tertiary" title="Reset options">Reset</button>
                         </div>
                     </div>
-                    <!-- ADDED Preset Selection -->
+                    <!-- Preset Selection -->
                     <div class="preset-controls option-group">
-                        <label for="presetSelect">Presets:</label>
+                        <label for="presetSelect">Image Type Preset:</label>
                         <select id="presetSelect">
                             <option value="" disabled selected>Load a Preset...</option>
-                            <!-- Options will be populated by JS -->
+                            <!-- Options populated by JS -->
                         </select>
                     </div>
                     <form id="optionsForm">
@@ -78,7 +150,7 @@
                              <legend>Color Settings</legend>
                              <div class="option-group" id="groupPalette">
                                  <label for="optPalette" title="Adjust color detail. Lower values reduce colors (posterized effect).">Color Detail:</label>
-                                 <select id="optPalette" name="palette_selector"> <!-- Name changed for clarity -->
+                                 <select id="optPalette" name="palette_selector">
                                      <option value="8">Full Detail (8 bit)</option>
                                      <option value="6" selected>Standard Detail (6 bit)</option>
                                      <option value="5">Reduced Detail (5 bit)</option>
@@ -86,7 +158,7 @@
                                      <option value="3">Posterized (3 bit)</option>
                                  </select>
                              </div>
-                             <input type="hidden" id="optColorPrecision" name="color_precision" value="6"> <!-- Keep this hidden input -->
+                             <input type="hidden" id="optColorPrecision" name="color_precision" value="6">
                              <div class="option-group" id="groupColorMode">
                                  <label for="optColormode" title="Trace in color or black & white">Color Mode:</label>
                                  <select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary</option></select>
@@ -137,7 +209,7 @@
                              <div class="preview-pane vector-pane">
                                   <div class="preview-label">Vectorized</div>
                                   <div class="image-wrapper" id="vectorImageWrapper">
-                                     <div id="svgOutputWrapper" class="svg-output-wrapper"> <!-- Optional inner wrapper -->
+                                     <div id="svgOutputWrapper" class="svg-output-wrapper">
                                          <div id="svgOutput" class="svg-output">
                                              <p class="placeholder-text">Processing...</p>
                                          </div>
@@ -155,7 +227,6 @@
 
         <footer class="app-footer"> Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a> © vectorise.me </footer>
         <a id="downloadLink" style="display: none;"></a>
-        <!-- ADDED Hidden Input for Options Upload -->
         <input type="file" id="optionsFileInput" accept=".json" hidden>
     </div>
     <script src="script.js"></script>
