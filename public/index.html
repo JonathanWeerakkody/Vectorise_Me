@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vectorise.Me - Free Image to SVG Converter</title>
-    <meta name="description" content="Free online tool to convert raster images (JPG, PNG, WEBP) to scalable vector graphics (SVG) with real-time customization and presets.">
+    <title data-translate="meta_title_main">Vectorise.Me - Free Image to SVG Converter</title>
+    <meta name="description" data-translate="meta_description_main" content="Free online tool to convert raster images (JPG, PNG, WEBP) to scalable vector graphics (SVG) with real-time customization and presets.">
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css"> <!-- This will be the new CSS -->
+    <link rel="stylesheet" href="style.css"> <!-- Link the updated CSS -->
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome (Needed for Icons) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -27,14 +27,13 @@
                      <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
                  </a>
 
-                 <!-- REMOVED NAV -->
-
                  <!-- Language Selector -->
                  <div class="language-selector">
                     <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                        <i class="fas fa-globe"></i> <span id="currentLanguageName">English</span> <i class="fas fa-chevron-down arrow-icon"></i>
                     </button>
                     <div id="languageDropdown" class="language-dropdown hidden" role="menu">
+                        <a href="#" role="menuitem" lang="en">English</a>
                         <a href="#" role="menuitem" lang="de">Deutsch</a>
                         <a href="#" role="menuitem" lang="es">Español</a>
                         <a href="#" role="menuitem" lang="fr">Français</a>
@@ -56,7 +55,7 @@
                  </div>
                  <!-- End Language Selector -->
 
-                 <button id="uploadNewBtn" class="button button-secondary header-button hidden">Upload New</button>
+                 <button id="uploadNewBtn" class="button button-secondary header-button hidden" data-translate="upload_new">Upload New</button>
             </div>
         </header>
 
@@ -67,73 +66,84 @@
             <section id="landingView" class="view landing-view">
                  <div class="landing-content">
                      <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
-                     <h1><span class="highlight-free">Only FREE and CUSTOMIZABLE Vectorizer</span></h1>
-                     <p class="landing-subheadline">Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced tracing and helpful presets.</p>
+                     <h1><span class="highlight-free" data-translate="landing_h1_free">Only FREE</span> <span data-translate="landing_h1_customizable">and CUSTOMIZABLE Vectorizer</span></h1>
+                     <p class="landing-subheadline" data-translate="landing_subheadline">Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced tracing and helpful presets.</p>
                      <div id="uploadArea" class="upload-area">
                          <div id="dropZone" class="drop-zone">
                              <div class="drop-zone-content">
                                  <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" /></svg>
-                                 <p class="upload-text">Drag & Drop Image or <span class="browse-link">Browse Files</span></p>
-                                 <p class="upload-subtext">Max 15MB (JPG, PNG, WEBP, BMP)</p>
+                                 <p class="upload-text"><span data-translate="upload_drag_drop">Drag & Drop Image</span> <span data-translate="upload_or">or</span> <span class="browse-link" data-translate="upload_browse">Browse Files</span></p>
+                                 <p class="upload-subtext" data-translate="upload_formats">Max 15MB (JPG, PNG, WEBP, BMP)</p>
                              </div>
                              <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp" hidden>
                          </div>
-                         <div id="fileInfoArea" class="file-info-area hidden"><span id="fileName"></span><button id="cancelUploadBtn" class="button-cancel" title="Cancel Selection">×</button></div>
+                         <div id="fileInfoArea" class="file-info-area hidden"><span id="fileName"></span><button id="cancelUploadBtn" class="button-cancel" data-translate-title="cancel_selection_title" title="Cancel Selection">×</button></div>
                          <div id="uploadProgress" class="upload-progress hidden"><div id="progressBar" class="progress-bar"></div></div>
                      </div>
                      <div id="landingStatusArea" class="status-area landing-status"></div>
-                     <button id="startConversionBtn" class="button button-primary start-button hidden">Vectorize Image</button>
+                     <button id="startConversionBtn" class="button button-primary start-button hidden" data-translate="vectorize_image_btn">Vectorize Image</button>
                  </div>
 
                  <!-- ===== Features Section ===== -->
                  <section class="features-section">
                      <div class="features-header">
-                        <h2>Features</h2>
-                        <p>Everything you need for perfect SVGs. Our powerful conversion tool gives you complete control over your vector graphics.</p>
+                        <h2 data-translate="features_h2">Features</h2>
+                        <p data-translate="features_p">Everything you need for perfect SVGs. Our powerful conversion tool gives you complete control over your vector graphics.</p>
                      </div>
                      <div class="features-grid">
                         <div class="feature-card">
                             <div class="feature-icon"><i class="fas fa-bolt-lightning"></i></div>
-                            <h3>Instant Conversion</h3>
-                            <p>Upload your image and get an SVG preview instantly. No waiting, no processing delays.</p>
+                            <h3 data-translate="feature_instant_h3">Instant Conversion</h3>
+                            <p data-translate="feature_instant_p">Upload your image and get an SVG preview instantly. No waiting, no processing delays.</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon"><i class="fas fa-sliders"></i></div>
-                            <h3>Real-time Customization</h3>
-                            <p>Adjust settings and see changes in real-time. Tweak your SVG to perfection.</p>
+                            <h3 data-translate="feature_realtime_h3">Real-time Customization</h3>
+                            <p data-translate="feature_realtime_p">Adjust settings and see changes in real-time. Tweak your SVG to perfection.</p>
                         </div>
                         <div class="feature-card">
                              <div class="feature-icon"><i class="fas fa-gem"></i></div>
-                            <h3>High-Quality Results</h3>
-                            <p>Get clean, optimized SVGs that scale perfectly for any use case.</p>
+                            <h3 data-translate="feature_quality_h3">High-Quality Results</h3>
+                            <p data-translate="feature_quality_p">Get clean, optimized SVGs that scale perfectly for any use case.</p>
                         </div>
                      </div>
                  </section>
 
                  <!-- ===== Preset Examples Section ===== -->
                  <section class="preset-examples-section">
-                    <h2>Preset Examples</h2>
-                    <p>See how different presets handle various image types.</p>
-                    <div class="preset-examples-container">
-                        <div class="preset-example-card">
-                            <h4>Photograph</h4>
-                            <div class="example-images"> <div class="example-image-container"> <img src="/assets/images/example-photo-before.jpg" alt="Original Photograph"> <span class="example-image-label">Original</span> </div> <div class="example-image-container"> <img src="/assets/images/example-photo-after.svg" alt="Vectorized Photograph"> <span class="example-image-label">Vectorized</span> </div> </div>
-                        </div>
-                        <div class="preset-example-card">
-                            <h4>Clipart / Logo</h4>
-                             <div class="example-images"> <div class="example-image-container"> <img src="/assets/images/example-clipart-before.png" alt="Original Clipart"> <span class="example-image-label">Original</span> </div> <div class="example-image-container"> <img src="/assets/images/example-clipart-after.svg" alt="Vectorized Clipart"> <span class="example-image-label">Vectorized</span> </div> </div>
-                        </div>
-                        <div class="preset-example-card">
-                            <h4>Pixel Art</h4>
-                             <div class="example-images"> <div class="example-image-container"> <img src="/assets/images/example-pixel-before.png" alt="Original Pixel Art"> <span class="example-image-label">Original</span> </div> <div class="example-image-container"> <img src="/assets/images/example-pixel-after.svg" alt="Vectorized Pixel Art"> <span class="example-image-label">Vectorized</span> </div> </div>
+                     <div class="container"> <!-- Added container for centering -->
+                        <h2 data-translate="presets_h2">Preset Examples</h2>
+                        <p data-translate="presets_p">See how different presets handle various image types.</p>
+                        <div class="preset-examples-container">
+                            <div class="preset-example-card">
+                                <h4 data-translate="preset_photo">Photograph</h4>
+                                <div class="example-images">
+                                    <div class="example-image-container"> <img src="/assets/images/example-photo-before.jpg" alt="Original Photograph"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-photo-after.svg" alt="Vectorized Photograph"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
+                                </div>
+                            </div>
+                            <div class="preset-example-card">
+                                <h4 data-translate="preset_clipart">Clipart / Logo</h4>
+                                <div class="example-images">
+                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-before.png" alt="Original Clipart"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-after.svg" alt="Vectorized Clipart"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
+                                </div>
+                            </div>
+                            <div class="preset-example-card">
+                                <h4 data-translate="preset_pixel">Pixel Art</h4>
+                                <div class="example-images">
+                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-before.png" alt="Original Pixel Art"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-after.svg" alt="Vectorized Pixel Art"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                  </section>
 
                  <!-- ===== CTA Section ===== -->
                  <section class="cta-section">
-                     <h2>Start using Vectorise.Me today.</h2>
-                     <p>Convert your images to SVG with our free online tool. No registration required.</p>
+                     <h2 data-translate="cta_h2">Start using Vectorise.Me today.</h2>
+                     <p data-translate="cta_p">Convert your images to SVG with our free online tool. No registration required.</p>
                      <!-- Button removed -->
                  </section>
 
@@ -141,29 +151,134 @@
 
             <!-- ===== App / Conversion View ===== -->
             <section id="appView" class="view app-view hidden">
-                <!-- Content identical to previous version -->
                  <div class="processing-layout">
                     <aside class="options-panel">
-                        <div class="options-header"> <h2>Options</h2> <div class="options-header-buttons"> <button id="loadOptionsBtn" class="button button-tertiary" title="Load settings"><i class="fas fa-upload"></i></button> <button id="saveOptionsBtn" class="button button-tertiary" title="Save settings"><i class="fas fa-save"></i></button> <button id="resetOptionsBtn" class="button button-tertiary" title="Reset options">Reset</button> </div> </div>
-                        <div class="preset-controls option-group"> <label for="presetSelect">Image Type Preset:</label> <select id="presetSelect"> <option value="" disabled selected>Load a Preset...</option> </select> </div>
+                        <div class="options-header">
+                            <h2 data-translate="options_h2">Options</h2>
+                            <div class="options-header-buttons">
+                                <button id="loadOptionsBtn" class="button button-tertiary" data-translate-title="load_settings_title" title="Load settings"><i class="fas fa-upload"></i> <span class="btn-text" data-translate="load_btn">Load</span></button>
+                                <button id="saveOptionsBtn" class="button button-tertiary" data-translate-title="save_settings_title" title="Save settings"><i class="fas fa-save"></i> <span class="btn-text" data-translate="save_btn">Save</span></button>
+                                <button id="resetOptionsBtn" class="button button-tertiary" data-translate-title="reset_options_title" title="Reset options"><span data-translate="reset_btn">Reset</span></button>
+                            </div>
+                        </div>
+                        <div class="preset-controls option-group">
+                            <label for="presetSelect" data-translate="preset_label">Image Type Preset:</label>
+                            <select id="presetSelect">
+                                <option value="" disabled selected data-translate="preset_select_placeholder">Load a Preset...</option>
+                                <!-- Presets populated by JS -->
+                            </select>
+                        </div>
                         <form id="optionsForm">
-                            <fieldset class="options-fieldset"> <legend>Color Settings</legend> <div class="option-group" id="groupPalette"> <label for="optPalette" title="Color detail">Color Detail:</label> <select id="optPalette" name="palette_selector"> <option value="8">Full (8 bit)</option> <option value="6" selected>Standard (6 bit)</option> <option value="5">Reduced (5 bit)</option> <option value="4">Limited (4 bit)</option> <option value="3">Posterized (3 bit)</option> </select> </div> <input type="hidden" id="optColorPrecision" name="color_precision" value="6"> <div class="option-group" id="groupColorMode"> <label for="optColormode" title="Color mode">Color Mode:</label> <select id="optColormode" name="color_mode"><option value="color" selected>Color</option><option value="bw">Binary</option></select> </div> </fieldset>
-                            <fieldset class="options-fieldset"> <legend>Tracing Parameters</legend> <div class="option-group slider-group" id="groupFilterSpeckle"><label for="optFilterSpeckle">Filter Speckle:</label><div class="input-combo"><input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1"><input type="number" id="optFilterSpeckleNum" class="input-number short" value="4" min="0" max="20" step="1"><span class="unit">px</span></div></div> <div class="option-group" id="groupMode"><label for="optMode">Mode:</label><select id="optMode" name="mode"><option value="spline" selected>Spline</option><option value="polygon">Polygon</option><option value="pixel">Pixel</option></select></div> </fieldset>
-                            <fieldset class="options-fieldset"> <legend>Geometry & Path Fitting</legend> <div class="option-group slider-group" id="groupCornerThreshold"><label for="optCornerThreshold">Corner Thr.:</label><div class="input-combo"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><input type="number" id="optCornerThresholdNum" class="input-number short" value="60" min="0" max="180" step="1"><span class="unit">°</span></div></div> <div class="option-group slider-group" id="groupPathPrecision"><label for="optPathPrecision">Path Precision:</label><div class="input-combo"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1"><span class="unit">dec</span></div></div> <div class="option-group slider-group" id="groupSplineThreshold"><label for="optSplineThreshold">Spline Thr.:</label><div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01"></div></div> <div class="option-group slider-group" id="groupSpliceThreshold"><label for="optSpliceThreshold">Splice Thr.:</label><div class="input-combo"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><input type="number" id="optSpliceThresholdNum" class="input-number short" value="45" min="0" max="180" step="1"><span class="unit">°</span></div></div> <div class="option-group slider-group" id="groupSegmentLength"><label for="optSegmentLength">Segment Len.:</label><div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div></div> </fieldset>
-                            <fieldset class="options-fieldset"> <legend>Color Processing Options</legend> <div class="option-group" id="groupHierarchical"><label for="optHierarchical">Layering:</label><select id="optHierarchical" name="hierarchical"><option value="stacked" selected>Stacked</option><option value="cutout">Cutout</option></select></div> <div class="option-group slider-group" id="groupGradientStep"><label for="optGradientStep">Gradient Step:</label><div class="input-combo"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.1"><input type="number" id="optGradientStepNum" class="input-number" value="2.0" min="0" max="10" step="0.1"></div></div> <div class="option-group slider-group hidden" id="groupColorPrecision"></div> </fieldset>
+                            <fieldset class="options-fieldset">
+                                <legend data-translate="options_legend_color">Color Settings</legend>
+                                <div class="option-group" id="groupPalette">
+                                    <label for="optPalette" data-translate-title="color_detail_title" title="Color detail" data-translate="color_detail_label">Color Detail:</label>
+                                    <select id="optPalette" name="palette_selector">
+                                        <option value="8" data-translate="color_detail_full">Full (8 bit)</option>
+                                        <option value="6" selected data-translate="color_detail_standard">Standard (6 bit)</option>
+                                        <option value="5" data-translate="color_detail_reduced">Reduced (5 bit)</option>
+                                        <option value="4" data-translate="color_detail_limited">Limited (4 bit)</option>
+                                        <option value="3" data-translate="color_detail_posterized">Posterized (3 bit)</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" id="optColorPrecision" name="color_precision" value="6">
+                                <div class="option-group" id="groupColorMode">
+                                    <label for="optColormode" data-translate-title="color_mode_title" title="Color mode" data-translate="color_mode_label">Color Mode:</label>
+                                    <select id="optColormode" name="color_mode">
+                                        <option value="color" selected data-translate="color_mode_color">Color</option>
+                                        <option value="bw" data-translate="color_mode_binary">Binary</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset class="options-fieldset">
+                                <legend data-translate="options_legend_trace">Tracing Parameters</legend>
+                                <div class="option-group slider-group" id="groupFilterSpeckle">
+                                    <label for="optFilterSpeckle" data-translate="filter_speckle_label">Filter Speckle:</label>
+                                    <div class="input-combo"><input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1"><input type="number" id="optFilterSpeckleNum" class="input-number short" value="4" min="0" max="20" step="1"><span class="unit">px</span></div>
+                                </div>
+                                <div class="option-group" id="groupMode">
+                                    <label for="optMode" data-translate="mode_label">Mode:</label>
+                                    <select id="optMode" name="mode">
+                                        <option value="spline" selected data-translate="mode_spline">Spline</option>
+                                        <option value="polygon" data-translate="mode_polygon">Polygon</option>
+                                        <option value="pixel" data-translate="mode_pixel">Pixel</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset class="options-fieldset">
+                                <legend data-translate="options_legend_geo">Geometry & Path Fitting</legend>
+                                <div class="option-group slider-group" id="groupCornerThreshold">
+                                    <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Thr.:</label>
+                                    <div class="input-combo"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><input type="number" id="optCornerThresholdNum" class="input-number short" value="60" min="0" max="180" step="1"><span class="unit">°</span></div>
+                                </div>
+                                <div class="option-group slider-group" id="groupPathPrecision">
+                                    <label for="optPathPrecision" data-translate="path_prec_label">Path Precision:</label>
+                                    <div class="input-combo"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1"><span class="unit" data-translate="unit_dec">dec</span></div>
+                                </div>
+                                <div class="option-group slider-group" id="groupSplineThreshold">
+                                    <label for="optSplineThreshold" data-translate="spline_thr_label">Spline Thr.:</label>
+                                    <div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01"></div>
+                                </div>
+                                <div class="option-group slider-group" id="groupSpliceThreshold">
+                                     <label for="optSpliceThreshold" data-translate="splice_thr_label">Splice Thr.:</label>
+                                     <div class="input-combo"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><input type="number" id="optSpliceThresholdNum" class="input-number short" value="45" min="0" max="180" step="1"><span class="unit">°</span></div>
+                                </div>
+                                <div class="option-group slider-group" id="groupSegmentLength">
+                                     <label for="optSegmentLength" data-translate="segment_len_label">Segment Len.:</label>
+                                     <div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div>
+                                </div>
+                             </fieldset>
+                             <fieldset class="options-fieldset">
+                                 <legend data-translate="options_legend_color_proc">Color Processing Options</legend>
+                                 <div class="option-group" id="groupHierarchical">
+                                     <label for="optHierarchical" data-translate="layering_label">Layering:</label>
+                                     <select id="optHierarchical" name="hierarchical">
+                                         <option value="stacked" selected data-translate="layering_stacked">Stacked</option>
+                                         <option value="cutout" data-translate="layering_cutout">Cutout</option>
+                                     </select>
+                                 </div>
+                                 <div class="option-group slider-group" id="groupGradientStep">
+                                      <label for="optGradientStep" data-translate="gradient_step_label">Gradient Step:</label>
+                                      <div class="input-combo"><input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.1"><input type="number" id="optGradientStepNum" class="input-number" value="2.0" min="0" max="10" step="0.1"></div>
+                                 </div>
+                                 <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
+                             </fieldset>
                         </form>
-                        <button id="convertBtn" class="button button-primary convert-button">Update Vectorization</button>
+                        <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn">Update Vectorization</button>
                     </aside>
                     <section class="result-panel">
-                         <div class="result-header"> <h2>Preview</h2> <div class="zoom-controls"> <button id="zoomOutBtn" class="button button-zoom" title="Zoom Out"><i class="fas fa-search-minus"></i></button> <button id="zoomResetBtn" class="button button-zoom" title="Reset Zoom"><i class="fas fa-expand"></i></button> <button id="zoomInBtn" class="button button-zoom" title="Zoom In"><i class="fas fa-search-plus"></i></button> </div> </div>
+                         <div class="result-header">
+                            <h2 data-translate="preview_h2">Preview</h2>
+                            <div class="zoom-controls">
+                                <button id="zoomOutBtn" class="button button-zoom" data-translate-title="zoom_out_title" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button id="zoomResetBtn" class="button button-zoom" data-translate-title="zoom_reset_title" title="Reset Zoom"><i class="fas fa-expand"></i></button>
+                                <button id="zoomInBtn" class="button button-zoom" data-translate-title="zoom_in_title" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                            </div>
+                         </div>
                         <div id="statusArea" class="status-area app-status"></div>
                         <div id="previewAreaWrapper" class="preview-area-wrapper">
                              <div class="preview-comparison-container">
-                                 <div class="preview-pane original-pane"> <div class="preview-label">Original</div> <div class="image-wrapper" id="originalImageWrapper"> <img id="previewOriginalImage" src="#" alt="Original Uploaded Image"/> </div> </div>
-                                 <div class="preview-pane vector-pane"> <div class="preview-label">Vectorized</div> <div class="image-wrapper" id="vectorImageWrapper"> <div id="svgOutputWrapper" class="svg-output-wrapper"> <div id="svgOutput" class="svg-output"> <p class="placeholder-text">Processing...</p> </div> </div> </div> </div>
+                                 <div class="preview-pane original-pane">
+                                     <div class="preview-label" data-translate="preview_original_label">Original</div>
+                                     <div class="image-wrapper" id="originalImageWrapper">
+                                         <img id="previewOriginalImage" src="#" alt="Original Uploaded Image"/>
+                                     </div>
+                                 </div>
+                                 <div class="preview-pane vector-pane">
+                                     <div class="preview-label" data-translate="preview_vectorized_label">Vectorized</div>
+                                     <div class="image-wrapper" id="vectorImageWrapper">
+                                         <div id="svgOutputWrapper" class="svg-output-wrapper">
+                                             <div id="svgOutput" class="svg-output">
+                                                 <p class="placeholder-text" data-translate="preview_placeholder_processing">Processing...</p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
                              </div>
                         </div>
-                        <div class="result-controls"> <button id="downloadBtn" class="button button-success download-button" disabled>Download SVG</button> </div>
+                        <div class="result-controls">
+                            <button id="downloadBtn" class="button button-success download-button" disabled data-translate="download_svg_btn">Download SVG</button>
+                        </div>
                     </section>
                 </div>
             </section> <!-- End #appView -->
@@ -171,14 +286,39 @@
 
         <!-- ===== Site Footer ====== -->
         <footer class="site-footer">
-            <div class="footer-content"> <div class="footer-about"> <h3 class="footer-brand">Vectorise.Me</h3> <p class="footer-description">Free online tool to convert raster images to scalable vector graphics (SVG).</p> </div> <div class="footer-links"> <div class="link-group"> <h4 class="footer-heading">Links</h4> <ul> <li><a href="/">Home</a></li> <li><a href="contact.html">Contact</a></li> </ul> </div> <div class="link-group"> <h4 class="footer-heading">Legal</h4> <ul> <li><a href="privacy.html">Privacy Policy</a></li> <li><a href="cookies.html">Cookie Policy</a></li> <li><a href="terms.html">Terms of Service</a></li> </ul> </div> </div> </div>
-            <div class="footer-copyright"> © 2025 JonkaryStudio. All rights reserved. <span class="powered-by">Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span> </div>
+            <div class="footer-content">
+                 <div class="footer-about">
+                    <h3 class="footer-brand">Vectorise.Me</h3>
+                    <p class="footer-description" data-translate="footer_description">Free online tool to convert raster images to scalable vector graphics (SVG).</p>
+                 </div>
+                 <div class="footer-links">
+                    <div class="link-group">
+                        <h4 class="footer-heading" data-translate="footer_links_heading">Links</h4>
+                        <ul>
+                            <li><a href="/" data-translate="footer_home_link">Home</a></li>
+                            <li><a href="contact.html" data-translate="footer_contact_link">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4 class="footer-heading" data-translate="footer_legal_heading">Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html" data-translate="footer_privacy_link">Privacy Policy</a></li>
+                            <li><a href="cookies.html" data-translate="footer_cookies_link">Cookie Policy</a></li>
+                            <li><a href="terms.html" data-translate="footer_terms_link">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                 </div>
+             </div>
+            <div class="footer-copyright">
+                <span data-translate="footer_copyright">© 2025 JonkaryStudio. All rights reserved.</span>
+                <span class="powered-by"><span data-translate="footer_powered_by">Powered by</span> <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span>
+            </div>
         </footer>
 
         <a id="downloadLink" style="display: none;"></a>
         <input type="file" id="optionsFileInput" accept=".json" hidden>
     </div> <!-- End page-container -->
 
-    <script src="script.js"></script> <!-- This will be the new script -->
+    <script src="script.js"></script> <!-- Link the updated script -->
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Vectorise.Me</title>
-    <meta name="description" content="Terms of Service for the Vectorise.Me online SVG conversion tool.">
+    <title data-translate="meta_title_terms">Terms of Service - Vectorise.Me</title>
+    <meta name="description" data-translate="meta_description_terms" content="Terms of Service for the Vectorise.Me online SVG conversion tool.">
     <!-- Stylesheet, Fonts, Favicons -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,19 +20,32 @@
     <div class="page-container">
         <!-- Header -->
         <header class="app-header site-header">
-            <div class="header-content">
+             <div class="header-content">
                  <a href="/" class="header-logo-link"><img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo"></a>
                  <!-- Language Selector -->
                  <div class="language-selector">
                     <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                        <i class="fas fa-globe"></i> <span id="currentLanguageName">English</span> <i class="fas fa-chevron-down arrow-icon"></i>
                     </button>
                     <div id="languageDropdown" class="language-dropdown hidden" role="menu">
-                         <a href="#" role="menuitem" lang="de">Deutsch</a>
-                         <a href="#" role="menuitem" lang="es">Español</a>
-                         <!-- Add other languages -->
-                         <a href="#" role="menuitem" lang="zh-CN">简体中文</a>
-                         <a href="#" role="menuitem" lang="ar">العربية</a>
+                        <a href="#" role="menuitem" lang="en">English</a>
+                        <a href="#" role="menuitem" lang="de">Deutsch</a>
+                        <a href="#" role="menuitem" lang="es">Español</a>
+                        <a href="#" role="menuitem" lang="fr">Français</a>
+                        <a href="#" role="menuitem" lang="hi">हिन्दी</a>
+                        <a href="#" role="menuitem" lang="id">Indonesia</a>
+                        <a href="#" role="menuitem" lang="it">Italiano</a>
+                        <a href="#" role="menuitem" lang="ja">日本語</a>
+                        <a href="#" role="menuitem" lang="ko">한국어</a>
+                        <a href="#" role="menuitem" lang="pl">Polski</a>
+                        <a href="#" role="menuitem" lang="pt">Português</a>
+                        <a href="#" role="menuitem" lang="ru">Русский</a>
+                        <a href="#" role="menuitem" lang="th">ไทย</a>
+                        <a href="#" role="menuitem" lang="tr">Türkçe</a>
+                        <a href="#" role="menuitem" lang="vi">Tiếng Việt</a>
+                        <a href="#" role="menuitem" lang="zh-CN">简体中文</a>
+                        <a href="#" role="menuitem" lang="zh-TW">繁體中文</a>
+                        <a href="#" role="menuitem" lang="ar">العربية</a>
                     </div>
                  </div>
             </div>
@@ -41,60 +54,88 @@
         <!-- Main Content -->
         <main id="mainContent" class="main-content-padding">
             <section class="legal-content">
-                <h1>Terms of Service</h1>
-                <p><strong>Last Updated: [Insert Date]</strong></p>
+                <h1 data-translate="terms_h1">Terms of Service</h1>
+                <p><strong data-translate="legal_last_updated">Last Updated:</strong> <span data-translate="legal_date_placeholder">[Insert Date]</span></p>
 
-                <p>Please read these Terms of Service ("Terms") carefully before using the Vectorise.Me website (the "Service") operated by JonkaryStudio ("us", "we", or "our").</p>
-                <p>Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.</p>
-                <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you do not have permission to access the Service.</p>
+                <p data-translate="terms_intro_1">Please read these Terms of Service ("Terms") carefully before using the Vectorise.Me website (the "Service") operated by JonkaryStudio ("us", "we", or "our").</p>
+                <p data-translate="terms_intro_2">Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.</p>
+                <p data-translate="terms_intro_3">By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you do not have permission to access the Service.</p>
 
-                 <p><strong style="color: var(--danger-color);">Disclaimer: This is placeholder text. Consult a legal professional to create accurate and compliant Terms of Service.</strong></p>
+                <p><strong style="color: var(--danger-color);" data-translate="legal_disclaimer">Disclaimer: This is placeholder text. Consult a legal professional to create accurate and compliant Terms of Service.</strong></p>
 
-                <h2>Use License</h2>
-                 <p>Permission is granted to temporarily use the materials (information or software) on Vectorise.Me's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+                <h2 data-translate="terms_h2_license">Use License</h2>
+                 <p data-translate="terms_license_p1">Permission is granted to temporarily use the materials (information or software) on Vectorise.Me's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
                  <ul>
-                    <li>modify or copy the materials (except for the generated SVG output from your own images);</li>
-                    <li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial), except for the SVG output derived from your own content;</li>
-                    <li>attempt to decompile or reverse engineer any software contained on Vectorise.Me's website;</li>
-                    <li>remove any copyright or other proprietary notations from the materials; or</li>
-                    <li>transfer the materials to another person or "mirror" the materials on any other server.</li>
+                    <li data-translate="terms_license_li_modify">modify or copy the materials (except for the generated SVG output from your own images);</li>
+                    <li data-translate="terms_license_li_commercial">use the materials for any commercial purpose, or for any public display (commercial or non-commercial), except for the SVG output derived from your own content;</li>
+                    <li data-translate="terms_license_li_reverse">attempt to decompile or reverse engineer any software contained on Vectorise.Me's website;</li>
+                    <li data-translate="terms_license_li_remove">remove any copyright or other proprietary notations from the materials; or</li>
+                    <li data-translate="terms_license_li_transfer">transfer the materials to another person or "mirror" the materials on any other server.</li>
                  </ul>
-                 <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by JonkaryStudio at any time.</p>
+                 <p data-translate="terms_license_p2">This license shall automatically terminate if you violate any of these restrictions and may be terminated by JonkaryStudio at any time.</p>
 
 
-                <h2>Uploaded Content</h2>
-                <p>You are solely responsible for the images you upload to the Service ("User Content"). You represent and warrant that you own or have the necessary licenses, rights, consents, and permissions to your User Content and you authorize us to use your User Content solely for the purpose of providing the Service (i.e., converting the image to SVG).</p>
-                <p>You agree not to upload User Content that is illegal, infringing, defamatory, obscene, or otherwise harmful.</p>
-                <p>We claim no ownership rights over your User Content or the resulting SVG files generated by the Service from your User Content.</p>
+                <h2 data-translate="terms_h2_content">Uploaded Content</h2>
+                <p data-translate="terms_content_p1">You are solely responsible for the images you upload to the Service ("User Content"). You represent and warrant that you own or have the necessary licenses, rights, consents, and permissions to your User Content and you authorize us to use your User Content solely for the purpose of providing the Service (i.e., converting the image to SVG).</p>
+                <p data-translate="terms_content_p2">You agree not to upload User Content that is illegal, infringing, defamatory, obscene, or otherwise harmful.</p>
+                <p data-translate="terms_content_p3">We claim no ownership rights over your User Content or the resulting SVG files generated by the Service from your User Content.</p>
 
-                <h2>Disclaimer</h2>
-                <p>The materials and services on Vectorise.Me's website are provided on an 'as is' basis. JonkaryStudio makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
-                <p>Further, JonkaryStudio does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site. The conversion process may not be perfect and results can vary based on the source image and selected settings.</p>
+                <h2 data-translate="terms_h2_disclaimer">Disclaimer</h2>
+                <p data-translate="terms_disclaimer_p1">The materials and services on Vectorise.Me's website are provided on an 'as is' basis. JonkaryStudio makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                <p data-translate="terms_disclaimer_p2">Further, JonkaryStudio does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site. The conversion process may not be perfect and results can vary based on the source image and selected settings.</p>
 
-                <h2>Limitations</h2>
-                <p>In no event shall JonkaryStudio or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials or Service on Vectorise.Me's website, even if JonkaryStudio or a JonkaryStudio authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                <h2 data-translate="terms_h2_limitations">Limitations</h2>
+                <p data-translate="terms_limitations_p1">In no event shall JonkaryStudio or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials or Service on Vectorise.Me's website, even if JonkaryStudio or a JonkaryStudio authorized representative has been notified orally or in writing of the possibility of such damage.</p>
 
-                <h2>Accuracy of Materials</h2>
-                <p>The materials appearing on Vectorise.Me's website could include technical, typographical, or photographic errors. JonkaryStudio does not warrant that any of the materials on its website are accurate, complete or current.</p>
+                <h2 data-translate="terms_h2_accuracy">Accuracy of Materials</h2>
+                <p data-translate="terms_accuracy_p1">The materials appearing on Vectorise.Me's website could include technical, typographical, or photographic errors. JonkaryStudio does not warrant that any of the materials on its website are accurate, complete or current.</p>
 
-                 <h2>Modifications to Service and Terms</h2>
-                <p>JonkaryStudio may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service. We may also modify or discontinue the Service at any time.</p>
+                <h2 data-translate="terms_h2_modifications">Modifications to Service and Terms</h2>
+                <p data-translate="terms_modifications_p1">JonkaryStudio may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service. We may also modify or discontinue the Service at any time.</p>
 
-                <h2>Governing Law</h2>
-                <p>These terms and conditions are governed by and construed in accordance with the laws of <strong style="color: var(--danger-color);">[Your Jurisdiction, e.g., the State of California, USA]</strong> and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>
+                <h2 data-translate="terms_h2_governing">Governing Law</h2>
+                <p data-translate="terms_governing_p1">These terms and conditions are governed by and construed in accordance with the laws of <strong style="color: var(--danger-color);" data-translate="terms_governing_jurisdiction_placeholder">[Your Jurisdiction, e.g., the State of California, USA]</strong> <span data-translate="terms_governing_p2">and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</span></p>
 
-                <h2>Contact Us</h2>
-                 <p>If you have any questions about these Terms, please contact us:</p>
+                <h2 data-translate="terms_h2_contact">Contact Us</h2>
+                 <p data-translate="terms_contact_p1">If you have any questions about these Terms, please contact us:</p>
                  <ul>
-                    <li>By email: jonkarystudio@gmail.com</li>
-                    <li>Via our website: <a href="contact.html">Contact Page</a></li>
+                    <li data-translate="terms_contact_li_email">By email: jonkarystudio@gmail.com</li>
+                    <li data-translate="terms_contact_li_web">Via our website: <a href="contact.html" data-translate="terms_contact_page_link">Contact Page</a></li>
                 </ul>
             </section>
         </main>
 
         <!-- Footer -->
-        <footer class="site-footer"> <div class="footer-content"> <div class="footer-about"> <h3 class="footer-brand">Vectorise.Me</h3> <p class="footer-description">Free online tool to convert raster images to scalable vector graphics (SVG).</p> </div> <div class="footer-links"> <div class="link-group"> <h4 class="footer-heading">Links</h4> <ul> <li><a href="/">Home</a></li> <li><a href="contact.html">Contact</a></li> </ul> </div> <div class="link-group"> <h4 class="footer-heading">Legal</h4> <ul> <li><a href="privacy.html">Privacy Policy</a></li> <li><a href="cookies.html">Cookie Policy</a></li> <li><a href="terms.html">Terms of Service</a></li> </ul> </div> </div> </div> <div class="footer-copyright"> © 2025 JonkaryStudio. All rights reserved. <span class="powered-by">Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span> </div> </footer>
-    </div>
+        <footer class="site-footer">
+            <div class="footer-content">
+                 <div class="footer-about">
+                    <h3 class="footer-brand">Vectorise.Me</h3>
+                    <p class="footer-description" data-translate="footer_description">Free online tool to convert raster images to scalable vector graphics (SVG).</p>
+                 </div>
+                 <div class="footer-links">
+                    <div class="link-group">
+                        <h4 class="footer-heading" data-translate="footer_links_heading">Links</h4>
+                        <ul>
+                            <li><a href="/" data-translate="footer_home_link">Home</a></li>
+                            <li><a href="contact.html" data-translate="footer_contact_link">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4 class="footer-heading" data-translate="footer_legal_heading">Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html" data-translate="footer_privacy_link">Privacy Policy</a></li>
+                            <li><a href="cookies.html" data-translate="footer_cookies_link">Cookie Policy</a></li>
+                            <li><a href="terms.html" data-translate="footer_terms_link">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                 </div>
+             </div>
+            <div class="footer-copyright">
+                <span data-translate="footer_copyright">© 2025 JonkaryStudio. All rights reserved.</span>
+                <span class="powered-by"><span data-translate="footer_powered_by">Powered by</span> <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span>
+            </div>
+        </footer>
+    </div> <!-- End page-container -->
     <script src="script.js"></script>
 </body>
 </html>

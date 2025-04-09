@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Vectorise.Me</title>
-    <meta name="description" content="Privacy Policy for the Vectorise.Me online SVG conversion tool.">
+    <title data-translate="meta_title_privacy">Privacy Policy - Vectorise.Me</title>
+    <meta name="description" data-translate="meta_description_privacy" content="Privacy Policy for the Vectorise.Me online SVG conversion tool.">
     <!-- Stylesheet, Fonts, Favicons -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,14 +20,15 @@
     <div class="page-container">
         <!-- Header -->
         <header class="app-header site-header">
-            <div class="header-content">
+             <div class="header-content">
                  <a href="/" class="header-logo-link"><img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo"></a>
                  <!-- Language Selector -->
                  <div class="language-selector">
                     <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                        <i class="fas fa-globe"></i> <span id="currentLanguageName">English</span> <i class="fas fa-chevron-down arrow-icon"></i>
                     </button>
                     <div id="languageDropdown" class="language-dropdown hidden" role="menu">
+                        <a href="#" role="menuitem" lang="en">English</a>
                         <a href="#" role="menuitem" lang="de">Deutsch</a>
                         <a href="#" role="menuitem" lang="es">Español</a>
                         <a href="#" role="menuitem" lang="fr">Français</a>
@@ -53,75 +54,103 @@
         <!-- Main Content -->
         <main id="mainContent" class="main-content-padding">
             <section class="legal-content">
-                <h1>Privacy Policy</h1>
-                <p><strong>Last Updated: [Insert Date]</strong></p>
+                <h1 data-translate="privacy_h1">Privacy Policy</h1>
+                <p><strong data-translate="legal_last_updated">Last Updated:</strong> <span data-translate="legal_date_placeholder">[Insert Date]</span></p>
 
-                <p>Welcome to Vectorise.Me (the "Service"), operated by JonkaryStudio ("us", "we", or "our"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
+                <p data-translate="privacy_intro_1">Welcome to Vectorise.Me (the "Service"), operated by JonkaryStudio ("us", "we", or "our"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.</p>
 
-                <p><strong style="color: var(--danger-color);">Disclaimer: This is placeholder text. Consult a legal professional to create an accurate and compliant privacy policy.</strong></p>
+                <p><strong style="color: var(--danger-color);" data-translate="legal_disclaimer">Disclaimer: This is placeholder text. Consult a legal professional to create an accurate and compliant privacy policy.</strong></p>
 
-                <h2>Information Collection and Use</h2>
-                <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+                <h2 data-translate="privacy_h2_collection">Information Collection and Use</h2>
+                <p data-translate="privacy_collection_p1">We collect several different types of information for various purposes to provide and improve our Service to you.</p>
 
-                <h3>Types of Data Collected</h3>
-                <h4>Personal Data</h4>
-                <p>While using our Service, particularly when contacting us, we may ask you to provide us with certain personally identifiable information ("Personal Data"). This may include, but is not limited to:</p>
+                <h3 data-translate="privacy_h3_types">Types of Data Collected</h3>
+                <h4 data-translate="privacy_h4_personal">Personal Data</h4>
+                <p data-translate="privacy_personal_p1">While using our Service, particularly when contacting us, we may ask you to provide us with certain personally identifiable information ("Personal Data"). This may include, but is not limited to:</p>
                 <ul>
-                    <li>Email address</li>
-                    <li>Name</li>
+                    <li data-translate="privacy_personal_li_email">Email address</li>
+                    <li data-translate="privacy_personal_li_name">Name</li>
                 </ul>
-                <p>We may also collect Usage Data as described below.</p>
+                <p data-translate="privacy_personal_p2">We may also collect Usage Data as described below.</p>
 
-                <h4>Image Data</h4>
-                <p>When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you. <strong style="color: var(--danger-color);">[Specify Your Policy Here - e.g., Uploaded images and generated SVGs are not stored on our servers after processing and download link generation.]</strong> Or <strong style="color: var(--danger-color);">[e.g., Uploaded images and generated SVGs are temporarily stored for a maximum of X hours to allow download and then automatically deleted.]</strong> Be precise and truthful.</p>
+                <h4 data-translate="privacy_h4_image">Image Data</h4>
+                <p data-translate="privacy_image_p1">When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you. <strong style="color: var(--danger-color);" data-translate="privacy_image_policy_placeholder">[Specify Your Policy Here - e.g., Uploaded images and generated SVGs are not stored on our servers after processing and download link generation.]</strong> Or <strong style="color: var(--danger-color);" data-translate="privacy_image_policy_placeholder_alt">[e.g., Uploaded images and generated SVGs are temporarily stored for a maximum of X hours to allow download and then automatically deleted.]</strong> Be precise and truthful.</p>
 
-                <h4>Usage Data</h4>
-                <p>We may collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include your computer's IP address, browser type, browser version, the pages visited, time and date of visit, time spent on pages, unique device identifiers, and other diagnostic data. <strong style="color: var(--danger-color);">[Mention if you use analytics like Google Analytics, Plausible, etc.]</strong></p>
+                <h4 data-translate="privacy_h4_usage">Usage Data</h4>
+                <p data-translate="privacy_usage_p1">We may collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include your computer's IP address, browser type, browser version, the pages visited, time and date of visit, time spent on pages, unique device identifiers, and other diagnostic data. <strong style="color: var(--danger-color);" data-translate="privacy_usage_analytics_placeholder">[Mention if you use analytics like Google Analytics, Plausible, etc.]</strong></p>
 
-                <h2>Use of Data</h2>
-                <p>JonkaryStudio uses the collected data for purposes such as:</p>
+                <h2 data-translate="privacy_h2_use">Use of Data</h2>
+                <p data-translate="privacy_use_p1">JonkaryStudio uses the collected data for purposes such as:</p>
                 <ul>
-                    <li>Providing and maintaining the Service.</li>
-                    <li>Processing image conversion requests.</li>
-                    <li>Responding to your contact inquiries.</li>
-                    <li>Improving the Service based on usage analysis.</li>
-                    <li>Monitoring Service usage for stability and security.</li>
-                    <li>Detecting, preventing, and addressing technical issues.</li>
+                    <li data-translate="privacy_use_li_provide">Providing and maintaining the Service.</li>
+                    <li data-translate="privacy_use_li_process">Processing image conversion requests.</li>
+                    <li data-translate="privacy_use_li_respond">Responding to your contact inquiries.</li>
+                    <li data-translate="privacy_use_li_improve">Improving the Service based on usage analysis.</li>
+                    <li data-translate="privacy_use_li_monitor">Monitoring Service usage for stability and security.</li>
+                    <li data-translate="privacy_use_li_detect">Detecting, preventing, and addressing technical issues.</li>
                 </ul>
 
-                <h2>Transfer Of Data</h2>
-                <p>Your information, including image data during processing, may be processed on servers located outside of your jurisdiction where data protection laws may differ. Your consent to this Privacy Policy followed by your use of the Service represents your agreement to that transfer.</p>
-                <p>We take reasonable steps to ensure data is treated securely.</p>
+                <h2 data-translate="privacy_h2_transfer">Transfer Of Data</h2>
+                <p data-translate="privacy_transfer_p1">Your information, including image data during processing, may be processed on servers located outside of your jurisdiction where data protection laws may differ. Your consent to this Privacy Policy followed by your use of the Service represents your agreement to that transfer.</p>
+                <p data-translate="privacy_transfer_p2">We take reasonable steps to ensure data is treated securely.</p>
 
-                <h2>Disclosure Of Data</h2>
-                <p><strong style="color: var(--danger-color);">[Describe limited circumstances for disclosure, e.g., to comply with legal obligations, protect rights, prevent wrongdoing, during business transfers if applicable.]</strong> We do not sell your Personal Data.</p>
+                <h2 data-translate="privacy_h2_disclosure">Disclosure Of Data</h2>
+                <p><strong style="color: var(--danger-color);" data-translate="privacy_disclosure_placeholder">[Describe limited circumstances for disclosure, e.g., to comply with legal obligations, protect rights, prevent wrongdoing, during business transfers if applicable.]</strong> <span data-translate="privacy_disclosure_p1">We do not sell your Personal Data.</span></p>
 
-                <h2>Security of Data</h2>
-                <p>The security of your data is important. While we strive to use commercially acceptable means (like HTTPS) to protect data, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.</p>
+                <h2 data-translate="privacy_h2_security">Security of Data</h2>
+                <p data-translate="privacy_security_p1">The security of your data is important. While we strive to use commercially acceptable means (like HTTPS) to protect data, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.</p>
 
-                <h2>Service Providers</h2>
-                <p><strong style="color: var(--danger-color);">[Mention necessary third-party service providers like hosting (e.g., Vercel, Netlify, AWS) and analytics, if any.]</strong></p>
+                <h2 data-translate="privacy_h2_providers">Service Providers</h2>
+                <p><strong style="color: var(--danger-color);" data-translate="privacy_providers_placeholder">[Mention necessary third-party service providers like hosting (e.g., Vercel, Netlify, AWS) and analytics, if any.]</strong></p>
 
-                <h2>Links to Other Sites</h2>
-                <p>Our Service may contain links to other sites. We have no control over and assume no responsibility for the content or practices of any third-party sites.</p>
+                <h2 data-translate="privacy_h2_links">Links to Other Sites</h2>
+                <p data-translate="privacy_links_p1">Our Service may contain links to other sites. We have no control over and assume no responsibility for the content or practices of any third-party sites.</p>
 
-                <h2>Children's Privacy</h2>
-                <p>Our Service does not knowingly collect personally identifiable information from children under the age of <strong style="color: var(--danger-color);">[e.g., 13 or 16]</strong>.</p>
+                <h2 data-translate="privacy_h2_children">Children's Privacy</h2>
+                <p data-translate="privacy_children_p1">Our Service does not knowingly collect personally identifiable information from children under the age of <strong style="color: var(--danger-color);" data-translate="privacy_children_age_placeholder">[e.g., 13 or 16]</strong>.</p>
 
-                <h2>Changes to This Privacy Policy</h2>
-                <p>We may update this policy. We will notify you by posting the new policy on this page and updating the "Last Updated" date.</p>
+                <h2 data-translate="privacy_h2_changes">Changes to This Privacy Policy</h2>
+                <p data-translate="privacy_changes_p1">We may update this policy. We will notify you by posting the new policy on this page and updating the "Last Updated" date.</p>
 
-                <h2>Contact Us</h2>
-                <p>If you have questions, contact us:</p>
+                <h2 data-translate="privacy_h2_contact">Contact Us</h2>
+                <p data-translate="privacy_contact_p1">If you have questions, contact us:</p>
                 <ul>
-                    <li>By email: jonkarystudio@gmail.com</li>
-                    <li>Via our website: <a href="contact.html">Contact Page</a></li>
+                    <li data-translate="privacy_contact_li_email">By email: jonkarystudio@gmail.com</li>
+                    <li data-translate="privacy_contact_li_web">Via our website: <a href="contact.html" data-translate="privacy_contact_page_link">Contact Page</a></li>
                 </ul>
             </section>
         </main>
 
         <!-- Footer -->
-         <footer class="site-footer"> <div class="footer-content"> <div class="footer-about"> <h3 class="footer-brand">Vectorise.Me</h3> <p class="footer-description">Free online tool to convert raster images to scalable vector graphics (SVG).</p> </div> <div class="footer-links"> <div class="link-group"> <h4 class="footer-heading">Links</h4> <ul> <li><a href="/">Home</a></li> <li><a href="contact.html">Contact</a></li> </ul> </div> <div class="link-group"> <h4 class="footer-heading">Legal</h4> <ul> <li><a href="privacy.html">Privacy Policy</a></li> <li><a href="cookies.html">Cookie Policy</a></li> <li><a href="terms.html">Terms of Service</a></li> </ul> </div> </div> </div> <div class="footer-copyright"> © 2025 JonkaryStudio. All rights reserved. <span class="powered-by">Powered by <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span> </div> </footer>
+         <footer class="site-footer">
+            <div class="footer-content">
+                 <div class="footer-about">
+                    <h3 class="footer-brand">Vectorise.Me</h3>
+                    <p class="footer-description" data-translate="footer_description">Free online tool to convert raster images to scalable vector graphics (SVG).</p>
+                 </div>
+                 <div class="footer-links">
+                    <div class="link-group">
+                        <h4 class="footer-heading" data-translate="footer_links_heading">Links</h4>
+                        <ul>
+                            <li><a href="/" data-translate="footer_home_link">Home</a></li>
+                            <li><a href="contact.html" data-translate="footer_contact_link">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4 class="footer-heading" data-translate="footer_legal_heading">Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html" data-translate="footer_privacy_link">Privacy Policy</a></li>
+                            <li><a href="cookies.html" data-translate="footer_cookies_link">Cookie Policy</a></li>
+                            <li><a href="terms.html" data-translate="footer_terms_link">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                 </div>
+             </div>
+            <div class="footer-copyright">
+                <span data-translate="footer_copyright">© 2025 JonkaryStudio. All rights reserved.</span>
+                <span class="powered-by"><span data-translate="footer_powered_by">Powered by</span> <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span>
+            </div>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>
