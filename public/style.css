@@ -1,120 +1,144 @@
-/* public/style.css - Final Verified Version (Smaller Logos) */
+/* public/style.css - Final Complete Version (Side-by-Side, Zoom, Hover) */
 
 /* --- Reset & Basic Setup --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-:root { /* ... CSS Variables (Keep Purple Theme) ... */ }
+:root { --primary-hue: 260; --primary-color: hsl(var(--primary-hue), 75%, 58%); --primary-dark: hsl(var(--primary-hue), 70%, 48%); --primary-light: hsl(var(--primary-hue), 90%, 96%); --secondary-color: #6B7280; --success-color: #10B981; --success-dark: #059669; --danger-color: #EF4444; --light-bg: #fdfcff; --medium-bg: #F3F4F6; --panel-bg: #ffffff; --light-border: #E5E7EB; --medium-border: #D1D5DB; --text-color: #111827; --text-light: #4B5563; --white: #ffffff; --border-radius: 0.5rem; --border-radius-lg: 0.75rem; --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05); --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); --input-bg: #F9FAFB; }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 html { scroll-behavior: smooth; }
-body { /* ... Body styles ... */ }
-.page-container { /* ... Container styles ... */ }
+body { font-family: 'Inter', sans-serif; line-height: 1.6; background-color: var(--light-bg); color: var(--text-color); font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.page-container { width: 100%; max-width: 1500px; margin: 0 auto; padding: 0 1rem 2rem 1rem; display: flex; flex-direction: column; min-height: 100vh; }
 
 /* --- Utility --- */
 .hidden { display: none !important; }
 
 /* --- Header --- */
-.app-header { /* ... Header styles ... */ }
-.header-content { /* ... Flex styles ... */ }
-#appLogo {
-    display: block;
-    max-height: 40px; /* REVERTED to smaller logo height */
-    width: auto;
-}
-.header-button { /* ... Upload New Button styles ... */ }
+.app-header { background-color: rgba(255,255,255,0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(229, 231, 235, 0.6); padding: 0.7rem 1rem; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+.header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
+#appLogo { display: block; max-height: 40px; width: auto; }
+.header-button { margin-left: auto; font-size: 0.875rem; padding: 0.4rem 0.9rem; }
 
-/* --- Buttons --- */
-.button { /* ... Base button styles ... */ }
-/* ... Specific button styles (primary, secondary, tertiary, cancel, success) ... */
-.button:disabled, .action-button:disabled { /* ... Disabled style ... */ }
+/* --- General Button Styles --- */
+.button { display: inline-block; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius); cursor: pointer; font-size: 0.95em; font-weight: 600; transition: var(--transition); text-align: center; text-decoration: none; line-height: 1.5; }
+.button-primary { background-image: linear-gradient(to right, hsl(var(--primary-hue), 80%, 65%), hsl(var(--primary-hue), 70%, 55%)); color: white; box-shadow: var(--shadow-md), 0 0 20px hsla(var(--primary-hue), 75%, 60%, 0.3); }
+.button-primary:hover:not(:disabled) { background-image: linear-gradient(to right, hsl(var(--primary-hue), 75%, 60%), hsl(var(--primary-hue), 65%, 50%)); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.button-secondary { background-color: var(--white); color: var(--text-color); border: 1px solid var(--medium-border); box-shadow: var(--shadow-sm); }
+.button-secondary:hover:not(:disabled) { background-color: var(--medium-bg); border-color: var(--secondary-color); }
+.button-tertiary { background-color: transparent; color: var(--secondary-color); font-size: 0.85rem; padding: 0.3rem 0.6rem; border: 1px solid transparent;}
+.button-tertiary:hover:not(:disabled){ background-color: var(--medium-bg); color: var(--primary-dark); border-color: var(--light-border); }
+.button-cancel { background: none; border: none; font-size: 1.5rem; color: var(--secondary-color); cursor: pointer; padding: 0 0.5rem; line-height: 1; transition: color 0.2s; }
+.button-cancel:hover { color: var(--danger-color); }
+.button-success { background-image: linear-gradient(to right, var(--success-color), var(--success-dark)); color: white; box-shadow: var(--shadow-sm); }
+.button-success:hover:not(:disabled) { opacity: 0.9; box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.button:disabled, .action-button:disabled { background-color: #adb5bd !important; background-image: none !important; color: #6c757d !important; cursor: not-allowed; opacity: 0.65; box-shadow: none !important; transform: none !important; }
 
 /* --- Landing View --- */
-.landing-view { /* ... */ }
-.landing-content { /* ... */ }
+.landing-view { padding: 3rem 1rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.landing-content { max-width: 800px; margin: 0 auto; width: 100%;}
 .logo-large-container { margin-bottom: 1.5rem; }
-.logo-large {
-    max-height: 60px; /* REVERTED landing logo height */
-    width: auto;
-}
-.landing-content h1{ /* ... */ }
-.landing-content p { /* ... */ }
-.upload-area { /* ... */ }
-.drop-zone { /* ... */ }
-.drop-zone.dragover { /* ... */ }
-.drop-zone-content { /* ... */ }
-.upload-icon { /* ... */ }
-.upload-text { /* ... */ }
-.browse-link { /* ... */ }
-.upload-subtext { /* ... */ }
-.file-info-area { /* ... */ }
-#fileName { /* ... */ }
-.upload-progress { /* ... */ }
-.progress-bar { /* ... */ }
-.start-button { /* ... */ }
+.logo-large { max-height: 70px; width: auto; }
+.landing-content h1 { font-size: clamp(2.2rem, 7vw, 3.8rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.15; background: linear-gradient(90deg, hsl(var(--primary-hue), 80%, 55%), hsl(var(--primary-hue)+30, 80%, 60%)); -webkit-background-clip: text; color: transparent; }
+.landing-content p { font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--text-light); margin-bottom: 3rem; max-width: 650px; margin-left: auto; margin-right: auto; }
+
+/* Upload Area */
+.upload-area { background-color: var(--white); padding: 0.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); width: 100%; max-width: 700px; margin: 0 auto; border: 1px solid var(--light-border);}
+.drop-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed var(--light-border); background-color: hsl(var(--primary-hue), 90%, 98%); border-radius: var(--border-radius); padding: 2.5rem 1.5rem; cursor: pointer; transition: var(--transition); }
+.drop-zone.dragover { border-color: var(--primary-color); background-color: hsl(var(--primary-hue), 80%, 90%); transform: scale(1.01); box-shadow: var(--shadow-md); }
+.drop-zone-content { display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.upload-icon { width: 50px; height: 50px; color: var(--primary-color); margin-bottom: 1rem; }
+.upload-text { font-size: 1.1rem; font-weight: 500; color: var(--text-color); margin-bottom: 0.25rem; }
+.browse-link { color: var(--primary-color); font-weight: 600; cursor: pointer; }
+.browse-link:hover { text-decoration: underline; }
+.upload-subtext { margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-light); }
+.file-info-area { display: flex; align-items: center; justify-content: space-between; background-color: var(--medium-bg); padding: 0.75rem 1rem; border-radius: var(--border-radius); border: 1px solid var(--light-border); margin-top: 0.5rem; }
+#fileName { font-weight: 500; color: var(--dark-grey); font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 0.5rem; }
+.upload-progress { margin: 0.5rem 1rem 0.25rem 1rem; height: 6px; background-color: var(--light-border); border-radius: 3px; overflow: hidden; }
+.progress-bar { width: 0%; height: 100%; background: var(--primary-color); border-radius: 3px; transition: width 0.4s ease; }
+.start-button { margin-top: 1.5rem; width: 100%; max-width: 300px; padding: 0.8rem 1.5rem; }
 
 /* Status Area */
-.status-area { /* ... Base styles ... */ }
-/* ... Specific status styles (loading, error, success) ... */
+.status-area { padding: 0.7rem 1rem; border-radius: var(--border-radius); font-weight: 500; font-size: 0.95em; text-align: center; margin-top: 1.5rem; min-height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid transparent; }
+.status-area:empty { padding: 0; min-height: 0; border: none; margin-top: 0; }
+.landing-status {}
+.app-status { margin-bottom: 1rem; margin-top: 0; }
+.status-area.loading { color: hsl(var(--primary-hue), 70%, 30%); background-color: hsl(var(--primary-hue), 80%, 93%); border-color: hsl(var(--primary-hue), 75%, 85%); }
+.status-area.error { color: #991B1B; background-color: #FEE2E2; border-color: #FECACA; }
+.status-area.success { color: #065F46; background-color: #D1FAE5; border-color: #A7F3D0; }
 
 /* --- App View --- */
-.app-view { /* ... */ }
-.processing-layout { /* ... */ }
+.app-view { width: 100%; flex-grow: 1; display: flex; flex-direction: column; }
+.processing-layout { display: flex; flex-wrap: nowrap; gap: 1.5rem; width: 100%; flex-grow: 1; padding-top: 1.5rem; }
 
 /* Options Panel */
-.options-panel { /* ... Panel styles ... */ }
-.options-header { /* ... */ }
+.options-panel { flex: 0 0 350px; background-color: var(--panel-bg); padding: 1.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--light-border); height: fit-content; align-self: flex-start; }
+.options-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-border); }
+.options-header h2 { font-size: 1.2rem; font-weight: 600; margin: 0; }
 #optionsForm {}
-/* ... Fieldset, Legend Styles ... */
-.option-group { /* ... */ }
-.option-group label { /* ... Larger label style */ }
-.checkbox-group { /* ... checkbox style ... */}
-.option-group select { /* ... Larger select style ... */ }
-/* Input Combo (Slider + Number) */
-.input-combo { /* ... Flex styles for combo ... */ }
-.input-combo input[type="range"] { /* ... Slider style ... */ }
-.input-combo input[type="number"] { /* ... Number input style ... */ }
-.input-combo .unit { /* ... Unit style ... */ }
-/* Hide Spans used only for JS calculation (kept in previous stable HTML) */
-#optCornerThresholdValue, #optFilterSpeckleValue, #optPathPrecisionValue, #optSplineThresholdValue, #optSpliceThresholdValue, #optSegmentLengthValue, #optGradientStepValue, #optColorPrecisionValue { display: none; }
+.options-fieldset { border: none; padding: 0 0 1.25rem 0; margin: 0 0 1.25rem 0; border-bottom: 1px solid var(--light-border); }
+.options-fieldset:last-of-type { margin-bottom: 0.5rem; border-bottom: none; padding-bottom: 0; }
+.options-fieldset legend { font-weight: 600; font-size: 1rem; color: var(--primary-dark); padding: 0 0.25rem 0 0; margin-bottom: 1rem; }
+.option-group { margin-bottom: 1.35rem; transition: opacity 0.3s ease; }
+.option-group label { display: block; font-weight: 500; color: var(--text-light); margin-bottom: 0.6rem; font-size: 0.9rem; }
+.option-group label[title] { cursor: help; }
+.option-group select { display: block; width: 100%; padding: 0.6rem 0.8rem; font-size: 0.95rem; border: 1px solid var(--medium-border); border-radius: var(--border-radius); background-color: var(--input-bg); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1em; }
+.option-group select:focus { border-color: var(--primary-color); outline: 0; box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, .25); }
+/* Slider + Number Input Combo */
+.input-combo { display: flex; align-items: center; gap: 0.75rem; }
+.input-combo input[type="range"] { flex-grow: 1; height: 6px; background: var(--light-border); cursor: pointer; appearance: none; border-radius: 3px; outline: none; }
+.input-combo input[type="number"] { width: 70px; padding: 0.5rem; font-size: 0.9rem; border: 1px solid var(--medium-border); border-radius: var(--border-radius); text-align: right; background-color: var(--input-bg); font-variant-numeric: tabular-nums; -moz-appearance: textfield; }
+.input-combo input[type="number"]::-webkit-outer-spin-button, .input-combo input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.input-combo input[type="number"]:focus { border-color: var(--primary-color); outline: 0; box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, .25); }
+.input-combo .unit { font-size: 0.85rem; color: var(--text-light); min-width: 25px; text-align: left; margin-left: -0.3rem; user-select: none; }
+.input-combo input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; cursor: pointer; }
+.input-combo input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: var(--primary-color); border-radius: 50%; cursor: pointer; border: none; }
 /* Disabled Option Styling */
-.option-group.disabled { /* ... Disabled styles for group, label, inputs, sliders ... */ }
-.convert-button { /* ... Update button styles ... */ }
+.option-group.disabled { opacity: 0.4; pointer-events: none; user-select: none; }
+.option-group.disabled label, .option-group.disabled .input-combo .unit { color: #adb5bd; cursor: not-allowed; }
+.option-group.disabled input[type="range"], .option-group.disabled input[type="number"], .option-group.disabled select { background-color: #e9ecef !important; cursor: not-allowed; opacity: 0.7; }
+.option-group.disabled input[type="range"]::-webkit-slider-thumb { background: #adb5bd; }
+.option-group.disabled input[type="range"]::-moz-range-thumb { background: #adb5bd; }
+.convert-button { width: 100%; margin-top: 1rem; background-color: var(--primary-color); color: white; padding: 0.8rem; font-size: 1rem;}
+.convert-button:hover:not(:disabled) { background-color: var(--primary-dark); }
 
 /* Result Panel */
-.result-panel { /* ... */ }
-.result-header { /* ... Preview title, zoom controls box */ }
-.zoom-controls { /* ... Zoom buttons layout ... */ }
-.button-zoom { /* ... Zoom button style ... */ }
-.button-zoom:disabled { /* ... Disabled zoom button style ... */ }
-.button-zoom i { /* ... Zoom icon style ... */ }
+.result-panel { flex: 1 1 auto; min-width: 0; background-color: var(--panel-bg); padding: 1.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--light-border); display: flex; flex-direction: column; }
+.result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-border); }
+.result-header h2 { font-size: 1.2rem; font-weight: 600; margin: 0; }
+/* Zoom Controls */
+.zoom-controls { display: flex; gap: 0.5rem; }
+.button-zoom { background-color: var(--medium-bg); border: 1px solid var(--medium-border); color: var(--text-light); padding: 0.3rem 0.6rem; border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); line-height: 1; }
+.button-zoom:hover:not(:disabled) { background-color: var(--light-border); color: var(--text-color); }
+.button-zoom:disabled { opacity: 0.5; cursor: not-allowed; background-color: var(--light-grey); }
+.button-zoom i { font-size: 0.9em; display: block; }
 
-/* Preview Area Wrapper */
-.preview-area-wrapper { /* ... overflow: hidden; position: relative; cursor: grab ... */ }
-.preview-area-wrapper.grabbing { /* ... cursor: grabbing ... */ }
+/* Preview Area Wrapper (Handles Zoom/Pan Events) */
+.preview-area-wrapper { flex-grow: 1; overflow: hidden; position: relative; cursor: grab; background-color: var(--medium-bg); border-radius: var(--border-radius); border: 1px solid var(--light-border); margin-bottom: 1.5rem; }
+.preview-area-wrapper.grabbing { cursor: grabbing; }
+
 /* Side-by-Side Container */
-.preview-comparison-container { /* ... grid layout, background etc ... */ }
-.preview-pane { /* ... Individual pane styles ... */ }
-.preview-label { /* ... Label styles ... */ }
-/* Image Wrapper (gets transform, sized by JS) */
-.image-wrapper { /* ... flex centering, overflow hidden, transform-origin */ }
-.image-wrapper img, .image-wrapper #svgOutput svg { /* ... Sizing/Scaling styles using object-fit: contain ... */ }
-#svgOutput .placeholder-text { /* ... */ }
-/* SVG Path Highlighting */
-#svgOutput svg path { /* ... */ }
-#svgOutput svg path:hover { /* ... */ }
+.preview-comparison-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; width: 100%; height: 100%; padding: 0.75rem; background-image: linear-gradient(45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(-45deg, var(--light-grey) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--light-grey) 75%), linear-gradient(-45deg, transparent 75%, var(--light-grey) 75%); background-size: 16px 16px; min-height: 300px; }
+.preview-pane { background-color: var(--white); border-radius: var(--border-radius); padding: 0.5rem; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--light-border); box-shadow: var(--shadow-sm); position: relative; }
+.preview-label { font-size: 0.7rem; font-weight: 600; color: var(--text-light); text-align: center; padding-bottom: 0.4rem; margin-bottom: 0.4rem; border-bottom: 1px dashed var(--light-border); text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
 
-/* Result Controls */
-.result-controls { /* ... Layout for buttons ... */ }
-.result-controls .action-button { /* ... */ }
-.download-button { /* ... Download style */ }
-/* No Copy Button */
+/* Image Wrapper - Gets sized AND transformed */
+.image-wrapper { flex-grow: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; width: 100%; height: 100%; transform-origin: 0 0; /* For accurate transform calcs */ }
+.image-wrapper img, .image-wrapper #svgOutput svg { display: block; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; flex-shrink: 0; }
+#svgOutput .placeholder-text { color: var(--text-light); font-style: italic; padding: 1rem;}
+
+/* SVG Path Highlighting */
+#svgOutput svg path { transition: stroke 0.1s ease; }
+#svgOutput svg path:hover { stroke: var(--primary-dark); stroke-width: 1.5px; vector-effect: non-scaling-stroke; cursor: default; }
+
+/* Result Controls (No Copy Button) */
+.result-controls { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: auto; padding-top: 1rem; }
+.result-controls .button { /* Use base .button class */ font-size: 0.95rem; padding: 0.7rem 1.3rem; }
+.download-button { /* Use base .button + this class */ background-color: var(--success-color); color: white; }
+.download-button:hover:not(:disabled) { background-color: var(--success-dark); }
 
 /* --- Footer --- */
-.app-footer { /* ... */ }
+.app-footer { text-align: center; margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--light-border); font-size: 0.85em; color: var(--text-light); }
+.app-footer a { color: var(--primary-color); text-decoration: none;} .app-footer a:hover {text-decoration: underline;}
 
 /* --- Responsive --- */
-@media (max-width: 1024px) { /* ... Stack panels ... */ }
-@media (max-width: 768px) { /* ... Stack preview panes ... */ }
-@media (max-width: 600px) {
-     /* ... Other mobile styles ... */
-     #appLogo { max-height: 30px; /* Smaller logo for mobile */ }
-     .logo-large { max-height: 50px; } /* Smaller landing logo for mobile */
-}
+@media (max-width: 1024px) { .processing-layout { flex-direction: column; } .options-panel { max-width: none; order: 2; align-self: stretch; } .result-panel { order: 1; } }
+@media (max-width: 768px) { .preview-comparison-container { grid-template-columns: 1fr; min-height: 400px; } }
+@media (max-width: 600px) { body { font-size: 15px; } .page-container { padding: 0 0.75rem 1rem 0.75rem; } .app-header { padding: 0.75rem; } #appLogo { max-height: 35px; } .header-button { font-size: 0.8rem; padding: 0.3rem 0.7rem; } .landing-content h1 { font-size: 1.8rem; } .landing-content p { font-size: 1rem; margin-bottom: 1.5rem;} .drop-zone { padding: 1.5rem; } .options-panel, .result-panel { padding: 1.2rem; } .button { padding: 0.6rem 1rem; font-size: 0.9rem; } .result-controls { flex-direction: column; align-items: center; } .result-controls .button { width: 100%; max-width: 250px; } }
