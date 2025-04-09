@@ -10,11 +10,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- This will be the new CSS -->
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome (Needed for Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -23,13 +23,39 @@
         <!-- ===== Header ===== -->
         <header class="app-header site-header">
              <div class="header-content">
-                <a href="/" class="header-logo-link">
-                    <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
+                 <a href="/" class="header-logo-link">
+                     <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
                  </a>
-                 <nav class="header-nav">
-                    <a href="/">Home</a>
-                    <a href="contact.html">Contact</a>
-                 </nav>
+
+                 <!-- REMOVED NAV -->
+
+                 <!-- Language Selector -->
+                 <div class="language-selector">
+                    <button id="languageToggleBtn" class="language-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down arrow-icon"></i>
+                    </button>
+                    <div id="languageDropdown" class="language-dropdown hidden" role="menu">
+                        <a href="#" role="menuitem" lang="de">Deutsch</a>
+                        <a href="#" role="menuitem" lang="es">Español</a>
+                        <a href="#" role="menuitem" lang="fr">Français</a>
+                        <a href="#" role="menuitem" lang="hi">हिन्दी</a>
+                        <a href="#" role="menuitem" lang="id">Indonesia</a>
+                        <a href="#" role="menuitem" lang="it">Italiano</a>
+                        <a href="#" role="menuitem" lang="ja">日本語</a>
+                        <a href="#" role="menuitem" lang="ko">한국어</a>
+                        <a href="#" role="menuitem" lang="pl">Polski</a>
+                        <a href="#" role="menuitem" lang="pt">Português</a>
+                        <a href="#" role="menuitem" lang="ru">Русский</a>
+                        <a href="#" role="menuitem" lang="th">ไทย</a>
+                        <a href="#" role="menuitem" lang="tr">Türkçe</a>
+                        <a href="#" role="menuitem" lang="vi">Tiếng Việt</a>
+                        <a href="#" role="menuitem" lang="zh-CN">简体中文</a>
+                        <a href="#" role="menuitem" lang="zh-TW">繁體中文</a>
+                        <a href="#" role="menuitem" lang="ar">العربية</a>
+                    </div>
+                 </div>
+                 <!-- End Language Selector -->
+
                  <button id="uploadNewBtn" class="button button-secondary header-button hidden">Upload New</button>
             </div>
         </header>
@@ -41,14 +67,14 @@
             <section id="landingView" class="view landing-view">
                  <div class="landing-content">
                      <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
-                     <h1>Only <span class="highlight-free">FREE</span> and CUSTOMIZABLE Vectorizer</h1>
-                     <p class="landing-subheadline">Instantly convert images into crisp, infinitely scalable SVG vectors with advanced tracing and helpful presets.</p>
+                     <h1><span class="highlight-free">Only FREE and CUSTOMIZABLE Vectorizer</span></h1>
+                     <p class="landing-subheadline">Instantly convert JPG, PNG, WEBP into crisp, infinitely scalable SVG vectors with advanced tracing and helpful presets.</p>
                      <div id="uploadArea" class="upload-area">
                          <div id="dropZone" class="drop-zone">
                              <div class="drop-zone-content">
                                  <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" /></svg>
                                  <p class="upload-text">Drag & Drop Image or <span class="browse-link">Browse Files</span></p>
-                                 <p class="upload-subtext">Max 15MB (JPG, PNG, WEBP & BMP)</p>
+                                 <p class="upload-subtext">Max 15MB (JPG, PNG, WEBP, BMP)</p>
                              </div>
                              <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp, image/bmp" hidden>
                          </div>
@@ -108,16 +134,15 @@
                  <section class="cta-section">
                      <h2>Start using Vectorise.Me today.</h2>
                      <p>Convert your images to SVG with our free online tool. No registration required.</p>
-                     <!-- Removed Button Below -->
-                     <!-- <button class="button button-cta" onclick="document.getElementById('uploadArea').scrollIntoView({ behavior: 'smooth' });">Upload Your Image</button> -->
+                     <!-- Button removed -->
                  </section>
 
             </section> <!-- End #landingView -->
 
             <!-- ===== App / Conversion View ===== -->
             <section id="appView" class="view app-view hidden">
+                <!-- Content identical to previous version -->
                  <div class="processing-layout">
-                    <!-- Options Panel -->
                     <aside class="options-panel">
                         <div class="options-header"> <h2>Options</h2> <div class="options-header-buttons"> <button id="loadOptionsBtn" class="button button-tertiary" title="Load settings"><i class="fas fa-upload"></i></button> <button id="saveOptionsBtn" class="button button-tertiary" title="Save settings"><i class="fas fa-save"></i></button> <button id="resetOptionsBtn" class="button button-tertiary" title="Reset options">Reset</button> </div> </div>
                         <div class="preset-controls option-group"> <label for="presetSelect">Image Type Preset:</label> <select id="presetSelect"> <option value="" disabled selected>Load a Preset...</option> </select> </div>
@@ -129,8 +154,6 @@
                         </form>
                         <button id="convertBtn" class="button button-primary convert-button">Update Vectorization</button>
                     </aside>
-
-                    <!-- Result Panel -->
                     <section class="result-panel">
                          <div class="result-header"> <h2>Preview</h2> <div class="zoom-controls"> <button id="zoomOutBtn" class="button button-zoom" title="Zoom Out"><i class="fas fa-search-minus"></i></button> <button id="zoomResetBtn" class="button button-zoom" title="Reset Zoom"><i class="fas fa-expand"></i></button> <button id="zoomInBtn" class="button button-zoom" title="Zoom In"><i class="fas fa-search-plus"></i></button> </div> </div>
                         <div id="statusArea" class="status-area app-status"></div>
@@ -156,6 +179,6 @@
         <input type="file" id="optionsFileInput" accept=".json" hidden>
     </div> <!-- End page-container -->
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- This will be the new script -->
 </body>
 </html>

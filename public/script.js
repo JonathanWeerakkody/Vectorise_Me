@@ -1,4 +1,4 @@
-// public/script.js - Multi-Page Logic (App + Contact Form) - Preset Updated
+// public/script.js - Multi-Page Logic + Language Dropdown - Final
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Get DOM Elements ---
@@ -51,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     const contactFormStatus = document.getElementById('contactFormStatus');
 
+    // Header Elements (Relevant for all pages)
+    const languageToggleBtn = document.getElementById('languageToggleBtn');
+    const languageDropdown = document.getElementById('languageDropdown');
+
     // --- State Variables ---
     let currentFile = null, currentFileObjectURL = null, currentFilenameBase = 'vectorised-image', currentSvgContent = '';
     const defaultOptions = {}; // Only relevant for app page
@@ -92,9 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 spline_threshold: "0.75", splice_threshold: "45", segment_length: "4"
             }
         },
-        // ***** MODIFIED PRESET BELOW *****
         {
-            name: "Clipart / Logo",
+            name: "Clipart / Logo", // Updated version
             options: {
                 color_mode: "color", hierarchical: "stacked", filter_speckle: "1", // Very low speckle
                 palette_selector: "6", color_precision: "6", // Standard detail (up to 64 colors)
@@ -104,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 segment_length: "4" // Default segment length
             }
         },
-        // ***** END MODIFIED PRESET *****
         {
             name: "Cartoon / Flat Style", // Was Landscape, adjusted
             options: {
@@ -181,13 +183,47 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Contact form listeners added.");
     }
 
-     // --- Global Listeners (like resize) ---
+    // --- Language Dropdown Logic (Global) ---
+    if (languageToggleBtn && languageDropdown) {
+        safeAddListener(languageToggleBtn, 'click', (e) => {
+            e.stopPropagation(); // Prevent click from immediately closing dropdown
+            const isExpanded = languageToggleBtn.getAttribute('aria-expanded') === 'true';
+            languageToggleBtn.setAttribute('aria-expanded', String(!isExpanded)); // Use string true/false
+            languageDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown if clicking outside
+        safeAddListener(window, 'click', (e) => {
+            // Check if dropdown exists and is not hidden, and the click was outside the button and dropdown
+            if (languageDropdown && !languageDropdown.classList.contains('hidden') &&
+                languageToggleBtn && !languageToggleBtn.contains(e.target) &&
+                !languageDropdown.contains(e.target) ) {
+                    languageToggleBtn.setAttribute('aria-expanded', 'false');
+                    languageDropdown.classList.add('hidden');
+            }
+        });
+
+        // Close dropdown if clicking a language link (optional, depends on desired behavior)
+        languageDropdown.querySelectorAll('a').forEach(link => {
+            safeAddListener(link, 'click', () => {
+                 languageToggleBtn.setAttribute('aria-expanded', 'false');
+                 languageDropdown.classList.add('hidden');
+                 // Add actual language switching logic here if implemented
+                 console.log(`Language selected (no action): ${link.lang}`);
+            });
+        });
+
+         console.log("Language dropdown listeners added.");
+    }
+
+
+     // --- Global Listeners ---
      let resizeTimeout; window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(calculateAndApplyWrapperSize, 150); }); // calculateAndApplyWrapperSize checks for elements internally
 
 
     // --- App Specific Functions ---
     function handleOptionsFormChange() {
-        if (!optionsForm) return; // Make sure form exists
+        if (!optionsForm) return;
         if (paletteSelect && colorPrecisionInput) { colorPrecisionInput.value = paletteSelect.value; }
         if (currentSvgContent && convertBtn) { convertBtn.disabled = false; convertBtn.textContent = 'Update Vectorization'; }
         updateOptionsAvailability();
@@ -220,8 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function storeDefaultOptions() { if (!optionsForm) return; const data = new FormData(optionsForm); for (let [key, value] of data.entries()) { defaultOptions[key] = value; } if (defaultOptions.hasOwnProperty('palette_selector')) { defaultOptions['color_precision'] = defaultOptions['palette_selector']; } const defaultPreset = presets.find(p => p.name === "General / Balanced"); if (defaultPreset) { defaultPreset.options = {...defaultOptions}; } else { console.error("Could not find 'General / Balanced' preset to store defaults!"); } console.log("Stored defaults:", defaultOptions); }
     function handleResetOptions() { if (!optionsForm) return; applyOptions(defaultOptions); updateStatus('Options reset to default.', 'success', 2000, true); resetPresetSelection(); }
     function populatePresetSelect() { if (!presetSelect) return; presetSelect.innerHTML = '<option value="" disabled selected>Load Preset...</option>'; presets.forEach((preset, index) => { const option = document.createElement('option'); option.value = index.toString(); option.textContent = preset.name; presetSelect.appendChild(option); }); }
-    function handlePresetChange(event) { if (!appView || !presetSelect) return; const selectedIndex = event.target.value; if (selectedIndex === "" || !presets[selectedIndex]) return; const selectedPreset = presets[selectedIndex]; applyOptions(selectedPreset.options); updateStatus(`Preset "${selectedPreset.name}" loaded.`, 'info', 3000, true); // Keep selection after applying
-         setTimeout(() => { if (presetSelect) presetSelect.value = selectedIndex; }, 10); }
+    function handlePresetChange(event) { if (!appView || !presetSelect) return; const selectedIndex = event.target.value; if (selectedIndex === "" || !presets[selectedIndex]) return; const selectedPreset = presets[selectedIndex]; applyOptions(selectedPreset.options); updateStatus(`Preset "${selectedPreset.name}" loaded.`, 'info', 3000, true); setTimeout(() => { if (presetSelect) presetSelect.value = selectedIndex; }, 10); }
     function resetPresetSelection() { if(presetSelect && presetSelect.value !== "") presetSelect.value = ""; }
     function applyOptions(optionsToApply) { if (!optionsForm) return; console.log("Applying options:", optionsToApply); let needsUpdateAvailability = false; for (const key in optionsToApply) { const value = optionsToApply[key]; const element = optionsForm.elements[key]; if (element) { if (element.type === 'radio' || element.type === 'checkbox') {} else { element.value = String(value); } if (element.type === 'range') { const numInputId = `${element.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { numInput.value = String(value); } } if (key === 'mode' || key === 'color_mode' || key === 'palette_selector') { needsUpdateAvailability = true; } setTimeout(() => element.dispatchEvent(new Event('change', { bubbles: true })), 0); } else { console.warn(`Option key "${key}" with value "${value}" not found in form.`); } } setTimeout(() => { if (needsUpdateAvailability) { updateOptionsAvailability(); } if (currentFile && convertBtn) { convertBtn.disabled = false; convertBtn.textContent = 'Update Vectorization'; } }, 50); }
     function handleSaveOptions() { if (!optionsForm || !downloadLink) return; const currentOptions = {}; const formData = new FormData(optionsForm); Object.keys(defaultOptions).forEach(key => { if (formData.has(key)) { currentOptions[key] = formData.get(key); } }); try { const jsonString = JSON.stringify(currentOptions, null, 2); const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' }); const url = URL.createObjectURL(blob); downloadLink.href = url; downloadLink.download = 'vectorise-options.json'; downloadLink.click(); URL.revokeObjectURL(url); updateStatus('Settings saved.', 'success', 2000, true); } catch (e) { console.error('Error saving options:', e); updateStatus('Error saving settings.', 'error', 0, true); } }
@@ -238,22 +273,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailInput = contactForm.elements['email'];
         const subjectInput = contactForm.elements['subject'];
         const messageInput = contactForm.elements['message'];
-        const recipientEmail = "jonkarystudio@gmail.com"; // Your email
+        const recipientEmail = "jonkarystudio@gmail.com";
 
         let isValid = true;
         [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
-             input.style.borderColor = ''; // Reset border color first
+             input.style.borderColor = '';
             if (!input.value.trim()) {
                 input.style.borderColor = 'var(--danger-color)';
                 isValid = false;
             }
         });
-        // Basic email format check (optional but recommended)
         if (emailInput.value.trim() && !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
              emailInput.style.borderColor = 'var(--danger-color)';
              isValid = false;
              showContactFormStatus("Please enter a valid email address.", "error");
-             return; // Stop if email is invalid format
+             return;
         }
 
         if (!isValid) {
@@ -261,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
              return;
         }
 
-        // *** Mailto Workaround ***
         const mailtoSubject = encodeURIComponent(subjectInput.value.trim());
         const mailtoBody = encodeURIComponent(
             `Name: ${nameInput.value.trim()}\nEmail: ${emailInput.value.trim()}\n\nMessage:\n${messageInput.value.trim()}`
@@ -271,10 +304,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
              showContactFormStatus("Opening your email client...", "info");
              window.location.href = mailtoLink;
-             // Clear form after a short delay to allow mail client to open
              setTimeout(() => {
                  if (contactForm) contactForm.reset();
-                 // Update status message - success might be misleading as we don't know if they actually sent it
                  showContactFormStatus("Please complete sending the email via your email application.", "info");
              }, 2000);
         } catch (error) {
@@ -289,7 +320,6 @@ document.addEventListener('DOMContentLoaded', () => {
         contactFormStatus.className = `form-status ${type}`;
         contactFormStatus.style.display = 'block';
     }
-
 
     // --- Utility Functions (Shared) ---
     let statusClearTimer;
