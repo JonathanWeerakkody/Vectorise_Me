@@ -1,4 +1,4 @@
-// public/script.js - Multi-Page Logic + Language Dropdown + Translation + Styling Prep
+// public/script.js - Revised for Upload Robustness + Translation + Style
 
 // --- Translations ---
 // !!! IMPORTANT: REPLACE PLACEHOLDER TRANSLATIONS BELOW !!!
@@ -118,7 +118,7 @@ const translations = {
         contact_status_invalid_email: "Please enter a valid email address.", // Added
         contact_status_opening_email: "Opening your email client...", // Added
         contact_status_complete_send: "Please complete sending the email via your email application.", // Added
-        contact_status_error_email: "Could not open email client. Please copy details manually.", // Added
+        contact_status_error_email: "Could not open email client. Please copy details manually to {recipient}.", // Added {recipient} placeholder
         faq_h2: "Common Problems & Solutions",
         faq_p: "Here are some common issues you might encounter and how to resolve them.",
         faq_q_quality: "Image Quality Issues:",
@@ -193,7 +193,6 @@ const translations = {
         privacy_contact_li_email: "By email: jonkarystudio@gmail.com",
         privacy_contact_li_web: "Via our website:",
         privacy_contact_page_link: "Contact Page",
-        // Add keys for cookies.html and terms.html here...
         cookies_h1: "Cookie Policy",
         cookies_intro_1: 'This Cookie Policy explains how JonkaryStudio ("us", "we", or "our") uses cookies and similar tracking technologies on the Vectorise.Me website (the "Service"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.',
         cookies_h2_what: "What Are Cookies?",
@@ -310,177 +309,11 @@ const translations = {
     // --- German (de) ---
     de: {
         lang_name: "Deutsch",
+        // !!! FILL IN ALL OTHER GERMAN TRANSLATIONS HERE !!!
         meta_title_main: "[DE] Vectorise.Me - Kostenloser Bild-zu-SVG-Konverter",
-        meta_description_main: "[DE] Kostenloses Online-Tool zur Konvertierung von Rasterbildern (JPG, PNG, WEBP) in skalierbare Vektorgrafiken (SVG) mit Echtzeit-Anpassung und Voreinstellungen.",
-        meta_title_contact: "[DE] Kontakt - Vectorise.Me",
-        meta_description_contact: "[DE] Kontaktieren Sie Vectorise.Me oder finden Sie Lösungen für häufige Vektorisierungsprobleme.",
-        meta_title_privacy: "[DE] Datenschutzrichtlinie - Vectorise.Me",
-        meta_description_privacy: "[DE] Datenschutzrichtlinie für das Online-SVG-Konvertierungstool Vectorise.Me.",
-        meta_title_cookies: "[DE] Cookie-Richtlinie - Vectorise.Me",
-        meta_description_cookies: "[DE] Cookie-Richtlinie für das Online-SVG-Konvertierungstool Vectorise.Me.",
-        meta_title_terms: "[DE] Nutzungsbedingungen - Vectorise.Me",
-        meta_description_terms: "[DE] Nutzungsbedingungen für das Online-SVG-Konvertierungstool Vectorise.Me.",
         upload_new: "[DE] Neu hochladen",
-        landing_h1_free: "[DE] Nur KOSTENLOSER",
-        landing_h1_customizable: "[DE] und ANPASSBARER Vektorisierer",
-        landing_subheadline: "[DE] Konvertieren Sie JPG, PNG, WEBP sofort in scharfe, unendlich skalierbare SVG-Vektoren mit erweitertem Tracing und hilfreichen Voreinstellungen.",
-        upload_drag_drop: "[DE] Bild ziehen & ablegen",
-        upload_or: "[DE] oder",
-        upload_browse: "[DE] Dateien durchsuchen",
-        upload_formats: "[DE] Max 15MB (JPG, PNG, WEBP, BMP)",
-        cancel_selection_title: "[DE] Auswahl aufheben",
-        vectorize_image_btn: "[DE] Bild vektorisieren",
-        features_h2: "[DE] Funktionen",
-        features_p: "[DE] Alles, was Sie für perfekte SVGs benötigen. Unser leistungsstarkes Konvertierungstool gibt Ihnen die vollständige Kontrolle über Ihre Vektorgrafiken.",
-        feature_instant_h3: "[DE] Sofortige Konvertierung",
-        feature_instant_p: "[DE] Laden Sie Ihr Bild hoch und erhalten Sie sofort eine SVG-Vorschau. Keine Wartezeit, keine Verarbeitungsverzögerungen.",
-        feature_realtime_h3: "[DE] Echtzeit-Anpassung",
-        feature_realtime_p: "[DE] Passen Sie Einstellungen an und sehen Sie Änderungen in Echtzeit. Optimieren Sie Ihr SVG zur Perfektion.",
-        feature_quality_h3: "[DE] Hochwertige Ergebnisse",
-        feature_quality_p: "[DE] Erhalten Sie saubere, optimierte SVGs, die für jeden Anwendungsfall perfekt skalieren.",
-        presets_h2: "[DE] Voreinstellungsbeispiele",
-        presets_p: "[DE] Sehen Sie, wie verschiedene Voreinstellungen verschiedene Bildtypen verarbeiten.",
-        preset_photo: "[DE] Foto",
-        preset_clipart: "[DE] Clipart / Logo",
-        preset_pixel: "[DE] Pixelkunst",
-        preset_original: "[DE] Original",
-        preset_vectorized: "[DE] Vektorisiert",
-        cta_h2: "[DE] Beginnen Sie noch heute mit Vectorise.Me.",
-        cta_p: "[DE] Konvertieren Sie Ihre Bilder mit unserem kostenlosen Online-Tool in SVG. Keine Registrierung erforderlich.",
-        options_h2: "[DE] Optionen",
-        load_settings_title: "[DE] Einstellungen laden",
-        save_settings_title: "[DE] Einstellungen speichern",
-        reset_options_title: "[DE] Optionen zurücksetzen",
-        load_btn: "[DE] Laden",
-        save_btn: "[DE] Speichern",
-        reset_btn: "[DE] Zurücksetzen",
-        preset_label: "[DE] Bildtyp-Voreinstellung:",
-        preset_select_placeholder: "[DE] Voreinstellung laden...",
-        options_legend_color: "[DE] Farbeinstellungen",
-        color_detail_title: "[DE] Farbdetail",
-        color_detail_label: "[DE] Farbdetail:",
-        color_detail_full: "[DE] Voll (8 Bit)",
-        color_detail_standard: "[DE] Standard (6 Bit)",
-        color_detail_reduced: "[DE] Reduziert (5 Bit)",
-        color_detail_limited: "[DE] Begrenzt (4 Bit)",
-        color_detail_posterized: "[DE] Posterisiert (3 Bit)",
-        color_mode_title: "[DE] Farbmodus",
-        color_mode_label: "[DE] Farbmodus:",
-        color_mode_color: "[DE] Farbe",
-        color_mode_binary: "[DE] Binär",
-        options_legend_trace: "[DE] Trace-Parameter",
-        filter_speckle_label: "[DE] Sprenkel filtern:",
-        mode_label: "[DE] Modus:",
-        mode_spline: "[DE] Spline",
-        mode_polygon: "[DE] Polygon",
-        mode_pixel: "[DE] Pixel",
-        options_legend_geo: "[DE] Geometrie & Pfadanpassung",
-        corner_thr_label: "[DE] Eckschw.:",
-        path_prec_label: "[DE] Pfadpräz.:",
-        unit_dec: "[DE] Dez",
-        spline_thr_label: "[DE] Spline-Schw.:",
-        splice_thr_label: "[DE] Spleiß-Schw.:",
-        segment_len_label: "[DE] Segmentlänge:",
-        options_legend_color_proc: "[DE] Farbverarbeitungsoptionen",
-        layering_label: "[DE] Ebenen:",
-        layering_stacked: "[DE] Gestapelt",
-        layering_cutout: "[DE] Ausschnitt",
-        gradient_step_label: "[DE] Verlaufsschritt:",
-        update_vectorization_btn: "[DE] Vektorisierung aktualisieren",
-        preview_h2: "[DE] Vorschau",
-        zoom_out_title: "[DE] Verkleinern",
-        zoom_reset_title: "[DE] Zoom zurücksetzen",
-        zoom_in_title: "[DE] Vergrößern",
-        preview_original_label: "[DE] Original",
-        preview_vectorized_label: "[DE] Vektorisiert",
-        preview_placeholder_processing: "[DE] Verarbeite...",
-        preview_placeholder_loading: "[DE] Lade Vorschau...",
-        preview_placeholder_select: "[DE] SVG-Ergebnis wird hier angezeigt",
-        preview_placeholder_update_failed: "[DE] Aktualisierung fehlgeschlagen",
-        download_svg_btn: "[DE] SVG herunterladen",
-        footer_description: "[DE] Kostenloses Online-Tool zur Konvertierung von Rasterbildern in skalierbare Vektorgrafiken (SVG).",
-        footer_links_heading: "[DE] Links",
-        footer_home_link: "[DE] Startseite",
-        footer_contact_link: "[DE] Kontakt",
-        footer_legal_heading: "[DE] Rechtliches",
-        footer_privacy_link: "[DE] Datenschutzrichtlinie",
-        footer_cookies_link: "[DE] Cookie-Richtlinie",
-        footer_terms_link: "[DE] Nutzungsbedingungen",
-        footer_copyright: "[DE] © 2025 JonkaryStudio. Alle Rechte vorbehalten.",
-        footer_powered_by: "[DE] Unterstützt durch",
-        contact_h1: "[DE] Kontakt",
-        contact_name_label: "[DE] Name",
-        contact_name_placeholder: "[DE] Ihr Name",
-        contact_email_label: "[DE] E-Mail",
-        contact_email_placeholder: "[DE] Ihre E-Mail",
-        contact_subject_label: "[DE] Betreff",
-        contact_subject_placeholder: "[DE] Nachrichtenbetreff",
-        contact_message_label: "[DE] Nachricht",
-        contact_message_placeholder: "[DE] Ihre Nachricht",
-        contact_send_btn: "[DE] Nachricht senden",
-        contact_status_fill_fields: "[DE] Bitte füllen Sie alle Pflichtfelder aus.",
-        contact_status_invalid_email: "[DE] Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-        contact_status_opening_email: "[DE] Öffne Ihr E-Mail-Programm...",
-        contact_status_complete_send: "[DE] Bitte schließen Sie das Senden der E-Mail über Ihr E-Mail-Programm ab.",
-        contact_status_error_email: "[DE] E-Mail-Programm konnte nicht geöffnet werden. Bitte kopieren Sie die Details manuell.",
-        faq_h2: "[DE] Häufige Probleme & Lösungen",
-        faq_p: "[DE] Hier sind einige häufige Probleme und wie Sie sie lösen können.",
-        faq_q_quality: "[DE] Bildqualitätsprobleme:",
-        faq_q_quality_desc: "[DE] Das konvertierte SVG entspricht nicht der ursprünglichen Bildqualität.",
-        faq_solution_label: "[DE] Lösung:",
-        faq_a_quality: "[DE] Passen Sie die Einstellungen im Vektorisierungsprozess an. Erhöhen Sie 'Farbdetail' (Palettengröße), passen Sie 'Spline-Schwellenwert' an (niedriger für mehr Details) oder reduzieren Sie 'Sprenkel filtern'. Stellen Sie für Pixelkunst sicher, dass der 'Pixel'-Modus ausgewählt ist. Experimentieren Sie mit verschiedenen Voreinstellungen.",
-        faq_q_performance: "[DE] Leistungsprobleme:",
-        faq_q_performance_desc: "[DE] Der Konvertierungsprozess ist langsam oder reagiert nicht, oder das resultierende SVG ist sehr groß.",
-        faq_a_performance: "[DE] Versuchen Sie, die Bildgröße oder Komplexität vor dem Hochladen zu reduzieren. Große oder sehr detaillierte Bilder benötigen länger zur Verarbeitung und erzeugen größere SVGs. Das Verringern von 'Farbdetail' oder Erhöhen von 'Sprenkel filtern' kann auch die Ausgabe vereinfachen und die Leistung verbessern.",
-        faq_q_detail_loss: "[DE] Verlust feiner Details:",
-        faq_q_detail_loss_desc: "[DE] Kleine Elemente oder dünne Linien verschwinden im SVG.",
-        faq_a_detail_loss: "[DE] Reduzieren Sie den Wert 'Sprenkel filtern' erheblich (z. B. auf 0 oder 1). Stellen Sie sicher, dass die 'Pfadpräzision' ausreichend ist (obwohl höhere Werte die Dateigröße erhöhen). Im Spline-Modus kann ein leichtes Absenken des 'Spline-Schwellenwerts' mehr Kurven erfassen.",
-        faq_q_jagged: "[DE] Gezackte Kanten (Polygon-Modus):",
-        faq_q_jagged_desc: "[DE] Linien erscheinen blockartig statt glatt.",
-        faq_a_jagged: "[DE] Wechseln Sie den 'Modus' zu 'Spline' für glattere Kurven. Der Polygon-Modus erzeugt naturgemäß gerade Liniensegmente.",
-        faq_q_colors: "[DE] Unerwartete Farben:",
-        faq_q_colors_desc: "[DE] Die Farben im SVG sehen anders aus oder sind posterisiert.",
-        faq_a_colors: "[DE] Stellen Sie sicher, dass der 'Farbmodus' auf 'Farbe' eingestellt ist. Erhöhen Sie die Einstellung 'Farbdetail' (höhere Bitpräzision). Prüfen Sie, ob der 'Verlaufsschritt' angemessen ist; ein sehr hoher Wert könnte subtile Farbübergänge reduzieren.",
-        faq_q_transparency: "[DE] Transparenz nicht erhalten:",
-        faq_q_transparency_desc: "[DE] Hintergrundtransparenz von PNGs geht verloren.",
-        faq_a_transparency: "[DE] `vtracer` behandelt Transparenz im Allgemeinen gut, insbesondere bei 'Gestapelt'-Ebenen. Stellen Sie sicher, dass Ihr ursprüngliches PNG tatsächliche Transparenz aufweist. Bei Verwendung von 'Ausschnitt'-Ebenen kann sich die Transparenz anders verhalten. Der zugrunde liegende Prozess kann je nach Einstellungen manchmal fast transparente Farben in undurchsichtige quantisieren.",
-        faq_q_browser: "[DE] Browser-Rendering-Unterschiede:",
-        faq_q_browser_desc: "[DE] Das SVG sieht in verschiedenen Webbrowsern leicht unterschiedlich aus.",
-        faq_a_browser: "[DE] Dies ist inhärent bei SVG-Rendering-Engines. Stellen Sie sicher, dass Ihr SVG wohlgeformt ist. Vermeiden Sie übermäßig komplexes CSS oder Filter innerhalb des SVG, wenn Kompatibilität entscheidend ist. Testen Sie in gängigen Browsern.",
-        legal_last_updated: "[DE] Zuletzt aktualisiert:",
-        // ... (Legal text requires professional translation) ...
-        status_uploading: "[DE] Lädt hoch...",
-        status_vectorizing: "[DE] Vektorisiere...",
-        status_updating: "[DE] Aktualisiere...",
-        status_processing: "[DE] Verarbeite...",
-        status_working: "[DE] Arbeitet...",
-        status_updating_preview: "[DE] Aktualisiere Vorschau...",
-        status_complete: "[DE] Abgeschlossen!",
-        status_options_reset: "[DE] Optionen auf Standard zurückgesetzt.",
-        status_preset_loaded: "[DE] Voreinstellung \"{presetName}\" geladen.",
-        status_settings_saved: "[DE] Einstellungen gespeichert.",
-        status_error_saving_settings: "[DE] Fehler beim Speichern der Einstellungen.",
-        status_error_loading_settings: "[DE] Fehler beim Laden der Einstellungen: {errorMessage}",
-        status_error_reading_file: "[DE] Fehler beim Lesen der Einstellungsdatei.",
-        status_error_invalid_json: "[DE] Ungültige JSON-Struktur.",
-        status_error_no_options: "[DE] JSON enthält keine erkennbaren Optionen.",
-        status_error_select_json: "[DE] Fehler: Bitte wählen Sie eine gültige .json Einstellungsdatei.",
-        status_settings_loaded: "[DE] Einstellungen erfolgreich geladen.",
-        status_error_downloading: "[DE] Fehler beim Vorbereiten des Downloads.",
-        status_error_generic: "[DE] Fehler: {errorMessage}",
-        status_error_file_size: "[DE] Fehler: Datei überschreitet 15MB-Limit.",
-        status_error_file_type: "[DE] Fehler: Nicht unterstützter Dateityp ({fileType}). Bitte verwenden Sie JPG, PNG, WEBP oder BMP.",
-        status_no_file: "[DE] Keine Datei ausgewählt.",
-        status_error_obj_url: "[DE] Fehler beim Erstellen der Objekt-URL: {errorMessage}",
-        status_error_conversion_failed: "[DE] Konvertierung fehlgeschlagen: {errorMessage}",
-        status_error_no_svg: "[DE] Keine SVG-Daten vom Server empfangen.",
         preset_name_general: "[DE] Allgemein / Ausgewogen",
-        preset_name_pixel: "[DE] Pixelkunst",
-        preset_name_technical: "[DE] Technische Zeichnung / Blaupause",
-        preset_name_illustration: "[DE] Illustration / Grafik",
-        preset_name_clipart: "[DE] Clipart / Logo",
-        preset_name_cartoon: "[DE] Cartoon / Flacher Stil",
-        preset_name_photograph: "[DE] Foto",
+        status_complete: "[DE] Abgeschlossen!",
     },
     // --- Spanish (es) ---
     es: {
@@ -625,7 +458,6 @@ const translations = {
         upload_new: "[AR] تحميل جديد",
         preset_name_general: "[AR] عام / متوازن",
         status_complete: "[AR] اكتمل!",
-        // Remember to translate legal text accurately
         legal_disclaimer: "[AR] إخلاء مسؤولية: هذا نص نائب. استشر متخصصًا قانونيًا لإنشاء سياسات دقيقة ومتوافقة.",
         faq_solution_label: "[AR] الحل:",
         // etc...
@@ -635,7 +467,6 @@ const translations = {
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Get DOM Elements ---
-    // App View Elements (Might not exist on all pages)
     const landingView = document.getElementById('landingView');
     const appView = document.getElementById('appView');
     const imageInput = document.getElementById('imageInput');
@@ -679,23 +510,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveOptionsBtn = document.getElementById('saveOptionsBtn');
     const loadOptionsBtn = document.getElementById('loadOptionsBtn');
     const optionsFileInput = document.getElementById('optionsFileInput');
-
-    // Contact Form Elements (Only on contact.html)
     const contactForm = document.getElementById('contactForm');
     const contactFormStatus = document.getElementById('contactFormStatus');
-
-    // Header Elements (Relevant for all pages)
     const languageToggleBtn = document.getElementById('languageToggleBtn');
     const languageDropdown = document.getElementById('languageDropdown');
     const currentLanguageNameSpan = document.getElementById('currentLanguageName');
 
     // --- State Variables ---
-    let currentFile = null, currentFileObjectURL = null, currentFilenameBase = 'vectorised-image', currentSvgContent = '';
-    const defaultOptions = {}; // Only relevant for app page
-    let scale = 1; const MIN_SCALE = 0.15; const MAX_SCALE = 10; // App page only
-    let panning = false; let pointX = 0, pointY = 0; let start = { x: 0, y: 0 }; // App page only
-    let originalImageNaturalDims = { width: 0, height: 0 }; // App page only
-    let currentLang = 'en'; // Default language
+    let currentFile = null;
+    let currentFileObjectURL = null;
+    let currentFilenameBase = 'vectorised-image';
+    let currentSvgContent = '';
+    const defaultOptions = {};
+    let scale = 1;
+    const MIN_SCALE = 0.15;
+    const MAX_SCALE = 10;
+    let panning = false;
+    let pointX = 0;
+    let pointY = 0;
+    let start = { x: 0, y: 0 };
+    let originalImageNaturalDims = { width: 0, height: 0 };
+    let currentLang = 'en';
+    let statusClearTimer;
 
     // --- Preset Definitions ---
     const presets = [
@@ -709,14 +545,20 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // --- Helper: Safe Event Listener ---
-    function safeAddListener(element, event, handler, options) { if (element && typeof handler === 'function') element.addEventListener(event, handler, options); else if(!element && event !== 'DOMContentLoaded' && event !== 'resize') console.warn(`Element not found for listener: ${event}`); }
+    function safeAddListener(element, event, handler, options) {
+        if (element && typeof handler === 'function') {
+            element.addEventListener(event, handler, options);
+        } else if (!element && event !== 'DOMContentLoaded' && event !== 'resize' && event !== 'click' && event !== 'submit') {
+             // Reduced warning noise
+            // console.warn(`Element not found for listener: ${event} on path: ${window.location.pathname}`);
+        }
+    }
 
     // --- Translation Functions ---
     function getTranslation(key, lang = currentLang, replacements = {}) {
         const langDict = translations[lang] || translations.en;
-        let text = langDict[key] || translations.en[key] || key; // Fallback chain: current lang -> english -> key itself
+        let text = langDict[key] || translations.en[key] || `_${key}_`; // Fallback chain: current lang -> english -> _key_
 
-        // Replace placeholders like {placeholderName}
         for (const placeholder in replacements) {
             text = text.replace(`{${placeholder}}`, replacements[placeholder]);
         }
@@ -725,84 +567,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function translatePage(lang) {
         currentLang = lang;
-        document.documentElement.lang = lang; // Set HTML lang attribute
-        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr'; // Set direction for RTL languages
+        document.documentElement.lang = lang;
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
 
         // Translate elements with data-translate attribute
-        const elements = document.querySelectorAll('[data-translate]');
-        elements.forEach(el => {
+        document.querySelectorAll('[data-translate]').forEach(el => {
             const key = el.dataset.translate;
             const translation = getTranslation(key, lang);
-            if (translation && translation !== key) { // Only update if translation found and different from key
+            if (translation !== `_${key}_`) {
                  el.textContent = translation;
-            } else if (!translations.en[key]) { // Warn only if key missing entirely (not just in current lang)
-                console.warn(`Translation key not found: "${key}"`);
+            } else if (!translations.en[key]) {
+                // console.warn(`Translation key missing entirely: "${key}"`);
             }
         });
 
-        // Translate attributes (placeholder, title)
-        const attrElements = document.querySelectorAll('[data-translate-placeholder], [data-translate-title]');
-        attrElements.forEach(el => {
-            if (el.dataset.translatePlaceholder) {
-                const key = el.dataset.translatePlaceholder;
-                const translation = getTranslation(key, lang);
-                 if (translation && translation !== key) el.placeholder = translation;
-                 else if (!translations.en[key]) console.warn(`Placeholder translation key not found: "${key}"`);
+        // Translate attributes
+        document.querySelectorAll('[data-translate-placeholder], [data-translate-title]').forEach(el => {
+            const placeholderKey = el.dataset.translatePlaceholder;
+            const titleKey = el.dataset.translateTitle;
+            if (placeholderKey) {
+                const translation = getTranslation(placeholderKey, lang);
+                if (translation !== `_${placeholderKey}_`) el.placeholder = translation;
+                 else if (!translations.en[placeholderKey]) console.warn(`Placeholder translation key missing: "${placeholderKey}"`);
             }
-            if (el.dataset.translateTitle) {
-                 const key = el.dataset.translateTitle;
-                 const translation = getTranslation(key, lang);
-                 if (translation && translation !== key) el.title = translation;
-                 else if (!translations.en[key]) console.warn(`Title translation key not found: "${key}"`);
+            if (titleKey) {
+                 const translation = getTranslation(titleKey, lang);
+                 if (translation !== `_${titleKey}_`) el.title = translation;
+                 else if (!translations.en[titleKey]) console.warn(`Title translation key missing: "${titleKey}"`);
 
             }
         });
 
-        // Update language name in the button
         if (currentLanguageNameSpan) {
             currentLanguageNameSpan.textContent = translations[lang]?.lang_name || translations.en.lang_name;
         }
 
-        // Re-populate preset dropdown with translated names
         if (presetSelect) populatePresetSelect();
 
-        // Translate dynamic text if needed (e.g., button text that changes)
-        if (convertBtn && !currentSvgContent && currentFile) { // Example: if file selected but not converted yet
-            convertBtn.textContent = getTranslation('update_vectorization_btn'); // Or appropriate initial text
-        } else if (convertBtn && currentSvgContent) {
-             convertBtn.textContent = getTranslation('update_vectorization_btn'); // Always show update text if SVG exists
+        // Re-translate dynamic UI text
+        if (convertBtn) {
+            convertBtn.textContent = getTranslation(convertBtn.disabled && !currentSvgContent ? 'update_vectorization_btn' : (convertBtn.disabled && currentSvgContent ? 'update_vectorization_btn' : 'status_working'));
+             if (currentFile && !convertBtn.disabled) { // Adjust logic if needed for specific states
+                 convertBtn.textContent = getTranslation('update_vectorization_btn');
+             }
         }
 
-        // Retranslate current status message if one exists
-         if (statusArea && statusArea.dataset.currentStatusKey) {
-             const currentKey = statusArea.dataset.currentStatusKey;
-             const currentReplacements = JSON.parse(statusArea.dataset.currentStatusReplacements || '{}');
-             const currentType = statusArea.dataset.currentStatusType;
-             const retranslatedMsg = getTranslation(currentKey, currentLang, currentReplacements);
-             // Update only text content, keep type class
-             statusArea.textContent = retranslatedMsg;
-         }
-         if (landingStatusArea && landingStatusArea.dataset.currentStatusKey) {
-            const currentKey = landingStatusArea.dataset.currentStatusKey;
-            const currentReplacements = JSON.parse(landingStatusArea.dataset.currentStatusReplacements || '{}');
-            const currentType = landingStatusArea.dataset.currentStatusType;
+        if (startConversionBtn && !startConversionBtn.classList.contains('hidden')) { // Only if visible
+            startConversionBtn.textContent = getTranslation('vectorize_image_btn');
+        }
+        if (downloadBtn) {
+            downloadBtn.textContent = getTranslation('download_svg_btn');
+        }
+
+        // Retranslate status messages
+        retranslateStatus(statusArea);
+        retranslateStatus(landingStatusArea);
+        retranslateStatus(contactFormStatus);
+    }
+
+    function retranslateStatus(targetStatusArea) {
+        if (targetStatusArea && targetStatusArea.dataset.currentStatusKey && targetStatusArea.style.display !== 'none') {
+            const currentKey = targetStatusArea.dataset.currentStatusKey;
+            const currentReplacements = JSON.parse(targetStatusArea.dataset.currentStatusReplacements || '{}');
             const retranslatedMsg = getTranslation(currentKey, currentLang, currentReplacements);
-            landingStatusArea.textContent = retranslatedMsg;
-         }
+            targetStatusArea.textContent = retranslatedMsg;
+        }
     }
 
     function setLanguage(lang) {
         if (!translations[lang]) {
-            console.warn(`Language "${lang}" not found in translations. Defaulting to 'en'.`);
             lang = 'en';
         }
         translatePage(lang);
         try {
             localStorage.setItem('vectoriseLang', lang);
         } catch (e) {
-            console.warn("Could not save language preference to localStorage.", e);
+            // Ignore localStorage errors
         }
-        // Close dropdown after selection
         if (languageToggleBtn && languageDropdown) {
             languageToggleBtn.setAttribute('aria-expanded', 'false');
             languageDropdown.classList.add('hidden');
@@ -811,44 +652,603 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getInitialLanguage() {
         let savedLang = null;
-        try {
-             savedLang = localStorage.getItem('vectoriseLang');
-        } catch (e) {
-             console.warn("Could not read language preference from localStorage.", e);
-        }
-        const browserLang = navigator.language?.split('-')[0]; // Use optional chaining
+        try { savedLang = localStorage.getItem('vectoriseLang'); } catch (e) {}
+        const browserLang = navigator.language?.split('-')[0];
 
-        // Prefer saved language, then browser language if available, else default to 'en'
-        if (savedLang && translations[savedLang]) {
-            return savedLang;
-        } else if (browserLang && translations[browserLang]) {
-            return browserLang;
+        return (savedLang && translations[savedLang]) ? savedLang :
+               (browserLang && translations[browserLang]) ? browserLang :
+               'en';
+    }
+
+    // --- UI Update Functions ---
+    function showLandingView() {
+        if(landingView) landingView.classList.remove('hidden');
+        if(appView) appView.classList.add('hidden');
+        if(uploadNewBtn) uploadNewBtn.classList.add('hidden');
+        resetUploadAreaVisuals();
+    }
+
+    function showAppView() {
+        if(landingView) landingView.classList.add('hidden');
+        if(appView) appView.classList.remove('hidden');
+        if(uploadNewBtn) uploadNewBtn.classList.remove('hidden');
+        updateOptionsAvailability(); // Ensure options enabled/disabled correctly
+        resetResultArea();
+        resetZoomPan();
+        updateStatus('', '', 0, true); // Clear app status
+        calculateAndApplyWrapperSize(); // Ensure preview area is sized
+    }
+
+    function resetUploadAreaVisuals(){
+        if(dropZone) dropZone.style.display = 'flex';
+        if(fileInfoArea) fileInfoArea.classList.add('hidden');
+        if(uploadProgress) uploadProgress.classList.add('hidden');
+        if(startConversionBtn) startConversionBtn.classList.add('hidden');
+        if(uploadArea) uploadArea.classList.remove('file-selected');
+        if(progressBar) progressBar.style.width = '0%';
+        if (fileNameDisplay) fileNameDisplay.textContent = '';
+    }
+
+    function resetAppToLanding() {
+        currentFile = null;
+        currentSvgContent = '';
+        if (imageInput) imageInput.value = ''; // Clear file input
+        if (currentFileObjectURL) { URL.revokeObjectURL(currentFileObjectURL); currentFileObjectURL = null; }
+        if (previewOriginalImage) { previewOriginalImage.removeAttribute('src'); }
+        originalImageNaturalDims = { width: 0, height: 0 };
+        resetZoomPan();
+        if (originalImageWrapper) { originalImageWrapper.style.width = ''; originalImageWrapper.style.height = ''; originalImageWrapper.style.transform = ''; }
+        if (vectorImageWrapper) { vectorImageWrapper.style.width = ''; vectorImageWrapper.style.height = ''; vectorImageWrapper.style.transform = ''; }
+        showLandingView();
+        updateStatus('', '', 0, false); // Clear landing status
+        updateStatus('', '', 0, true);  // Clear app status
+        resetPresetSelection();
+        if (optionsForm) handleResetOptions(); // Reset options when going back
+        if (convertBtn) { convertBtn.disabled = true; convertBtn.textContent = getTranslation('update_vectorization_btn'); } // Reset text and disable
+        if (downloadBtn) downloadBtn.disabled = true;
+    }
+
+    function updateStatus(messageKey, type = '', clearDelay = 0, isAppStatus = true, replacements = {}) {
+        const target = isAppStatus ? statusArea : landingStatusArea;
+        if (!target) return;
+
+        clearTimeout(statusClearTimer);
+
+        const message = messageKey ? getTranslation(messageKey, currentLang, replacements) : '';
+
+        // Store key info for re-translation
+        if (messageKey) {
+            target.dataset.currentStatusKey = messageKey;
+            target.dataset.currentStatusReplacements = JSON.stringify(replacements);
+            target.dataset.currentStatusType = type;
         } else {
-            return 'en'; // Default
+            delete target.dataset.currentStatusKey;
+            delete target.dataset.currentStatusReplacements;
+            delete target.dataset.currentStatusType;
+        }
+
+        target.textContent = message;
+        target.className = `status-area ${isAppStatus ? 'app-status' : 'landing-status'}`; // Base classes
+        if (type) { target.classList.add(type); } // Add type class
+
+        // Control visibility based on message content
+        target.style.display = message ? '' : 'none'; // Use empty string for default display (block)
+
+
+        if (type !== 'error' && clearDelay > 0 && messageKey) {
+             statusClearTimer = setTimeout(()=>{
+                if(target.dataset.currentStatusKey === messageKey) { // Still the same message?
+                    target.textContent = '';
+                    target.className = `status-area ${isAppStatus ? 'app-status' : 'landing-status'}`;
+                    target.style.display = 'none'; // Hide it
+                    delete target.dataset.currentStatusKey;
+                    delete target.dataset.currentStatusReplacements;
+                    delete target.dataset.currentStatusType;
+                }
+            }, clearDelay);
+        }
+        if (type === 'error' && messageKey) { console.error("UI Status:", message); }
+    }
+
+    function showLandingError(message) {
+        // Landing errors often come directly from validateFile, may not have a key.
+        if (landingStatusArea) {
+             landingStatusArea.textContent = message; // Show the direct message
+             landingStatusArea.className = 'status-area landing-status error';
+             landingStatusArea.style.display = ''; // Show it
+             delete landingStatusArea.dataset.currentStatusKey; // Clear any previous key info
+        } else {
+             console.error("Landing Error:", message);
         }
     }
 
+    // --- Event Handlers ---
+    function handleDragEnter(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
+    function handleDragOver(e) { e.preventDefault(); e.stopPropagation(); /* Needed for drop */ }
+    function handleDragLeave(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.remove('dragover'); }
+    function handleDrop(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.remove('dragover'); const files = e.dataTransfer?.files; if (files && files.length > 0) handleFile(files[0]); }
+    function handleFileSelectChange(event) { const file = event.target.files?.[0]; if (file) handleFile(file); else { /* User cancelled selection */ currentFile=null; if (landingView) resetUploadAreaVisuals(); } }
 
-    // --- Initial UI Setup ---
-    currentLang = getInitialLanguage(); // Set initial language early
+    function handleFile(file) {
+        if (!file || (!landingView && !appView)) {
+            // Ignore if no file or not on relevant view
+            return;
+        }
+        updateStatus('', '', 0, false); // Clear landing status immediately
 
-    // Check if we are on the main app page
-    if (landingView || appView) {
-        if (landingView) showLandingView();
+        const validationError = validateFile(file);
+        if (validationError) {
+            showLandingError(validationError);
+            resetUploadAreaVisuals();
+            if(imageInput) imageInput.value = ''; // Clear invalid file
+            currentFile = null; // Ensure state is clear
+            return;
+        }
+
+        // File is valid, update state
+        currentFile = file;
+        currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
+
+        // Clean up previous object URL if exists
+        if (currentFileObjectURL) {
+            URL.revokeObjectURL(currentFileObjectURL);
+            currentFileObjectURL = null;
+        }
+        originalImageNaturalDims = { width: 0, height: 0 }; // Reset dimensions
+        if(originalImageWrapper) { originalImageWrapper.style.width=''; originalImageWrapper.style.height=''; originalImageWrapper.style.transform=''; }
+        if(vectorImageWrapper) { vectorImageWrapper.style.width=''; vectorImageWrapper.style.height=''; vectorImageWrapper.style.transform=''; }
+        if(previewOriginalImage) { previewOriginalImage.removeAttribute('src'); } // Clear preview first
+
+        // Create new Object URL and update preview
+        try {
+            currentFileObjectURL = URL.createObjectURL(file);
+            if (previewOriginalImage) {
+                previewOriginalImage.src = currentFileObjectURL; // Set src for preview
+            }
+        } catch(e) {
+            updateStatus('status_error_obj_url', 'error', 0, !!appView, { errorMessage: e.message });
+            currentFile = null; // Invalidate file
+            if(imageInput) imageInput.value = '';
+            resetUploadAreaVisuals();
+            return;
+        }
+
+        // Update landing page UI state
+        if (fileNameDisplay) fileNameDisplay.textContent = file.name;
+        if (fileInfoArea) fileInfoArea.classList.remove('hidden');
+        if (dropZone) dropZone.style.display = 'none';
+        if (uploadProgress) uploadProgress.classList.add('hidden');
+        if (startConversionBtn) startConversionBtn.classList.remove('hidden');
+        if (uploadArea) uploadArea.classList.add('file-selected');
+
+        resetZoomPan(); // Reset zoom for the new image
+    }
+
+    function triggerConversionFromLanding() {
+        if (!currentFile || !startConversionBtn || !appView) {
+            console.warn("Conversion trigger conditions not met.");
+            return;
+        }
+
+        startConversionBtn.classList.add('hidden');
+        if (fileInfoArea) fileInfoArea.style.display = 'none';
+        if (uploadProgress) {
+             uploadProgress.classList.remove('hidden');
+             if (progressBar) progressBar.style.width = '0%';
+        }
+        updateStatus('', '', 0, false); // Clear landing status
+
+        simulateUploadProgress(() => {
+             if (uploadProgress) uploadProgress.classList.add('hidden');
+             showAppView();
+             // Small delay before conversion to allow UI transition
+             setTimeout(() => handleConvert(true), 50);
+        });
+    }
+
+    async function handleConvert(isInitial = false) {
+        if (!currentFile) {
+             console.error("handleConvert called but currentFile is null.");
+             updateStatus('status_no_file', 'error', 0, true);
+             if (isInitial && landingView) resetAppToLanding();
+             return;
+        }
+        if (!convertBtn || !downloadBtn || !appView) return;
+
+        const statusKey = isInitial ? 'status_vectorizing' : 'status_updating';
+        updateStatus(statusKey, 'loading', 0, true);
+
+        convertBtn.disabled = true;
+        convertBtn.textContent = getTranslation('status_working');
+        downloadBtn.disabled = true;
+
+        if (svgOutputDiv) {
+            const placeholderKey = isInitial ? 'preview_placeholder_processing' : 'preview_placeholder_loading';
+            svgOutputDiv.innerHTML = `<p class="placeholder-text">${getTranslation(placeholderKey)}</p>`;
+            svgOutputDiv.classList.add('placeholder-text');
+        }
+
+        const formData = new FormData();
+        formData.append('imageFile', currentFile);
+
         if (optionsForm) {
-            updateOptionsAvailability();
+            const data = new FormData(optionsForm);
+            for (let [key, value] of data.entries()) {
+                const el = optionsForm.elements[key];
+                if (el && !el.disabled && value !== '' && value !== null && key !== 'palette_selector') {
+                    formData.append(key, value);
+                }
+            }
+        }
+
+        console.log("Sending data for conversion:", Object.fromEntries(formData));
+
+        try {
+            const res = await fetch('/convert', { method: 'POST', body: formData });
+            const result = await res.json();
+
+            if (!res.ok) {
+                throw new Error(result.error || `Server error: ${res.status}`);
+            }
+
+            if (result.svg) {
+                currentSvgContent = result.svg;
+                if (svgOutputDiv) {
+                    svgOutputDiv.innerHTML = currentSvgContent;
+                    svgOutputDiv.classList.remove('placeholder-text');
+                }
+                updateStatus('status_complete', 'success', 3000, true);
+                if (downloadBtn) downloadBtn.disabled = false;
+                if (convertBtn) {
+                    convertBtn.textContent = getTranslation('update_vectorization_btn');
+                    convertBtn.disabled = true;
+                }
+
+                // Ensure dimensions are set for preview sizing
+                const updatePreviewSize = () => {
+                    if (originalImageNaturalDims.width > 0) {
+                         calculateAndApplyWrapperSize();
+                    } else if (previewOriginalImage && previewOriginalImage.naturalWidth > 0) {
+                         originalImageNaturalDims.width = previewOriginalImage.naturalWidth;
+                         originalImageNaturalDims.height = previewOriginalImage.naturalHeight;
+                         calculateAndApplyWrapperSize();
+                    } else {
+                         console.warn("Could not determine original image dimensions for sizing.");
+                    }
+                    if(isInitial) resetZoomPan(); // Reset zoom after sizing on initial load
+                }
+
+                // Wait briefly for SVG to potentially render before sizing
+                setTimeout(updatePreviewSize, 100);
+
+            } else {
+                throw new Error(getTranslation('status_error_no_svg'));
+            }
+        } catch (error) {
+            console.error('Conversion Failed:', error);
+            updateStatus('status_error_conversion_failed', 'error', 0, true, { errorMessage: error.message });
+
+            if (svgOutputDiv) {
+                 if (isInitial) {
+                     resetResultArea(false);
+                     svgOutputDiv.innerHTML = `<p class="placeholder-text error-text">${getTranslation('status_error_conversion_failed', currentLang, {errorMessage: error.message})}</p>`;
+                 } else {
+                     svgOutputDiv.innerHTML = `<p class="placeholder-text error-text">${getTranslation('preview_placeholder_update_failed')}</p>`;
+                 }
+            }
+            if (downloadBtn) downloadBtn.disabled = true;
+            if (convertBtn) {
+                convertBtn.disabled = !currentFile;
+                convertBtn.textContent = getTranslation('update_vectorization_btn');
+            }
+        }
+    }
+
+    function handleOptionsFormChange() {
+        if (!optionsForm) return;
+        if (paletteSelect && colorPrecisionInput) { colorPrecisionInput.value = paletteSelect.value; }
+        if (currentFile && convertBtn) { // Only enable if a file is loaded
+            convertBtn.disabled = false;
+            convertBtn.textContent = getTranslation('update_vectorization_btn');
+        }
+        updateOptionsAvailability();
+        resetPresetSelection();
+    }
+
+    function handleResetOptions() {
+        if (!optionsForm) return;
+        applyOptions(defaultOptions);
+        updateStatus('status_options_reset', 'success', 2000, true);
+        resetPresetSelection();
+        if (convertBtn) {
+            convertBtn.disabled = true;
+            convertBtn.textContent = getTranslation('update_vectorization_btn'); // Reset text
+        }
+        updateOptionsAvailability();
+    }
+
+    function handlePresetChange(event) {
+        if (!appView || !presetSelect) return;
+        const selectedIndex = event.target.value;
+        if (selectedIndex === "" || !presets[selectedIndex]) return;
+
+        const selectedPreset = presets[selectedIndex];
+        applyOptions(selectedPreset.options);
+
+        const presetNameKey = `preset_name_${selectedPreset.key}`;
+        const presetName = getTranslation(presetNameKey) || selectedPreset.name;
+        updateStatus('status_preset_loaded', 'info', 3000, true, { presetName: presetName });
+
+        presetSelect.value = selectedIndex; // Keep selected visually
+
+        if (currentFile && convertBtn) {
+            convertBtn.disabled = false;
+            convertBtn.textContent = getTranslation('update_vectorization_btn');
+        }
+        updateOptionsAvailability();
+    }
+
+    function handleSaveOptions() {
+        if (!optionsForm || !downloadLink) return;
+        const currentOptions = {};
+        const formData = new FormData(optionsForm);
+        Object.keys(defaultOptions).forEach(key => {
+            if (formData.has(key)) {
+                const el = optionsForm.elements[key];
+                if (el && !el.disabled) {
+                    currentOptions[key] = formData.get(key);
+                }
+            }
+        });
+        try {
+            const jsonString = JSON.stringify(currentOptions, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            downloadLink.href = url;
+            downloadLink.download = 'vectorise-options.json';
+            downloadLink.click();
+            URL.revokeObjectURL(url);
+            updateStatus('status_settings_saved', 'success', 2000, true);
+        } catch (e) {
+            console.error('Error saving options:', e);
+            updateStatus('status_error_saving_settings', 'error', 0, true);
+        }
+    }
+
+    function handleLoadOptionsFile(event) {
+        const file = event.target.files?.[0];
+        if (!file || !appView) {
+             if(optionsFileInput) optionsFileInput.value = '';
+             return;
+        }
+
+        if (file.type !== 'application/json') {
+            updateStatus('status_error_select_json', 'error', 0, true);
+            if(optionsFileInput) optionsFileInput.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const loadedOptions = JSON.parse(e.target.result);
+                if (typeof loadedOptions !== 'object' || loadedOptions === null || Array.isArray(loadedOptions)) {
+                    throw new Error(getTranslation('status_error_invalid_json'));
+                }
+
+                const knownKeys = Object.keys(defaultOptions);
+                const loadedKeys = Object.keys(loadedOptions);
+                const hasKnownKey = loadedKeys.some(key => knownKeys.includes(key));
+                if (!hasKnownKey) {
+                    throw new Error(getTranslation('status_error_no_options'));
+                }
+
+                const filteredOptions = {};
+                knownKeys.forEach(key => {
+                    if (loadedOptions.hasOwnProperty(key)) {
+                        filteredOptions[key] = loadedOptions[key];
+                    }
+                });
+
+                applyOptions(filteredOptions);
+                updateStatus('status_settings_loaded', 'success', 3000, true);
+                resetPresetSelection();
+
+                if (currentFile && convertBtn) {
+                    convertBtn.disabled = false;
+                    convertBtn.textContent = getTranslation('update_vectorization_btn');
+                }
+                updateOptionsAvailability();
+
+            } catch (error) {
+                console.error('Error loading options file:', error);
+                updateStatus('status_error_loading_settings', 'error', 0, true, { errorMessage: error.message });
+            } finally {
+                if(optionsFileInput) optionsFileInput.value = '';
+            }
+        };
+        reader.onerror = () => {
+            updateStatus('status_error_reading_file', 'error', 0, true);
+            if(optionsFileInput) optionsFileInput.value = '';
+        };
+        reader.readAsText(file);
+    }
+
+    function handleDownload() {
+        if (!currentSvgContent || !downloadLink) return;
+        try {
+            const blob = new Blob([currentSvgContent], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            downloadLink.href = url;
+            downloadLink.download = `${currentFilenameBase}_vectorised.svg`;
+            downloadLink.click();
+            URL.revokeObjectURL(url);
+        } catch (e) {
+            console.error('Error preparing download:', e);
+            updateStatus('status_error_downloading', 'error', 0, true);
+        }
+    }
+
+    function handleContactFormSubmit(event) {
+        event.preventDefault();
+        if (!contactForm || !contactFormStatus) return;
+
+        const nameInput = contactForm.elements['name'];
+        const emailInput = contactForm.elements['email'];
+        const subjectInput = contactForm.elements['subject'];
+        const messageInput = contactForm.elements['message'];
+        const recipientEmail = "jonkarystudio@gmail.com";
+
+        let isValid = true;
+        [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+             if(input) input.style.borderColor = '';
+             if (!input || !input.value.trim()) {
+                if (input) input.style.borderColor = 'var(--danger-color)';
+                isValid = false;
+            }
+        });
+
+        if (emailInput && emailInput.value.trim() && !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
+             emailInput.style.borderColor = 'var(--danger-color)';
+             isValid = false;
+             showContactFormStatus("contact_status_invalid_email", "error");
+             return;
+        }
+
+        if (!isValid) {
+             showContactFormStatus("contact_status_fill_fields", "error");
+             return;
+        }
+
+        const mailtoSubject = encodeURIComponent(subjectInput.value.trim());
+        const mailtoBody = encodeURIComponent(
+            `Name: ${nameInput.value.trim()}\nEmail: ${emailInput.value.trim()}\n\nMessage:\n${messageInput.value.trim()}`
+        );
+        const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+        try {
+            showContactFormStatus("contact_status_opening_email", "info");
+            window.location.href = mailtoLink;
+            setTimeout(() => {
+                if (contactForm) contactForm.reset();
+                showContactFormStatus("contact_status_complete_send", "info");
+            }, 3000);
+        } catch (error) {
+            console.error("Failed to open mailto link:", error);
+            showContactFormStatus("contact_status_error_email", "error", { recipient: recipientEmail });
+        }
+    }
+
+    function showContactFormStatus(messageKey, type, replacements = {}) {
+        if (!contactFormStatus) return;
+        const message = getTranslation(messageKey, currentLang, replacements);
+
+        contactFormStatus.textContent = message;
+        contactFormStatus.className = `form-status ${type}`;
+        contactFormStatus.style.display = ''; // Show
+
+        contactFormStatus.dataset.currentStatusKey = messageKey;
+        contactFormStatus.dataset.currentStatusReplacements = JSON.stringify(replacements);
+        contactFormStatus.dataset.currentStatusType = type;
+
+        if (type !== 'error') {
+             setTimeout(() => {
+                 if (contactFormStatus.dataset.currentStatusKey === messageKey) {
+                     contactFormStatus.style.display = 'none';
+                     delete contactFormStatus.dataset.currentStatusKey;
+                     delete contactFormStatus.dataset.currentStatusReplacements;
+                     delete contactFormStatus.dataset.currentStatusType;
+                 }
+             }, 5000);
+        }
+    }
+
+    // --- Other Helper Functions ---
+    function simulateUploadProgress(callback) {
+        if (!uploadProgress || !progressBar ) {
+            callback();
+            return;
+        }
+        let p = 0;
+        progressBar.style.width = `0%`;
+        const interval = setInterval(() => {
+             p += Math.random() * 15 + 10;
+             if (p >= 100) {
+                 p = 100;
+                 clearInterval(interval);
+                 progressBar.style.width = `100%`;
+                 setTimeout(callback, 250);
+             } else {
+                 progressBar.style.width = `${p}%`;
+             }
+        }, 100);
+    }
+    function calculateAndApplyWrapperSize() {
+        // Only proceed if in app view and elements exist
+        if (!appView || appView.classList.contains('hidden') || !previewAreaWrapper || !previewOriginalImage || !originalImageWrapper || !vectorImageWrapper) {
+            return;
+        }
+        // Ensure dimensions are loaded
+        if (originalImageNaturalDims.width === 0 && previewOriginalImage.naturalWidth > 0) {
+            originalImageNaturalDims.width = previewOriginalImage.naturalWidth;
+            originalImageNaturalDims.height = previewOriginalImage.naturalHeight;
+        }
+        if (!originalImageNaturalDims.width) return; // Still no dimensions
+
+        const containerWidth = previewAreaWrapper.clientWidth;
+        const containerHeight = previewAreaWrapper.clientHeight;
+        if (containerWidth <= 0 || containerHeight <= 0) return;
+
+        const imgRatio = originalImageNaturalDims.width / originalImageNaturalDims.height;
+        const containerRatio = containerWidth / containerHeight;
+
+        let targetWidth, targetHeight;
+        if (imgRatio > containerRatio) {
+            targetWidth = containerWidth;
+            targetHeight = targetWidth / imgRatio;
+        } else {
+            targetHeight = containerHeight;
+            targetWidth = targetHeight * imgRatio;
+        }
+
+        targetWidth = Math.max(1, Math.floor(targetWidth));
+        targetHeight = Math.max(1, Math.floor(targetHeight));
+
+        originalImageWrapper.style.width = `${targetWidth}px`;
+        originalImageWrapper.style.height = `${targetHeight}px`;
+        vectorImageWrapper.style.width = `${targetWidth}px`;
+        vectorImageWrapper.style.height = `${targetHeight}px`;
+    }
+    function setupNumberInputSync() { if (!optionsForm) return; optionsForm.querySelectorAll('input[type="range"]').forEach(slider => { const numInputId = `${slider.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { const syncSliderToNum = () => { const step = parseFloat(slider.step); numInput.value = (step < 1) ? parseFloat(slider.value).toFixed(String(step).split('.')[1]?.length || 2) : String(Math.round(parseFloat(slider.value))); }; const syncNumToSlider = () => { let v=parseFloat(numInput.value), min=parseFloat(slider.min), max=parseFloat(slider.max); if(isNaN(v)) return; v=Math.max(min, Math.min(max, v)); if (Math.abs(parseFloat(slider.value)-v) > (parseFloat(slider.step)/2||0.001)) { slider.value = String(v); slider.dispatchEvent(new Event('input',{bubbles:true})); } }; safeAddListener(slider, 'input', syncSliderToNum); safeAddListener(numInput, 'input', syncNumToSlider); syncSliderToNum(); } }); }
+    function updateOptionsAvailability() { if (!optionsForm || !modeSelect || !colormodeSelect || !paletteSelect) return; const m=modeSelect.value, c=colormodeSelect.value, sp=m==='spline', px=m==='pixel', cl=c==='color'; toggleOptionGroup(splineThresholdGroup, sp); toggleOptionGroup(spliceThresholdGroup, sp); toggleOptionGroup(segmentLengthGroup, sp); toggleOptionGroup(cornerThresholdGroup, !px); toggleOptionGroup(hierarchicalGroup, cl); toggleOptionGroup(gradientStepGroup, cl); toggleOptionGroup(paletteGroup, cl); }
+    function toggleOptionGroup(groupElement, enable) { if (!groupElement) return; const controls = groupElement.querySelectorAll('input, select'); groupElement.classList.toggle('disabled', !enable); controls.forEach(c => { if(c) c.disabled = !enable; }); }
+    function storeDefaultOptions() { if (!optionsForm) return; const data = new FormData(optionsForm); for (let [key, value] of data.entries()) { defaultOptions[key] = value; } if (defaultOptions.hasOwnProperty('palette_selector')) { defaultOptions['color_precision'] = defaultOptions['palette_selector']; } const defaultPreset = presets.find(p => p.key === "general"); if (defaultPreset) { defaultPreset.options = {...defaultOptions}; } console.log("Stored defaults:", defaultOptions); }
+    function populatePresetSelect() { if (!presetSelect) return; const currentVal = presetSelect.value; presetSelect.innerHTML = `<option value="" disabled selected>${getTranslation('preset_select_placeholder')}</option>`; presets.forEach((preset, index) => { const option = document.createElement('option'); option.value = index.toString(); const translationKey = `preset_name_${preset.key}`; option.textContent = getTranslation(translationKey) || preset.name; presetSelect.appendChild(option); }); if (currentVal !== "" && currentVal < presets.length) { presetSelect.value = currentVal; } else { presetSelect.value = ""; } }
+    function resetPresetSelection() { if(presetSelect && presetSelect.value !== "") presetSelect.value = ""; }
+    function applyOptions(optionsToApply) { if (!optionsForm) return; console.log("Applying options:", optionsToApply); let needsUpdateAvailability = false; for (const key in optionsToApply) { if (!defaultOptions.hasOwnProperty(key)) continue; const value = optionsToApply[key]; const element = optionsForm.elements[key]; if (element) { if (element.type === 'radio' || element.type === 'checkbox') { /* Handle if needed */ } else { element.value = String(value); } if (element.type === 'range') { const numInputId = `${element.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { const step = parseFloat(element.step); numInput.value = (step < 1) ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 2) : String(Math.round(parseFloat(value))); } } if (['mode', 'color_mode', 'palette_selector'].includes(key)) { needsUpdateAvailability = true; } // Fire both events to be safe, input first element.dispatchEvent(new Event('input', { bubbles: true })); element.dispatchEvent(new Event('change', { bubbles: true })); } } if (needsUpdateAvailability) { setTimeout(updateOptionsAvailability, 0); } }
+    function setTransform() { if (!originalImageWrapper || !vectorImageWrapper) return; const transformValue =`translate(${pointX}px, ${pointY}px) scale(${scale})`; originalImageWrapper.style.transform = transformValue; vectorImageWrapper.style.transform = transformValue; updateZoomButtons(); }
+    function setupZoomPan() { if (!previewAreaWrapper) return; const startPan = (e)=>{ if(e.button !== 0 && e.type !== 'touchstart') return; e.preventDefault(); panning = true; start = { x: (e.clientX ?? e.touches[0].clientX) - pointX, y: (e.clientY ?? e.touches[0].clientY) - pointY }; previewAreaWrapper.classList.add('grabbing'); window.addEventListener('mousemove', panMove); window.addEventListener('touchmove', panMove, {passive:false}); window.addEventListener('mouseup', endPan); window.addEventListener('touchend', endPan); }; const panMove = (e)=>{ if(!panning) return; e.preventDefault(); pointX = (e.clientX ?? e.touches[0].clientX) - start.x; pointY = (e.clientY ?? e.touches[0].clientY) - start.y; setTransform(); }; const endPan = ()=>{ if(!panning) return; panning = false; previewAreaWrapper.classList.remove('grabbing'); window.removeEventListener('mousemove', panMove); window.removeEventListener('touchmove', panMove); window.removeEventListener('mouseup', endPan); window.removeEventListener('touchend', endPan); }; safeAddListener(previewAreaWrapper, 'wheel', (e)=>{ e.preventDefault(); const rect = previewAreaWrapper.getBoundingClientRect(); const mouseX = e.clientX - rect.left; const mouseY = e.clientY - rect.top; const xs = (mouseX - pointX) / scale; const ys = (mouseY - pointY) / scale; const delta = -e.deltaY; const zoomFactor = 1.15; let newScale = (delta > 0) ? scale * zoomFactor : scale / zoomFactor; newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale)); if(newScale === scale) return; pointX = mouseX - xs * newScale; pointY = mouseY - ys * newScale; scale = newScale; setTransform(); }, { passive: false }); safeAddListener(previewAreaWrapper, 'mousedown', startPan); safeAddListener(previewAreaWrapper, 'touchstart', startPan, { passive: false }); }
+    function zoom(factor) { if (!previewAreaWrapper) return; const rect = previewAreaWrapper.getBoundingClientRect(); const centerX = rect.width / 2; const centerY = rect.height / 2; const xs = (centerX - pointX) / scale; const ys = (centerY - pointY) / scale; let newScale = scale * factor; newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale)); if(newScale === scale) return; pointX = centerX - xs * newScale; pointY = centerY - ys * newScale; scale = newScale; setTransform(); }
+    function resetZoomPan() { scale = 1; pointX = 0; pointY = 0; if (previewAreaWrapper) setTransform(); calculateAndApplyWrapperSize(); }
+    function updateZoomButtons() { if(zoomInBtn) zoomInBtn.disabled = (scale >= MAX_SCALE); if(zoomOutBtn) zoomOutBtn.disabled = (scale <= MIN_SCALE); }
+    function handleSvgPathHover(event) { const target = event.target; if(target && target.tagName === 'path' && target.closest('svg')) { target.classList.toggle('path-hover', event.type === 'mouseover'); } }
+    function resetResultArea(clearStatusToo = true) { if(svgOutputDiv) { svgOutputDiv.innerHTML = `<p class="placeholder-text">${getTranslation('preview_placeholder_select')}</p>`; svgOutputDiv.classList.add('placeholder-text'); } currentSvgContent = ''; if(downloadBtn) downloadBtn.disabled = true; if(clearStatusToo && appView) updateStatus('', '', 0, true); }
+
+    // --- Initialization ---
+    currentLang = getInitialLanguage();
+    setLanguage(currentLang); // Apply initial translation FIRST
+
+    // Then set up based on page context
+    if (landingView || appView) { // On main app page (index.html)
+        if (optionsForm) { // Always store defaults if form exists
             storeDefaultOptions();
-            // populatePresetSelect(); // Now called by translatePage
             setupNumberInputSync();
-            optionsForm.addEventListener('change', handleOptionsFormChange);
+            safeAddListener(optionsForm, 'change', handleOptionsFormChange);
         }
         if (previewAreaWrapper) setupZoomPan();
-        if (zoomInBtn) updateZoomButtons();
+        if (zoomInBtn) updateZoomButtons(); // Initial button state based on scale=1
 
-        // Drag and Drop Listeners
-        if (dropZone) { dropZone.addEventListener('dragenter', handleDragEnter); dropZone.addEventListener('dragover', handleDragOver); dropZone.addEventListener('dragleave', handleDragLeave); dropZone.addEventListener('drop', handleDrop); dropZone.addEventListener('click', (e) => { if (imageInput && e.target !== imageInput && !e.target.closest('button, label')) imageInput.click(); }); }
-
-        // App Event Listeners Setup
+        // Add specific app listeners
         safeAddListener(imageInput, 'change', handleFileSelectChange);
         safeAddListener(cancelUploadBtn, 'click', resetAppToLanding);
         safeAddListener(startConversionBtn, 'click', triggerConversionFromLanding);
@@ -865,23 +1265,32 @@ document.addEventListener('DOMContentLoaded', () => {
         safeAddListener(zoomResetBtn, 'click', resetZoomPan);
         safeAddListener(svgOutputDiv, 'mouseover', handleSvgPathHover);
         safeAddListener(svgOutputDiv, 'mouseout', handleSvgPathHover);
+        safeAddListener(previewOriginalImage, 'load', calculateAndApplyWrapperSize);
+        safeAddListener(previewOriginalImage, 'error', () => console.error("Failed to load original preview image."));
 
-        // Original Preview Image Load Listener
-        safeAddListener(previewOriginalImage, 'load', () => { if (!previewOriginalImage) return; originalImageNaturalDims.width = previewOriginalImage.naturalWidth; originalImageNaturalDims.height = previewOriginalImage.naturalHeight; calculateAndApplyWrapperSize(); });
-        safeAddListener(previewOriginalImage, 'error', () => { console.error("Failed load original preview"); if(previewOriginalImage) previewOriginalImage.src = '#'; });
+        if (dropZone) {
+            safeAddListener(dropZone, 'dragenter', handleDragEnter);
+            safeAddListener(dropZone, 'dragover', handleDragOver);
+            safeAddListener(dropZone, 'dragleave', handleDragLeave);
+            safeAddListener(dropZone, 'drop', handleDrop);
+            safeAddListener(dropZone, 'click', (e) => { if (imageInput && e.target !== imageInput && !e.target.closest('button, label')) imageInput.click(); });
+        }
 
+        // Initial view state (default to landing)
+        showLandingView();
         console.log("vectorise.me script initialized (App Mode).");
-    } else {
+
+    } else { // On other static pages (contact, legal, etc.)
         console.log("vectorise.me script initialized (Static Page Mode).");
     }
 
-    // --- Contact Form Logic ---
+    // Contact form listeners (only added if form exists)
     if (contactForm) {
         safeAddListener(contactForm, 'submit', handleContactFormSubmit);
         console.log("Contact form listeners added.");
     }
 
-    // --- Language Dropdown Logic (Global) ---
+    // Language dropdown listeners (global)
     if (languageToggleBtn && languageDropdown) {
         safeAddListener(languageToggleBtn, 'click', (e) => {
             e.stopPropagation();
@@ -889,335 +1298,32 @@ document.addEventListener('DOMContentLoaded', () => {
             languageToggleBtn.setAttribute('aria-expanded', String(!isExpanded));
             languageDropdown.classList.toggle('hidden');
         });
-
         safeAddListener(window, 'click', (e) => {
             if (languageDropdown && !languageDropdown.classList.contains('hidden') &&
                 languageToggleBtn && !languageToggleBtn.contains(e.target) &&
-                !languageDropdown.contains(e.target) ) {
-                    languageToggleBtn.setAttribute('aria-expanded', 'false');
-                    languageDropdown.classList.add('hidden');
+                !languageDropdown.contains(e.target)) {
+                languageToggleBtn.setAttribute('aria-expanded', 'false');
+                languageDropdown.classList.add('hidden');
             }
         });
-
-        // Add language switching logic to links
         languageDropdown.querySelectorAll('a[lang]').forEach(link => {
             safeAddListener(link, 'click', (e) => {
-                 e.preventDefault(); // Prevent default link behavior
-                 const selectedLang = link.getAttribute('lang');
-                 setLanguage(selectedLang);
+                 e.preventDefault();
+                 setLanguage(link.getAttribute('lang'));
             });
         });
-
-         console.log("Language dropdown listeners added.");
+        console.log("Language dropdown listeners added.");
     }
 
-    // --- Apply Initial Translation ---
-    setLanguage(currentLang); // Apply translation based on detected/saved language
-
-     // --- Global Listeners ---
-     let resizeTimeout; window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(calculateAndApplyWrapperSize, 150); });
-
-    // --- App Specific Functions ---
-    function handleOptionsFormChange() {
-        if (!optionsForm) return;
-        if (paletteSelect && colorPrecisionInput) { colorPrecisionInput.value = paletteSelect.value; }
-        // Enable update button only if a file is loaded and options changed
-        if (currentFile && convertBtn) {
-            convertBtn.disabled = false;
-            convertBtn.textContent = getTranslation('update_vectorization_btn');
-        }
-        updateOptionsAvailability();
-        resetPresetSelection();
-    }
-
-    function handleDragEnter(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
-    function handleDragOver(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.add('dragover'); }
-    function handleDragLeave(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.remove('dragover'); }
-    function handleDrop(e) { e.preventDefault(); e.stopPropagation(); dropZone?.classList.remove('dragover'); const files = e.dataTransfer?.files; if (files && files.length > 0) handleFile(files[0]); }
-    function setupNumberInputSync() { if (!optionsForm) return; optionsForm.querySelectorAll('input[type="range"]').forEach(slider => { const numInputId = `${slider.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { safeAddListener(slider, 'input', (e) => { const step = parseFloat(e.target.step); numInput.value = (step < 1) ? parseFloat(e.target.value).toFixed(String(step).split('.')[1]?.length || 2) : String(Math.round(parseFloat(e.target.value))); }); safeAddListener(numInput, 'input', (e) => { let v=parseFloat(e.target.value), min=parseFloat(slider.min), max=parseFloat(slider.max); if(isNaN(v)) return; v=Math.max(min, Math.min(max, v)); if (Math.abs(parseFloat(slider.value)-v) > (parseFloat(slider.step)/2||0.001)) { slider.value = String(v); slider.dispatchEvent(new Event('input',{bubbles:true})); } }); } }); }
-    function handleFileSelectChange(event) { if (event.target.files?.length > 0) handleFile(event.target.files[0]); else if (landingView) resetAppToLanding(); }
-    function handleFile(file) { if (!file || (!landingView && !appView)) { if (landingView) resetAppToLanding(); return; } updateStatus('', '', 0, false); // Clear landing status on new file selection const vError = validateFile(file); if (vError) { showLandingError(vError); if (landingView) resetAppToLanding(); return; } currentFile = file; currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name; if (currentFileObjectURL) URL.revokeObjectURL(currentFileObjectURL); currentFileObjectURL = null; originalImageNaturalDims={width:0,height:0}; if(originalImageWrapper){ originalImageWrapper.style.width=''; originalImageWrapper.style.height=''; originalImageWrapper.style.transform='';} if(vectorImageWrapper){ vectorImageWrapper.style.width=''; vectorImageWrapper.style.height=''; vectorImageWrapper.style.transform='';} try { currentFileObjectURL = URL.createObjectURL(file); if (previewOriginalImage) previewOriginalImage.src = currentFileObjectURL; } catch(e) { updateStatus('status_error_obj_url', 'error', 0, !!appView, {errorMessage: e.message}); } if (fileNameDisplay) fileNameDisplay.textContent = file.name; if (fileInfoArea) fileInfoArea.classList.remove('hidden'); if (dropZone) dropZone.style.display = 'none'; if (uploadProgress) uploadProgress.classList.add('hidden'); if (startConversionBtn) startConversionBtn.classList.remove('hidden'); if (uploadArea) uploadArea.classList.add('file-selected'); resetZoomPan(); }
-    function validateFile(file) {
-        if (!file) return getTranslation('status_no_file');
-        if (file.size > 15 * 1024 * 1024) return getTranslation('status_error_file_size');
-        if (!['image/jpeg', 'image/png', 'image/webp', 'image/bmp'].includes(file.type)) {
-            return getTranslation('status_error_file_type', currentLang, { fileType: file.type || '?' });
-        }
-        return null;
-    }
-    function triggerConversionFromLanding() { if (!currentFile || !startConversionBtn || !appView) return; startConversionBtn.classList.add('hidden'); if (fileInfoArea) fileInfoArea.style.display = 'none'; if(uploadProgress) uploadProgress.classList.remove('hidden'); simulateUploadProgress(() => { showAppView(); handleConvert(true); }); }
-    async function handleConvert(isInitial = false) {
-        if (!currentFile || !convertBtn || !downloadBtn || !appView) return;
-        const statusKey = isInitial ? 'status_vectorizing' : 'status_updating';
-        updateStatus(statusKey, 'loading', 0, true);
-        convertBtn.disabled = true;
-        convertBtn.textContent = getTranslation('status_working');
-        downloadBtn.disabled = true;
-        if (svgOutputDiv) {
-             const placeholderKey = isInitial ? 'preview_placeholder_processing' : 'preview_placeholder_loading';
-            svgOutputDiv.innerHTML = `<p class="placeholder-text">${getTranslation(placeholderKey)}</p>`;
-        }
-        const formData = new FormData();
-        formData.append('imageFile', currentFile);
-        if (optionsForm) {
-            const data = new FormData(optionsForm);
-            for (let [key, value] of data.entries()) {
-                const el = optionsForm.elements[key];
-                if (el && !el.disabled && value !== '' && value !== null && key !== 'palette_selector') {
-                    formData.append(key, value);
-                }
+    // Global listeners
+    let resizeTimeout;
+    safeAddListener(window, 'resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (appView && !appView.classList.contains('hidden')) {
+                 calculateAndApplyWrapperSize(); // Recalc only if app view is visible
             }
-        }
-        console.log("Sending data:", Object.fromEntries(formData));
-        try {
-            const res = await fetch('/convert', { method: 'POST', body: formData });
-            const result = await res.json();
-            if (!res.ok) {
-                throw new Error(result.error || `Server error: ${res.status}`);
-            }
-            if (result.svg) {
-                currentSvgContent = result.svg;
-                if (svgOutputDiv) {
-                    svgOutputDiv.innerHTML = currentSvgContent;
-                    svgOutputDiv.classList.remove('placeholder-text');
-                }
-                updateStatus('status_complete', 'success', 3000, true);
-                if (downloadBtn) downloadBtn.disabled = false;
-                if (convertBtn) {
-                    convertBtn.textContent = getTranslation('update_vectorization_btn');
-                    convertBtn.disabled = true; // Disable until options change again
-                }
-                if (originalImageNaturalDims.width > 0) {
-                     setTimeout(calculateAndApplyWrapperSize, 50);
-                } else {
-                     // Try to get dimensions again if image loaded late
-                     if (previewOriginalImage && previewOriginalImage.naturalWidth > 0) {
-                        originalImageNaturalDims.width = previewOriginalImage.naturalWidth;
-                        originalImageNaturalDims.height = previewOriginalImage.naturalHeight;
-                        setTimeout(calculateAndApplyWrapperSize, 50);
-                     } else {
-                        console.warn("Original dimensions missing after conversion.");
-                     }
-                }
-                if(isInitial) resetZoomPan();
-            } else {
-                 throw new Error(getTranslation('status_error_no_svg'));
-            }
-        } catch (error) {
-            console.error('Conversion Failed:', error);
-            const errMsgKey = 'status_error_conversion_failed';
-            updateStatus(errMsgKey, 'error', 0, true, {errorMessage: error.message});
-            if(svgOutputDiv){
-                if(isInitial) {
-                    resetResultArea(false); // Clear SVG area but keep error msg
-                } else {
-                    svgOutputDiv.innerHTML = `<p class="placeholder-text error-text">${getTranslation('preview_placeholder_update_failed')}</p>`;
-                }
-            }
-            if (downloadBtn) downloadBtn.disabled = true;
-            if (convertBtn) {
-                 convertBtn.disabled = !currentFile; // Re-enable if there's still a file
-                 convertBtn.textContent = getTranslation('update_vectorization_btn');
-             }
-        }
-    }
-
-    function simulateUploadProgress(callback) { if (!uploadProgress || !progressBar ) return; let p = 0; progressBar.style.width = `0%`; const i = setInterval(() => { p += Math.random()*15+10; if (p>=100){ p=100; clearInterval(i); progressBar.style.width=`100%`; setTimeout(callback,200); } else { progressBar.style.width=`${p}%`; } }, 80); }
-    function calculateAndApplyWrapperSize() { if (!previewAreaWrapper || !previewOriginalImage || !originalImageWrapper || !vectorImageWrapper) return; if (originalImageNaturalDims.width === 0 && previewOriginalImage.naturalWidth > 0) { originalImageNaturalDims.width = previewOriginalImage.naturalWidth; originalImageNaturalDims.height = previewOriginalImage.naturalHeight; } if (!originalImageNaturalDims.width) return; const cw=previewAreaWrapper.clientWidth; const ch=previewAreaWrapper.clientHeight; if (cw<=0 || ch<=0) return; const imgRatio=originalImageNaturalDims.width/originalImageNaturalDims.height; const contRatio=cw/ch; let tw, th; if (imgRatio>contRatio){ tw=cw; th=tw/imgRatio; } else { th=ch; tw=th*imgRatio; } tw=Math.max(1, Math.floor(tw)); th=Math.max(1, Math.floor(th)); originalImageWrapper.style.width=`${tw}px`; originalImageWrapper.style.height=`${th}px`; vectorImageWrapper.style.width=`${tw}px`; vectorImageWrapper.style.height=`${th}px`; }
-    function setTransform() { if (!originalImageWrapper || !vectorImageWrapper) return; const v=`translate(${pointX}px, ${pointY}px) scale(${scale})`; originalImageWrapper.style.transform=v; vectorImageWrapper.style.transform=v; updateZoomButtons(); }
-    function setupZoomPan() { if (!previewAreaWrapper) return; const startP=(e)=>{if(e.button!==0&&e.type!=='touchstart')return; e.preventDefault(); panning=true; start={x:(e.clientX??e.touches[0].clientX)-pointX, y:(e.clientY??e.touches[0].clientY)-pointY}; previewAreaWrapper.classList.add('grabbing'); window.addEventListener('mousemove', panM); window.addEventListener('touchmove', panM, {passive:false}); window.addEventListener('mouseup', endP); window.addEventListener('touchend', endP);}; const panM=(e)=>{if(!panning)return; e.preventDefault(); pointX=(e.clientX??e.touches[0].clientX)-start.x; pointY=(e.clientY??e.touches[0].clientY)-start.y; setTransform();}; const endP=()=>{if(!panning)return; panning=false; previewAreaWrapper.classList.remove('grabbing'); window.removeEventListener('mousemove', panM); window.removeEventListener('touchmove', panM); window.removeEventListener('mouseup', endP); window.removeEventListener('touchend', endP);}; safeAddListener(previewAreaWrapper,'wheel',(e)=>{e.preventDefault();const r=previewAreaWrapper.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;const xs=(mx-pointX)/scale,ys=(my-pointY)/scale;const d=-e.deltaY,zF=1.15;let nS=(d>0)?scale*zF:scale/zF;nS=Math.max(MIN_SCALE,Math.min(MAX_SCALE,nS));if(nS===scale)return;pointX=mx-xs*nS;pointY=my-ys*nS;scale=nS;setTransform();},{passive:false}); safeAddListener(previewAreaWrapper,'mousedown', startP); safeAddListener(previewAreaWrapper,'touchstart', startP,{passive:false}); }
-    function zoom(factor) { if (!previewAreaWrapper) return; const r=previewAreaWrapper.getBoundingClientRect(); const cX=r.width/2,cY=r.height/2; const xs=(cX-pointX)/scale,ys=(cY-pointY)/scale; let nS=scale*factor; nS=Math.max(MIN_SCALE,Math.min(MAX_SCALE,nS)); if(nS===scale)return; pointX=cX-xs*nS; pointY=cY-ys*nS; scale=nS; setTransform(); }
-    function resetZoomPan() { scale=1; pointX=0; pointY=0; if (previewAreaWrapper) setTransform(); calculateAndApplyWrapperSize(); }
-    function updateZoomButtons() { if(zoomInBtn)zoomInBtn.disabled=(scale>=MAX_SCALE); if(zoomOutBtn)zoomOutBtn.disabled=(scale<=MIN_SCALE); }
-    function handleSvgPathHover(event) { const t=event.target; if(t && t.tagName==='path'&&t.closest('svg')){ if(event.type==='mouseover')t.classList.add('path-hover'); else if(event.type==='mouseout')t.classList.remove('path-hover'); } }
-    function showLandingView() { if(landingView) landingView.classList.remove('hidden'); if(appView) appView.classList.add('hidden'); if(uploadNewBtn) uploadNewBtn.classList.add('hidden'); resetUploadAreaVisuals(); }
-    function showAppView() { if(landingView) landingView.classList.add('hidden'); if(appView) appView.classList.remove('hidden'); if(uploadNewBtn) uploadNewBtn.classList.remove('hidden'); updateOptionsAvailability(); resetResultArea(); resetZoomPan(); updateStatus('', '', 0, true); }
-    function resetAppToLanding() { if (!landingView && !appView) return; currentFile=null; currentSvgContent=''; if(imageInput)imageInput.value=''; if(fileNameDisplay)fileNameDisplay.textContent=''; if(currentFileObjectURL){URL.revokeObjectURL(currentFileObjectURL);currentFileObjectURL=null;} if(previewOriginalImage){previewOriginalImage.src='#';} originalImageNaturalDims={width:0,height:0}; resetZoomPan(); if(originalImageWrapper){originalImageWrapper.style.width='';originalImageWrapper.style.height='';originalImageWrapper.style.transform='';} if(vectorImageWrapper){vectorImageWrapper.style.width='';vectorImageWrapper.style.height='';vectorImageWrapper.style.transform='';} showLandingView(); updateStatus('', '', 0, false); // Clear landing status updateStatus('', '', 0, true); // Clear app status resetPresetSelection(); if (optionsForm) handleResetOptions(); // Optionally reset options too }
-    function resetUploadAreaVisuals(){ if(dropZone)dropZone.style.display='flex'; if(fileInfoArea)fileInfoArea.classList.add('hidden'); if(uploadProgress)uploadProgress.classList.add('hidden'); if(startConversionBtn)startConversionBtn.classList.add('hidden'); if(uploadArea)uploadArea.classList.remove('file-selected'); if(progressBar)progressBar.style.width='0%'; }
-    function updateOptionsAvailability() { if (!optionsForm || !modeSelect || !colormodeSelect || !paletteSelect) return; const m=modeSelect.value,c=colormodeSelect.value,sp=m==='spline',px=m==='pixel',cl=c==='color'; toggleOptionGroup(splineThresholdGroup,sp); toggleOptionGroup(spliceThresholdGroup,sp); toggleOptionGroup(segmentLengthGroup,sp); toggleOptionGroup(cornerThresholdGroup,!px); toggleOptionGroup(hierarchicalGroup,cl); toggleOptionGroup(gradientStepGroup,cl); toggleOptionGroup(paletteGroup,cl); toggleOptionGroup(colorPrecisionGroup,false); /* This seems unused */ }
-    function toggleOptionGroup(groupElement, enable) { if (!groupElement) return; const controls = groupElement.querySelectorAll('input, select'); if(enable){ groupElement.classList.remove('disabled'); controls.forEach(c=>{if(c) c.disabled=false;}); } else { groupElement.classList.add('disabled'); controls.forEach(c=>{if(c) c.disabled=true;}); } }
-    function storeDefaultOptions() { if (!optionsForm) return; const data = new FormData(optionsForm); for (let [key, value] of data.entries()) { defaultOptions[key] = value; } if (defaultOptions.hasOwnProperty('palette_selector')) { defaultOptions['color_precision'] = defaultOptions['palette_selector']; } const defaultPreset = presets.find(p => p.key === "general"); if (defaultPreset) { defaultPreset.options = {...defaultOptions}; } else { console.error("Could not find 'general' preset to store defaults!"); } console.log("Stored defaults:", defaultOptions); }
-    function handleResetOptions() { if (!optionsForm) return; applyOptions(defaultOptions); updateStatus('status_options_reset', 'success', 2000, true); resetPresetSelection(); if (convertBtn) { convertBtn.disabled = true; } /* Disable update after reset */ }
-    function populatePresetSelect() {
-        if (!presetSelect) return;
-        const currentVal = presetSelect.value; // Store current selection index
-        presetSelect.innerHTML = `<option value="" disabled selected>${getTranslation('preset_select_placeholder')}</option>`;
-        presets.forEach((preset, index) => {
-            const option = document.createElement('option');
-            option.value = index.toString();
-            const translationKey = `preset_name_${preset.key}`;
-            option.textContent = getTranslation(translationKey) || preset.name; // Fallback to original name
-            presetSelect.appendChild(option);
-        });
-        // Try to restore previous selection if it was valid
-        if (currentVal !== "" && currentVal < presets.length) {
-            presetSelect.value = currentVal;
-        } else {
-            presetSelect.value = ""; // Ensure placeholder is selected if no valid prior selection
-        }
-    }
-    function handlePresetChange(event) { if (!appView || !presetSelect) return; const selectedIndex = event.target.value; if (selectedIndex === "" || !presets[selectedIndex]) return; const selectedPreset = presets[selectedIndex]; applyOptions(selectedPreset.options); const presetNameKey = `preset_name_${selectedPreset.key}`; const presetName = getTranslation(presetNameKey) || selectedPreset.name; updateStatus('status_preset_loaded', 'info', 3000, true, {presetName: presetName}); /* Keep selected index visually */ presetSelect.value = selectedIndex; if (convertBtn && currentFile) { convertBtn.disabled = false; convertBtn.textContent = getTranslation('update_vectorization_btn'); } /* Enable update */ }
-    function resetPresetSelection() { if(presetSelect && presetSelect.value !== "") presetSelect.value = ""; }
-    function applyOptions(optionsToApply) { if (!optionsForm) return; console.log("Applying options:", optionsToApply); let needsUpdateAvailability = false; for (const key in optionsToApply) { if (!defaultOptions.hasOwnProperty(key)) continue; // Apply only known options const value = optionsToApply[key]; const element = optionsForm.elements[key]; if (element) { if (element.type === 'radio' || element.type === 'checkbox') { // Handle radio/checkbox if needed } else { element.value = String(value); } if (element.type === 'range') { const numInputId = `${element.id}Num`; const numInput = document.getElementById(numInputId); if (numInput) { const step = parseFloat(element.step); numInput.value = (step < 1) ? parseFloat(value).toFixed(String(step).split('.')[1]?.length || 2) : String(Math.round(parseFloat(value))); } } if (key === 'mode' || key === 'color_mode' || key === 'palette_selector') { needsUpdateAvailability = true; } // Dispatch change event after setting value to trigger potential listeners / updates // Use setTimeout to ensure value is set before event fires element.dispatchEvent(new Event('input', { bubbles: true })); // For range sync element.dispatchEvent(new Event('change', { bubbles: true })); } else { console.warn(`Option key "${key}" with value "${value}" not found in form.`); } } // Update availability after all values are set setTimeout(() => { if (needsUpdateAvailability) { updateOptionsAvailability(); } // Don't automatically enable convert on apply - let user click update if (currentFile && convertBtn) { // convertBtn.disabled = false; // convertBtn.textContent = getTranslation('update_vectorization_btn'); } }, 50); }
-    function handleSaveOptions() { if (!optionsForm || !downloadLink) return; const currentOptions = {}; const formData = new FormData(optionsForm); Object.keys(defaultOptions).forEach(key => { if (formData.has(key)) { const el = optionsForm.elements[key]; // Save only if not disabled if (el && !el.disabled) { currentOptions[key] = formData.get(key); } } }); try { const jsonString = JSON.stringify(currentOptions, null, 2); const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' }); const url = URL.createObjectURL(blob); downloadLink.href = url; downloadLink.download = 'vectorise-options.json'; downloadLink.click(); URL.revokeObjectURL(url); updateStatus('status_settings_saved', 'success', 2000, true); } catch (e) { console.error('Error saving options:', e); updateStatus('status_error_saving_settings', 'error', 0, true); } }
-    function handleLoadOptionsFile(event) { if (!event.target.files || event.target.files.length === 0 || !appView) return; const file = event.target.files[0]; if (file.type !== 'application/json') { updateStatus('status_error_select_json', 'error', 0, true); optionsFileInput.value = ''; return; } const reader = new FileReader(); reader.onload = (e) => { try { const loadedOptions = JSON.parse(e.target.result); if (typeof loadedOptions !== 'object' || loadedOptions === null || Array.isArray(loadedOptions)) { throw new Error(getTranslation('status_error_invalid_json')); } const knownKeys = Object.keys(defaultOptions); const loadedKeys = Object.keys(loadedOptions); // Check if at least one loaded key is a known default key const hasKnownKey = loadedKeys.some(key => knownKeys.includes(key)); if (!hasKnownKey) { throw new Error(getTranslation('status_error_no_options')); } // Filter loaded options to only include known keys const filteredOptions = {}; for (const key of knownKeys) { if (loadedOptions.hasOwnProperty(key)) { filteredOptions[key] = loadedOptions[key]; } } applyOptions(filteredOptions); updateStatus('status_settings_loaded', 'success', 3000, true); resetPresetSelection(); if (convertBtn && currentFile) { convertBtn.disabled = false; convertBtn.textContent = getTranslation('update_vectorization_btn'); } // Enable update } catch (error) { console.error('Error loading options file:', error); const errMsgKey = 'status_error_loading_settings'; updateStatus(errMsgKey, 'error', 0, true, { errorMessage: error.message }); } finally { if(optionsFileInput) optionsFileInput.value = ''; } }; reader.onerror = () => { updateStatus('status_error_reading_file', 'error', 0, true); if(optionsFileInput) optionsFileInput.value = ''; }; reader.readAsText(file); }
-    function handleDownload() { if (!currentSvgContent || !downloadLink) return; try { const b=new Blob([currentSvgContent],{type:'image/svg+xml;charset=utf-8'}); const u=URL.createObjectURL(b); downloadLink.href=u; downloadLink.download=`${currentFilenameBase}_vectorised.svg`; downloadLink.click(); URL.revokeObjectURL(u); } catch(e){ console.error(e); updateStatus('status_error_downloading','error', 0, true);} }
-    function resetResultArea(clearStatusToo = true) {
-        if(svgOutputDiv) {
-            svgOutputDiv.innerHTML = `<p class="placeholder-text">${getTranslation('preview_placeholder_select')}</p>`;
-            svgOutputDiv.classList.add('placeholder-text');
-        }
-        currentSvgContent = '';
-        if(downloadBtn) downloadBtn.disabled = true;
-        if(clearStatusToo && appView) updateStatus('', '', 0, true);
-    }
-
-
-    // --- Contact Form Submission Handler ---
-    function handleContactFormSubmit(event) {
-        event.preventDefault();
-        if (!contactForm || !contactFormStatus) return;
-
-        const nameInput = contactForm.elements['name'];
-        const emailInput = contactForm.elements['email'];
-        const subjectInput = contactForm.elements['subject'];
-        const messageInput = contactForm.elements['message'];
-        const recipientEmail = "jonkarystudio@gmail.com"; // Keep this fixed
-
-        let isValid = true;
-        [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
-             input.style.borderColor = ''; // Reset border
-            if (!input.value.trim()) {
-                input.style.borderColor = 'var(--danger-color)';
-                isValid = false;
-            }
-        });
-        if (emailInput.value.trim() && !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
-             emailInput.style.borderColor = 'var(--danger-color)';
-             isValid = false;
-             showContactFormStatus("contact_status_invalid_email", "error");
-             return;
-        }
-
-        if (!isValid) {
-             showContactFormStatus("contact_status_fill_fields", "error");
-             return;
-        }
-
-        // Use user's subject and message, but keep internal labels potentially fixed for mailto structure
-        const mailtoSubject = encodeURIComponent(subjectInput.value.trim());
-        const mailtoBody = encodeURIComponent(
-            `Name: ${nameInput.value.trim()}\nEmail: ${emailInput.value.trim()}\n\nMessage:\n${messageInput.value.trim()}`
-        );
-        const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
-
-        try {
-             showContactFormStatus("contact_status_opening_email", "info");
-             // Attempt to open mail client
-             // Using location.href might be blocked by some browsers for mailto links initiated by script
-             // A safer approach might be window.open(mailtoLink, '_blank'); but that can also be blocked.
-             // location.href is the most common approach.
-             window.location.href = mailtoLink;
-
-             // Reset form and show follow-up message after a delay, assuming mailto worked
-             setTimeout(() => {
-                 if (contactForm) contactForm.reset();
-                 showContactFormStatus("contact_status_complete_send", "info");
-             }, 3000); // Increase delay slightly
-        } catch (error) {
-            console.error("Failed to open mailto link:", error);
-            const errorMsgKey = "contact_status_error_email";
-            showContactFormStatus(errorMsgKey, "error", { recipient: recipientEmail }); // Pass recipient if needed in translation
-        }
-    }
-
-    function showContactFormStatus(messageKey, type, replacements = {}) {
-        if (!contactFormStatus) return;
-        const message = getTranslation(messageKey, currentLang, replacements);
-        contactFormStatus.textContent = message;
-        contactFormStatus.className = `form-status ${type}`; // Ensure type class is added
-        contactFormStatus.style.display = 'block';
-
-        // Store translation key info for re-translation on language change
-        contactFormStatus.dataset.currentStatusKey = messageKey;
-        contactFormStatus.dataset.currentStatusReplacements = JSON.stringify(replacements);
-        contactFormStatus.dataset.currentStatusType = type;
-
-
-        // Optional: Auto-hide non-error messages after a while
-        if (type !== 'error') {
-             setTimeout(() => {
-                 // Check if the key is still the same before hiding
-                 if (contactFormStatus.dataset.currentStatusKey === messageKey) {
-                     contactFormStatus.style.display = 'none';
-                     // Clear stored key info when hiding
-                     delete contactFormStatus.dataset.currentStatusKey;
-                     delete contactFormStatus.dataset.currentStatusReplacements;
-                     delete contactFormStatus.dataset.currentStatusType;
-                 }
-             }, 5000);
-        }
-    }
-
-    // --- Utility Functions (Shared) ---
-    let statusClearTimer;
-    function updateStatus(messageKey, type, clearDelay = 0, isAppStatus = true, replacements = {}) {
-        const target = isAppStatus ? statusArea : landingStatusArea;
-        if(!target) return;
-
-        clearTimeout(statusClearTimer);
-
-        const message = getTranslation(messageKey, currentLang, replacements);
-
-        // Store key and replacements for potential re-translation
-        if (messageKey) {
-            target.dataset.currentStatusKey = messageKey;
-            target.dataset.currentStatusReplacements = JSON.stringify(replacements);
-            target.dataset.currentStatusType = type;
-        } else {
-            delete target.dataset.currentStatusKey;
-            delete target.dataset.currentStatusReplacements;
-            delete target.dataset.currentStatusType;
-        }
-
-        target.textContent = message; // Use the translated message
-        // Reset classes first
-        target.className = `status-area ${isAppStatus ? 'app-status' : 'landing-status'}`;
-        if (type) { target.classList.add(type); } // Add specific type class
-
-        // Show the status area if there's a message
-        target.style.display = message ? 'block' : 'none';
-
-
-        if (type !== 'error' && clearDelay > 0 && messageKey) {
-             statusClearTimer = setTimeout(()=>{
-                // Check if the key is still the same before clearing
-                if(target.dataset.currentStatusKey === messageKey) {
-                    target.textContent = '';
-                    target.className = `status-area ${isAppStatus ? 'app-status' : 'landing-status'}`; // Reset class
-                    target.style.display = 'none'; // Hide it
-                    // Clear stored key info when hiding
-                    delete target.dataset.currentStatusKey;
-                    delete target.dataset.currentStatusReplacements;
-                    delete target.dataset.currentStatusType;
-                }
-            }, clearDelay);
-        }
-        // Log errors specifically
-        if(type === 'error' && messageKey){ console.error("UI Status:", message); }
-    }
-
-    function showLandingError(message) {
-        // Since validateFile directly returns a translated string, we can't easily store a key.
-        // If validation becomes key-based, update this.
-        if (landingStatusArea) {
-             landingStatusArea.textContent = message;
-             landingStatusArea.className = 'status-area landing-status error';
-             landingStatusArea.style.display = 'block';
-             delete landingStatusArea.dataset.currentStatusKey; // Clear any previous key
-        } else {
-             console.error("Landing Error:", message);
-        }
-    }
+        }, 150);
+    });
 
 }); // End DOMContentLoaded
