@@ -347,14 +347,14 @@ label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.93
 /* --- Landing View Specifics --- */
 #mainContent { flex-grow: 1; display: flex; flex-direction: column; }
 .landing-view { padding: 4rem 1rem 0 1rem; flex-grow: 1; }
-.landing-view.hidden { display: none; } /* Ensure hidden works */
+.landing-view.hidden { display: none; }
 .landing-content { max-width: 800px; margin: 0 auto 5rem auto; width: 100%; text-align: center; }
-.logo-large-container { margin-bottom: 1.5rem; }
-.logo-large { max-height: 75px; }
+.logo-large-container { margin-bottom: 2.5rem; } /* Adjusted margin */
+.logo-large { max-height: 110px; width: auto; } /* Adjusted size */
 .landing-content h1 {
     font-size: clamp(2.5rem, 6.5vw, 4.5rem);
     font-weight: 800;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem; /* Adjusted margin */
     line-height: 1.1;
     letter-spacing: -0.03em;
     color: var(--text-heading);
@@ -366,7 +366,15 @@ label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.93
      background-clip: text;
      color: transparent;
 }
-.landing-content p.landing-subheadline { font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--text-light); margin-bottom: 3rem; max-width: 650px; line-height: 1.6; margin-left: auto; margin-right: auto;}
+.landing-content p.landing-subheadline {
+    max-width: 800px; /* Adjusted width */
+    font-size: clamp(1.1rem, 3vw, 1.5rem); /* Adjusted size */
+    color: var(--text-light);
+    margin-bottom: 3.5rem; /* Adjusted margin */
+    line-height: 1.7;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* Upload Area */
 .upload-area {
@@ -432,12 +440,12 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
     border: 1px solid transparent;
     text-align: center;
     transition: opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    min-height: 45px; /* Prevents jump when message appears */
-    display: none; /* Hidden by default */
+    min-height: 45px;
+    display: none;
     transform: translateY(10px);
 }
 .status-area:not(:empty) {
-    display: block; /* Show when JS adds content */
+    display: block;
     transform: translateY(0px);
 }
 
@@ -454,12 +462,22 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 .features-header h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-heading); }
 .features-header p { font-size: 1.15rem; color: var(--text-light); max-width: 750px; margin: 0 auto; }
 .features-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.feature-card { background-color: var(--panel-bg); border-radius: var(--border-radius-lg); padding: 2rem 1.8rem; box-shadow: var(--shadow-md); border: 1px solid var(--light-border); text-align: left; transition: var(--transition); }
+.feature-card {
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem 1.8rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--light-border);
+    text-align: center; /* Center text */
+    transition: var(--transition);
+}
 .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .feature-icon {
     font-size: 1.6rem;
     color: var(--primary-color);
-    margin-bottom: 1.2rem;
+    margin-left: auto; /* Center icon */
+    margin-right: auto;
+    margin-bottom: 1.5rem; /* Adjusted margin */
     background: var(--primary-light);
     width: 54px; height: 54px;
     border-radius: 14px;
@@ -491,7 +509,7 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 /* ===== CTA Section ===== */
 .cta-section {
     margin: 5rem auto;
-    padding: 4rem 1.5rem;
+    padding: 3.5rem 1.5rem; /* Adjusted padding */
     max-width: 1100px;
     background: var(--gradient-cta);
     color: var(--white);
@@ -499,8 +517,23 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
     border-radius: var(--border-radius-xl);
     box-shadow: var(--shadow-lg);
 }
-.cta-section h2 { font-size: 2.4rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 0 1px 2px rgba(0,0,0,0.15); }
-.cta-section p { font-size: 1.2rem; margin-bottom: 0; max-width: 650px; margin-left: auto; margin-right: auto; opacity: 0.9; }
+/* H2 removed */
+.cta-section p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    max-width: 700px; /* Adjusted width */
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95; /* Make slightly less transparent */
+}
+.cta-section p .highlight-no-reg {
+    font-weight: 700;
+    /* Optional subtle background highlight */
+    /* background: rgba(255, 255, 255, 0.15); */
+    /* padding: 0.1em 0.4em; */
+    /* border-radius: 4px; */
+}
 
 
 /* --- App View (Converter Tool) --- */
@@ -672,41 +705,49 @@ html[dir="rtl"] .legal-content ul { padding-left: 0; padding-right: 1.5rem; }
 
 /* ===== Site Footer ===== */
 .site-footer {
-    padding: 4rem 1.5rem 2rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem; /* Adjusted padding */
     background-color: var(--white);
     border-top: 1px solid var(--light-border);
     margin-top: auto;
     color: var(--text-light);
 }
-.footer-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 2rem 3rem;
+.footer-nav { /* New style for the nav element */
     max-width: 1200px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 1.5rem auto; /* Space below links */
+    padding: 0;
 }
-.footer-about { max-width: 400px; }
-.footer-brand { font-size: 1.3rem; font-weight: 700; color: var(--text-heading); margin-bottom: 0.8rem; }
-.footer-description { font-size: 0.95rem; line-height: 1.7; }
-.footer-links { display: contents; }
-.link-group { }
-.footer-heading { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-heading); margin-bottom: 1rem; }
-.link-group ul { list-style: none; padding: 0; }
-.link-group li { margin-bottom: 0.6rem; }
-.link-group a { font-size: 0.95rem; color: var(--text-light); text-decoration: none; transition: color 0.2s ease; }
-.link-group a:hover { color: var(--primary-color); text-decoration: underline; }
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center; /* Center links */
+    gap: 1rem 2rem; /* Spacing between links */
+}
+.footer-nav li {
+    margin: 0;
+}
+.footer-nav a {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.footer-nav a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
 .footer-copyright {
-    max-width: 1200px; margin: 0 auto;
-    margin-top: 3rem; padding-top: 1.5rem;
+    max-width: 1200px;
+    margin: 1.5rem auto 0 auto; /* Adjusted top margin */
+    padding-top: 1.5rem;
     border-top: 1px solid var(--light-border);
     font-size: 0.875rem;
     text-align: center;
     color: var(--secondary-color);
 }
-.footer-copyright .powered-by { margin-left: 0.5rem; }
-html[dir="rtl"] .footer-copyright .powered-by { margin-left: 0; margin-right: 0.5rem; }
-.footer-copyright a { color: var(--secondary-color); text-decoration: none; }
-.footer-copyright a:hover { color: var(--primary-color); text-decoration: underline;}
+/* Removed styles for .footer-about, .footer-links, .link-group, etc. */
 
 
 /* --- Responsive --- */
@@ -721,10 +762,7 @@ html[dir="rtl"] .footer-copyright .powered-by { margin-left: 0; margin-right: 0.
         margin-top: 2rem;
     }
     .result-panel { order: 1; min-height: 450px; }
-    .footer-content { grid-template-columns: 1fr; text-align: center; }
-    .footer-about { margin: 0 auto; max-width: 500px; }
-    .footer-links { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
-    .link-group { min-width: 150px; }
+    /* Footer nav already flex wraps */
 }
 
 @media (max-width: 768px) {
@@ -733,8 +771,9 @@ html[dir="rtl"] .footer-copyright .powered-by { margin-left: 0; margin-right: 0.
     section:last-of-type { margin-bottom: 3rem; }
     .main-content-padding { padding: 2rem 1rem 4rem 1rem; }
     .landing-view { padding-top: 2rem; }
+     .logo-large { max-height: 90px; } /* Adjust mobile logo size */
     .landing-content h1 { font-size: clamp(2rem, 7vw, 2.8rem); }
-    .landing-content p.landing-subheadline { font-size: clamp(1rem, 3vw, 1.2rem); }
+    .landing-content p.landing-subheadline { font-size: clamp(1rem, 3vw, 1.2rem); max-width: 95%; } /* Allow wider spread */
     .features-section, .preset-examples-section, .cta-section { margin-top: 3rem; margin-bottom: 3rem; padding-top: 3rem; padding-bottom: 3rem; }
     .features-header h2, .preset-examples-section h2, .cta-section h2 { font-size: 1.8rem; }
     .features-header p, .preset-examples-section p, .cta-section p { font-size: 1.05rem; }
@@ -745,7 +784,7 @@ html[dir="rtl"] .footer-copyright .powered-by { margin-left: 0; margin-right: 0.
     .options-panel, .result-panel, .contact-form-container, .legal-content { padding: 1.5rem; }
     .preview-comparison-container { grid-template-columns: 1fr; min-height: 300px; }
     .preview-pane { padding: 0.5rem; }
-    .footer-links { justify-content: center; gap: 1.5rem 2.5rem; }
+    .footer-nav ul { gap: 0.8rem 1.5rem; }
     .contact-form-container { padding: 2rem 1.2rem; }
     .legal-content h1 { font-size: 1.8rem; }
     .common-issues-section { padding-top: 0; margin-top: 3rem; }
@@ -760,14 +799,36 @@ html[dir="rtl"] .footer-copyright .powered-by { margin-left: 0; margin-right: 0.
     #appLogo { max-height: 32px; }
     .language-selector { position: static; }
     .language-dropdown { left: 0; right: auto; width: 100%; border-radius: 0 0 var(--border-radius) var(--border-radius); box-shadow: var(--shadow-md); }
+     .logo-large { max-height: 75px; } /* Smaller again */
     .button { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
-    .button-cta { padding: 0.8rem 1.8rem; }
+    .cta-section { padding: 3rem 1rem; }
+    .cta-section p { font-size: 1.15rem; }
     .result-controls { flex-direction: column; align-items: stretch; gap: 0.8rem;}
     .result-controls .button { width: 100%; }
     .options-header { gap: 0.5rem; }
     .options-header h2 { flex-basis: 100%; margin-bottom: 0.5rem; font-size: 1.2rem; }
     .options-header-buttons { margin-left: 0; width: 100%; justify-content: flex-end; }
-    .button-tertiary .btn-text { display: inline; } /* Show text on smallest screen buttons */
-    .button-tertiary i { display: none; } /* Hide icon again */
-
+    .button-tertiary .btn-text { display: inline; }
+    .button-tertiary i { display: none; }
+     .footer-nav ul { flex-direction: column; gap: 0.8rem; align-items: center; } /* Stack footer links */
 }
+
+/* RTL adjustments */
+html[dir="rtl"] body { direction: rtl; }
+html[dir="rtl"] .header-logo-link { margin-right: 0; margin-left: auto; }
+html[dir="rtl"] .language-selector { margin-left: 0; margin-right: 1rem; }
+html[dir="rtl"] .language-dropdown { right: auto; left: 0; transform-origin: top left; }
+html[dir="rtl"] .language-dropdown a { text-align: right; }
+html[dir="rtl"] .header-button { margin-left: 0; margin-right: 1rem; }
+html[dir="rtl"] select { background-position: left 1rem center; padding-left: 2.5rem; padding-right: 1rem; }
+html[dir="rtl"] .input-combo { flex-direction: row-reverse; }
+html[dir="rtl"] .input-combo .unit { text-align: right; margin-left: 0; margin-right: 0.75rem;}
+html[dir="rtl"] .options-header-buttons { margin-left: 0; margin-right: auto; }
+html[dir="rtl"] .footer-copyright .powered-by { margin-left: 0; margin-right: 0.5rem; }
+html[dir="rtl"] .legal-content ul { padding-left: 0; padding-right: 1.5rem; }
+html[dir="rtl"] .common-issues-section ul { text-align: right; }
+html[dir="rtl"] .common-issues-section li strong { text-align: right; }
+html[dir="rtl"] .common-issues-section li span:not(em) { text-align: right; }
+html[dir="rtl"] .common-issues-section li em { text-align: right;}
+html[dir="rtl"] .contact-form-container { text-align: right;}
+html[dir="rtl"] label { text-align: right;}

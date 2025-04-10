@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css"> <!-- Link the updated CSS -->
+    <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,7 @@
             <section class="contact-section">
                 <h1 data-translate="contact_h1">Contact Us</h1>
                 <div class="contact-form-container">
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate> {/* Added novalidate to rely on JS validation */}
                         <div class="form-group">
                             <label for="contactName" data-translate="contact_name_label">Name</label>
                             <input type="text" id="contactName" name="name" class="form-input" data-translate-placeholder="contact_name_placeholder" placeholder="Your name" required>
@@ -79,7 +79,7 @@
                             <label for="contactMessage" data-translate="contact_message_label">Message</label>
                             <textarea id="contactMessage" name="message" class="form-textarea" rows="6" data-translate-placeholder="contact_message_placeholder" placeholder="Your message" required></textarea>
                         </div>
-                        <div id="contactFormStatus" class="form-status" style="display: none;"></div> <!-- Status Messages Here, initially hidden -->
+                        <div id="contactFormStatus" class="form-status" style="display: none;"></div>
                         <button type="submit" class="button form-submit-btn" data-translate="contact_send_btn">Send Message</button>
                     </form>
                 </div>
@@ -123,37 +123,26 @@
 
         </main>
 
-        <!-- ===== Site Footer ===== -->
+        <!-- ===== Site Footer ====== -->
         <footer class="site-footer">
-            <div class="footer-content">
-                 <div class="footer-about">
-                    <h3 class="footer-brand">Vectorise.Me</h3>
-                    <p class="footer-description" data-translate="footer_description">Free online tool to convert raster images to scalable vector graphics (SVG).</p>
-                 </div>
-                 <div class="footer-links">
-                    <div class="link-group">
-                        <h4 class="footer-heading" data-translate="footer_links_heading">Links</h4>
-                        <ul>
-                            <li><a href="/" data-translate="footer_home_link">Home</a></li>
-                            <li><a href="contact.html" data-translate="footer_contact_link">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="link-group">
-                        <h4 class="footer-heading" data-translate="footer_legal_heading">Legal</h4>
-                        <ul>
-                            <li><a href="privacy.html" data-translate="footer_privacy_link">Privacy Policy</a></li>
-                            <li><a href="cookies.html" data-translate="footer_cookies_link">Cookie Policy</a></li>
-                            <li><a href="terms.html" data-translate="footer_terms_link">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                 </div>
-             </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="/" data-translate="footer_home_link">Home</a></li>
+                    <li><a href="contact.html" data-translate="footer_contact_link">Contact</a></li>
+                    <li><a href="privacy.html" data-translate="footer_privacy_link">Privacy Policy</a></li>
+                    <li><a href="cookies.html" data-translate="footer_cookies_link">Cookie Policy</a></li>
+                    <li><a href="terms.html" data-translate="footer_terms_link">Terms of Service</a></li>
+                    <!-- Add links to new pages here if desired
+                    <li><a href="page1.html" data-translate="footer_page1_link">Page 1</a></li>
+                     -->
+                </ul>
+            </nav>
             <div class="footer-copyright">
                 <span data-translate="footer_copyright">© 2025 JonkaryStudio. All rights reserved.</span>
-                <span class="powered-by"><span data-translate="footer_powered_by">Powered by</span> <a href="https://github.com/visioncortex/vtracer" target="_blank" rel="noopener noreferrer">vtracer</a></span>
             </div>
         </footer>
+
     </div> <!-- End page-container -->
-    <script src="script.js"></script> <!-- Link the updated JS -->
+    <script src="script.js"></script>
 </body>
 </html>
