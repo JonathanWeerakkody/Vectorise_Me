@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="meta_title_main_short">Free Image to SVG Converter</title> {/* CHANGED */}
+    <title data-translate="meta_title_main_short">Free Image to SVG Converter</title>
     <meta name="description" data-translate="meta_description_main" content="Free online tool to convert raster images (JPG, PNG, WEBP) to scalable vector graphics (SVG) with real-time customization and presets.">
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
@@ -63,11 +63,11 @@
         <main id="mainContent">
             <section id="landingView" class="view landing-view">
                  <div class="landing-content">
-                     <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div> {/* Logo container */}
+                     <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
                      <h1>
-                         <span class="highlight-free" data-translate="landing_h1_free">Only FREE</span> <span data-translate="landing_h1_and">and</span> <span data-translate="landing_h1_customizable">CUSTOMIZABLE Vectorizer</span> {/* Updated structure slightly */}
+                         <span class="highlight-free" data-translate="landing_h1_free">Only FREE</span> <span data-translate="landing_h1_and">and</span> <span data-translate="landing_h1_customizable">CUSTOMIZABLE Vectorizer</span>
                      </h1>
-                     <p class="landing-subheadline" data-translate="landing_subheadline_detailed">Instantly convert JPG, PNG, WEBP images into crisp, infinitely scalable SVG vectors. Features advanced tracing options and helpful presets for precise results.</p> {/* Slightly rephrased */}
+                     <p class="landing-subheadline" data-translate="landing_subheadline_detailed">Instantly convert JPG, PNG, WEBP images into crisp, infinitely scalable SVG vectors. Features advanced tracing options and helpful presets for precise results.</p>
                      <div id="uploadArea" class="upload-area">
                          <div id="dropZone" class="drop-zone">
                              <div class="drop-zone-content">
@@ -91,17 +91,17 @@
                         <p data-translate="features_p">Everything you need for perfect SVGs. Our powerful conversion tool gives you complete control over your vector graphics.</p>
                      </div>
                      <div class="features-grid">
-                        <div class="feature-card"> {/* Text centered via CSS */}
+                        <div class="feature-card">
                             <div class="feature-icon"><i class="fas fa-bolt-lightning"></i></div>
                             <h3 data-translate="feature_instant_h3">Instant Conversion</h3>
                             <p data-translate="feature_instant_p">Upload your image and get an SVG preview instantly. No waiting, no processing delays.</p>
                         </div>
-                        <div class="feature-card"> {/* Text centered via CSS */}
+                        <div class="feature-card">
                             <div class="feature-icon"><i class="fas fa-sliders"></i></div>
                             <h3 data-translate="feature_realtime_h3">Real-time Customization</h3>
                             <p data-translate="feature_realtime_p">Adjust settings and see changes in real-time. Tweak your SVG to perfection.</p>
                         </div>
-                        <div class="feature-card"> {/* Text centered via CSS */}
+                        <div class="feature-card">
                              <div class="feature-icon"><i class="fas fa-gem"></i></div>
                             <h3 data-translate="feature_quality_h3">High-Quality Results</h3>
                             <p data-translate="feature_quality_p">Get clean, optimized SVGs that scale perfectly for any use case.</p>
@@ -142,15 +142,13 @@
 
                  <!-- ===== CTA Section ===== -->
                  <section class="cta-section">
-                     <!-- H2 Removed -->
-                     <p data-translate="cta_p_revised">Get started instantly – <span class="highlight-no-reg">no sign-up needed</span>. Just upload and vectorize!</p> {/* CHANGED Text */}
+                     <p data-translate="cta_p_revised">Get started instantly – <span class="highlight-no-reg">no sign-up needed</span>. Just upload and vectorize!</p>
                  </section>
 
             </section> <!-- End #landingView -->
 
             <!-- ===== App / Conversion View ===== -->
             <section id="appView" class="view app-view hidden">
-                 {/* App View Content remains the same */}
                  <div class="processing-layout">
                     <aside class="options-panel">
                         <div class="options-header">
@@ -208,23 +206,23 @@
                             <fieldset class="options-fieldset">
                                 <legend data-translate="options_legend_geo">Geometry & Path Fitting</legend>
                                 <div class="option-group slider-group" id="groupCornerThreshold">
-                                    <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Thr.:</label>
+                                    <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Threshold:</label> <!-- Spelled out "Threshold" -->
                                     <div class="input-combo"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><input type="number" id="optCornerThresholdNum" class="input-number short" value="60" min="0" max="180" step="1"><span class="unit">°</span></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupPathPrecision">
                                     <label for="optPathPrecision" data-translate="path_prec_label">Path Precision:</label>
-                                    <div class="input-combo"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1"><span class="unit" data-translate="unit_dec">dec</span></div>
+                                    <div class="input-combo"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1"><span class="unit" data-translate="unit_dec">decimals</span></div> <!-- Spelled out unit placeholder key -->
                                 </div>
                                 <div class="option-group slider-group" id="groupSplineThreshold">
-                                    <label for="optSplineThreshold" data-translate="spline_thr_label">Spline Thr.:</label>
+                                    <label for="optSplineThreshold" data-translate="spline_thr_label">Spline Threshold:</label> <!-- Spelled out "Threshold" -->
                                     <div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01"></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSpliceThreshold">
-                                     <label for="optSpliceThreshold" data-translate="splice_thr_label">Splice Thr.:</label>
+                                     <label for="optSpliceThreshold" data-translate="splice_thr_label">Splice Threshold:</label> <!-- Spelled out "Threshold" -->
                                      <div class="input-combo"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><input type="number" id="optSpliceThresholdNum" class="input-number short" value="45" min="0" max="180" step="1"><span class="unit">°</span></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSegmentLength">
-                                     <label for="optSegmentLength" data-translate="segment_len_label">Segment Len.:</label>
+                                     <label for="optSegmentLength" data-translate="segment_len_label">Segment Length:</label> <!-- Spelled out "Length" -->
                                      <div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div>
                                 </div>
                              </fieldset>
@@ -244,7 +242,7 @@
                                  <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
                              </fieldset>
                         </form>
-                        <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn" disabled>Update Vectorization</button> {/* Start disabled */}
+                        <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn" disabled>Update Vectorization</button>
                     </aside>
                     <section class="result-panel">
                          <div class="result-header">
@@ -269,7 +267,7 @@
                                      <div class="image-wrapper" id="vectorImageWrapper">
                                          <div id="svgOutputWrapper" class="svg-output-wrapper">
                                              <div id="svgOutput" class="svg-output">
-                                                 <p class="placeholder-text" data-translate="preview_placeholder_select">SVG result will appear here</p> {/* Updated initial text */}
+                                                 <p class="placeholder-text" data-translate="preview_placeholder_select">SVG result will appear here</p>
                                              </div>
                                          </div>
                                      </div>
@@ -286,8 +284,7 @@
 
         <!-- ===== Site Footer ====== -->
         <footer class="site-footer">
-            {/* REMOVED footer-about and simplified structure */}
-            <nav class="footer-nav"> {/* Use nav for semantics */}
+            <nav class="footer-nav">
                 <ul>
                     <li><a href="/" data-translate="footer_home_link">Home</a></li>
                     <li><a href="contact.html" data-translate="footer_contact_link">Contact</a></li>
@@ -298,7 +295,6 @@
             </nav>
             <div class="footer-copyright">
                 <span data-translate="footer_copyright">© 2025 JonkaryStudio. All rights reserved.</span>
-                {/* REMOVED powered-by span */}
             </div>
         </footer>
 

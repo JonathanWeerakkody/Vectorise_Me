@@ -62,7 +62,7 @@
             <section class="contact-section">
                 <h1 data-translate="contact_h1">Contact Us</h1>
                 <div class="contact-form-container">
-                    <form id="contactForm" novalidate> {/* Added novalidate to rely on JS validation */}
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="contactName" data-translate="contact_name_label">Name</label>
                             <input type="text" id="contactName" name="name" class="form-input" data-translate-placeholder="contact_name_placeholder" placeholder="Your name" required>
@@ -80,7 +80,7 @@
                             <textarea id="contactMessage" name="message" class="form-textarea" rows="6" data-translate-placeholder="contact_message_placeholder" placeholder="Your message" required></textarea>
                         </div>
                         <div id="contactFormStatus" class="form-status" style="display: none;"></div>
-                        <button type="submit" class="button form-submit-btn" data-translate="contact_send_btn">Send Message</button>
+                        <button type="submit" class="button form-submit-btn button-primary" data-translate="contact_send_btn">Send Message</button> <!-- Added button-primary for consistency -->
                     </form>
                 </div>
             </section>
@@ -132,9 +132,6 @@
                     <li><a href="privacy.html" data-translate="footer_privacy_link">Privacy Policy</a></li>
                     <li><a href="cookies.html" data-translate="footer_cookies_link">Cookie Policy</a></li>
                     <li><a href="terms.html" data-translate="footer_terms_link">Terms of Service</a></li>
-                    <!-- Add links to new pages here if desired
-                    <li><a href="page1.html" data-translate="footer_page1_link">Page 1</a></li>
-                     -->
                 </ul>
             </nav>
             <div class="footer-copyright">
