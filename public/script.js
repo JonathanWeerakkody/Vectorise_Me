@@ -78,12 +78,12 @@ const translations = {
         mode_polygon: "Polygon",
         mode_pixel: "Pixel",
         options_legend_geo: "Geometry & Path Fitting",
-        corner_thr_label: "Corner Threshold:", // Matched HTML label text
-        path_prec_label: "Path Precision:", // Matched HTML label text
-        unit_dec: "decimals", // Changed key to match HTML data-translate="unit_dec"
-        spline_thr_label: "Spline Threshold:", // Matched HTML label text
-        splice_thr_label: "Splice Threshold:", // Matched HTML label text
-        segment_len_label: "Segment Length:", // Matched HTML label text
+        corner_thr_label: "Corner Threshold:",
+        path_prec_label: "Path Precision:",
+        unit_dec: "decimals",
+        spline_thr_label: "Spline Threshold:",
+        splice_thr_label: "Splice Threshold:",
+        segment_len_label: "Segment Length:",
         options_legend_color_proc: "Color Processing Options",
         layering_label: "Layering:",
         layering_stacked: "Stacked",
@@ -132,9 +132,9 @@ const translations = {
         faq_q_quality_desc: "The converted SVG doesn't match the original image quality.",
         faq_solution_label: "Solution:",
         faq_a_quality: "Adjust the settings in the vectorization process. Increasing 'Color Detail' (palette size), adjusting 'Spline Threshold' (lower for more detail), or reducing 'Filter Speckle' can help. For pixel art, ensure the 'Pixel' mode is selected. Experiment with different presets.",
-        faq_q_upload_failed: "Image Failed to Covert:", // Changed key name for clarity
-        faq_q_upload_failed_desc: "The uploaded image failed to convert.", // Changed key name for clarity
-        faq_a_upload_failed: "Check for image compatibility. Vectorise.Me only handles JPG, PNG and BMP. If you have images of different formats, convert them first before uploading them.", // Changed key name and updated content
+        faq_q_upload_failed: "Image Failed to Convert:", // Corrected key
+        faq_q_upload_failed_desc: "The uploaded image failed to convert.", // Corrected key
+        faq_a_upload_failed: "Check for image compatibility. Vectorise.Me only handles JPG, PNG and BMP. If you have images of different formats, convert them first before uploading them.", // Corrected key
         faq_q_performance: "Performance Issues:",
         faq_q_performance_desc: "The conversion process is slow or unresponsive, or the resulting SVG is very large.",
         faq_a_performance: "Try reducing the image size or complexity before uploading. Large or highly detailed images take longer to process and generate larger SVGs. Lowering 'Color Detail' or increasing 'Filter Speckle' can also simplify the output and improve performance.",
@@ -149,13 +149,13 @@ const translations = {
         faq_a_colors: "Ensure 'Color Mode' is set to 'Color'. Increase the 'Color Detail' setting (higher bit precision). Check if the 'Gradient Step' is appropriate; a very high value might reduce subtle color transitions.",
         faq_q_transparency: "Transparency Not Preserved:",
         faq_q_transparency_desc: "Background transparency from PNGs is lost.",
-        faq_a_transparency: "Vectorise.Me generally handles transparency well, especially with 'Stacked' layering. Ensure your original PNG has actual transparency. If using 'Cutout' layering, transparency might behave differently. The underlying process might sometimes quantize near-transparent colors to opaque ones depending on settings.", // Updated to use Vectorise.Me
+        faq_a_transparency: "Vectorise.Me generally handles transparency well, especially with 'Stacked' layering. Ensure your original PNG has actual transparency. If using 'Cutout' layering, transparency might behave differently. The underlying process might sometimes quantize near-transparent colors to opaque ones depending on settings.",
         faq_q_browser: "Browser Rendering Differences:",
         faq_q_browser_desc: "The SVG looks slightly different in various web browsers.",
         faq_a_browser: "This is inherent to SVG rendering engines. Ensure your SVG is well-formed. Avoid overly complex CSS or filters within the SVG if compatibility is critical. Test in major browsers.",
         // Legal Pages Shared
         legal_last_updated: "Last Updated:",
-        legal_date_placeholder: "04/10/2025", // Matched HTML exactly
+        legal_date_placeholder: "04/10/2025",
         // Privacy Page Specific
         privacy_h1: "Privacy Policy",
         privacy_intro_1: 'Welcome to Vectorise.Me (the "Service"), operated by JonkaryStudio ("us", "we", or "our"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.',
@@ -168,11 +168,11 @@ const translations = {
         privacy_personal_li_name: "Name",
         privacy_personal_p2: "We may also collect Usage Data as described below.",
         privacy_h4_image: "Image Data",
-        privacy_image_p1: "When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you.", // Matched HTML first sentence
-        privacy_image_policy_actual: "Uploaded images and generated SVGs are not stored on our servers after processing and download link generation.", // Added key for second sentence
+        privacy_image_p1: "When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you.",
+        privacy_image_policy_actual: "Uploaded images and generated SVGs are not stored on our servers after processing and download link generation.",
         privacy_h4_usage: "Usage Data",
-        privacy_usage_p1: 'We may collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include your computer\'s IP address, browser type, browser version, the pages visited, time and date of visit, time spent on pages, unique device identifiers, and other diagnostic data.', // Matched HTML first sentence
-        privacy_usage_analytics_info: "We do use Google Analytics to help us analyze and improve the performance and user experience of our Service.", // Added key for second sentence
+        privacy_usage_p1: 'We may collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include your computer\'s IP address, browser type, browser version, the pages visited, time and date of visit, time spent on pages, unique device identifiers, and other diagnostic data.',
+        privacy_usage_analytics_info: "We do use Google Analytics to help us analyze and improve the performance and user experience of our Service.",
         privacy_h2_use: "Use of Data",
         privacy_use_p1: "JonkaryStudio uses the collected data for purposes such as:",
         privacy_use_li_provide: "Providing and maintaining the Service.",
@@ -185,25 +185,25 @@ const translations = {
         privacy_transfer_p1: "Your information, including image data during processing, may be processed on servers located outside of your jurisdiction where data protection laws may differ. Your consent to this Privacy Policy followed by your use of the Service represents your agreement to that transfer.",
         privacy_transfer_p2: "We take reasonable steps to ensure data is treated securely.",
         privacy_h2_disclosure: "Disclosure Of Data",
-        privacy_disclosure_actual: "We may disclose your Usage Data under limited circumstances, such as to comply with legal obligations, protect our rights or those of others, prevent wrongdoing, or in the event of a business transfer (e.g., merger or acquisition).", // Added key for first sentence
-        privacy_disclosure_p1: "We do not sell your Personal Data.", // Matched HTML second sentence
+        privacy_disclosure_actual: "We may disclose your Usage Data under limited circumstances, such as to comply with legal obligations, protect our rights or those of others, prevent wrongdoing, or in the event of a business transfer (e.g., merger or acquisition).",
+        privacy_disclosure_p1: "We do not sell your Personal Data.",
         privacy_h2_security: "Security of Data",
         privacy_security_p1: "The security of your data is important. While we strive to use commercially acceptable means (like HTTPS) to protect data, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.",
         privacy_h2_providers: "Service Providers",
-        privacy_providers_actual: "We may employ third-party service providers to facilitate the operation of our Service. These providers include Render.com for hosting services and Google Analytics for analytics, as mentioned earlier. These third parties have access to your Usage Data only to perform these specific tasks on our behalf and are obligated to protect your information in accordance with applicable standards.", // Added key for the paragraph
+        privacy_providers_actual: "We may employ third-party service providers to facilitate the operation of our Service. These providers include Render.com for hosting services and Google Analytics for analytics, as mentioned earlier. These third parties have access to your Usage Data only to perform these specific tasks on our behalf and are obligated to protect your information in accordance with applicable standards.",
         privacy_h2_links: "Links to Other Sites",
         privacy_links_p1: "Our Service may contain links to other sites. We have no control over and assume no responsibility for the content or practices of any third-party sites.",
         privacy_h2_children: "Children's Privacy",
-        privacy_children_p1: "Our Service does not knowingly collect personally identifiable information from children under the age of", // Matched HTML first part
-        privacy_children_age_actual: "13.", // Added key for age
-        privacy_children_p2_added: "If we become aware that we have inadvertently collected such information, we will take steps to delete it as soon as possible. We encourage parents and guardians to contact us if they believe their child may have provided us with personal information.", // Added key for rest of paragraph
+        privacy_children_p1: "Our Service does not knowingly collect personally identifiable information from children under the age of",
+        privacy_children_age_actual: "13.",
+        privacy_children_p2_added: "If we become aware that we have inadvertently collected such information, we will take steps to delete it as soon as possible. We encourage parents and guardians to contact us if they believe their child may have provided us with personal information.",
         privacy_h2_changes: "Changes to This Privacy Policy",
         privacy_changes_p1: 'We may update this policy. We will notify you by posting the new policy on this page and updating the "Last Updated" date.',
         privacy_h2_contact: "Contact Us",
         privacy_contact_p1: "If you have questions, contact us:",
         privacy_contact_li_email: "By email: jonkarystudio@gmail.com",
-        privacy_contact_li_web: "Via our website:",
-        privacy_contact_page_link: "Contact Page",
+        privacy_contact_li_web_label: "Via our website:", // Renamed key for the label part
+        privacy_contact_page_link: "Contact Page", // Key for the link text itself
         // Cookies Page Specific
         cookies_h1: "Cookie Policy",
         cookies_intro_1: 'This Cookie Policy explains how JonkaryStudio ("us", "we", or "our") uses cookies and similar tracking technologies on the Vectorise.Me website (the "Service"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.',
@@ -212,13 +212,13 @@ const translations = {
         cookies_what_p2: 'Cookies set by the website owner (in this case, JonkaryStudio) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies". Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognise your computer both when it visits the website in question and also when it visits certain other websites.',
         cookies_h2_why: "Why Do We Use Cookies?",
         cookies_why_p1: 'We use first-party and possibly third-party cookies for several reasons. Some cookies are required for technical reasons for our Service to operate, and we refer to these as "essential" or "strictly necessary" cookies.',
-        cookies_why_p2: "[Be specific about your usage. Modify/Remove sections as needed]:", // Matched the label in HTML
-        cookies_why_li_essential: "Essential Cookies:", // Matched HTML list item strong tag
-        cookies_why_li_essential_desc: "These are necessary to provide you with services available through our Service and to enable you to use some of its features, such as managing your session during the conversion process (if applicable) or securing the site. Render.com, our hosting provider, may use essential session cookies to ensure proper functionality.", // Added key for list item description
-        cookies_why_li_analytics: "Analytics and Customization Cookies:", // Matched HTML list item strong tag
-        cookies_why_li_analytics_desc: "These cookies collect information that is used either in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you. We use Google Analytics, which may set cookies such as `_ga` and `_gid` to track usage patterns and improve your experience.", // Added key for list item description
-        cookies_why_li_advertising: "Advertising Cookies:", // Matched HTML list item strong tag
-        cookies_why_li_advertising_desc: "These cookies are used to make advertising messages more relevant to you. They may be set by third-party advertising partners to track your browsing habits and deliver personalized ads based on your interests.", // Added key for list item description
+        cookies_why_p2: "[Be specific about your usage. Modify/Remove sections as needed]:",
+        cookies_why_li_essential: "Essential Cookies:",
+        cookies_why_li_essential_desc: "These are necessary to provide you with services available through our Service and to enable you to use some of its features, such as managing your session during the conversion process (if applicable) or securing the site. Render.com, our hosting provider, may use essential session cookies to ensure proper functionality.",
+        cookies_why_li_analytics: "Analytics and Customization Cookies:",
+        cookies_why_li_analytics_desc: "These cookies collect information that is used either in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you. We use Google Analytics, which may set cookies such as `_ga` and `_gid` to track usage patterns and improve your experience.",
+        cookies_why_li_advertising: "Advertising Cookies:",
+        cookies_why_li_advertising_desc: "These cookies are used to make advertising messages more relevant to you. They may be set by third-party advertising partners to track your browsing habits and deliver personalized ads based on your interests.",
         cookies_h2_control: "How Can I Control Cookies?",
         cookies_control_p1: "You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by setting or amending your web browser controls.",
         cookies_control_p2: "Most browsers allow you to:",
@@ -239,8 +239,8 @@ const translations = {
         cookies_h2_contact: "Contact Us",
         cookies_contact_p1: "If you have any questions about our use of cookies or other technologies, please contact us:",
         cookies_contact_li_email: "By email: jonkarystudio@gmail.com",
-        cookies_contact_li_web: "Via our website:",
-        cookies_contact_page_link: "Contact Page",
+        cookies_contact_li_web_label: "Via our website:", // Renamed key for the label part
+        cookies_contact_page_link: "Contact Page", // Key for the link text itself
         // Terms Page Specific
         terms_h1: "Terms of Service",
         terms_intro_1: 'Please read these Terms of Service ("Terms") carefully before using the Vectorise.Me website (the "Service") operated by JonkaryStudio ("us", "we", or "our").',
@@ -268,14 +268,14 @@ const translations = {
         terms_h2_modifications: "Modifications to Service and Terms",
         terms_modifications_p1: "JonkaryStudio may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service. We may also modify or discontinue the Service at any time.",
         terms_h2_governing: "Governing Law",
-        terms_governing_p1: "These terms and conditions are governed by and construed in accordance with the laws of", // Matched HTML first part
-        terms_governing_jurisdiction_actual: "the State of Conneticut, USA", // Added key for jurisdiction
-        terms_governing_p2: "and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.", // Added key for rest of sentence
+        terms_governing_p1: "These terms and conditions are governed by and construed in accordance with the laws of",
+        terms_governing_jurisdiction_actual: "the State of Conneticut, USA",
+        terms_governing_p2: "and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.",
         terms_h2_contact: "Contact Us",
         terms_contact_p1: "If you have any questions about these Terms, please contact us:",
         terms_contact_li_email: "By email: jonkarystudio@gmail.com",
-        terms_contact_li_web: "Via our website:",
-        terms_contact_page_link: "Contact Page",
+        terms_contact_li_web_label: "Via our website:", // Renamed key for the label part
+        terms_contact_page_link: "Contact Page", // Key for the link text itself
         // Dynamic Status Messages (Used by JS)
         status_uploading: "Uploading...",
         status_vectorizing: "Vectorizing...",
@@ -302,7 +302,7 @@ const translations = {
         status_error_obj_url: "Error creating object URL: {errorMessage}",
         status_error_conversion_failed: "Conversion Failed: {errorMessage}",
         status_error_no_svg: "No SVG data received from server.",
-        // Presets (Used by JS for status messages and preset dropdown population)
+        // Presets (Used by JS for status messages)
         preset_name_general: "General / Balanced",
         preset_name_pixel: "Pixel Art",
         preset_name_technical: "Technical Drawing / Blueprint",
