@@ -1,0 +1,13 @@
+# robots.txt for Vectorise.Me
+
+User-agent: * # Apply rules to all crawlers
+
+# Disallow crawling of the backend API endpoint and temporary file uploads
+Disallow: /convert
+Disallow: /uploads/
+
+# Allow crawling of everything else (implicitly allowed, but explicit Allow can be added if needed)
+# Allow: /
+
+# Point crawlers to the sitemap for a list of important pages
+Sitemap: https://your-vectorise-me-domain.com/sitemap.xml
