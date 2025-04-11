@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Ensure Title is SEO friendly -->
+    <!-- SEO Title -->
     <title data-translate="meta_title_main_seo">Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)</title>
-    <!-- Ensure Meta Description is SEO friendly -->
+    <!-- SEO Meta Description -->
     <meta name="description" data-translate="meta_description_main_seo" content="Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.">
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
@@ -27,7 +27,6 @@
         <header class="app-header site-header">
              <div class="header-content">
                  <a href="/" class="header-logo-link">
-                     <!-- Add descriptive alt text -->
                      <img src="/assets/images/logo.png" alt="Vectorise.Me Logo - Free Image to SVG Converter" id="appLogo">
                  </a>
                  <!-- Language Selector -->
@@ -68,11 +67,9 @@
             <section id="landingView" class="view landing-view">
                  <div class="landing-content">
                      <div class="logo-large-container"><img src="/assets/images/logo.png" alt="Vectorise.Me Large Logo" class="logo-large"></div>
-                     <!-- Consider SEO optimized H1 -->
                      <h1>
                          <span class="highlight-free" data-translate="landing_h1_free">Only FREE</span> <span data-translate="landing_h1_and">and</span> <span data-translate="landing_h1_customizable">CUSTOMIZABLE Vectorizer</span>
                      </h1>
-                     <!-- Expand this text for SEO -->
                      <p class="landing-subheadline" data-translate="landing_subheadline_detailed">Instantly convert raster images (JPG, PNG, BMP) into crisp, infinitely scalable SVG vectors online for free. Features advanced tracing options with helpful presets for precise results.</p>
                      <div id="uploadArea" class="upload-area">
                          <div id="dropZone" class="drop-zone">
@@ -88,14 +85,12 @@
                      </div>
                      <div id="landingStatusArea" class="status-area landing-status"></div>
                      <button id="startConversionBtn" class="button button-primary start-button hidden" data-translate="vectorize_image_btn">Vectorize Image</button>
-                     <!-- Add more descriptive text here about SVG benefits, etc. -->
                  </div>
 
 
                  <!-- ===== Features Section ===== -->
                  <section class="features-section">
                      <div class="features-header">
-                        <!-- Consider SEO H2 -->
                         <h2 data-translate="features_h2_seo">Key SVG Converter Features</h2>
                         <p data-translate="features_p">Everything you need for perfect SVGs. Our powerful conversion tool gives you complete control over your vector graphics.</p>
                      </div>
@@ -118,51 +113,55 @@
                      </div>
                  </section>
 
-<!-- Inside preset-examples-section -->
-<div class="preset-examples-container"> <!-- Keep this container -->
+                 <!-- ===== Preset Examples Section (Slider Version) ===== -->
+                 <section class="preset-examples-section">
+                     <div class="container">
+                        <h2 data-translate="presets_h2_seo">Image to SVG Preset Examples</h2>
+                        <p data-translate="presets_p">Hover over the images to see the difference!</p> <!-- Updated text -->
+                        <div class="preset-examples-container">
 
-    <!-- Example 1: Technical Drawing -->
-    <div class="preset-example-card">
-        <h4 data-translate="preset_photo">Technical Drawings / Blueprints</h4>
-        <div class="comparison-slider-container">
-            <img src="/assets/images/example-photo-after.svg" class="comparison-img img-after" alt="Vectorized technical drawing (SVG)">
-            <img src="/assets/images/example-photo-before.jpg" class="comparison-img img-before" alt="Original technical drawing (JPG)">
-            <!-- Note: Order flipped so 'before' is visually underneath initially -->
-        </div>
-         <!-- Add labels below the slider -->
-         <div class="comparison-labels">
-            <span data-translate="preset_original">Original</span>
-            <span data-translate="preset_vectorized">Vectorized</span>
-         </div>
-    </div>
+                            <!-- Example 1: Technical Drawing -->
+                            <div class="preset-example-card">
+                                <h4 data-translate="preset_photo">Technical Drawings / Blueprints</h4>
+                                <div class="comparison-slider-container">
+                                    <img src="/assets/images/example-photo-after.svg" class="comparison-img img-after" alt="Vectorized technical drawing (SVG)">
+                                    <img src="/assets/images/example-photo-before.jpg" class="comparison-img img-before" alt="Original technical drawing (JPG)">
+                                </div>
+                                 <div class="comparison-labels">
+                                    <span data-translate="preset_original">Original</span>
+                                    <span data-translate="preset_vectorized">Vectorized</span>
+                                 </div>
+                            </div>
 
-    <!-- Example 2: Clipart -->
-    <div class="preset-example-card">
-        <h4 data-translate="preset_clipart">Clipart / Logo</h4>
-        <div class="comparison-slider-container">
-            <img src="/assets/images/example-clipart-after.svg" class="comparison-img img-after" alt="Vectorized clipart (SVG)">
-            <img src="/assets/images/example-clipart-before.png" class="comparison-img img-before" alt="Original clipart (PNG)">
-        </div>
-         <div class="comparison-labels">
-            <span data-translate="preset_original">Original</span>
-            <span data-translate="preset_vectorized">Vectorized</span>
-         </div>
-    </div>
+                            <!-- Example 2: Clipart -->
+                            <div class="preset-example-card">
+                                <h4 data-translate="preset_clipart">Clipart / Logo</h4>
+                                <div class="comparison-slider-container">
+                                    <img src="/assets/images/example-clipart-after.svg" class="comparison-img img-after" alt="Vectorized clipart (SVG)">
+                                    <img src="/assets/images/example-clipart-before.png" class="comparison-img img-before" alt="Original clipart (PNG)">
+                                </div>
+                                 <div class="comparison-labels">
+                                    <span data-translate="preset_original">Original</span>
+                                    <span data-translate="preset_vectorized">Vectorized</span>
+                                 </div>
+                            </div>
 
-    <!-- Example 3: Pixel Art -->
-    <div class="preset-example-card">
-        <h4 data-translate="preset_pixel">Pixel Art</h4>
-        <div class="comparison-slider-container">
-            <img src="/assets/images/example-pixel-after.svg" class="comparison-img img-after" alt="Vectorized pixel art (SVG)">
-            <img src="/assets/images/example-pixel-before.png" class="comparison-img img-before" alt="Original pixel art (PNG)">
-        </div>
-         <div class="comparison-labels">
-            <span data-translate="preset_original">Original</span>
-            <span data-translate="preset_vectorized">Vectorized</span>
-         </div>
-    </div>
+                            <!-- Example 3: Pixel Art -->
+                            <div class="preset-example-card">
+                                <h4 data-translate="preset_pixel">Pixel Art</h4>
+                                <div class="comparison-slider-container">
+                                    <img src="/assets/images/example-pixel-after.svg" class="comparison-img img-after" alt="Vectorized pixel art (SVG)">
+                                    <img src="/assets/images/example-pixel-before.png" class="comparison-img img-before" alt="Original pixel art (PNG)">
+                                </div>
+                                 <div class="comparison-labels">
+                                    <span data-translate="preset_original">Original</span>
+                                    <span data-translate="preset_vectorized">Vectorized</span>
+                                 </div>
+                            </div>
 
-</div> <!-- End .preset-examples-container -->
+                        </div> <!-- End .preset-examples-container -->
+                    </div>
+                 </section>
 
                  <!-- ===== CTA Section ===== -->
                  <section class="cta-section">
@@ -185,11 +184,14 @@
                         </div>
 
                         <!-- Engine Selector REMOVED -->
-                        <!-- <div class="option-group engine-selector-group"> ... </div> -->
 
                         <!-- VTracer Preset Controls -->
-                        <div class="preset-controls option-group"> <!-- data-engine removed -->
+                        <div class="preset-controls option-group">
                             <label for="presetSelect" data-translate="preset_label">Image Type Preset:</label>
+                            <!-- Info button added -->
+                            <button type="button" class="info-button" data-info-key="info_preset" aria-label="Info about Presets" title="More information">
+                                <i class="fas fa-circle-info"></i>
+                            </button>
                             <select id="presetSelect">
                                 <option value="" disabled selected data-translate="preset_select_placeholder">Load a Preset...</option>
                                 <!-- Presets populated by JS -->
@@ -198,10 +200,13 @@
 
                         <form id="optionsForm">
                             <!-- VTracer Options -->
-                            <fieldset class="options-fieldset"> <!-- data-engine removed -->
+                            <fieldset class="options-fieldset">
                                 <legend data-translate="options_legend_color">Color Settings</legend>
                                 <div class="option-group" id="groupPalette">
                                     <label for="optPalette" data-translate-title="color_detail_title" title="Color detail" data-translate="color_detail_label">Color Detail:</label>
+                                    <button type="button" class="info-button" data-info-key="info_color_detail" aria-label="Info about Color Detail" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                    </button>
                                     <select id="optPalette" name="palette_selector">
                                         <option value="8" data-translate="color_detail_full">Full (8 bit)</option>
                                         <option value="6" selected data-translate="color_detail_standard">Standard (6 bit)</option>
@@ -213,16 +218,22 @@
                                 <input type="hidden" id="optColorPrecision" name="color_precision" value="6">
                                 <div class="option-group" id="groupColorMode">
                                     <label for="optColormode" data-translate-title="color_mode_title" title="Color mode" data-translate="color_mode_label">Color Mode:</label>
+                                    <button type="button" class="info-button" data-info-key="info_color_mode" aria-label="Info about Color Mode" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                    </button>
                                     <select id="optColormode" name="color_mode">
                                         <option value="color" selected data-translate="color_mode_color">Color</option>
                                         <option value="bw" data-translate="color_mode_binary">Binary</option>
                                     </select>
                                 </div>
                             </fieldset>
-                            <fieldset class="options-fieldset"> <!-- data-engine removed -->
+                            <fieldset class="options-fieldset">
                                 <legend data-translate="options_legend_trace">Tracing Parameters</legend>
                                 <div class="option-group slider-group" id="groupFilterSpeckle">
                                     <label for="optFilterSpeckle" data-translate="filter_speckle_label">Filter Speckle:</label>
+                                    <button type="button" class="info-button" data-info-key="info_filter_speckle" aria-label="Info about Filter Speckle" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                    </button>
                                     <div class="input-combo">
                                         <input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="16" value="4" step="1">
                                         <input type="number" id="optFilterSpeckleNum" class="input-number short" value="4" min="0" max="16" step="1">
@@ -231,6 +242,9 @@
                                 </div>
                                 <div class="option-group" id="groupMode">
                                     <label for="optMode" data-translate="mode_label">Mode:</label>
+                                     <button type="button" class="info-button" data-info-key="info_mode" aria-label="Info about Mode" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                     </button>
                                     <select id="optMode" name="mode">
                                         <option value="spline" selected data-translate="mode_spline">Spline</option>
                                         <option value="polygon" data-translate="mode_polygon">Polygon</option>
@@ -238,14 +252,20 @@
                                     </select>
                                 </div>
                             </fieldset>
-                            <fieldset class="options-fieldset"> <!-- data-engine removed -->
+                            <fieldset class="options-fieldset">
                                 <legend data-translate="options_legend_geo">Geometry & Path Fitting</legend>
                                 <div class="option-group slider-group" id="groupCornerThreshold">
                                     <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Threshold:</label>
+                                    <button type="button" class="info-button" data-info-key="info_corner_threshold" aria-label="Info about Corner Threshold" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                    </button>
                                     <div class="input-combo"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><input type="number" id="optCornerThresholdNum" class="input-number short" value="60" min="0" max="180" step="1"><span class="unit">°</span></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupPathPrecision">
                                     <label for="optPathPrecision" data-translate="path_prec_label">Path Precision:</label>
+                                    <button type="button" class="info-button" data-info-key="info_path_precision" aria-label="Info about Path Precision" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                    </button>
                                     <div class="input-combo">
                                         <input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1">
                                         <input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1">
@@ -254,21 +274,33 @@
                                 </div>
                                 <div class="option-group slider-group" id="groupSplineThreshold">
                                     <label for="optSplineThreshold" data-translate="spline_thr_label">Spline Threshold:</label>
+                                    <button type="button" class="info-button" data-info-key="info_spline_threshold" aria-label="Info about Spline Threshold" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                    </button>
                                     <div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01"></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSpliceThreshold">
                                      <label for="optSpliceThreshold" data-translate="splice_thr_label">Splice Threshold:</label>
+                                      <button type="button" class="info-button" data-info-key="info_splice_threshold" aria-label="Info about Splice Threshold" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                      </button>
                                      <div class="input-combo"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><input type="number" id="optSpliceThresholdNum" class="input-number short" value="45" min="0" max="180" step="1"><span class="unit">°</span></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSegmentLength">
                                      <label for="optSegmentLength" data-translate="segment_len_label">Segment Length:</label>
+                                      <button type="button" class="info-button" data-info-key="info_segment_length" aria-label="Info about Segment Length" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                      </button>
                                      <div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div>
                                 </div>
                              </fieldset>
-                             <fieldset class="options-fieldset"> <!-- data-engine removed -->
+                             <fieldset class="options-fieldset">
                                  <legend data-translate="options_legend_color_proc">Color Processing Options</legend>
                                  <div class="option-group" id="groupHierarchical">
                                      <label for="optHierarchical" data-translate="layering_label">Layering:</label>
+                                      <button type="button" class="info-button" data-info-key="info_layering" aria-label="Info about Layering" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                      </button>
                                      <select id="optHierarchical" name="hierarchical">
                                          <option value="stacked" selected data-translate="layering_stacked">Stacked</option>
                                          <option value="cutout" data-translate="layering_cutout">Cutout</option>
@@ -276,6 +308,9 @@
                                  </div>
                                  <div class="option-group slider-group" id="groupGradientStep">
                                       <label for="optGradientStep" data-translate="gradient_step_label">Gradient Step:</label>
+                                       <button type="button" class="info-button" data-info-key="info_gradient_step" aria-label="Info about Gradient Step" title="More information">
+                                        <i class="fas fa-circle-info"></i>
+                                       </button>
                                       <div class="input-combo">
                                           <input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="1">
                                           <input type="number" id="optGradientStepNum" class="input-number" value="2" min="0" max="10" step="1">
@@ -283,9 +318,6 @@
                                  </div>
                                  <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
                              </fieldset>
-
-                            <!-- Potrace Options Fieldset REMOVED -->
-                            <!-- <fieldset class="options-fieldset hidden" data-engine="potrace"> ... </fieldset> -->
 
                         </form>
                         <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn" disabled>Update Vectorization</button>
