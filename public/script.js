@@ -331,11 +331,11 @@ const translations = {
         landing_h1_free: "Nur KOSTENLOS",
         landing_h1_and: "und",
         landing_h1_customizable: "ANPASSBARER Vektorisierer",
-        landing_subheadline_detailed: "Konvertieren Sie JPG-, PNG-, WEBP-Bilder sofort in gestochen scharfe, unendlich skalierbare SVG-Vektoren. Bietet erweiterte Vektorisierungsoptionen und hilfreiche Voreinstellungen für präzise Ergebnisse.",
+        landing_subheadline_detailed: "Konvertieren Sie Bilder sofort in gestochen scharfe, unendlich skalierbare SVG-Vektoren. Bietet erweiterte Vektorisierungsoptionen und hilfreiche Voreinstellungen für präzise Ergebnisse.",
         upload_drag_drop: "Bild hierher ziehen",
         upload_or: "oder",
         upload_browse: "Dateien durchsuchen",
-        upload_formats: "Max 15MB (JPG, PNG, WEBP, BMP)",
+        upload_formats: "Max 15MB (JPG, PNG, & BMP)", // Matched HTML
         cancel_selection_title: "Auswahl abbrechen",
         vectorize_image_btn: "Bild vektorisieren",
         // Landing Page - Features
@@ -350,7 +350,7 @@ const translations = {
         // Landing Page - Presets
         presets_h2: "Voreinstellungsbeispiele",
         presets_p: "Sehen Sie, wie verschiedene Voreinstellungen unterschiedliche Bildtypen verarbeiten.",
-        preset_photo: "Fotografie",
+        preset_photo: "Technische Zeichnungen / Blaupausen",
         preset_clipart: "Clipart / Logo",
         preset_pixel: "Pixel-Art",
         preset_original: "Original",
@@ -386,12 +386,12 @@ const translations = {
         mode_polygon: "Polygon",
         mode_pixel: "Pixel",
         options_legend_geo: "Geometrie & Pfadanpassung",
-        corner_threshold_label: "Eckenschwellenwert:",
-        path_precision_label: "Pfadgenauigkeit:",
-        unit_decimals: "Nachkommastellen", // Changed from "decimals"
-        spline_threshold_label: "Spline-Schwellenwert:",
-        splice_threshold_label: "Spleiß-Schwellenwert:",
-        segment_length_label: "Segmentlänge:",
+        corner_thr_label: "Eckenschwellenwert:",
+        path_prec_label: "Pfadgenauigkeit:",
+        unit_dec: "Nachkommastellen",
+        spline_thr_label: "Spline-Schwellenwert:",
+        splice_thr_label: "Spleiß-Schwellenwert:",
+        segment_len_label: "Segmentlänge:",
         options_legend_color_proc: "Farbverarbeitungsoptionen",
         layering_label: "Ebenenaufbau:",
         layering_stacked: "Gestapelt",
@@ -440,9 +440,9 @@ const translations = {
         faq_q_quality_desc: "Das konvertierte SVG entspricht nicht der Qualität des Originalbildes.",
         faq_solution_label: "Lösung:",
         faq_a_quality: "Passen Sie die Einstellungen im Vektorisierungsprozess an. Eine Erhöhung der 'Farbdetails' (Palettengröße), eine Anpassung des 'Spline-Schwellenwerts' (niedriger für mehr Details) oder eine Reduzierung von 'Störpixel filtern' kann helfen. Stellen Sie bei Pixel-Art sicher, dass der 'Pixel'-Modus ausgewählt ist. Experimentieren Sie mit verschiedenen Voreinstellungen.",
-        faq_q_upload_failed: "Bild konnte nicht konvertiert werden:",
-        faq_q_upload_failed_desc: "Das hochgeladene Bild konnte nicht konvertiert werden.",
-        faq_a_upload_failed: "Prüfen Sie die Bildkompatibilität. Vectorise.Me verarbeitet nur JPG, PNG, WEBP und BMP. Wenn Sie Bilder in anderen Formaten haben, konvertieren Sie diese zuerst.",
+        faq_q_upload_failed: "Bild konnte nicht konvertiert werden:", // Corrected key
+        faq_q_upload_failed_desc: "Das hochgeladene Bild konnte nicht konvertiert werden.", // Corrected key
+        faq_a_upload_failed: "Prüfen Sie die Bildkompatibilität. Vectorise.Me verarbeitet nur JPG, PNG und BMP. Wenn Sie Bilder in anderen Formaten haben, konvertieren Sie diese zuerst.", // Corrected key
         faq_q_performance: "Leistungsprobleme:",
         faq_q_performance_desc: "Der Konvertierungsprozess ist langsam oder reagiert nicht, oder das resultierende SVG ist sehr groß.",
         faq_a_performance: "Versuchen Sie, die Bildgröße oder -komplexität vor dem Hochladen zu reduzieren. Große oder sehr detaillierte Bilder benötigen länger zur Verarbeitung und erzeugen größere SVGs. Eine Verringerung der 'Farbdetails' oder Erhöhung von 'Störpixel filtern' kann ebenfalls die Ausgabe vereinfachen und die Leistung verbessern.",
@@ -457,13 +457,13 @@ const translations = {
         faq_a_colors: "Stellen Sie sicher, dass der 'Farbmodus' auf 'Farbe' eingestellt ist. Erhöhen Sie die Einstellung 'Farbdetails' (höhere Bit-Präzision). Prüfen Sie, ob der 'Verlaufsschritt' angemessen ist; ein sehr hoher Wert könnte subtile Farbübergänge reduzieren.",
         faq_q_transparency: "Transparenz nicht erhalten:",
         faq_q_transparency_desc: "Hintergrundtransparenz von PNGs geht verloren.",
-        faq_a_transparency: "`vtracer` behandelt Transparenz im Allgemeinen gut, besonders mit 'Gestapeltem' Ebenenaufbau. Stellen Sie sicher, dass Ihr ursprüngliches PNG tatsächliche Transparenz aufweist. Bei Verwendung von 'Ausgeschnittenem' Ebenenaufbau kann sich Transparenz anders verhalten. Der zugrunde liegende Prozess kann je nach Einstellungen manchmal fast transparente Farben in deckende umwandeln.",
+        faq_a_transparency: "Vectorise.Me behandelt Transparenz im Allgemeinen gut, besonders mit 'Gestapeltem' Ebenenaufbau. Stellen Sie sicher, dass Ihr ursprüngliches PNG tatsächliche Transparenz aufweist. Bei Verwendung von 'Ausgeschnittenem' Ebenenaufbau kann sich Transparenz anders verhalten. Der zugrunde liegende Prozess kann je nach Einstellungen manchmal fast transparente Farben in deckende umwandeln.",
         faq_q_browser: "Unterschiedliche Browser-Darstellung:",
         faq_q_browser_desc: "Das SVG sieht in verschiedenen Webbrowsern leicht unterschiedlich aus.",
         faq_a_browser: "Dies liegt an den SVG-Rendering-Engines. Stellen Sie sicher, dass Ihr SVG wohlgeformt ist. Vermeiden Sie übermäßig komplexes CSS oder Filter innerhalb des SVGs, wenn Kompatibilität entscheidend ist. Testen Sie in gängigen Browsern.",
         // Legal Pages Shared
         legal_last_updated: "Zuletzt aktualisiert:",
-        legal_date_placeholder: "[Datum einfügen]", // Placeholder, should be updated manually or via build script
+        legal_date_placeholder: "04.10.2025",
         // Privacy Page Specific
         privacy_h1: "Datenschutzerklärung",
         privacy_intro_1: 'Willkommen bei Vectorise.Me (der "Dienst"), betrieben von JonkaryStudio ("uns", "wir" oder "unser"). Diese Seite informiert Sie über unsere Richtlinien bezüglich der Erhebung, Nutzung und Offenlegung personenbezogener Daten, wenn Sie unseren Dienst nutzen, und die Wahlmöglichkeiten, die Sie diesbezüglich haben.',
@@ -510,8 +510,8 @@ const translations = {
         privacy_h2_contact: "Kontaktieren Sie uns",
         privacy_contact_p1: "Wenn Sie Fragen haben, kontaktieren Sie uns:",
         privacy_contact_li_email: "Per E-Mail: jonkarystudio@gmail.com",
-        privacy_contact_li_web: "Über unsere Website:",
-        privacy_contact_page_link: "Kontaktseite",
+        privacy_contact_li_web_label: "Über unsere Website:", // Corrected key for label
+        privacy_contact_page_link: "Kontaktseite", // Corrected key for link
         // Cookies Page Specific
         cookies_h1: "Cookie-Richtlinie",
         cookies_intro_1: 'Diese Cookie-Richtlinie erklärt, wie JonkaryStudio ("uns", "wir" oder "unser") Cookies und ähnliche Tracking-Technologien auf der Vectorise.Me-Website (dem "Dienst") verwendet. Sie erklärt, was diese Technologien sind und warum wir sie verwenden, sowie Ihre Rechte, unsere Verwendung davon zu kontrollieren.',
@@ -520,6 +520,7 @@ const translations = {
         cookies_what_p2: 'Cookies, die vom Website-Betreiber (in diesem Fall JonkaryStudio) gesetzt werden, werden als "Erstanbieter-Cookies" bezeichnet. Cookies, die von anderen Parteien als dem Website-Betreiber gesetzt werden, werden als "Drittanbieter-Cookies" bezeichnet. Drittanbieter-Cookies ermöglichen die Bereitstellung von Funktionen oder Funktionalitäten Dritter auf oder über die Website (z. B. Werbung, interaktive Inhalte und Analysen). Die Parteien, die diese Drittanbieter-Cookies setzen, können Ihren Computer sowohl beim Besuch der betreffenden Website als auch beim Besuch bestimmter anderer Websites erkennen.',
         cookies_h2_why: "Warum verwenden wir Cookies?",
         cookies_why_p1: 'Wir verwenden Erst- und möglicherweise Drittanbieter-Cookies aus mehreren Gründen. Einige Cookies sind aus technischen Gründen für den Betrieb unseres Dienstes erforderlich, diese bezeichnen wir als "wesentliche" oder "unbedingt notwendige" Cookies.',
+        cookies_why_p2: "[Genaue Angaben zu Ihrer Nutzung. Abschnitte nach Bedarf ändern/entfernen]:",
         cookies_why_li_essential: "Wesentliche Cookies:",
         cookies_why_li_essential_desc: "Diese sind notwendig, um Ihnen über unseren Dienst verfügbare Dienste bereitzustellen und Ihnen die Nutzung einiger seiner Funktionen zu ermöglichen, wie z. B. die Verwaltung Ihrer Sitzung während des Konvertierungsprozesses (falls zutreffend) oder die Sicherung der Website. Render.com, unser Hosting-Anbieter, kann wesentliche Sitzungs-Cookies verwenden, um die ordnungsgemäße Funktionalität sicherzustellen.",
         cookies_why_li_analytics: "Analyse- und Anpassungs-Cookies:",
@@ -546,8 +547,8 @@ const translations = {
         cookies_h2_contact: "Kontaktieren Sie uns",
         cookies_contact_p1: "Wenn Sie Fragen zur Verwendung von Cookies oder anderen Technologien haben, kontaktieren Sie uns bitte:",
         cookies_contact_li_email: "Per E-Mail: jonkarystudio@gmail.com",
-        cookies_contact_li_web: "Über unsere Website:",
-        cookies_contact_page_link: "Kontaktseite",
+        cookies_contact_li_web_label: "Über unsere Website:", // Corrected key for label
+        cookies_contact_page_link: "Kontaktseite", // Corrected key for link
         // Terms Page Specific
         terms_h1: "Nutzungsbedingungen",
         terms_intro_1: 'Bitte lesen Sie diese Nutzungsbedingungen ("Bedingungen") sorgfältig durch, bevor Sie die Vectorise.Me-Website (den "Dienst") nutzen, die von JonkaryStudio ("uns", "wir" oder "unser") betrieben wird.',
@@ -581,8 +582,8 @@ const translations = {
         terms_h2_contact: "Kontaktieren Sie uns",
         terms_contact_p1: "Wenn Sie Fragen zu diesen Bedingungen haben, kontaktieren Sie uns bitte:",
         terms_contact_li_email: "Per E-Mail: jonkarystudio@gmail.com",
-        terms_contact_li_web: "Über unsere Website:",
-        terms_contact_page_link: "Kontaktseite",
+        terms_contact_li_web_label: "Über unsere Website:", // Corrected key for label
+        terms_contact_page_link: "Kontaktseite", // Corrected key for link
         // Dynamic Status Messages (Used by JS)
         status_uploading: "Wird hochgeladen...",
         status_vectorizing: "Vektorisierung läuft...",
