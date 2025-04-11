@@ -192,14 +192,12 @@
                                 <legend data-translate="options_legend_trace">Tracing Parameters</legend>
                                 <div class="option-group slider-group" id="groupFilterSpeckle">
                                     <label for="optFilterSpeckle" data-translate="filter_speckle_label">Filter Speckle:</label>
-                                    <div class="option-group slider-group" id="groupFilterSpeckle">
-                                        <label for="optFilterSpeckle" data-translate="filter_speckle_label">Filter Speckle:</label>
-                                        <div class="input-combo">
-                                            <input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="20" value="4" step="1">
-                                            <input type="number" id="optFilterSpeckleNum" class="input-number short" value="4" min="0" max="20" step="1">
-                                            <span class="unit">px</span>
-                                        </div>
+                                    <div class="input-combo">
+                                        <input type="range" id="optFilterSpeckle" name="filter_speckle" min="0" max="16" value="4" step="1">
+                                        <input type="number" id="optFilterSpeckleNum" class="input-number short" value="4" min="0" max="16" step="1">
+                                        <span class="unit">px</span>
                                     </div>
+                                </div>
                                 <div class="option-group" id="groupMode">
                                     <label for="optMode" data-translate="mode_label">Mode:</label>
                                     <select id="optMode" name="mode">
@@ -212,28 +210,23 @@
                             <fieldset class="options-fieldset">
                                 <legend data-translate="options_legend_geo">Geometry & Path Fitting</legend>
                                 <div class="option-group slider-group" id="groupCornerThreshold">
-                                    <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Threshold:</label> <!-- Spelled out "Threshold" -->
+                                    <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Threshold:</label>
                                     <div class="input-combo"><input type="range" id="optCornerThreshold" name="corner_threshold" min="0" max="180" value="60" step="1"><input type="number" id="optCornerThresholdNum" class="input-number short" value="60" min="0" max="180" step="1"><span class="unit">°</span></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupPathPrecision">
                                     <label for="optPathPrecision" data-translate="path_prec_label">Path Precision:</label>
-                                    <div class="input-combo">
-                                        <input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1">
-                                        <input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1">
-                                        <!-- VVV This is the line to fix VVV -->
-                                        <span class="unit" data-translate="unit_dec">decimals</span>
-                                    </div>
+                                    <div class="input-combo"><input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1"><input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1"><span class="unit" data-translate="unit_dec">decimals</span></div> <!-- Ensure key is 'unit_dec' -->
                                 </div>
                                 <div class="option-group slider-group" id="groupSplineThreshold">
-                                    <label for="optSplineThreshold" data-translate="spline_thr_label">Spline Threshold:</label> <!-- Spelled out "Threshold" -->
+                                    <label for="optSplineThreshold" data-translate="spline_thr_label">Spline Threshold:</label>
                                     <div class="input-combo"><input type="range" id="optSplineThreshold" name="spline_threshold" min="0" max="1" value="0.75" step="0.01"><input type="number" id="optSplineThresholdNum" class="input-number" value="0.75" min="0" max="1" step="0.01"></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSpliceThreshold">
-                                     <label for="optSpliceThreshold" data-translate="splice_thr_label">Splice Threshold:</label> <!-- Spelled out "Threshold" -->
+                                     <label for="optSpliceThreshold" data-translate="splice_thr_label">Splice Threshold:</label>
                                      <div class="input-combo"><input type="range" id="optSpliceThreshold" name="splice_threshold" min="0" max="180" value="45" step="1"><input type="number" id="optSpliceThresholdNum" class="input-number short" value="45" min="0" max="180" step="1"><span class="unit">°</span></div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSegmentLength">
-                                     <label for="optSegmentLength" data-translate="segment_len_label">Segment Length:</label> <!-- Spelled out "Length" -->
+                                     <label for="optSegmentLength" data-translate="segment_len_label">Segment Length:</label>
                                      <div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div>
                                 </div>
                              </fieldset>
@@ -247,12 +240,14 @@
                                      </select>
                                  </div>
                                  <div class="option-group slider-group" id="groupGradientStep">
-                                    <label for="optGradientStep" data-translate="gradient_step_label">Gradient Step:</label>
-                                    <div class="input-combo">
-                                        <input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="0.1">
-                                        <input type="number" id="optGradientStepNum" class="input-number" value="2.0" min="0" max="10" step="0.1">
-                                    </div>
-                               </div>
+                                      <label for="optGradientStep" data-translate="gradient_step_label">Gradient Step:</label>
+                                      <div class="input-combo">
+                                            <!-- VVV CORRECTION IS HERE VVV -->
+                                          <input type="range" id="optGradientStep" name="gradient_step" min="0" max="10" value="2" step="1">
+                                          <input type="number" id="optGradientStepNum" class="input-number" value="2" min="0" max="10" step="1">
+                                            <!-- ^^^ CORRECTION IS HERE ^^^ -->
+                                      </div>
+                                 </div>
                                  <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
                              </fieldset>
                         </form>

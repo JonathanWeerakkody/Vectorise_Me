@@ -1971,61 +1971,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }, delay);
     }
 
-
-    // Sets up synchronization between range sliders and their corresponding number inputs
+    // Inside script.js, within setupNumberInputSync function
     function setupNumberInputSync() {
-        if (!optionsForm) return;
-        optionsForm.querySelectorAll('input[type="range"]').forEach(slider => {
-            const numInputId = `${slider.id}Num`; // Convention: sliderId + 'Num'
-            const numInput = document.getElementById(numInputId);
-            if (numInput) {
-                const sliderStep = parseFloat(slider.step) || 1;
-                const numStep = parseFloat(numInput.step) || sliderStep; // Use numInput step if defined
-                const decimalPlaces = (String(numStep).split('.')[1] || '').length;
+    if (!optionsForm) return;
+    optionsForm.querySelectorAll('input[type="range"]').forEach(slider => {
+        const numInputId = `${slider.id}Num`;
+        const numInput = document.getElementById(numInputId);
+        if (numInput) {
+            const sliderStep = parseFloat(slider.step) || 1;
+            const numStep = parseFloat(numInput.step) || sliderStep;
 
-                // Function to update number input from slider value
-                const syncSliderToNum = () => {
-                    numInput.value = parseFloat(slider.value).toFixed(decimalPlaces);
-                };
+            // *** Determine decimal places based on step ***
+            // *** Default to 0 for integer steps (like gradient_step now) ***
+            const decimalPlaces = sliderStep === 1 ? 0 : (String(numStep).split('.')[1] || '').length;
 
-                // Function to update slider value from number input
-                const syncNumToSlider = () => {
-                    let numVal = parseFloat(numInput.value);
-                    const minVal = parseFloat(slider.min);
-                    const maxVal = parseFloat(slider.max);
+            // Function to update number input from slider value
+            const syncSliderToNum = () => {
+                numInput.value = parseFloat(slider.value).toFixed(decimalPlaces); // Use calculated decimalPlaces
+            };
 
-                    if (isNaN(numVal)) return; // Ignore non-numeric input
+            // Function to update slider value from number input
+            const syncNumToSlider = () => {
+                let numVal = parseFloat(numInput.value);
+                const minVal = parseFloat(slider.min);
+                const maxVal = parseFloat(slider.max);
 
-                    // Clamp value within slider bounds
-                    numVal = Math.max(minVal, Math.min(maxVal, numVal));
+                if (isNaN(numVal)) return;
+                numVal = Math.max(minVal, Math.min(maxVal, numVal));
 
-                    // Only update slider if the value significantly changed
-                    // (to avoid minor floating point differences causing loops)
-                    if (Math.abs(parseFloat(slider.value) - numVal) > numStep / 2) {
-                         slider.value = String(numVal);
-                         // Crucially, trigger the 'input' event on the slider
-                         // so other listeners react to the change
-                         slider.dispatchEvent(new Event('input',{bubbles:true}));
-                    }
-                     // Update the number input itself to the potentially clamped value with correct formatting
-                     numInput.value = numVal.toFixed(decimalPlaces);
-                };
+                // Round to nearest step if step is integer
+                if (sliderStep === 1) {
+                    numVal = Math.round(numVal);
+                }
 
-                // Add listeners
-                safeAddListener(slider, 'input', syncSliderToNum);
-                safeAddListener(numInput, 'change', syncNumToSlider); // Use 'change' for num input (fires on blur/enter)
-                safeAddListener(numInput, 'input', (e)=> { // Also consider input for immediate feedback, debounced maybe
-                    // If immediate feedback from number input to slider is desired, use 'input'
-                    // Might need debouncing if it causes performance issues
-                     syncNumToSlider();
-                });
+                if (Math.abs(parseFloat(slider.value) - numVal) > numStep / 2) {
+                     slider.value = String(numVal);
+                     slider.dispatchEvent(new Event('input',{bubbles:true}));
+                }
+                 numInput.value = numVal.toFixed(decimalPlaces); // Use calculated decimalPlaces
+            };
 
+            // Add listeners (no change needed here)
+            safeAddListener(slider, 'input', syncSliderToNum);
+            safeAddListener(numInput, 'change', syncNumToSlider);
+            safeAddListener(numInput, 'input', syncNumToSlider); // Using input for number field
 
-                // Initial sync on page load
-                syncSliderToNum();
-            }
-        });
-    }
+            // Initial sync on page load
+            syncSliderToNum();
+        }
+    });
+}
 
     // Updates the enabled/disabled state of option groups based on current selections
     function updateOptionsAvailability() {
