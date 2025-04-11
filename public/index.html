@@ -19,7 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Add Schema Markup Here if desired -->
+    <!-- AdSense Script (Load once in head) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUB_ID" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="page-container">
@@ -162,6 +163,25 @@
                         </div> <!-- End .preset-examples-container -->
                     </div>
                  </section>
+
+                 <!-- ===== START: Landing Page Ad Slot ===== -->
+                 <section class="ad-slot-container landing-ad-bottom">
+                     <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
+                     <div id="ad-slot-landing-bottom">
+                         <!-- AdSense code or other ad network code goes here -->
+                         <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_LANDING -->
+                         <!-- Landing Bottom Ad -->
+                         <ins class="adsbygoogle"
+                              style="display:block"
+                              data-ad-client="ca-pub-YOUR_PUB_ID"
+                              data-ad-slot="YOUR_AD_SLOT_ID_LANDING"
+                              data-ad-format="auto"
+                              data-full-width-responsive="true"></ins>
+                         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                     </div>
+                 </section>
+                 <!-- ===== END: Landing Page Ad Slot ===== -->
+
 
                  <!-- ===== CTA Section ===== -->
                  <section class="cta-section">
@@ -321,6 +341,23 @@
 
                         </form>
                         <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn" disabled>Update Vectorization</button>
+
+                        <!-- ===== START: Options Panel Ad Slot ===== -->
+                        <div class="ad-slot-container options-ad-bottom">
+                            <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
+                            <div id="ad-slot-options-bottom">
+                                 <!-- AdSense code goes here -->
+                                 <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_OPTIONS -->
+                                 <!-- App Options Panel Ad -->
+                                 <ins class="adsbygoogle"
+                                      style="display:inline-block;width:300px;height:250px" <!-- Adjust size if needed -->
+                                      data-ad-client="ca-pub-YOUR_PUB_ID"
+                                      data-ad-slot="YOUR_AD_SLOT_ID_OPTIONS"></ins>
+                                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                            </div>
+                        </div>
+                        <!-- ===== END: Options Panel Ad Slot ===== -->
+
                     </aside>
 
                     <section class="result-panel">
@@ -356,6 +393,25 @@
                         <div class="result-controls">
                             <button id="downloadBtn" class="button button-success download-button" disabled data-translate="download_svg_btn">Download SVG</button>
                         </div>
+
+                        <!-- ===== START: Result Panel Ad Slot ===== -->
+                        <div class="ad-slot-container result-ad-bottom">
+                           <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
+                           <div id="ad-slot-result-bottom">
+                               <!-- AdSense code goes here -->
+                               <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_RESULT -->
+                               <!-- App Result Bottom Ad -->
+                               <ins class="adsbygoogle"
+                                    style="display:block"
+                                    data-ad-client="ca-pub-YOUR_PUB_ID"
+                                    data-ad-slot="YOUR_AD_SLOT_ID_RESULT"
+                                    data-ad-format="auto"
+                                    data-full-width-responsive="true"></ins>
+                               <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                           </div>
+                       </div>
+                       <!-- ===== END: Result Panel Ad Slot ===== -->
+
                     </section>
                 </div>
             </section> <!-- End #appView -->

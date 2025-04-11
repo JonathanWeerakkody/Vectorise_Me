@@ -6,6 +6,7 @@ const translations = {
     en: {
         lang_name: "English",
         // Meta Tags (SEO Optimized)
+        advertisement_label: "Advertisement",
         meta_title_main_seo: "Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
         meta_description_main_seo: "Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
         meta_title_contact: "Contact Us - Vectorise.Me",
