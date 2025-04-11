@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="meta_title_main_short">Free Image to SVG Converter</title>
-    <meta name="description" data-translate="meta_description_main" content="Free online tool to convert raster images (JPG, PNG, WEBP, BMP) to scalable vector graphics (SVG) with real-time customization and presets.">
+    <!-- Ensure Title is SEO friendly -->
+    <title data-translate="meta_title_main_seo">Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)</title>
+    <!-- Ensure Meta Description is SEO friendly -->
+    <meta name="description" data-translate="meta_description_main_seo" content="Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.">
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -17,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Add Schema Markup Here if desired -->
 </head>
 <body>
     <div class="page-container">
@@ -24,7 +27,8 @@
         <header class="app-header site-header">
              <div class="header-content">
                  <a href="/" class="header-logo-link">
-                     <img src="/assets/images/logo.png" alt="vectorise.me Logo" id="appLogo">
+                     <!-- Add descriptive alt text -->
+                     <img src="/assets/images/logo.png" alt="Vectorise.Me Logo - Free Image to SVG Converter" id="appLogo">
                  </a>
                  <!-- Language Selector -->
                  <div class="language-selector">
@@ -63,11 +67,13 @@
         <main id="mainContent">
             <section id="landingView" class="view landing-view">
                  <div class="landing-content">
-                     <div class="logo-large-container"><img src="/assets/images/logo.png" alt="vectorise.me Logo" class="logo-large"></div>
+                     <div class="logo-large-container"><img src="/assets/images/logo.png" alt="Vectorise.Me Large Logo" class="logo-large"></div>
+                     <!-- Consider SEO optimized H1 -->
                      <h1>
                          <span class="highlight-free" data-translate="landing_h1_free">Only FREE</span> <span data-translate="landing_h1_and">and</span> <span data-translate="landing_h1_customizable">CUSTOMIZABLE Vectorizer</span>
                      </h1>
-                     <p class="landing-subheadline" data-translate="landing_subheadline_detailed">Instantly convert images into crisp, infinitely scalable SVG vectors. Choose the best engine for your image type and fine-tune with advanced options.</p> <!-- Updated subheadline slightly -->
+                     <!-- Expand this text for SEO -->
+                     <p class="landing-subheadline" data-translate="landing_subheadline_detailed">Instantly convert raster images (JPG, PNG, BMP) into crisp, infinitely scalable SVG vectors online for free. Features advanced tracing options with helpful presets for precise results.</p>
                      <div id="uploadArea" class="upload-area">
                          <div id="dropZone" class="drop-zone">
                              <div class="drop-zone-content">
@@ -82,12 +88,15 @@
                      </div>
                      <div id="landingStatusArea" class="status-area landing-status"></div>
                      <button id="startConversionBtn" class="button button-primary start-button hidden" data-translate="vectorize_image_btn">Vectorize Image</button>
+                     <!-- Add more descriptive text here about SVG benefits, etc. -->
                  </div>
+
 
                  <!-- ===== Features Section ===== -->
                  <section class="features-section">
                      <div class="features-header">
-                        <h2 data-translate="features_h2">Features</h2>
+                        <!-- Consider SEO H2 -->
+                        <h2 data-translate="features_h2_seo">Key SVG Converter Features</h2>
                         <p data-translate="features_p">Everything you need for perfect SVGs. Our powerful conversion tool gives you complete control over your vector graphics.</p>
                      </div>
                      <div class="features-grid">
@@ -112,28 +121,29 @@
                  <!-- ===== Preset Examples Section ===== -->
                  <section class="preset-examples-section">
                      <div class="container">
-                        <h2 data-translate="presets_h2">Preset Examples</h2>
+                        <!-- Consider SEO H2 -->
+                        <h2 data-translate="presets_h2_seo">Image to SVG Preset Examples</h2>
                         <p data-translate="presets_p">See how different presets handle various image types.</p>
                         <div class="preset-examples-container">
                             <div class="preset-example-card">
                                 <h4 data-translate="preset_photo">Technical Drawings / Blueprints</h4>
                                 <div class="example-images">
-                                    <div class="example-image-container"> <img src="/assets/images/example-photo-before.jpg" alt="Original Photograph"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
-                                    <div class="example-image-container"> <img src="/assets/images/example-photo-after.svg" alt="Vectorized Photograph"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-photo-before.jpg" alt="Original technical drawing before SVG conversion"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-photo-after.svg" alt="Technical drawing converted to SVG vector"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
                                 </div>
                             </div>
                             <div class="preset-example-card">
                                 <h4 data-translate="preset_clipart">Clipart / Logo</h4>
                                 <div class="example-images">
-                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-before.png" alt="Original Clipart"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
-                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-after.svg" alt="Vectorized Clipart"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-before.png" alt="Original PNG clipart before vectorization"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-after.svg" alt="Clipart vectorized into scalable SVG"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
                                 </div>
                             </div>
                             <div class="preset-example-card">
                                 <h4 data-translate="preset_pixel">Pixel Art</h4>
                                 <div class="example-images">
-                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-before.png" alt="Original Pixel Art"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
-                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-after.svg" alt="Vectorized Pixel Art"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-before.png" alt="Original pixel art image"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
+                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-after.svg" alt="Pixel art converted to clean SVG paths"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
                                 </div>
                             </div>
                         </div>
@@ -160,17 +170,11 @@
                             </div>
                         </div>
 
-                        <!-- Engine Selector -->
-                        <div class="option-group engine-selector-group">
-                            <label for="engineSelect" data-translate="engine_image_type_label">Image Type:</label>
-                            <select id="engineSelect">
-                                <option value="vtracer" selected data-translate="engine_option_color">Color / Photo / Detailed</option>
-                                <option value="potrace" data-translate="engine_option_bw">Black & White / Logo / Outline</option>
-                            </select>
-                        </div>
+                        <!-- Engine Selector REMOVED -->
+                        <!-- <div class="option-group engine-selector-group"> ... </div> -->
 
                         <!-- VTracer Preset Controls -->
-                        <div class="preset-controls option-group" data-engine="vtracer">
+                        <div class="preset-controls option-group"> <!-- data-engine removed -->
                             <label for="presetSelect" data-translate="preset_label">Image Type Preset:</label>
                             <select id="presetSelect">
                                 <option value="" disabled selected data-translate="preset_select_placeholder">Load a Preset...</option>
@@ -180,7 +184,7 @@
 
                         <form id="optionsForm">
                             <!-- VTracer Options -->
-                            <fieldset class="options-fieldset" data-engine="vtracer">
+                            <fieldset class="options-fieldset"> <!-- data-engine removed -->
                                 <legend data-translate="options_legend_color">Color Settings</legend>
                                 <div class="option-group" id="groupPalette">
                                     <label for="optPalette" data-translate-title="color_detail_title" title="Color detail" data-translate="color_detail_label">Color Detail:</label>
@@ -201,7 +205,7 @@
                                     </select>
                                 </div>
                             </fieldset>
-                            <fieldset class="options-fieldset" data-engine="vtracer">
+                            <fieldset class="options-fieldset"> <!-- data-engine removed -->
                                 <legend data-translate="options_legend_trace">Tracing Parameters</legend>
                                 <div class="option-group slider-group" id="groupFilterSpeckle">
                                     <label for="optFilterSpeckle" data-translate="filter_speckle_label">Filter Speckle:</label>
@@ -220,7 +224,7 @@
                                     </select>
                                 </div>
                             </fieldset>
-                            <fieldset class="options-fieldset" data-engine="vtracer">
+                            <fieldset class="options-fieldset"> <!-- data-engine removed -->
                                 <legend data-translate="options_legend_geo">Geometry & Path Fitting</legend>
                                 <div class="option-group slider-group" id="groupCornerThreshold">
                                     <label for="optCornerThreshold" data-translate="corner_thr_label">Corner Threshold:</label>
@@ -247,7 +251,7 @@
                                      <div class="input-combo"><input type="range" id="optSegmentLength" name="segment_length" min="0" max="10" value="4" step="0.1"><input type="number" id="optSegmentLengthNum" class="input-number" value="4.0" min="0" max="10" step="0.1"></div>
                                 </div>
                              </fieldset>
-                             <fieldset class="options-fieldset" data-engine="vtracer">
+                             <fieldset class="options-fieldset"> <!-- data-engine removed -->
                                  <legend data-translate="options_legend_color_proc">Color Processing Options</legend>
                                  <div class="option-group" id="groupHierarchical">
                                      <label for="optHierarchical" data-translate="layering_label">Layering:</label>
@@ -266,61 +270,8 @@
                                  <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
                              </fieldset>
 
-                            <!-- Potrace Options -->
-                            <fieldset class="options-fieldset hidden" data-engine="potrace">
-                                 <legend data-translate="potrace_options_legend">B&W / Outline Options</legend>
-
-                                 <div class="option-group slider-group" id="groupPotraceBlacklevel">
-                                     <label for="optPotraceBlacklevel" data-translate="potrace_blacklevel_label">Black/White Threshold:</label>
-                                     <div class="input-combo">
-                                         <input type="range" id="optPotraceBlacklevel" name="blacklevel" min="0" max="1" value="0.5" step="0.01">
-                                         <input type="number" id="optPotraceBlacklevelNum" class="input-number" value="0.50" min="0" max="1" step="0.01">
-                                     </div>
-                                 </div>
-
-                                 <div class="option-group slider-group" id="groupPotraceTurdsize">
-                                     <label for="optPotraceTurdsize" data-translate="potrace_turdsize_label">Despeckle Level:</label>
-                                     <div class="input-combo">
-                                         <input type="range" id="optPotraceTurdsize" name="turdsize" min="0" max="50" value="2" step="1">
-                                         <input type="number" id="optPotraceTurdsizeNum" class="input-number short" value="2" min="0" max="50" step="1">
-                                         <span class="unit">px</span>
-                                     </div>
-                                 </div>
-
-                                 <div class="option-group slider-group" id="groupPotraceAlphaMax">
-                                     <label for="optPotraceAlphaMax" data-translate="potrace_alphamax_label">Corner Smoothing:</label>
-                                     <div class="input-combo">
-                                         <input type="range" id="optPotraceAlphaMax" name="alphamax" min="0" max="1.34" value="1.0" step="0.01">
-                                         <input type="number" id="optPotraceAlphaMaxNum" class="input-number" value="1.00" min="0" max="1.34" step="0.01">
-                                     </div>
-                                 </div>
-
-                                  <div class="option-group" id="groupPotraceInvert">
-                                       <label for="optPotraceInvert" data-translate="potrace_invert_label">Invert Colors (Trace White):</label>
-                                       <select id="optPotraceInvert" name="invert_selector"> <!-- Name for UI interaction -->
-                                           <option value="false" selected data-translate="boolean_false">No</option>
-                                           <option value="true" data-translate="boolean_true">Yes</option>
-                                       </select>
-                                       <input type="hidden" name="invert" value="false"> <!-- Name sent to backend -->
-                                  </div>
-
-                                  <div class="option-group" id="groupPotraceOptCurve">
-                                       <label for="optPotraceOptCurve" data-translate="potrace_optcurve_label">Optimize Curves:</label>
-                                       <select id="optPotraceOptCurve" name="optcurve_selector"> <!-- Name for UI interaction -->
-                                           <option value="true" selected data-translate="boolean_true">Yes</option>
-                                           <option value="false" data-translate="boolean_false">No</option>
-                                       </select>
-                                       <input type="hidden" name="optcurve" value="true"> <!-- Name sent to backend -->
-                                  </div>
-
-                                  <div class="option-group" id="groupPotraceColor">
-                                     <label for="optPotraceColor" data-translate="potrace_color_label">Output Color:</label>
-                                     <div class="input-combo color-picker-combo">
-                                         <input type="color" id="optPotraceColor" name="color_selector" value="#000000"> <!-- Name for UI interaction -->
-                                         <input type="text" id="optPotraceColorHex" class="input-number" name="color" value="#000000" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"> <!-- Name sent to backend -->
-                                     </div>
-                                  </div>
-                            </fieldset>
+                            <!-- Potrace Options Fieldset REMOVED -->
+                            <!-- <fieldset class="options-fieldset hidden" data-engine="potrace"> ... </fieldset> -->
 
                         </form>
                         <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn" disabled>Update Vectorization</button>
@@ -341,7 +292,7 @@
                                  <div class="preview-pane original-pane">
                                      <div class="preview-label" data-translate="preview_original_label">Original</div>
                                      <div class="image-wrapper" id="originalImageWrapper">
-                                         <img id="previewOriginalImage" src="#" alt="Original Uploaded Image"/>
+                                         <img id="previewOriginalImage" src="#" alt="Original Uploaded Image Preview"/>
                                      </div>
                                  </div>
                                  <div class="preview-pane vector-pane">
