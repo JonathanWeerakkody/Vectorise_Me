@@ -1,4 +1,4 @@
-/* public/style.css - Slick Purple Revamp - VTracer Only + Info Tooltips + Sliders + SVG Fix */
+/* public/style.css - Slick Purple Revamp - VTracer Only + Info Tooltips + Sliders + SVG Fix + Wide Download Btn */
 
 /* --- Reset & Basic Setup --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -262,6 +262,9 @@ textarea {
     box-shadow: var(--shadow-inset);
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+input.is-invalid, textarea.is-invalid, select.is-invalid { /* Style for validation error */
+    border-color: var(--danger-color);
+}
 input:focus, select:focus, textarea:focus {
     color: var(--text-color);
     background-color: var(--input-bg);
@@ -269,6 +272,11 @@ input:focus, select:focus, textarea:focus {
     outline: 0;
     box-shadow: var(--shadow-inset), var(--input-focus-shadow);
 }
+input.is-invalid:focus, textarea.is-invalid:focus, select.is-invalid:focus {
+    border-color: var(--danger-color);
+     box-shadow: var(--shadow-inset), 0 0 0 3px hsla(348, 90%, 60%, 0.25);
+}
+
 input::placeholder, textarea::placeholder { color: var(--text-placeholder); opacity: 1; }
 input:disabled, select:disabled, textarea:disabled { background-color: var(--medium-bg); opacity: 0.7; cursor: not-allowed; }
 
@@ -922,17 +930,31 @@ html[dir="rtl"] .preview-pane.original-pane::after {
 }
 
 
+/* --- Start: Wide Download Button --- */
 .result-controls {
-    margin-top: auto;
+    margin-top: auto; /* Pushes to the bottom */
     padding-top: 1.5rem;
     border-top: 1px solid var(--light-border);
-    text-align: center;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+    flex-shrink: 0; /* Prevent shrinking */
+    padding-left: 1rem; /* Add padding */
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
 }
-.download-button { font-size: 1rem; padding: 0.8rem 2rem; min-width: 180px; }
+
+.download-button {
+    /* Keep existing button styles */
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    min-width: auto; /* Override any previous min-width */
+
+    /* New styles */
+    display: block; /* Block element */
+    width: 100%;   /* Fill container */
+    max-width: 700px; /* Limit max width */
+    margin-left: auto;  /* Center */
+    margin-right: auto; /* Center */
+}
+/* --- End: Wide Download Button --- */
 
 
 /* ===== Contact Page Styles ===== */
@@ -1092,7 +1114,7 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .preview-pane.original-pane::after {
         display: none; /* Hide vertical divider when stacked */
     }
-    /* Optionally add a horizontal divider */
+    /* Optional: add horizontal divider */
     .preview-pane.original-pane {
         border-bottom: 1px solid var(--light-border);
     }
@@ -1129,8 +1151,15 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .cta-section { padding: 2.5rem 1rem; }
     .cta-section p { font-size: 1.1rem; }
 
-    .result-controls { flex-direction: column; align-items: stretch; gap: 0.8rem; }
-    .result-controls .button { width: 100%; }
+    .result-controls {
+        padding-left: 0.5rem; /* Adjust padding for mobile */
+        padding-right: 0.5rem;
+    }
+    .result-controls .download-button {
+         padding: 0.7rem 1.5rem; /* Adjust button padding for mobile */
+         /* width: 100% and centering handled by base rules */
+    }
+
 
     .options-header { flex-direction: column; align-items: stretch; }
     .options-header h2 { text-align: center; margin-bottom: 0.8rem; }
@@ -1144,6 +1173,7 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .input-combo input[type="number"] { width: 80px; text-align: center; }
     .input-combo .unit { min-width: auto; padding-left: 0.5rem; }
     html[dir="rtl"] .input-combo input[type="number"] { text-align: center; }
+    html[dir="rtl"] .input-combo .unit { padding-left: 0; padding-right: 0.5rem; }
 }
 
 /* RTL adjustments */
@@ -1163,6 +1193,8 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
 html[dir="rtl"] .common-issues-section ul { text-align: right; }
 html[dir="rtl"] .contact-form-container { text-align: right; }
 html[dir="rtl"] label { text-align: right; }
+html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right: 0; }
+
 @media (min-width: 769px) {
     html[dir="rtl"] .preview-pane.original-pane::after {
         right: auto; left: 0;
@@ -1174,5 +1206,6 @@ html[dir="rtl"] label { text-align: right; }
         right: 0; left: auto;
     }
 }
+
 
 /* --- End Responsive --- */
