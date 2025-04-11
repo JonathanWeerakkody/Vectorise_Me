@@ -517,24 +517,83 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 .feature-card h3 { font-size: 1.15rem; /* Adjusted size */ font-weight: 600; margin-bottom: 0.6rem; color: var(--text-heading); }
 .feature-card p { font-size: 0.925rem; /* Adjusted size */ color: var(--text-light); line-height: 1.65; flex-grow: 1; /* Allow p to fill space if needed */ }
 
-/* ===== Preset Examples Section ===== */
-.preset-examples-section {
-    margin: 5rem 0; /* Added vertical margins */
-    padding: 4rem 0;
-    background-color: var(--medium-bg);
-    border-top: 1px solid var(--light-border);
-    border-bottom: 1px solid var(--light-border);
+/* Remove or comment out old example styles */
+/*
+.example-images { ... }
+.example-image-container { ... }
+.example-images img { ... }
+.example-image-label { ... }
+*/
+
+/* --- New Comparison Slider Styles --- */
+.preset-examples-container {
+    display: grid;
+    gap: 2.5rem; /* Increased gap slightly */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-.preset-examples-section .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; text-align: center; }
-.preset-examples-section h2 { font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.8rem; color: var(--text-heading); }
-.preset-examples-section p { font-size: clamp(1rem, 2.5vw, 1.15rem); color: var(--text-light); margin-bottom: 3rem; max-width: 750px; margin-left: auto; margin-right: auto; }
-.preset-examples-container { display: grid; gap: 1.8rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.preset-example-card { background-color: var(--panel-bg); border-radius: var(--border-radius-lg); padding: 1.5rem; border: 1px solid var(--light-border); text-align: center; box-shadow: var(--shadow-md); display: flex; flex-direction: column; } /* Added flex */
-.preset-example-card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.2rem; color: var(--text-heading); }
-.example-images { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; margin-top: auto; } /* Push images down */
-.example-image-container { display: flex; flex-direction: column; align-items: center; }
-.example-images img { display: block; width: 100%; /* Make images fill width */ height: 160px; /* Fixed height */ object-fit: contain; /* Contain image within bounds */ object-position: center; border-radius: var(--border-radius); border: 1px solid var(--medium-border); background-color: var(--white); margin-bottom: 0.6rem; box-shadow: var(--shadow-sm); }
-.example-image-label { font-size: 0.75rem; /* Reduced size */ font-weight: 500; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.preset-example-card {
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem 1.5rem 1rem 1.5rem; /* Adjust padding */
+    border: 1px solid var(--light-border);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+}
+.preset-example-card h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem; /* Space below title */
+    color: var(--text-heading);
+}
+
+.comparison-slider-container {
+    position: relative; /* Crucial for absolute positioning of images */
+    overflow: hidden; /* Hide parts of images outside the container */
+    width: 100%;
+    height: 220px; /* Increased height for better interaction/view */
+    border-radius: var(--border-radius);
+    cursor: default; /* Default cursor, interaction is hover */
+    background-color: var(--medium-bg); /* Fallback background */
+    margin-bottom: 0.5rem; /* Space between slider and labels */
+    border: 1px solid var(--medium-border); /* Slightly stronger border */
+    box-shadow: var(--shadow-inset);
+}
+
+.comparison-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Scale image while preserving aspect ratio */
+    object-position: center center; /* Center the image */
+    user-select: none; /* Prevent image selection */
+    -webkit-user-drag: none; /* Prevent image dragging */
+    pointer-events: none; /* Allow mouse events to pass through to the container */
+}
+
+.img-after {
+    /* This image is clipped. Starts showing 50% by default (set by JS) */
+    /* We use inset(top right bottom left) */
+    clip-path: inset(0 50% 0 0);
+    /* Ensure it's visually on top if needed, though DOM order should suffice */
+    /* z-index: 1; */
+}
+
+/* Style the labels below the slider */
+.comparison-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 0.4rem 0 0.4rem; /* Add some padding */
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
 
 /* ===== CTA Section ===== */

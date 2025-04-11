@@ -118,37 +118,51 @@
                      </div>
                  </section>
 
-                 <!-- ===== Preset Examples Section ===== -->
-                 <section class="preset-examples-section">
-                     <div class="container">
-                        <!-- Consider SEO H2 -->
-                        <h2 data-translate="presets_h2_seo">Image to SVG Preset Examples</h2>
-                        <p data-translate="presets_p">See how different presets handle various image types.</p>
-                        <div class="preset-examples-container">
-                            <div class="preset-example-card">
-                                <h4 data-translate="preset_photo">Technical Drawings / Blueprints</h4>
-                                <div class="example-images">
-                                    <div class="example-image-container"> <img src="/assets/images/example-photo-before.jpg" alt="Original technical drawing before SVG conversion"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
-                                    <div class="example-image-container"> <img src="/assets/images/example-photo-after.svg" alt="Technical drawing converted to SVG vector"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
-                                </div>
-                            </div>
-                            <div class="preset-example-card">
-                                <h4 data-translate="preset_clipart">Clipart / Logo</h4>
-                                <div class="example-images">
-                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-before.png" alt="Original PNG clipart before vectorization"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
-                                    <div class="example-image-container"> <img src="/assets/images/example-clipart-after.svg" alt="Clipart vectorized into scalable SVG"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
-                                </div>
-                            </div>
-                            <div class="preset-example-card">
-                                <h4 data-translate="preset_pixel">Pixel Art</h4>
-                                <div class="example-images">
-                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-before.png" alt="Original pixel art image"> <span class="example-image-label" data-translate="preset_original">Original</span> </div>
-                                    <div class="example-image-container"> <img src="/assets/images/example-pixel-after.svg" alt="Pixel art converted to clean SVG paths"> <span class="example-image-label" data-translate="preset_vectorized">Vectorized</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </section>
+<!-- Inside preset-examples-section -->
+<div class="preset-examples-container"> <!-- Keep this container -->
+
+    <!-- Example 1: Technical Drawing -->
+    <div class="preset-example-card">
+        <h4 data-translate="preset_photo">Technical Drawings / Blueprints</h4>
+        <div class="comparison-slider-container">
+            <img src="/assets/images/example-photo-after.svg" class="comparison-img img-after" alt="Vectorized technical drawing (SVG)">
+            <img src="/assets/images/example-photo-before.jpg" class="comparison-img img-before" alt="Original technical drawing (JPG)">
+            <!-- Note: Order flipped so 'before' is visually underneath initially -->
+        </div>
+         <!-- Add labels below the slider -->
+         <div class="comparison-labels">
+            <span data-translate="preset_original">Original</span>
+            <span data-translate="preset_vectorized">Vectorized</span>
+         </div>
+    </div>
+
+    <!-- Example 2: Clipart -->
+    <div class="preset-example-card">
+        <h4 data-translate="preset_clipart">Clipart / Logo</h4>
+        <div class="comparison-slider-container">
+            <img src="/assets/images/example-clipart-after.svg" class="comparison-img img-after" alt="Vectorized clipart (SVG)">
+            <img src="/assets/images/example-clipart-before.png" class="comparison-img img-before" alt="Original clipart (PNG)">
+        </div>
+         <div class="comparison-labels">
+            <span data-translate="preset_original">Original</span>
+            <span data-translate="preset_vectorized">Vectorized</span>
+         </div>
+    </div>
+
+    <!-- Example 3: Pixel Art -->
+    <div class="preset-example-card">
+        <h4 data-translate="preset_pixel">Pixel Art</h4>
+        <div class="comparison-slider-container">
+            <img src="/assets/images/example-pixel-after.svg" class="comparison-img img-after" alt="Vectorized pixel art (SVG)">
+            <img src="/assets/images/example-pixel-before.png" class="comparison-img img-before" alt="Original pixel art (PNG)">
+        </div>
+         <div class="comparison-labels">
+            <span data-translate="preset_original">Original</span>
+            <span data-translate="preset_vectorized">Vectorized</span>
+         </div>
+    </div>
+
+</div> <!-- End .preset-examples-container -->
 
                  <!-- ===== CTA Section ===== -->
                  <section class="cta-section">

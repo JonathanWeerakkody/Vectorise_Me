@@ -960,6 +960,39 @@ const translations = {
      // ... (Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Thai, Turkish, Vietnamese, zh-CN, zh-TW, Arabic) ...
 };
 
+// --- Comparison Slider Functionality ---
+function setupComparisonSliders() {
+    const sliders = document.querySelectorAll('.comparison-slider-container');
+
+    sliders.forEach(slider => {
+        const imgAfter = slider.querySelector('.img-after'); // Get the top image
+
+        if (!imgAfter) {
+            console.warn("Could not find '.img-after' element within a slider container.");
+            return; // Skip if the structure is wrong
+        }
+
+        // Function to set the clip based on mouse position
+        const handleMouseMove = (e) => {
+            const rect = slider.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            let percentage = Math.max(0, Math.min(100, (mouseX / rect.width) * 100));
+            imgAfter.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        };
+
+        // Function to reset the clip when the mouse leaves
+        const handleMouseLeave = () => {
+            imgAfter.style.clipPath = 'inset(0 50% 0 0)';
+        };
+
+        // Add event listeners to the container
+        safeAddListener(slider, 'mousemove', handleMouseMove);
+        safeAddListener(slider, 'mouseleave', handleMouseLeave);
+
+        // Set initial state
+        handleMouseLeave();
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Get DOM Elements ---
