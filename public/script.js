@@ -1,12 +1,10 @@
-// public/script.js - VTracer Only + Info Tooltips + Comparison Sliders
+// public/script.js - VTracer Only + Info Tooltips + Comparison Sliders + Ads + AdBlock Msg (English Only Translations)
 
-// --- Translations ---
+// --- Translations (English Only) ---
 const translations = {
-    // --- English (en) ---
     en: {
         lang_name: "English",
         // Meta Tags (SEO Optimized)
-        advertisement_label: "Advertisement",
         meta_title_main_seo: "Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
         meta_description_main_seo: "Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
         meta_title_contact: "Contact Us - Vectorise.Me",
@@ -88,7 +86,7 @@ const translations = {
         layering_stacked: "Stacked",
         layering_cutout: "Cutout",
         gradient_step_label: "Gradient Step:",
-    
+
         // ===== User-Friendly Info Tooltip Texts =====
         info_preset: "Quick start! Choose a type that matches your image (like Logo, Photo, Pixel Art) for suggested settings.",
         info_color_detail: "Fewer colors (e.g., 'Posterized') gives a simplified, stylized look and smaller file. More colors ('Full') is closer to the original but makes a larger file.",
@@ -103,7 +101,7 @@ const translations = {
         info_layering: "(Color Mode Only) 'Stacked' puts colors on top of each other (like layers). 'Cutout' cuts shapes from the layer below (can simplify, might change look/transparency).",
         info_gradient_step: "(Color Mode Only) Smoothness of color gradients. Higher values make gradients look blocky or 'posterized'. Set to 0 or 1 for smooth gradients.",
         // ===== END: Info Tooltip Texts =====
-    
+
         // Common App View
         update_vectorization_btn: "Update Vectorization",
         // App View - Result Panel
@@ -199,11 +197,11 @@ const translations = {
         privacy_transfer_p1: "Your information, including image data during processing, may be processed on servers located outside of your jurisdiction where data protection laws may differ. Your consent to this Privacy Policy followed by your use of the Service represents your agreement to that transfer.",
         privacy_transfer_p2: "We take reasonable steps to ensure data is treated securely.",
         privacy_h2_disclosure: "Disclosure Of Data",
-        privacy_disclosure_p1: "We may disclose your Usage Data under limited circumstances, such as to comply with legal obligations, protect our rights or those of others, prevent wrongdoing, or in the event of a business transfer (e.g., merger or acquisition). We do not sell your Personal Data.",
+        privacy_disclosure_placeholder: "We may disclose your Usage Data under limited circumstances, such as to comply with legal obligations, protect our rights or those of others, prevent wrongdoing, or in the event of a business transfer (e.g., merger or acquisition). We do not sell your Personal Data.",
         privacy_h2_security: "Security of Data",
         privacy_security_p1: "The security of your data is important. While we strive to use commercially acceptable means (like HTTPS) to protect data, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.",
         privacy_h2_providers: "Service Providers",
-        privacy_providers_p1: "We may employ third-party service providers to facilitate the operation of our Service. These providers include Render.com for hosting services and Google Analytics for analytics, as mentioned earlier. These third parties have access to your Usage Data only to perform these specific tasks on our behalf and are obligated to protect your information in accordance with applicable standards.",
+        privacy_providers_placeholder: "We may employ third-party service providers to facilitate the operation of our Service. These providers include Render.com for hosting services and Google Analytics for analytics, as mentioned earlier. These third parties have access to your Usage Data only to perform these specific tasks on our behalf and are obligated to protect your information in accordance with applicable standards.",
         privacy_h2_links: "Links to Other Sites",
         privacy_links_p1: "Our Service may contain links to other sites. We have no control over and assume no responsibility for the content or practices of any third-party sites.",
         privacy_h2_children: "Children's Privacy",
@@ -223,29 +221,29 @@ const translations = {
         cookies_what_p2: 'Cookies set by the website owner (in this case, JonkaryStudio) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies". Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognise your computer both when it visits the website in question and also when it visits certain other websites.',
         cookies_h2_why: "Why Do We Use Cookies?",
         cookies_why_p1: 'We use first-party and possibly third-party cookies for several reasons. Some cookies are required for technical reasons for our Service to operate, and we refer to these as "essential" or "strictly necessary" cookies.',
-        cookies_why_p2: "[Placeholder: Clearly list cookies used, e.g., Essential (Session, Security), Analytics (Google Analytics), etc. Remove this placeholder text when listing actual cookies.]",
+        cookies_why_p2: "[Be specific about your usage. Modify/Remove sections as needed]:",
         cookies_why_li_essential: "Essential Cookies: These are necessary to provide you with services available through our Service and to enable you to use some of its features, such as managing your session during the conversion process (if applicable) or securing the site. Render.com, our hosting provider, may use essential session cookies to ensure proper functionality.",
-        cookies_why_li_analytics: "Analytics Cookies: These cookies collect information used in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you. We use Google Analytics (`_ga`, `_gid`) to track usage patterns.",
-        cookies_why_li_advertising: "Advertising Cookies: [Remove if not using] These cookies are used to make advertising messages more relevant to you. They may be set by third-party partners to track browsing habits and deliver personalized ads.",
+        cookies_why_li_analytics: "Analytics and Customization Cookies: These cookies collect information that is used either in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you. We use Google Analytics, which may set cookies such as `_ga` and `_gid` to track usage patterns and improve your experience.",
+        cookies_why_li_advertising: "Advertising Cookies: These cookies are used to make advertising messages more relevant to you. They may be set by third-party advertising partners (like Google AdSense) to track your browsing habits and deliver personalized ads based on your interests.",
         cookies_h2_control: "How Can I Control Cookies?",
         cookies_control_p1: "You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by setting or amending your web browser controls.",
         cookies_control_p2: "Most browsers allow you to:",
-        cookies_control_li_view: "See what cookies you've got and delete them individually.",
+        cookies_control_li_view: "See what cookies you've got and delete them on an individual basis.",
         cookies_control_li_block_third: "Block third-party cookies.",
         cookies_control_li_block_site: "Block cookies from particular sites.",
-        cookies_control_li_block_all: "Block all cookies.",
+        cookies_control_li_block_all: "Block all cookies from being set.",
         cookies_control_li_delete: "Delete all cookies when you close your browser.",
-        cookies_control_p3: "Be aware that preferences will be lost if you delete cookies. Blocking cookies completely may cause parts of the website not to work properly.",
+        cookies_control_p3: "You should be aware that any preferences will be lost if you delete cookies. If you choose to block cookies completely, many websites will not work properly as certain functionality relies on them.",
         cookies_control_p4: "Find out how to manage cookies on popular browsers:",
         cookies_control_link_chrome: "Google Chrome",
         cookies_control_link_edge: "Microsoft Edge",
         cookies_control_link_firefox: "Mozilla Firefox",
         cookies_control_link_safari: "Apple Safari",
-        cookies_control_p5: "For other browsers, visit the browser developer's website.",
+        cookies_control_p5: "To find information relating to other browsers, visit the browser developer's website.",
         cookies_h2_changes: "Changes to This Cookie Policy",
-        cookies_changes_p1: "We may update this Cookie Policy from time to time. Please re-visit this page regularly to stay informed.",
+        cookies_changes_p1: "We may update this Cookie Policy from time to time to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed.",
         cookies_h2_contact: "Contact Us",
-        cookies_contact_p1: "If you have questions about our use of cookies, please contact us:",
+        cookies_contact_p1: "If you have any questions about our use of cookies or other technologies, please contact us:",
         cookies_contact_li_email: "By email: jonkarystudio@gmail.com",
         cookies_contact_li_web_label: "Via our website:",
         cookies_contact_page_link: "Contact Page",
@@ -316,428 +314,15 @@ const translations = {
         preset_name_clipart: "Clipart / Logo",
         preset_name_cartoon: "Cartoon / Flat Style",
         preset_name_photograph: "Photograph",
-    },
-
-    // --- German Placeholder ---
-    de: {
-        lang_name: "[DE] German",
-        meta_title_main_seo: "[DE] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[DE] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        meta_title_main_short: "[DE] Free Image to SVG Converter",
-        meta_description_main: "[DE] Free online tool to convert raster images (JPG, PNG, WEBP, BMP) to scalable vector graphics (SVG) with real-time customization and presets.",
-        meta_title_contact: "[DE] Contact Us - Vectorise.Me",
-        meta_description_contact: "[DE] Get in touch with Vectorise.Me or find solutions to common vectorization problems.",
-        meta_title_privacy: "[DE] Privacy Policy - Vectorise.Me",
-        meta_description_privacy: "[DE] Privacy Policy for the Vectorise.Me online SVG conversion tool.",
-        meta_title_cookies: "[DE] Cookie Policy - Vectorise.Me",
-        meta_description_cookies: "[DE] Cookie Policy for the Vectorise.Me online SVG conversion tool.",
-        meta_title_terms: "[DE] Terms of Service - Vectorise.Me",
-        meta_description_terms: "[DE] Terms of Service for the Vectorise.Me online SVG conversion tool.",
-        upload_new: "[DE] Upload New",
-        landing_h1_main_seo: "[DE] Free & Customizable Online Image to SVG Converter",
-        landing_h1_free: "[DE] Only FREE",
-        landing_h1_and: "[DE] and",
-        landing_h1_customizable: "[DE] CUSTOMIZABLE Vectorizer",
-        landing_subheadline_detailed_seo: "[DE] Instantly convert JPG, PNG, and BMP images into high-quality, scalable vector graphics (SVG) online for free. SVGs are perfect for web use, logos, and illustrations because they scale infinitely without losing quality. Our tool uses advanced tracing options and helpful presets for precise results, giving you full control over the conversion process.",
-        landing_subheadline_detailed: "[DE] Instantly convert raster images (JPG, PNG, BMP) into crisp, infinitely scalable SVG vectors online for free. Features advanced tracing options with helpful presets for precise results.",
-        upload_drag_drop: "[DE] Drag & Drop Image",
-        upload_or: "[DE] or",
-        upload_browse: "[DE] Browse Files",
-        upload_formats: "[DE] Max 15MB (JPG, PNG, & BMP)",
-        cancel_selection_title: "[DE] Cancel Selection",
-        vectorize_image_btn: "[DE] Vectorize Image",
-        features_h2_seo: "[DE] Key SVG Converter Features",
-        features_p: "[DE] Everything you need for perfect SVGs. Our powerful conversion tool gives you complete control over your vector graphics.",
-        feature_instant_h3: "[DE] Instant Conversion",
-        feature_instant_p: "[DE] Upload your image and get an SVG preview instantly. No waiting, no processing delays.",
-        feature_realtime_h3: "[DE] Real-time Customization",
-        feature_realtime_p: "[DE] Adjust settings and see changes in real-time. Tweak your SVG to perfection.",
-        feature_quality_h3: "[DE] High-Quality Results",
-        feature_quality_p: "[DE] Get clean, optimized SVGs that scale perfectly for any use case.",
-        presets_h2_seo: "[DE] Image to SVG Preset Examples",
-        presets_p: "[DE] Hover over the images to see the difference!",
-        preset_photo: "[DE] Technical Drawings / Blueprints",
-        preset_clipart: "[DE] Clipart / Logo",
-        preset_pixel: "[DE] Pixel Art",
-        preset_original: "[DE] Original",
-        preset_vectorized: "[DE] Vectorized",
-        cta_p_revised: "[DE] Get started instantly – no sign-up needed. Just upload and vectorize!",
-        options_h2: "[DE] Options",
-        load_settings_title: "[DE] Load settings",
-        save_settings_title: "[DE] Save settings",
-        reset_options_title: "[DE] Reset options",
-        load_btn: "[DE] Load",
-        save_btn: "[DE] Save",
-        reset_btn: "[DE] Reset",
-        preset_label: "[DE] Image Type Preset:",
-        preset_select_placeholder: "[DE] Load a Preset...",
-        options_legend_color: "[DE] Color Settings",
-        color_detail_title: "[DE] Color Detail",
-        color_detail_label: "[DE] Color Detail:",
-        color_detail_full: "[DE] Full (8 bit)",
-        color_detail_standard: "[DE] Standard (6 bit)",
-        color_detail_reduced: "[DE] Reduced (5 bit)",
-        color_detail_limited: "[DE] Limited (4 bit)",
-        color_detail_posterized: "[DE] Posterized (3 bit)",
-        color_mode_title: "[DE] Color Mode",
-        color_mode_label: "[DE] Color Mode:",
-        color_mode_color: "[DE] Color",
-        color_mode_binary: "[DE] Binary",
-        options_legend_trace: "[DE] Tracing Parameters",
-        filter_speckle_label: "[DE] Filter Speckle:",
-        mode_label: "[DE] Mode:",
-        mode_spline: "[DE] Spline",
-        mode_polygon: "[DE] Polygon",
-        mode_pixel: "[DE] Pixel",
-        options_legend_geo: "[DE] Geometry & Path Fitting",
-        corner_thr_label: "[DE] Corner Threshold:",
-        path_prec_label: "[DE] Path Precision:",
-        spline_thr_label: "[DE] Spline Threshold:",
-        splice_thr_label: "[DE] Splice Threshold:",
-        segment_len_label: "[DE] Segment Length:",
-        options_legend_color_proc: "[DE] Color Processing Options",
-        layering_label: "[DE] Layering:",
-        layering_stacked: "[DE] Stacked",
-        layering_cutout: "[DE] Cutout",
-        gradient_step_label: "[DE] Gradient Step:",
-        info_preset: "[DE] Select a preset based on your image type for recommended starting settings.",
-        info_color_detail: "[DE] Controls the number of colors used in the output SVG. Higher bit values mean more colors (closer to original, larger file). Lower values posterize the image (fewer colors, smaller file).",
-        info_color_mode: "[DE] 'Color' preserves multiple colors (use with Color Detail). 'Binary' creates a pure black and white output based on a brightness threshold.",
-        info_filter_speckle: "[DE] Removes small spots or 'speckles' smaller than this size (in pixels). Higher values remove larger spots but can erase fine details. Set to 0 to disable. Max value is 16.",
-        info_mode: "[DE] 'Spline' creates smooth curves (good for photos, illustrations). 'Polygon' creates shapes with straight lines/sharp corners (good for technical drawings, some logos). 'Pixel' creates exact squares for pixel art.",
-        info_corner_threshold: "[DE] Controls how sharp corners need to be before they are considered corners (vs. smooth curves). Higher values create more smooth curves. Lower values create more sharp corners. Measured in degrees.",
-        info_path_precision: "[DE] Number of decimal places used for coordinates in the SVG path data. Higher values are more precise but increase file size. Lower values simplify paths and reduce size.",
-        info_spline_threshold: "[DE] (Spline Mode Only) Controls how closely the generated splines follow the original image contours. Lower values follow more closely (more detail, potentially more complex). Higher values simplify curves.",
-        info_splice_threshold: "[DE] (Spline Mode Only) Controls merging of nearly collinear path segments. Higher values simplify by merging more aggressively. Measured in degrees.",
-        info_segment_length: "[DE] (Spline Mode Only) Controls the maximum length allowed for curve segments. Lower values create more segments (more detail). Higher values simplify curves.",
-        info_layering: "[DE] (Color Mode Only) 'Stacked' layers colors on top of each other (preserves shapes well). 'Cutout' cuts shapes from the layers below (can reduce overlaps, might alter appearance).",
-        info_gradient_step: "[DE] (Color Mode Only) Simplifies gradients by reducing the number of color steps. Higher values result in more posterized gradients. Set to 0 or 1 for smooth gradients. Must be a whole number.",
-        update_vectorization_btn: "[DE] Update Vectorization",
-        preview_h2: "[DE] Preview",
-        zoom_out_title: "[DE] Zoom Out",
-        zoom_reset_title: "[DE] Reset Zoom",
-        zoom_in_title: "[DE] Zoom In",
-        preview_original_label: "[DE] Original",
-        preview_vectorized_label: "[DE] Vectorized",
-        preview_placeholder_processing: "[DE] Processing...",
-        preview_placeholder_loading: "[DE] Loading preview...",
-        preview_placeholder_select: "[DE] SVG result will appear here",
-        preview_placeholder_update_failed: "[DE] Update Failed",
-        download_svg_btn: "[DE] Download SVG",
-        footer_home_link: "[DE] Home",
-        footer_contact_link: "[DE] Contact",
-        footer_privacy_link: "[DE] Privacy Policy",
-        footer_cookies_link: "[DE] Cookie Policy",
-        footer_terms_link: "[DE] Terms of Service",
-        footer_copyright: "[DE] © 2025 JonkaryStudio. All rights reserved.",
-        contact_h1: "[DE] Contact Us",
-        contact_name_label: "[DE] Name",
-        contact_name_placeholder: "[DE] Your name",
-        contact_email_label: "[DE] Email",
-        contact_email_placeholder: "[DE] Your email",
-        contact_subject_label: "[DE] Subject",
-        contact_subject_placeholder: "[DE] Message subject",
-        contact_message_label: "[DE] Message",
-        contact_message_placeholder: "[DE] Your message",
-        contact_send_btn: "[DE] Send Message",
-        contact_status_fill_fields: "[DE] Please fill out all required fields.",
-        contact_status_invalid_email: "[DE] Please enter a valid email address.",
-        contact_status_opening_email: "[DE] Opening your email client...",
-        contact_status_complete_send: "[DE] Please complete sending the email via your email application.",
-        contact_status_error_email: "[DE] Could not open email client. Please copy details manually to {recipient}.",
-        faq_h2: "[DE] Common Problems & Solutions",
-        faq_p: "[DE] Here are some common issues you might encounter and how to resolve them.",
-        faq_q_quality: "[DE] Image Quality Issues:",
-        faq_q_quality_desc: "[DE] The converted SVG doesn't match the original image quality.",
-        faq_solution_label: "[DE] Solution:",
-        faq_a_quality: "[DE] Adjust the settings in the vectorization process. Increasing 'Color Detail' (palette size), adjusting 'Spline Threshold' (lower for more detail), or reducing 'Filter Speckle' can help. For pixel art, ensure the 'Pixel' mode is selected. Experiment with different presets.",
-        faq_q_upload_failed: "[DE] Image Failed to Convert:",
-        faq_q_upload_failed_desc: "[DE] The uploaded image failed to convert.",
-        faq_a_upload_failed: "[DE] Check for image compatibility. Vectorise.Me only handles JPG, PNG and BMP. If you have images of different formats, convert them first before uploading them.",
-        faq_q_performance: "[DE] Performance Issues:",
-        faq_q_performance_desc: "[DE] The conversion process is slow or unresponsive, or the resulting SVG is very large.",
-        faq_a_performance: "[DE] Try reducing the image size or complexity before uploading. Large or highly detailed images take longer to process and generate larger SVGs. Lowering 'Color Detail' or increasing 'Filter Speckle' can also simplify the output and improve performance.",
-        faq_q_detail_loss: "[DE] Loss of Fine Detail:",
-        faq_q_detail_loss_desc: "[DE] Small elements or thin lines disappear in the SVG.",
-        faq_a_detail_loss: "[DE] Reduce the 'Filter Speckle' value significantly (e.g., to 0 or 1). Ensure 'Path Precision' is adequate (though higher values increase file size). For spline mode, slightly lowering 'Spline Threshold' might capture more curves.",
-        faq_q_jagged: "[DE] Jagged Edges (Polygon Mode):",
-        faq_q_jagged_desc: "[DE] Lines appear blocky instead of smooth.",
-        faq_a_jagged: "[DE] Switch the 'Mode' to 'Spline' for smoother curves. Polygon mode inherently creates straight line segments.",
-        faq_q_colors: "[DE] Unexpected Colors:",
-        faq_q_colors_desc: "[DE] The colors in the SVG look different or posterized.",
-        faq_a_colors: "[DE] Ensure 'Color Mode' is set to 'Color'. Increase the 'Color Detail' setting (higher bit precision). Check if the 'Gradient Step' is appropriate; a very high value might reduce subtle color transitions.",
-        faq_q_transparency: "[DE] Transparency Not Preserved:",
-        faq_q_transparency_desc: "[DE] Background transparency from PNGs is lost.",
-        faq_a_transparency: "[DE] Vectorise.Me generally handles transparency well, especially with 'Stacked' layering. Ensure your original PNG has actual transparency. If using 'Cutout' layering, transparency might behave differently. The underlying process might sometimes quantize near-transparent colors to opaque ones depending on settings.",
-        faq_q_browser: "[DE] Browser Rendering Differences:",
-        faq_q_browser_desc: "[DE] The SVG looks slightly different in various web browsers.",
-        faq_a_browser: "[DE] This is inherent to SVG rendering engines. Ensure your SVG is well-formed. Avoid overly complex CSS or filters within the SVG if compatibility is critical. Test in major browsers.",
-        legal_last_updated: "[DE] Last Updated:",
-        legal_date_placeholder: "[DE] 04/10/2025",
-        privacy_h1: "[DE] Privacy Policy",
-        privacy_intro_1: '[DE] Welcome to Vectorise.Me (the "Service"), operated by JonkaryStudio ("us", "we", or "our"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.',
-        privacy_h2_collection: "[DE] Information Collection and Use",
-        privacy_collection_p1: "[DE] We collect several different types of information for various purposes to provide and improve our Service to you.",
-        privacy_h3_types: "[DE] Types of Data Collected",
-        privacy_h4_personal: "[DE] Personal Data",
-        privacy_personal_p1: '[DE] While using our Service, particularly when contacting us, we may ask you to provide us with certain personally identifiable information ("Personal Data"). This may include, but is not limited to:',
-        privacy_personal_li_email: "[DE] Email address",
-        privacy_personal_li_name: "[DE] Name",
-        privacy_personal_p2: "[DE] We may also collect Usage Data as described below.",
-        privacy_h4_image: "[DE] Image Data",
-        privacy_image_p1: "[DE] When you upload an image for conversion, the image data is sent to our server for processing. We process the image solely for the purpose of converting it to SVG format as requested by you.",
-        privacy_image_policy_actual: "[DE] Uploaded images and generated SVGs are not stored on our servers after processing and download link generation.",
-        privacy_h4_usage: "[DE] Usage Data",
-        privacy_usage_p1: '[DE] We may collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include your computer\'s IP address, browser type, browser version, the pages visited, time and date of visit, time spent on pages, unique device identifiers, and other diagnostic data.',
-        privacy_usage_analytics_info: "[DE] We do use Google Analytics to help us analyze and improve the performance and user experience of our Service.",
-        privacy_h2_use: "[DE] Use of Data",
-        privacy_use_p1: "[DE] JonkaryStudio uses the collected data for purposes such as:",
-        privacy_use_li_provide: "[DE] Providing and maintaining the Service.",
-        privacy_use_li_process: "[DE] Processing image conversion requests.",
-        privacy_use_li_respond: "[DE] Responding to your contact inquiries.",
-        privacy_use_li_improve: "[DE] Improving the Service based on usage analysis.",
-        privacy_use_li_monitor: "[DE] Monitoring Service usage for stability and security.",
-        privacy_use_li_detect: "[DE] Detecting, preventing, and addressing technical issues.",
-        privacy_h2_transfer: "[DE] Transfer Of Data",
-        privacy_transfer_p1: "[DE] Your information, including image data during processing, may be processed on servers located outside of your jurisdiction where data protection laws may differ. Your consent to this Privacy Policy followed by your use of the Service represents your agreement to that transfer.",
-        privacy_transfer_p2: "[DE] We take reasonable steps to ensure data is treated securely.",
-        privacy_h2_disclosure: "[DE] Disclosure Of Data",
-        privacy_disclosure_actual: "[DE] We may disclose your Usage Data under limited circumstances, such as to comply with legal obligations, protect our rights or the rights of others, prevent wrongdoing, or in the event of a business transfer (e.g., merger or acquisition).",
-        privacy_disclosure_p1: "[DE] We do not sell your Personal Data.",
-        privacy_h2_security: "[DE] Security of Data",
-        privacy_security_p1: "[DE] The security of your data is important. While we strive to use commercially acceptable means (like HTTPS) to protect data, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.",
-        privacy_h2_providers: "[DE] Service Providers",
-        privacy_providers_actual: "[DE] We may employ third-party service providers to facilitate the operation of our Service. These providers include Render.com for hosting services and Google Analytics for analytics, as mentioned earlier. These third parties have access to your Usage Data only to perform these specific tasks on our behalf and are obligated to protect your information in accordance with applicable standards.",
-        privacy_h2_links: "[DE] Links to Other Sites",
-        privacy_links_p1: "[DE] Our Service may contain links to other sites. We have no control over and assume no responsibility for the content or practices of any third-party sites.",
-        privacy_h2_children: "[DE] Children's Privacy",
-        privacy_children_p1: "[DE] Our Service does not knowingly collect personally identifiable information from children under the age of",
-        privacy_children_age_actual: "[DE] 13.",
-        privacy_children_p2_added: "[DE] If we become aware that we have inadvertently collected such information, we will take steps to delete it as soon as possible. We encourage parents and guardians to contact us if they believe their child may have provided us with personal information.",
-        privacy_h2_changes: "[DE] Changes to This Privacy Policy",
-        privacy_changes_p1: '[DE] We may update this policy. We will notify you by posting the new policy on this page and updating the "Last Updated" date.',
-        privacy_h2_contact: "[DE] Contact Us",
-        privacy_contact_p1: "[DE] If you have questions, contact us:",
-        privacy_contact_li_email: "[DE] By email: jonkarystudio@gmail.com",
-        privacy_contact_li_web_label: "[DE] Via our website:",
-        privacy_contact_page_link: "[DE] Contact Page",
-        cookies_h1: "[DE] Cookie Policy",
-        cookies_intro_1: '[DE] This Cookie Policy explains how JonkaryStudio ("us", "we", or "our") uses cookies and similar tracking technologies on the Vectorise.Me website (the "Service"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.',
-        cookies_h2_what: "[DE] What Are Cookies?",
-        cookies_what_p1: "[DE] Cookies are small data files placed on your device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information.",
-        cookies_what_p2: '[DE] Cookies set by the website owner (in this case, JonkaryStudio) are called "first-party cookies". Cookies set by parties other than the website owner are called "third-party cookies". Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognise your computer both when it visits the website in question and also when it visits certain other websites.',
-        cookies_h2_why: "[DE] Why Do We Use Cookies?",
-        cookies_why_p1: '[DE] We use first-party and possibly third-party cookies for several reasons. Some cookies are required for technical reasons for our Service to operate, and we refer to these as "essential" or "strictly necessary" cookies.',
-        cookies_why_p2: "[DE] [Be specific about your usage. Modify/Remove sections as needed]:",
-        cookies_why_li_essential: "[DE] Essential Cookies:",
-        cookies_why_li_essential_desc: "[DE] These are necessary to provide you with services available through our Service and to enable you to use some of its features, such as managing your session during the conversion process (if applicable) or securing the site. Render.com, our hosting provider, may use essential session cookies to ensure proper functionality.",
-        cookies_why_li_analytics: "[DE] Analytics and Customization Cookies:",
-        cookies_why_li_analytics_desc: "[DE] These cookies collect information that is used either in aggregate form to help us understand how our Service is being used or how effective our marketing campaigns are, or to help us customize our Service for you. We use Google Analytics, which may set cookies such as `_ga` and `_gid` to track usage patterns and improve your experience.",
-        cookies_why_li_advertising: "[DE] Advertising Cookies:",
-        cookies_why_li_advertising_desc: "[DE] These cookies are used to make advertising messages more relevant to you. They may be set by third-party advertising partners to track your browsing habits and deliver personalized ads based on your interests.",
-        cookies_h2_control: "[DE] How Can I Control Cookies?",
-        cookies_control_p1: "[DE] You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by setting or amending your web browser controls.",
-        cookies_control_p2: "[DE] Most browsers allow you to:",
-        cookies_control_li_view: "[DE] See what cookies you've got and delete them on an individual basis.",
-        cookies_control_li_block_third: "[DE] Block third-party cookies.",
-        cookies_control_li_block_site: "[DE] Block cookies from particular sites.",
-        cookies_control_li_block_all: "[DE] Block all cookies from being set.",
-        cookies_control_li_delete: "[DE] Delete all cookies when you close your browser.",
-        cookies_control_p3: "[DE] You should be aware that any preferences will be lost if you delete cookies. If you choose to block cookies completely, many websites will not work properly as certain functionality relies on them.",
-        cookies_control_p4: "[DE] Find out how to manage cookies on popular browsers:",
-        cookies_control_link_chrome: "[DE] Google Chrome",
-        cookies_control_link_edge: "[DE] Microsoft Edge",
-        cookies_control_link_firefox: "[DE] Mozilla Firefox",
-        cookies_control_link_safari: "[DE] Apple Safari",
-        cookies_control_p5: "[DE] To find information relating to other browsers, visit the browser developer's website.",
-        cookies_h2_changes: "[DE] Changes to This Cookie Policy",
-        cookies_changes_p1: "[DE] We may update this Cookie Policy from time to time to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed.",
-        cookies_h2_contact: "[DE] Contact Us",
-        cookies_contact_p1: "[DE] If you have any questions about our use of cookies or other technologies, please contact us:",
-        cookies_contact_li_email: "[DE] By email: jonkarystudio@gmail.com",
-        cookies_contact_li_web_label: "[DE] Via our website:",
-        cookies_contact_page_link: "[DE] Contact Page",
-        terms_h1: "[DE] Terms of Service",
-        terms_intro_1: '[DE] Please read these Terms of Service ("Terms") carefully before using the Vectorise.Me website (the "Service") operated by JonkaryStudio ("us", "we", or "our").',
-        terms_intro_2: "[DE] Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.",
-        terms_intro_3: "[DE] By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you do not have permission to access the Service.",
-        terms_h2_license: "[DE] Use License",
-        terms_license_p1: "[DE] Permission is granted to temporarily use the materials (information or software) on Vectorise.Me's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:",
-        terms_license_li_modify: "[DE] modify or copy the materials (except for the generated SVG output from your own images);",
-        terms_license_li_commercial: "[DE] use the materials for any commercial purpose, or for any public display (commercial or non-commercial), except for the SVG output derived from your own content;",
-        terms_license_li_reverse: "[DE] attempt to decompile or reverse engineer any software contained on Vectorise.Me's website;",
-        terms_license_li_remove: "[DE] remove any copyright or other proprietary notations from the materials; or",
-        terms_license_li_transfer: '[DE] transfer the materials to another person or "mirror" the materials on any other server.',
-        terms_license_p2: "[DE] This license shall automatically terminate if you violate any of these restrictions and may be terminated by JonkaryStudio at any time.",
-        terms_h2_content: "[DE] Uploaded Content",
-        terms_content_p1: '[DE] You are solely responsible for the images you upload to the Service ("User Content"). You represent and warrant that you own or have the necessary licenses, rights, consents, and permissions to your User Content and you authorize us to use your User Content solely for the purpose of providing the Service (i.e., converting the image to SVG).',
-        terms_content_p2: "[DE] You agree not to upload User Content that is illegal, infringing, defamatory, obscene, or otherwise harmful.",
-        terms_content_p3: "[DE] We claim no ownership rights over your User Content or the resulting SVG files generated by the Service from your User Content.",
-        terms_h2_disclaimer: "[DE] Disclaimer",
-        terms_disclaimer_p1: "[DE] The materials and services on Vectorise.Me's website are provided on an 'as is' basis. JonkaryStudio makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
-        terms_disclaimer_p2: "[DE] Further, JonkaryStudio does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site. The conversion process may not be perfect and results can vary based on the source image and selected settings.",
-        terms_h2_limitations: "[DE] Limitations",
-        terms_limitations_p1: "[DE] In no event shall JonkaryStudio or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials or Service on Vectorise.Me's website, even if JonkaryStudio or a JonkaryStudio authorized representative has been notified orally or in writing of the possibility of such damage.",
-        terms_h2_accuracy: "[DE] Accuracy of Materials",
-        terms_accuracy_p1: "[DE] The materials appearing on Vectorise.Me's website could include technical, typographical, or photographic errors. JonkaryStudio does not warrant that any of the materials on its website are accurate, complete or current.",
-        terms_h2_modifications: "[DE] Modifications to Service and Terms",
-        terms_modifications_p1: "[DE] JonkaryStudio may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service. We may also modify or discontinue the Service at any time.",
-        terms_h2_governing: "[DE] Governing Law",
-        terms_governing_p1: "[DE] These terms and conditions are governed by and construed in accordance with the laws of",
-        terms_governing_jurisdiction_actual: "[DE] the State of Conneticut, USA",
-        terms_governing_p2: "[DE] and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.",
-        terms_h2_contact: "[DE] Contact Us",
-        terms_contact_p1: "[DE] If you have any questions about these Terms, please contact us:",
-        terms_contact_li_email: "[DE] By email: jonkarystudio@gmail.com",
-        terms_contact_li_web_label: "[DE] Via our website:",
-        terms_contact_page_link: "[DE] Contact Page",
-        status_uploading: "[DE] Uploading...",
-        status_vectorizing: "[DE] Vectorizing...",
-        status_updating: "[DE] Updating...",
-        status_processing: "[DE] Processing...",
-        status_working: "[DE] Working...",
-        status_updating_preview: "[DE] Updating preview...",
-        status_complete: "[DE] Complete!",
-        status_options_reset: "[DE] Options reset to default.",
-        status_preset_loaded: "[DE] Preset \"{presetName}\" loaded.",
-        status_settings_saved: "[DE] Settings saved.",
-        status_error_saving_settings: "[DE] Error saving settings.",
-        status_error_loading_settings: "[DE] Error loading settings: {errorMessage}",
-        status_error_reading_file: "[DE] Error reading settings file.",
-        status_error_invalid_json: "[DE] Invalid JSON structure.",
-        status_error_no_options: "[DE] JSON does not contain recognizable options.",
-        status_error_select_json: "[DE] Error: Please select a valid .json settings file.",
-        status_settings_loaded: "[DE] Settings loaded successfully.",
-        status_error_downloading: "[DE] Error preparing download.",
-        status_error_generic: "[DE] Error: {errorMessage}",
-        status_error_file_size: "[DE] Error: File exceeds 15MB limit.",
-        status_error_file_type: "[DE] Error: Unsupported file type ({fileType}). Please use JPG, PNG, WEBP, or BMP.",
-        status_no_file: "[DE] No file selected.",
-        status_error_obj_url: "[DE] Error creating object URL: {errorMessage}",
-        status_error_conversion_failed: "[DE] Conversion Failed: {errorMessage}",
-        status_error_no_svg: "[DE] No SVG data received from server.",
-        preset_name_general: "[DE] General / Balanced",
-        preset_name_pixel: "[DE] Pixel Art",
-        preset_name_technical: "[DE] Technical Drawing / Blueprint",
-        preset_name_illustration: "[DE] Illustration / Graphic",
-        preset_name_clipart: "[DE] Clipart / Logo",
-        preset_name_cartoon: "[DE] Cartoon / Flat Style",
-        preset_name_photograph: "[DE] Photograph",
-    },
-    // --- Spanish Placeholder ---
-    es: {
-        lang_name: "[ES] Spanish",
-        // --- COPY ALL ENGLISH KEYS HERE AND ADD [ES] PREFIX ---
-        meta_title_main_seo: "[ES] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[ES] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- French Placeholder ---
-    fr: {
-        lang_name: "[FR] French",
-        // --- COPY ALL ENGLISH KEYS HERE AND ADD [FR] PREFIX ---
-        meta_title_main_seo: "[FR] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[FR] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Hindi Placeholder ---
-    hi: {
-        lang_name: "[HI] Hindi",
-        meta_title_main_seo: "[HI] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[HI] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Indonesian Placeholder ---
-    id: {
-        lang_name: "[ID] Indonesian",
-        meta_title_main_seo: "[ID] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[ID] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Italian Placeholder ---
-    it: {
-        lang_name: "[IT] Italian",
-        meta_title_main_seo: "[IT] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[IT] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Japanese Placeholder ---
-    ja: {
-        lang_name: "[JA] Japanese",
-        meta_title_main_seo: "[JA] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[JA] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Korean Placeholder ---
-    ko: {
-        lang_name: "[KO] Korean",
-        meta_title_main_seo: "[KO] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[KO] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Polish Placeholder ---
-    pl: {
-        lang_name: "[PL] Polish",
-        meta_title_main_seo: "[PL] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[PL] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Portuguese Placeholder ---
-    pt: {
-        lang_name: "[PT] Portuguese",
-        meta_title_main_seo: "[PT] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[PT] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Russian Placeholder ---
-    ru: {
-        lang_name: "[RU] Russian",
-        meta_title_main_seo: "[RU] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[RU] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Thai Placeholder ---
-    th: {
-        lang_name: "[TH] Thai",
-        meta_title_main_seo: "[TH] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[TH] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Turkish Placeholder ---
-    tr: {
-        lang_name: "[TR] Turkish",
-        meta_title_main_seo: "[TR] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[TR] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Vietnamese Placeholder ---
-    vi: {
-        lang_name: "[VI] Vietnamese",
-        meta_title_main_seo: "[VI] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[VI] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Chinese Simplified Placeholder ---
-    'zh-CN': {
-        lang_name: "[zh-CN] Simplified Chinese",
-        meta_title_main_seo: "[zh-CN] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[zh-CN] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Chinese Traditional Placeholder ---
-    'zh-TW': {
-        lang_name: "[zh-TW] Traditional Chinese",
-        meta_title_main_seo: "[zh-TW] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[zh-TW] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
-    },
-    // --- Arabic Placeholder ---
-    ar: {
-        lang_name: "[AR] Arabic",
-        meta_title_main_seo: "[AR] Vectorise.Me: Free Online Image to SVG Converter (JPG, PNG, BMP)",
-        meta_description_main_seo: "[AR] Instantly convert JPG, PNG, BMP images to high-quality, scalable SVG vectors online for free using advanced tracing options and helpful presets.",
-        // ... (repeat for ALL keys from English block)
+        // Ad Related
+        advertisement_label: "Advertisement",
+        // AdBlock Notice Related
+        adblock_notice_title: "Ad Blocker Detected!",
+        adblock_notice_text: "Vectorise.Me is free thanks to ads. Please consider whitelisting our site to help us keep it running.",
+        adblock_notice_link: "How to whitelist?",
+        adblock_notice_close_title: "Close notice",
     }
+    // Other language objects removed for brevity
 };
 
 
@@ -755,11 +340,12 @@ let pointX = 0;
 let pointY = 0;
 let start = { x: 0, y: 0 };
 let originalImageNaturalDims = { width: 0, height: 0 };
-let currentLang = 'en';
+let currentLang = 'en'; // Default to English since other translations removed
 let statusClearTimer;
 let previewSizeDebounceTimer;
 let infoTooltipElement = null; // Tooltip element reference
 let currentInfoButton = null; // Reference to button that opened tooltip
+let adBlockerDetected = false; // Global flag for AdBlock status
 
 // --- Preset Definitions (VTracer specific) ---
 const presets = [
@@ -781,46 +367,32 @@ function safeAddListener(element, event, handler, options) {
     }
 }
 
-// --- Translation Functions ---
+// --- Translation Functions (Simplified for English only) ---
 function getTranslation(key, lang = currentLang, replacements = {}) {
-    const langDict = translations[lang] || translations.en;
-    let text = langDict[key] || translations.en[key];
+    const text = translations.en[key]; // Always use English
     if (text === undefined) {
         console.warn(`Translation key missing: "${key}"`);
         return `_${key}_`;
     }
-    // Use the placeholder directly if it's marked (e.g., "[DE] ...")
-    if(lang !== 'en' && text.startsWith(`[${lang.toUpperCase()}]`)) {
-        // Optionally remove the prefix for display, or leave it for easy identification
-        // text = text.substring(text.indexOf(']') + 2);
-    } else if (lang !== 'en' && translations.en[key] && !langDict[key]) {
-        // If key exists in English but not in the target lang (and not a placeholder)
-        // Fallback to English but maybe log a warning?
-        text = translations.en[key];
-        // console.warn(`Translation missing for key "${key}" in language "${lang}", using English.`);
-    }
-
+    let processedText = text;
     for (const placeholder in replacements) {
         const regex = new RegExp(`\\{${placeholder}\\}`, 'g');
-        text = text.replace(regex, replacements[placeholder]);
+        processedText = processedText.replace(regex, replacements[placeholder]);
     }
-    return text;
+    return processedText;
 }
 
-function translatePage(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+function translatePage(lang) { // Lang parameter kept for structure, but always uses 'en'
+    currentLang = 'en'; // Force English
+    document.documentElement.lang = 'en';
+    document.documentElement.dir = 'ltr';
 
     // Translate text content
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.dataset.translate;
-        const translation = getTranslation(key, lang);
-        // Only update if translation is not the placeholder key itself
+        const translation = getTranslation(key); // Uses 'en' implicitly
         if (translation !== `_${key}_`) {
              el.textContent = translation;
-        } else if (el.dataset.fallbackText) {
-             el.textContent = el.dataset.fallbackText; // Use fallback if defined
         }
     });
 
@@ -829,75 +401,54 @@ function translatePage(lang) {
         const placeholderKey = el.dataset.translatePlaceholder;
         const titleKey = el.dataset.translateTitle;
         if (placeholderKey) {
-            const translation = getTranslation(placeholderKey, lang);
-            if (translation !== `_${placeholderKey}_`) {
-                el.placeholder = translation;
-            } else if (el.dataset.fallbackPlaceholder) {
-                el.placeholder = el.dataset.fallbackPlaceholder;
-            }
+            const translation = getTranslation(placeholderKey);
+            if (translation !== `_${placeholderKey}_`) el.placeholder = translation;
         }
         if (titleKey) {
-             const translation = getTranslation(titleKey, lang);
-             if (translation !== `_${titleKey}_`) {
-                el.title = translation;
-            } else if (el.dataset.fallbackTitle) {
-                 el.title = el.dataset.fallbackTitle;
-             }
+             const translation = getTranslation(titleKey);
+             if (translation !== `_${titleKey}_`) el.title = translation;
         }
     });
 
-    // Translate main title and meta description
+    // Translate main title and meta description based on page
     const titleElement = document.querySelector('title');
     const metaDescriptionElement = document.querySelector('meta[name="description"]');
-    if (titleElement) {
-        titleElement.textContent = getTranslation('meta_title_main_seo', lang);
-    }
-    if (metaDescriptionElement) {
-        metaDescriptionElement.content = getTranslation('meta_description_main_seo', lang);
-    }
-    // Translate specific page titles/descriptions if on those pages
+    let titleKey = 'meta_title_main_seo';
+    let descKey = 'meta_description_main_seo';
+
     if (window.location.pathname.includes('contact.html')) {
-        if(titleElement) titleElement.textContent = getTranslation('meta_title_contact', lang);
-        if(metaDescriptionElement) metaDescriptionElement.content = getTranslation('meta_description_contact', lang);
+        titleKey = 'meta_title_contact'; descKey = 'meta_description_contact';
     } else if (window.location.pathname.includes('privacy.html')) {
-        if(titleElement) titleElement.textContent = getTranslation('meta_title_privacy', lang);
-        if(metaDescriptionElement) metaDescriptionElement.content = getTranslation('meta_description_privacy', lang);
+        titleKey = 'meta_title_privacy'; descKey = 'meta_description_privacy';
     } else if (window.location.pathname.includes('cookies.html')) {
-        if(titleElement) titleElement.textContent = getTranslation('meta_title_cookies', lang);
-        if(metaDescriptionElement) metaDescriptionElement.content = getTranslation('meta_description_cookies', lang);
+        titleKey = 'meta_title_cookies'; descKey = 'meta_description_cookies';
     } else if (window.location.pathname.includes('terms.html')) {
-        if(titleElement) titleElement.textContent = getTranslation('meta_title_terms', lang);
-        if(metaDescriptionElement) metaDescriptionElement.content = getTranslation('meta_description_terms', lang);
+        titleKey = 'meta_title_terms'; descKey = 'meta_description_terms';
     }
 
+    if(titleElement) titleElement.textContent = getTranslation(titleKey);
+    if(metaDescriptionElement) metaDescriptionElement.content = getTranslation(descKey);
 
+    // Update language display (will always show "English")
     const currentLanguageNameSpan = document.getElementById('currentLanguageName');
     if (currentLanguageNameSpan) {
-        currentLanguageNameSpan.textContent = getTranslation('lang_name', lang);
+        currentLanguageNameSpan.textContent = getTranslation('lang_name');
     }
+    // Update preset dropdown options
     const presetSelect = document.getElementById('presetSelect');
     if (presetSelect) {
         populatePresetSelect();
     }
 
     updateButtonTranslations();
-    const statusArea = document.getElementById('statusArea');
-    const landingStatusArea = document.getElementById('landingStatusArea');
-    const contactFormStatus = document.getElementById('contactFormStatus');
-    retranslateStatus(statusArea);
-    retranslateStatus(landingStatusArea);
-    retranslateStatus(contactFormStatus);
+    retranslateStatus(document.getElementById('statusArea'));
+    retranslateStatus(document.getElementById('landingStatusArea'));
+    retranslateStatus(document.getElementById('contactFormStatus'));
     debounceCalculateAndApplyWrapperSize(50);
 }
 
-function setLanguage(lang) {
-    if (!translations[lang]) {
-        lang = 'en';
-    }
-    translatePage(lang);
-    try {
-        localStorage.setItem('vectoriseLang', lang);
-    } catch (e) { console.warn("Could not save language preference to localStorage.", e); }
+function setLanguage(lang) { // Simplified
+    translatePage('en'); // Always translate to English
 
     const languageToggleBtn = document.getElementById('languageToggleBtn');
     const languageDropdown = document.getElementById('languageDropdown');
@@ -908,14 +459,8 @@ function setLanguage(lang) {
 }
 
 function getInitialLanguage() {
-    let savedLang = null;
-    try { savedLang = localStorage.getItem('vectoriseLang'); } catch (e) {}
-    const browserLocale = navigator.language;
-    const browserLang = browserLocale?.split('-')[0];
-    return (savedLang && translations[savedLang]) ? savedLang :
-           (browserLocale && translations[browserLocale]) ? browserLocale :
-           (browserLang && translations[browserLang]) ? browserLang :
-           'en';
+    // Simplified: always return English since others are removed
+    return 'en';
 }
 
 function retranslateStatus(targetStatusArea) {
@@ -1005,7 +550,7 @@ function resetUploadAreaVisuals(){
     if(uploadArea) uploadArea.classList.remove('file-selected');
     if(progressBar) progressBar.style.width = '0%';
     if (fileNameDisplay) fileNameDisplay.textContent = '';
-    updateStatus('', '', 0, false);
+    updateStatus('', '', 0, false); // Clear landing status
 }
 
 function resetAppToLanding() {
@@ -1025,10 +570,10 @@ function resetAppToLanding() {
     resetZoomPan();
     if (originalImageWrapper) { originalImageWrapper.style.width = ''; originalImageWrapper.style.height = ''; originalImageWrapper.style.transform = ''; }
     if (vectorImageWrapper) { vectorImageWrapper.style.width = ''; vectorImageWrapper.style.height = ''; vectorImageWrapper.style.transform = ''; }
-    handleResetOptions(false);
+    handleResetOptions(false); // Reset options without showing status msg
     showLandingView();
-    updateStatus('', '', 0, false);
-    updateStatus('', '', 0, true);
+    updateStatus('', '', 0, false); // Clear landing status
+    updateStatus('', '', 0, true); // Clear app status
     if (convertBtn) { convertBtn.disabled = true; updateButtonTranslations(); }
     if (downloadBtn) downloadBtn.disabled = true;
 }
@@ -1046,7 +591,7 @@ function updateStatus(messageKey, type = 'info', clearDelay = 0, isAppStatus = t
     targetStatusArea.style.display = message ? '' : 'none';
     if (type !== 'error' && clearDelay > 0 && messageKey) {
          statusClearTimer = setTimeout(() => {
-            if(targetStatusArea.dataset.currentStatusKey === messageKey) {
+            if(targetStatusArea.dataset.currentStatusKey === messageKey) { // Ensure message hasn't changed
                 targetStatusArea.textContent = '';
                 targetStatusArea.style.display = 'none';
                 delete targetStatusArea.dataset.currentStatusKey;
@@ -1063,9 +608,10 @@ function updateStatus(messageKey, type = 'info', clearDelay = 0, isAppStatus = t
 function showLandingError(message) {
     const landingStatusArea = document.getElementById('landingStatusArea');
     if (landingStatusArea) {
-         landingStatusArea.textContent = message;
+         landingStatusArea.textContent = message; // Display raw message since it's an error
          landingStatusArea.className = 'status-area landing-status error';
          landingStatusArea.style.display = '';
+         // Clear any translation keys associated with it
          delete landingStatusArea.dataset.currentStatusKey;
          delete landingStatusArea.dataset.currentStatusReplacements;
          delete landingStatusArea.dataset.currentStatusType;
@@ -1094,7 +640,7 @@ function handleFileSelectChange(event) {
         currentFile = null;
         const appView = document.getElementById('appView');
         if (!appView || appView.classList.contains('hidden')) {
-            resetUploadAreaVisuals();
+            resetUploadAreaVisuals(); // Only reset landing if we are on landing view
         }
     }
 }
@@ -1113,23 +659,27 @@ function handleFile(file) {
 
 
     if (!file) return;
-    updateStatus('', '', 0, false);
+    updateStatus('', '', 0, false); // Clear landing status
 
+    // File Validation
     const validationError = validateFile(file);
     if (validationError) {
-        if (!appView || appView.classList.contains('hidden')) {
-            showLandingError(validationError);
+        if (!appView || appView.classList.contains('hidden')) { // If on landing page
+            showLandingError(validationError); // Show error on landing status
             resetUploadAreaVisuals();
-            if(imageInput) imageInput.value = '';
-        } else {
+            if(imageInput) imageInput.value = ''; // Clear file input
+        } else { // If already on app page
             updateStatus('status_error_file_type', 'error', 0, true, { fileType: file.type || 'unknown' });
         }
         currentFile = null;
         return;
     }
 
+    // File is valid, proceed
     currentFile = file;
     currentFilenameBase = file.name.includes('.') ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
+
+    // Reset preview areas
     if (currentFileObjectURL) { URL.revokeObjectURL(currentFileObjectURL); currentFileObjectURL = null; }
     originalImageNaturalDims = { width: 0, height: 0 };
     if (previewOriginalImage) previewOriginalImage.removeAttribute('src');
@@ -1137,10 +687,11 @@ function handleFile(file) {
     if(vectorImageWrapper) { vectorImageWrapper.style.width=''; vectorImageWrapper.style.height=''; vectorImageWrapper.style.transform=''; }
     resetZoomPan();
 
+    // Create object URL for preview
     try {
         currentFileObjectURL = URL.createObjectURL(file);
         if (previewOriginalImage) {
-            previewOriginalImage.src = currentFileObjectURL;
+            previewOriginalImage.src = currentFileObjectURL; // Set preview source
         } else {
              throw new Error("Original preview image element not found.");
         }
@@ -1157,6 +708,7 @@ function handleFile(file) {
         return;
     }
 
+    // Update UI based on current view
     if(!appView || appView.classList.contains('hidden')) { // On Landing View
         if (fileNameDisplay) fileNameDisplay.textContent = file.name;
         if (fileInfoArea) fileInfoArea.classList.remove('hidden');
@@ -1166,10 +718,12 @@ function handleFile(file) {
              updateButtonTranslations();
         }
         if (uploadArea) uploadArea.classList.add('file-selected');
-    } else { // Already in App View
-         handleOptionsFormChange(); // Enable 'Update Vectorization' button
-         resetResultArea(false);
-         debounceCalculateAndApplyWrapperSize(100);
+    } else { // Already in App View (uploading a new file)
+         handleOptionsFormChange(); // Enable 'Update Vectorization' button because options might apply differently now
+         resetResultArea(false); // Clear previous SVG result but keep status
+         debounceCalculateAndApplyWrapperSize(100); // Recalculate preview size
+         // Optionally trigger conversion automatically if needed
+         // setTimeout(() => handleConvert(true), 50);
     }
 }
 
@@ -1188,15 +742,16 @@ function triggerConversionFromLanding() {
          uploadProgress.classList.remove('hidden');
          if (progressBar) progressBar.style.width = '0%';
     }
-    updateStatus('', '', 0, false);
+    updateStatus('', '', 0, false); // Clear landing status
 
+    // Simulate progress for UX, then switch view and convert
     simulateUploadProgress(() => {
          if (uploadProgress) uploadProgress.classList.add('hidden');
-         startConversionBtn.disabled = false;
-         startConversionBtn.classList.add('hidden');
+         startConversionBtn.disabled = false; // Re-enable in case user cancels
+         startConversionBtn.classList.add('hidden'); // Hide it now
          if(fileInfoArea) fileInfoArea.classList.add('hidden');
          showAppView();
-         setTimeout(() => handleConvert(true), 50);
+         setTimeout(() => handleConvert(true), 50); // Trigger initial conversion after view switch
     });
 }
 
@@ -1219,21 +774,24 @@ async function handleConvert(isInitial = false) {
     convertBtn.textContent = getTranslation('status_working');
     downloadBtn.disabled = true;
 
+    // Show placeholder in SVG area
     if (svgOutputDiv) {
         const placeholderKey = isInitial ? 'preview_placeholder_processing' : 'preview_placeholder_loading';
         svgOutputDiv.innerHTML = `<p class="placeholder-text">${getTranslation(placeholderKey)}</p>`;
         svgOutputDiv.classList.add('placeholder-active');
     }
 
+    // Prepare form data
     const formData = new FormData();
     formData.append('imageFile', currentFile);
 
-    // Append VTracer options
+    // Append VTracer options (only enabled ones)
     if (optionsForm) {
         const data = new FormData(optionsForm);
         for (let [key, value] of data.entries()) {
             const el = optionsForm.elements[key];
-            if (el && !el.disabled && value !== '' && value !== null && key !== 'palette_selector') {
+            // Include only if element exists, is NOT disabled, has a value, and isn't the helper selector
+            if (el && !el.closest('.option-group.disabled') && value !== '' && value !== null && key !== 'palette_selector') {
                 formData.append(key, value);
             }
         }
@@ -1241,6 +799,7 @@ async function handleConvert(isInitial = false) {
 
     console.log("Sending data for VTracer conversion:", Object.fromEntries(formData));
 
+    // Make API call
     try {
         const response = await fetch('/convert', { method: 'POST', body: formData });
 
@@ -1257,15 +816,15 @@ async function handleConvert(isInitial = false) {
         if (result.svg) {
             currentSvgContent = result.svg;
             if (svgOutputDiv) {
-                svgOutputDiv.innerHTML = currentSvgContent;
+                svgOutputDiv.innerHTML = currentSvgContent; // Inject SVG
                 svgOutputDiv.classList.remove('placeholder-active');
             }
             updateStatus('status_complete', 'success', 3000, true);
             downloadBtn.disabled = false;
-            convertBtn.disabled = true; // Keep disabled until options change
+            convertBtn.disabled = true; // Keep disabled until options change again
             updateButtonTranslations();
-            debounceCalculateAndApplyWrapperSize(100);
-            if(isInitial) { resetZoomPan(); }
+            debounceCalculateAndApplyWrapperSize(100); // Adjust size based on new SVG potentially
+            if(isInitial) { resetZoomPan(); } // Reset zoom only on initial conversion
         } else {
             throw new Error(getTranslation('status_error_no_svg'));
         }
@@ -1279,7 +838,7 @@ async function handleConvert(isInitial = false) {
              svgOutputDiv.classList.add('placeholder-active');
         }
         downloadBtn.disabled = true;
-        convertBtn.disabled = !currentFile; // Re-enable only if file loaded
+        convertBtn.disabled = !currentFile; // Re-enable only if a file is still loaded
         updateButtonTranslations();
     }
 }
@@ -1291,15 +850,20 @@ function handleOptionsFormChange() {
     const convertBtn = document.getElementById('convertBtn');
 
     if (!optionsForm) return;
+
+    // Sync hidden color_precision with visible palette selector
     if (paletteSelect && colorPrecisionInput) {
         colorPrecisionInput.value = paletteSelect.value;
     }
+
+    // Enable update button if a file is loaded
     if (currentFile && convertBtn) {
         convertBtn.disabled = false;
         updateButtonTranslations();
     }
-    updateOptionsAvailability();
-    resetPresetSelection();
+
+    updateOptionsAvailability(); // Show/hide conditional options
+    resetPresetSelection(); // Deselect preset if options changed manually
 }
 
 function handleResetOptions(showStatus = true) {
@@ -1312,12 +876,12 @@ function handleResetOptions(showStatus = true) {
     if (showStatus) {
         updateStatus('status_options_reset', 'success', 2000, true);
     }
-    resetPresetSelection();
+    resetPresetSelection(); // Clear preset dropdown
     if (convertBtn) {
-        convertBtn.disabled = true;
+        convertBtn.disabled = true; // Disable update until next change
         updateButtonTranslations();
     }
-    updateOptionsAvailability();
+    updateOptionsAvailability(); // Refresh conditional options visibility
 }
 
 function handlePresetChange(event) {
@@ -1329,18 +893,20 @@ function handlePresetChange(event) {
     if (selectedIndex === "" || !presets[selectedIndex]) return;
 
     const selectedPreset = presets[selectedIndex];
-    applyOptions(selectedPreset.options);
+    applyOptions(selectedPreset.options); // Apply the preset's options to the form
 
+    // Show status message
     const presetNameKey = `preset_name_${selectedPreset.key}`;
     const presetName = getTranslation(presetNameKey) || selectedPreset.name;
     updateStatus('status_preset_loaded', 'info', 3000, true, { presetName: presetName });
-    presetSelect.value = selectedIndex; // Keep dropdown showing selected
+    presetSelect.value = selectedIndex; // Ensure dropdown shows the selected preset
 
+    // Enable update button if file exists
     if (currentFile && convertBtn) {
         convertBtn.disabled = false;
         updateButtonTranslations();
     }
-    updateOptionsAvailability();
+    updateOptionsAvailability(); // Update conditional fields based on preset
 }
 
 function handleSaveOptions() {
@@ -1350,15 +916,23 @@ function handleSaveOptions() {
     const currentOptions = {};
     const formData = new FormData(optionsForm);
 
+    // Iterate through known default keys to ensure structure
     Object.keys(defaultOptions).forEach(key => {
         if (formData.has(key)) {
             const el = optionsForm.elements[key];
-            if (el && !el.disabled) {
-                currentOptions[key] = formData.get(key);
+            // Only save if element exists and is not disabled
+            if (el && !el.closest('.option-group.disabled')) {
+                 // Special handling for palette_selector -> color_precision if needed
+                 if (key === 'palette_selector') {
+                     currentOptions['color_precision'] = formData.get(key);
+                 } else {
+                     currentOptions[key] = formData.get(key);
+                 }
             }
         }
     });
 
+    // Save as JSON
     try {
         const jsonString = JSON.stringify(currentOptions, null, 2);
         const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8' });
@@ -1387,6 +961,7 @@ function handleLoadOptionsFile(event) {
         if(optionsFileInput) optionsFileInput.value = '';
         return;
     }
+
     const reader = new FileReader();
     reader.onload = (e) => {
         try {
@@ -1394,32 +969,46 @@ function handleLoadOptionsFile(event) {
             if (typeof loadedOptions !== 'object' || loadedOptions === null || Array.isArray(loadedOptions)) {
                 throw new Error(getTranslation('status_error_invalid_json'));
             }
+
+            // Validate structure - check if at least one known key exists
             const knownKeys = Object.keys(defaultOptions);
             const loadedKeys = Object.keys(loadedOptions);
-            const hasKnownKey = loadedKeys.some(key => knownKeys.includes(key));
-            if (!hasKnownKey) {
+            const hasKnownKey = loadedKeys.some(key => knownKeys.includes(key) || key === 'color_precision'); // Allow color_precision explicitly
+            if (!hasKnownKey && !loadedOptions.hasOwnProperty('palette_selector')) { // Check palette_selector too
                 throw new Error(getTranslation('status_error_no_options'));
             }
-            const filteredOptions = {};
+
+            // Filter and apply only known options
+            const optionsToApply = {};
             knownKeys.forEach(key => {
-                if (loadedOptions.hasOwnProperty(key)) {
-                    filteredOptions[key] = loadedOptions[key];
-                }
+                 if (loadedOptions.hasOwnProperty(key)) {
+                     optionsToApply[key] = loadedOptions[key];
+                 }
             });
-            applyOptions(filteredOptions);
+            // Special handling for palette_selector (applies value to color_precision)
+            if (loadedOptions.hasOwnProperty('palette_selector')) {
+                 optionsToApply['palette_selector'] = loadedOptions['palette_selector'];
+                 optionsToApply['color_precision'] = loadedOptions['palette_selector'];
+             } else if (loadedOptions.hasOwnProperty('color_precision')) {
+                  // If only color_precision exists, try to set palette_selector
+                  optionsToApply['palette_selector'] = loadedOptions['color_precision'];
+             }
+
+
+            applyOptions(optionsToApply);
             updateStatus('status_settings_loaded', 'success', 3000, true);
-            resetPresetSelection();
-            if (currentFile && convertBtn) {
+            resetPresetSelection(); // Deselect preset
+            if (currentFile && convertBtn) { // Re-enable convert button
                 convertBtn.disabled = false;
                 updateButtonTranslations();
             }
-            updateOptionsAvailability();
+            updateOptionsAvailability(); // Update conditional visibility
         } catch (error) {
             console.error('Error processing loaded options file:', error);
             const specificError = error.message || getTranslation('status_error_reading_file');
             updateStatus('status_error_loading_settings', 'error', 0, true, { errorMessage: specificError });
         } finally {
-            if(optionsFileInput) optionsFileInput.value = '';
+            if(optionsFileInput) optionsFileInput.value = ''; // Clear input regardless
         }
     };
     reader.onerror = () => {
@@ -1455,28 +1044,30 @@ function handleContactFormSubmit(event) {
     const emailInput = contactForm.elements['email'];
     const subjectInput = contactForm.elements['subject'];
     const messageInput = contactForm.elements['message'];
-    const recipientEmail = "jonkarystudio@gmail.com";
+    const recipientEmail = "jonkarystudio@gmail.com"; // Your email address
 
     let isValid = true;
     const requiredFields = [nameInput, emailInput, subjectInput, messageInput];
 
+    // Basic validation
     requiredFields.forEach(input => {
          if (input) {
-             input.style.borderColor = '';
+             input.classList.remove('is-invalid'); // Use class for styling consistency
              if (!input.value.trim()) {
-                input.style.borderColor = 'var(--danger-color)';
+                input.classList.add('is-invalid');
                 isValid = false;
              }
-         } else { isValid = false; }
+         } else { isValid = false; } // Should not happen if form is correct
     });
 
+    // Email format validation
     if (emailInput && emailInput.value.trim() && !/^\S+@\S+\.\S+$/.test(emailInput.value.trim())) {
-         emailInput.style.borderColor = 'var(--danger-color)';
+         emailInput.classList.add('is-invalid');
          isValid = false;
-         if(requiredFields.every(input => input?.value.trim() || input === emailInput )) {
+         if(requiredFields.every(input => input?.value.trim() || input === emailInput )) { // Only show email error if other fields are filled
               showContactFormStatus("contact_status_invalid_email", "error");
          }
-         return;
+         // Don't return immediately, show general error if other fields are missing too
     }
 
     if (!isValid) {
@@ -1484,17 +1075,21 @@ function handleContactFormSubmit(event) {
          return;
     }
 
+    // Construct mailto link
     const mailtoSubject = encodeURIComponent(subjectInput.value.trim());
     const mailtoBody = encodeURIComponent(
         `Name: ${nameInput.value.trim()}\nEmail: ${emailInput.value.trim()}\n\nMessage:\n${messageInput.value.trim()}`
     );
     const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
+    // Attempt to open mail client
     try {
         showContactFormStatus("contact_status_opening_email", "info");
         window.location.href = mailtoLink;
+        // Give user time to switch, then show success/reset form
         setTimeout(() => {
             if (contactForm) contactForm.reset();
+            requiredFields.forEach(input => input?.classList.remove('is-invalid')); // Clear validation styles
             showContactFormStatus("contact_status_complete_send", "success", {}, 8000);
         }, 1500);
     } catch (error) {
@@ -1508,14 +1103,14 @@ function validateFile(file) {
     if (!file) return getTranslation('status_no_file');
     const maxSizeMB = 15;
     const maxSizeBytes = maxSizeMB * 1024 * 1024;
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/bmp'];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/bmp']; // Allowed types
     if (file.size > maxSizeBytes) {
         return getTranslation('status_error_file_size');
     }
     if (!allowedTypes.includes(file.type)) {
         return getTranslation('status_error_file_type', currentLang, { fileType: file.type || 'unknown' });
     }
-    return null;
+    return null; // No error
 }
 
 function simulateUploadProgress(callback) {
@@ -1529,7 +1124,7 @@ function simulateUploadProgress(callback) {
     progressBar.style.width = `0%`;
     uploadProgress.classList.remove('hidden');
     const interval = setInterval(() => {
-         progress += Math.random() * 15 + 5;
+         progress += Math.random() * 15 + 5; // Simulate variable progress
          progress = Math.min(progress, 100);
          progressBar.style.width = `${progress}%`;
          if (progress >= 100) {
@@ -1537,9 +1132,9 @@ function simulateUploadProgress(callback) {
              setTimeout(() => {
                 uploadProgress.classList.add('hidden');
                 if (typeof callback === 'function') callback();
-             }, 250);
+             }, 250); // Short delay after reaching 100%
          }
-    }, 80);
+    }, 80); // Update interval
 }
 
 function calculateAndApplyWrapperSize() {
@@ -1549,38 +1144,55 @@ function calculateAndApplyWrapperSize() {
     const originalImageWrapper = document.getElementById('originalImageWrapper');
     const vectorImageWrapper = document.getElementById('vectorImageWrapper');
 
+    // Ensure we are in app view and elements exist
     if (!appView || appView.classList.contains('hidden') || !previewAreaWrapper || !previewOriginalImage || !originalImageWrapper || !vectorImageWrapper) {
         return;
     }
+    // Get natural dimensions if not already stored
     if (originalImageNaturalDims.width === 0 && previewOriginalImage.naturalWidth > 0) {
          originalImageNaturalDims.width = previewOriginalImage.naturalWidth;
          originalImageNaturalDims.height = previewOriginalImage.naturalHeight;
+         console.log("Captured natural dimensions:", originalImageNaturalDims);
     }
+    // Exit if dimensions still not available
     if (!originalImageNaturalDims.width) {
+         console.log("Natural dimensions not available yet.");
          return;
     }
+    // Get container dimensions
     const containerWidth = previewAreaWrapper.clientWidth;
     const containerHeight = previewAreaWrapper.clientHeight;
+    // Avoid division by zero or tiny containers
     if (containerWidth <= 1 || containerHeight <= 1) {
+         console.log("Container dimensions too small or zero.");
          return;
      }
+    // Calculate aspect ratios
     const imgRatio = originalImageNaturalDims.width / originalImageNaturalDims.height;
     const containerRatio = containerWidth / containerHeight;
+
+    // Determine target dimensions to fit within container while maintaining aspect ratio
     let targetWidth, targetHeight;
-    if (imgRatio > containerRatio) {
+    if (imgRatio > containerRatio) { // Image is wider than container
         targetWidth = containerWidth;
         targetHeight = targetWidth / imgRatio;
-    } else {
+    } else { // Image is taller or same ratio as container
         targetHeight = containerHeight;
         targetWidth = targetHeight * imgRatio;
     }
+
+    // Ensure positive dimensions and floor them
     targetWidth = Math.max(1, Math.floor(targetWidth));
     targetHeight = Math.max(1, Math.floor(targetHeight));
+
+    // Apply dimensions to both wrappers
     originalImageWrapper.style.width = `${targetWidth}px`;
     originalImageWrapper.style.height = `${targetHeight}px`;
     vectorImageWrapper.style.width = `${targetWidth}px`;
     vectorImageWrapper.style.height = `${targetHeight}px`;
-     setTransform();
+
+    console.log(`Applied wrapper size: ${targetWidth}x${targetHeight}`);
+     setTransform(); // Reapply existing zoom/pan
 }
 
 function debounceCalculateAndApplyWrapperSize(delay = 150) {
@@ -1609,21 +1221,32 @@ function setupNumberInputSync() {
                 let numVal = parseFloat(numInput.value);
                 const minVal = parseFloat(slider.min);
                 const maxVal = parseFloat(slider.max);
-                if (isNaN(numVal)) return;
-                numVal = Math.max(minVal, Math.min(maxVal, numVal));
-                if (sliderStep === 1) { numVal = Math.round(numVal); }
+                if (isNaN(numVal)) return; // Ignore if not a number
 
-                if (Math.abs(parseFloat(slider.value) - numVal) > numStep / 2) {
+                // Clamp value
+                numVal = Math.max(minVal, Math.min(maxVal, numVal));
+
+                // Round to nearest step if needed (more robust step snapping)
+                 if (numStep > 0) {
+                    numVal = Math.round(numVal / numStep) * numStep;
+                 }
+
+                // Prevent infinite loops by checking if slider value is already close
+                 if (Math.abs(parseFloat(slider.value) - numVal) > numStep / 2) {
                      slider.value = String(numVal);
+                     // Trigger input event on slider so other listeners react
                      slider.dispatchEvent(new Event('input',{bubbles:true}));
-                }
+                 }
+                 // Always update number input display to clamped/rounded value
                  numInput.value = numVal.toFixed(decimalPlaces);
             };
 
             safeAddListener(slider, 'input', syncSliderToNum);
-            safeAddListener(numInput, 'change', syncNumToSlider);
-            safeAddListener(numInput, 'input', syncNumToSlider);
-            syncSliderToNum();
+            safeAddListener(numInput, 'change', syncNumToSlider); // Use change for final value
+            // Consider 'input' on numInput too if immediate feedback is desired, but 'change' is often safer
+            // safeAddListener(numInput, 'input', syncNumToSlider);
+
+            syncSliderToNum(); // Initial sync
         }
     });
 }
@@ -1633,7 +1256,7 @@ function updateOptionsAvailability() {
     const optionsForm = document.getElementById('optionsForm');
     const modeSelect = document.getElementById('optMode');
     const colormodeSelect = document.getElementById('optColormode');
-    const paletteSelect = document.getElementById('optPalette');
+    const paletteSelect = document.getElementById('optPalette'); // Although palette itself is grouped below
 
     const splineThresholdGroup = document.getElementById('groupSplineThreshold');
     const spliceThresholdGroup = document.getElementById('groupSpliceThreshold');
@@ -1643,7 +1266,7 @@ function updateOptionsAvailability() {
     const cornerThresholdGroup = document.getElementById('groupCornerThreshold');
     const paletteGroup = document.getElementById('groupPalette');
 
-    if (!optionsForm || !modeSelect || !colormodeSelect || !paletteSelect) return;
+    if (!optionsForm || !modeSelect || !colormodeSelect) return;
 
     const mode = modeSelect.value;
     const colorMode = colormodeSelect.value;
@@ -1651,13 +1274,14 @@ function updateOptionsAvailability() {
     const isPixel = (mode === 'pixel');
     const isColor = (colorMode === 'color');
 
+    // Toggle groups based on conditions
     toggleOptionGroup(splineThresholdGroup, isSpline);
     toggleOptionGroup(spliceThresholdGroup, isSpline);
     toggleOptionGroup(segmentLengthGroup, isSpline);
-    toggleOptionGroup(cornerThresholdGroup, !isPixel);
-    toggleOptionGroup(hierarchicalGroup, isColor);
-    toggleOptionGroup(gradientStepGroup, isColor);
-    toggleOptionGroup(paletteGroup, isColor);
+    toggleOptionGroup(cornerThresholdGroup, !isPixel); // Disabled for Pixel mode
+    toggleOptionGroup(hierarchicalGroup, isColor);     // Disabled for Binary mode
+    toggleOptionGroup(gradientStepGroup, isColor);      // Disabled for Binary mode
+    toggleOptionGroup(paletteGroup, isColor);           // Disabled for Binary mode
 }
 
 function storeDefaultOptions() {
@@ -1665,16 +1289,22 @@ function storeDefaultOptions() {
     if (!optionsForm) return;
     const data = new FormData(optionsForm);
     for (let [key, value] of data.entries()) {
-         if (key !== 'palette_selector') {
+         if (key !== 'palette_selector') { // Exclude the helper selector
              defaultOptions[key] = value;
          }
     }
-    if (defaultOptions.hasOwnProperty('color_precision') && optionsForm.elements['palette_selector']) {
+    // Store the initial palette value under color_precision specifically
+    if (optionsForm.elements['palette_selector']) {
           defaultOptions['color_precision'] = optionsForm.elements['palette_selector'].value;
      }
+    // Update the 'general' preset with these defaults
     const defaultPreset = presets.find(p => p.key === 'general');
     if (defaultPreset) {
         defaultPreset.options = { ...defaultOptions };
+        // Ensure palette_selector matches color_precision in the general preset
+        if (defaultOptions.hasOwnProperty('color_precision')) {
+             defaultPreset.options['palette_selector'] = defaultOptions['color_precision'];
+        }
     }
     console.log("Stored default options:", defaultOptions);
 }
@@ -1682,29 +1312,30 @@ function storeDefaultOptions() {
 function populatePresetSelect() {
     const presetSelect = document.getElementById('presetSelect');
     if (!presetSelect) return;
-    const currentVal = presetSelect.value;
+    const currentVal = presetSelect.value; // Remember current selection if any
     presetSelect.innerHTML = `<option value="" disabled selected>${getTranslation('preset_select_placeholder')}</option>`;
 
     presets.forEach((preset, index) => {
-        if (preset.key === 'general') return;
+        if (preset.key === 'general') return; // Skip showing 'General' as a loadable preset
         const option = document.createElement('option');
-        option.value = index.toString();
+        option.value = index.toString(); // Use index as value
         const translationKey = `preset_name_${preset.key}`;
-        option.textContent = getTranslation(translationKey) || preset.name;
+        option.textContent = getTranslation(translationKey) || preset.name; // Use translated name
         presetSelect.appendChild(option);
     });
 
+    // Restore previous selection if it was valid and not 'General'
     if (currentVal !== "" && currentVal < presets.length && presets[currentVal]?.key !== 'general') {
         presetSelect.value = currentVal;
     } else {
-        presetSelect.value = "";
+        presetSelect.value = ""; // Default to placeholder
     }
 }
 
 function resetPresetSelection() {
     const presetSelect = document.getElementById('presetSelect');
     if(presetSelect && presetSelect.value !== "") {
-        presetSelect.value = "";
+        presetSelect.value = ""; // Set back to the placeholder
     }
 }
 
@@ -1713,56 +1344,80 @@ function applyOptions(optionsToApply) {
     if (!optionsForm) return;
     console.log("Applying options:", optionsToApply);
     let needsLayoutUpdate = false;
+
+    // Iterate through the options to apply
     for (const key in optionsToApply) {
-        if (!defaultOptions.hasOwnProperty(key)) {
-            console.warn(`applyOptions: Skipping unknown option key "${key}"`);
-            continue;
+        // Find the corresponding form element
+        let element = optionsForm.elements[key];
+
+         // Special case: map palette_selector value to the actual palette select element
+         if (key === 'palette_selector') {
+            element = optionsForm.elements['optPalette'];
+        } else if (key === 'color_precision' && !optionsForm.elements['color_precision']){
+            // If only color_precision is provided (e.g. from saved file),
+            // try to apply it to the palette_selector if it exists
+            const paletteSelect = optionsForm.elements['optPalette'];
+            if (paletteSelect) {
+                paletteSelect.value = String(optionsToApply[key]);
+                // Trigger change/input on the actual select element
+                paletteSelect.dispatchEvent(new Event('input', { bubbles: true }));
+                paletteSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                 // Also update the hidden input if it exists
+                 const hiddenPrecision = document.getElementById('optColorPrecision');
+                 if(hiddenPrecision) hiddenPrecision.value = String(optionsToApply[key]);
+            }
+            continue; // Skip further processing for this key
         }
-        const value = optionsToApply[key];
-        const element = optionsForm.elements[key];
+
         if (element) {
+            const value = String(optionsToApply[key]); // Ensure value is string
+
             if (element.type === 'radio' || element.type === 'checkbox') {
-                const matchingElement = Array.from(optionsForm.elements[key]).find(el => el.value === String(value));
+                // Handle radio/checkbox groups
+                const matchingElement = Array.from(optionsForm.elements[key]).find(el => el.value === value);
                 if(matchingElement) matchingElement.checked = true;
-                else if(element.type === 'checkbox') element.checked = !!value;
+                else if(element.type === 'checkbox') element.checked = !!value; // Handle single checkbox boolean
             } else {
-                element.value = String(value);
+                // Handle select, text, number, range, hidden
+                element.value = value;
             }
-            if (element.type === 'range') {
-                const numInputId = `${element.id}Num`;
-                const numInput = document.getElementById(numInputId);
-                if (numInput) {
-                    const step = parseFloat(element.step) || 1;
-                    const decimalPlaces = step === 1 || step === 0 ? 0 : (String(step).split('.')[1] || '').length;
-                    numInput.value = parseFloat(value).toFixed(decimalPlaces);
-                }
-            }
+
+            // Trigger events to update UI (like slider<->number sync)
             element.dispatchEvent(new Event('input', { bubbles: true }));
             element.dispatchEvent(new Event('change', { bubbles: true }));
+
+            // Check if this option affects layout
             if (['mode', 'color_mode'].includes(key)) {
                 needsLayoutUpdate = true;
             }
         } else {
-            console.warn(`applyOptions: Element for key "${key}" not found in form.`);
+            // Log if an element for a known option wasn't found (excluding palette_selector itself)
+            if (key !== 'palette_selector') {
+                 console.warn(`applyOptions: Element for key "${key}" not found in form.`);
+            }
         }
     }
-    const paletteSelect = document.getElementById('optPalette');
-    const colorPrecisionInput = document.getElementById('optColorPrecision');
-     if (optionsToApply.hasOwnProperty('palette_selector') && paletteSelect && colorPrecisionInput) {
-         colorPrecisionInput.value = paletteSelect.value;
-          colorPrecisionInput.dispatchEvent(new Event('change', { bubbles: true }));
+
+     // Update hidden color_precision if palette_selector was applied
+     const paletteSelect = document.getElementById('optPalette');
+     const hiddenPrecision = document.getElementById('optColorPrecision');
+     if (paletteSelect && hiddenPrecision && optionsToApply.hasOwnProperty('palette_selector')) {
+        hiddenPrecision.value = paletteSelect.value;
      }
+
+
+    // Update conditional visibility if layout changed
     if (needsLayoutUpdate) {
-        setTimeout(updateOptionsAvailability, 0);
+        setTimeout(updateOptionsAvailability, 0); // Use setTimeout to ensure changes propagate
     }
 }
 
 function toggleOptionGroup(groupElement, enable) {
     if (!groupElement) return;
     const controls = groupElement.querySelectorAll('input, select');
-    groupElement.classList.toggle('disabled', !enable);
+    groupElement.classList.toggle('disabled', !enable); // Add/remove 'disabled' class on the group
     controls.forEach(control => {
-        if(control) control.disabled = !enable;
+        if(control) control.disabled = !enable; // Enable/disable individual controls
     });
 }
 
@@ -1772,6 +1427,7 @@ function setTransform() {
     const originalImageWrapper = document.getElementById('originalImageWrapper');
     const vectorImageWrapper = document.getElementById('vectorImageWrapper');
     if (!originalImageWrapper || !vectorImageWrapper) return;
+    // Use Math.round for potentially smoother rendering on some browsers
     const transformValue = `translate(${Math.round(pointX)}px, ${Math.round(pointY)}px) scale(${scale})`;
     originalImageWrapper.style.transform = transformValue;
     vectorImageWrapper.style.transform = transformValue;
@@ -1782,35 +1438,40 @@ function setupZoomPan() {
     const previewAreaWrapper = document.getElementById('previewAreaWrapper');
     if (!previewAreaWrapper) return;
 
+    // Mouse/Touch Down: Start panning
     const startPan = (e) => {
-        if(e.button !== 0 && e.type !== 'touchstart') return;
-        e.preventDefault();
+        if(e.button !== 0 && e.type !== 'touchstart') return; // Only main mouse button or touch
+        e.preventDefault(); // Prevent text selection/default drag
         panning = true;
         const clientX = e.clientX ?? e.touches[0].clientX;
         const clientY = e.clientY ?? e.touches[0].clientY;
-        start = { x: clientX - pointX, y: clientY - pointY };
-        previewAreaWrapper.classList.add('grabbing');
+        start = { x: clientX - pointX, y: clientY - pointY }; // Record starting point relative to current pan
+        previewAreaWrapper.classList.add('grabbing'); // Change cursor
+        // Add move/end listeners to the window for smoother dragging outside the element
         window.addEventListener('mousemove', panMove, { passive: false });
         window.addEventListener('touchmove', panMove, { passive: false });
         window.addEventListener('mouseup', endPan);
         window.addEventListener('touchend', endPan);
-        window.addEventListener('mouseleave', endPan);
+        window.addEventListener('mouseleave', endPan); // Stop panning if mouse leaves window
     };
 
+    // Mouse/Touch Move: Update pan position
     const panMove = (e) => {
         if(!panning) return;
         e.preventDefault();
         const clientX = e.clientX ?? e.touches[0].clientX;
         const clientY = e.clientY ?? e.touches[0].clientY;
-        pointX = clientX - start.x;
+        pointX = clientX - start.x; // Calculate new pan based on drag distance
         pointY = clientY - start.y;
-        setTransform();
+        setTransform(); // Apply the new transform
     };
 
+    // Mouse/Touch Up/Leave: End panning
     const endPan = () => {
         if(!panning) return;
         panning = false;
-        previewAreaWrapper.classList.remove('grabbing');
+        previewAreaWrapper.classList.remove('grabbing'); // Restore cursor
+        // Remove window listeners
         window.removeEventListener('mousemove', panMove);
         window.removeEventListener('touchmove', panMove);
         window.removeEventListener('mouseup', endPan);
@@ -1818,44 +1479,58 @@ function setupZoomPan() {
         window.removeEventListener('mouseleave', endPan);
     };
 
+    // Mouse Wheel: Zoom in/out
     const handleWheelZoom = (e) => {
-         e.preventDefault();
+         e.preventDefault(); // Prevent page scroll
         const rect = previewAreaWrapper.getBoundingClientRect();
+        // Calculate mouse position relative to the preview area
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
+        // Calculate where the mouse pointer is *within the scaled image*
         const pointUnderMouseX = (mouseX - pointX) / scale;
         const pointUnderMouseY = (mouseY - pointY) / scale;
-        const delta = -e.deltaY;
-        const zoomFactor = 1.18;
+
+        const delta = -e.deltaY; // Wheel direction
+        const zoomFactor = 1.18; // Zoom sensitivity
         let newScale = (delta > 0) ? scale * zoomFactor : scale / zoomFactor;
-        newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale));
-        if(newScale === scale) return;
+        newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale)); // Clamp scale
+
+        if(newScale === scale) return; // No change
+
+        // Calculate new pan position to keep the point under mouse stationary
         pointX = mouseX - pointUnderMouseX * newScale;
         pointY = mouseY - pointUnderMouseY * newScale;
         scale = newScale;
-        setTransform();
+        setTransform(); // Apply zoom and pan
     };
 
+    // Attach listeners to the preview area
     safeAddListener(previewAreaWrapper, 'mousedown', startPan);
-    safeAddListener(previewAreaWrapper, 'touchstart', startPan, { passive: false });
-    safeAddListener(previewAreaWrapper, 'wheel', handleWheelZoom, { passive: false });
+    safeAddListener(previewAreaWrapper, 'touchstart', startPan, { passive: false }); // Needs passive: false to prevent default touch actions
+    safeAddListener(previewAreaWrapper, 'wheel', handleWheelZoom, { passive: false }); // Needs passive: false to prevent default scroll
 }
 
-function zoom(factor) {
+function zoom(factor) { // Zoom from buttons (centers zoom)
     const previewAreaWrapper = document.getElementById('previewAreaWrapper');
     if (!previewAreaWrapper) return;
     const rect = previewAreaWrapper.getBoundingClientRect();
+    // Center point of the preview area
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
+    // Calculate where the center is *within the scaled image*
     const pointUnderCenterX = (centerX - pointX) / scale;
     const pointUnderCenterY = (centerY - pointY) / scale;
+
     let newScale = scale * factor;
-    newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale));
-    if(newScale === scale) return;
+    newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale)); // Clamp scale
+
+    if(newScale === scale) return; // No change
+
+    // Calculate new pan position to keep the center point stationary
     pointX = centerX - pointUnderCenterX * newScale;
     pointY = centerY - pointUnderCenterY * newScale;
     scale = newScale;
-    setTransform();
+    setTransform(); // Apply zoom and pan
 }
 
 function resetZoomPan() {
@@ -1873,7 +1548,7 @@ function updateZoomButtons() {
 }
 
 // --- SVG Specific Helpers ---
-function handleSvgPathHover(event) {
+function handleSvgPathHover(event) { // Optional: for highlighting paths on hover
     const target = event.target;
     if(target && target.tagName === 'path' && target.closest('svg')) {
         target.classList.toggle('path-hover', event.type === 'mouseover');
@@ -1891,7 +1566,7 @@ function resetResultArea(clearStatusToo = true) {
     currentSvgContent = '';
     if(downloadBtn) downloadBtn.disabled = true;
     if(clearStatusToo && statusArea) {
-         updateStatus('', '', 0, true);
+         updateStatus('', '', 0, true); // Clear app status
     }
 }
 
@@ -1903,22 +1578,261 @@ function showContactFormStatus(messageKey, type = 'info', replacements = {}, cle
 
     contactFormStatus.textContent = message;
     contactFormStatus.className = `form-status ${type || ''}`.trim();
-    contactFormStatus.style.display = '';
+    contactFormStatus.style.display = ''; // Make visible
 
+    // Store current state for retranslation if language changes
     contactFormStatus.dataset.currentStatusKey = messageKey;
     contactFormStatus.dataset.currentStatusReplacements = JSON.stringify(replacements);
     contactFormStatus.dataset.currentStatusType = type;
 
+    // Auto-clear for non-errors or specific success messages
     if (type !== 'error' || messageKey === 'contact_status_complete_send') {
          const timer = setTimeout(() => {
+             // Only clear if the message hasn't changed in the meantime
              if (contactFormStatus.dataset.currentStatusKey === messageKey) {
                  contactFormStatus.style.display = 'none';
+                 // Clear stored state
                  delete contactFormStatus.dataset.currentStatusKey;
                  delete contactFormStatus.dataset.currentStatusReplacements;
                  delete contactFormStatus.dataset.currentStatusType;
              }
          }, clearDelay);
     }
+}
+
+// --- START: Info Tooltip Functions ---
+function showInfoTooltip(button, infoKey) {
+    hideInfoTooltip(); // Hide any existing tooltip
+
+    const text = getTranslation(infoKey);
+    if (!text || text.startsWith('_') || text.trim() === '') {
+        console.warn(`No tooltip text found for key: ${infoKey}`);
+        return;
+    }
+
+    infoTooltipElement = document.createElement('div');
+    infoTooltipElement.className = 'info-tooltip';
+    infoTooltipElement.textContent = text;
+    document.body.appendChild(infoTooltipElement);
+    currentInfoButton = button;
+
+    positionTooltip();
+
+    // Make it visible after positioning
+    requestAnimationFrame(() => {
+        infoTooltipElement.classList.add('visible');
+    });
+}
+
+function hideInfoTooltip() {
+    if (infoTooltipElement) {
+        infoTooltipElement.classList.remove('visible');
+        // Remove after transition finishes
+        infoTooltipElement.addEventListener('transitionend', () => {
+            if (infoTooltipElement && !infoTooltipElement.classList.contains('visible')) {
+                infoTooltipElement.remove();
+                infoTooltipElement = null;
+                currentInfoButton = null;
+            }
+        }, { once: true });
+         // Fallback removal if transition doesn't fire (e.g., display: none)
+         setTimeout(() => {
+             if (infoTooltipElement && !infoTooltipElement.classList.contains('visible')) {
+                 infoTooltipElement.remove();
+                 infoTooltipElement = null;
+                 currentInfoButton = null;
+             }
+         }, 300); // Slightly longer than transition duration
+    }
+}
+
+function positionTooltip() {
+    if (!infoTooltipElement || !currentInfoButton) return;
+
+    const btnRect = currentInfoButton.getBoundingClientRect();
+    const tipRect = infoTooltipElement.getBoundingClientRect(); // Get initial size
+    const spaceAbove = btnRect.top;
+    const spaceBelow = window.innerHeight - btnRect.bottom;
+    const arrowHeight = 6; // Height of the CSS arrow
+
+    let top, left;
+    let arrowClass = 'arrow-down'; // Default: tooltip below button
+
+    // Position horizontally: Center tooltip above/below button
+    left = btnRect.left + (btnRect.width / 2) - (tipRect.width / 2);
+
+    // Position vertically: Prefer below, fallback to above
+    if (spaceBelow > tipRect.height + arrowHeight) {
+        top = btnRect.bottom + arrowHeight;
+        arrowClass = 'arrow-up'; // Arrow points up from tooltip top edge
+    } else if (spaceAbove > tipRect.height + arrowHeight) {
+        top = btnRect.top - tipRect.height - arrowHeight;
+        arrowClass = 'arrow-down'; // Arrow points down from tooltip bottom edge
+    } else {
+        // Fallback: Position below even if tight
+        top = btnRect.bottom + arrowHeight;
+         arrowClass = 'arrow-up';
+    }
+
+    // Prevent tooltip from going off-screen horizontally
+    const minLeft = 10;
+    const maxLeft = window.innerWidth - tipRect.width - 10;
+    left = Math.max(minLeft, Math.min(maxLeft, left));
+
+    infoTooltipElement.style.top = `${top + window.scrollY}px`;
+    infoTooltipElement.style.left = `${left + window.scrollX}px`;
+    infoTooltipElement.classList.remove('arrow-up', 'arrow-down'); // Reset arrow classes
+    infoTooltipElement.classList.add(arrowClass); // Add correct arrow class
+}
+
+function handleInfoButtonClick(event) {
+     // Use closest to find the button, even if the icon inside is clicked
+     const button = event.target.closest('.info-button');
+     if (button) {
+         event.stopPropagation(); // Prevent triggering outside click listener
+         const infoKey = button.dataset.infoKey;
+         if (infoKey) {
+             // If clicking the same button that already has the tooltip open, close it.
+             if (infoTooltipElement && infoTooltipElement.classList.contains('visible') && currentInfoButton === button) {
+                 hideInfoTooltip();
+             } else {
+                 showInfoTooltip(button, infoKey);
+             }
+         }
+     }
+ }
+
+function handleClickOutsideTooltip(event) {
+    // Hide tooltip if click is outside the current button AND outside the tooltip itself
+    if (infoTooltipElement && infoTooltipElement.classList.contains('visible')) {
+        if (!currentInfoButton?.contains(event.target) && !infoTooltipElement.contains(event.target)) {
+            hideInfoTooltip();
+        }
+    }
+}
+// --- END: Info Tooltip Functions ---
+
+
+// --- START: AdBlock Detection Functions ---
+function checkAdBlocker() {
+    const baitElement = document.getElementById('adBlockBait');
+    if (!baitElement) {
+        console.warn('AdBlockBait element not found.');
+        return; // Cannot perform check
+    }
+
+    // Use multiple checks for robustness
+    if (baitElement.offsetHeight === 0 || // Most reliable check
+        baitElement.clientHeight === 0 || // Alternative height check
+        baitElement.offsetParent === null || // Checks if it's rendered in layout
+        window.getComputedStyle(baitElement).getPropertyValue('display') === 'none' ||
+        window.getComputedStyle(baitElement).getPropertyValue('visibility') === 'hidden')
+    {
+        adBlockerDetected = true;
+        console.log('Ad blocker likely detected (bait element hidden).');
+    } else {
+        console.log('Ad blocker not detected (bait element visible).');
+        adBlockerDetected = false;
+    }
+}
+
+function showAdBlockMessage() {
+    const messageBanner = document.getElementById('adblockMessage');
+    const closeButton = document.getElementById('closeAdblockMessage');
+
+    if (!messageBanner || !closeButton) {
+        console.warn('AdBlock message banner or close button not found.');
+        return;
+    }
+
+    // Check sessionStorage to see if dismissed during this session
+    try {
+        if (sessionStorage.getItem('adblockMessageDismissed') === 'true') {
+            console.log('AdBlock message previously dismissed in this session.');
+            return; // Don't show if already dismissed
+        }
+    } catch (e) {
+        console.warn("Could not access sessionStorage for adblock dismissal check.");
+        // Continue without session check if sessionStorage fails
+    }
+
+    // If detected and not dismissed, show the message
+    if (adBlockerDetected) {
+        // Ensure content is translated before showing
+        messageBanner.querySelectorAll('[data-translate], [data-translate-title]').forEach(el => {
+            const key = el.dataset.translate || el.dataset.translateTitle;
+            const isTitle = !!el.dataset.translateTitle;
+            if(key) {
+                const translation = getTranslation(key); // Always uses 'en'
+                if (translation !== `_${key}_`) {
+                    if (isTitle) el.title = translation;
+                    else el.textContent = translation;
+                }
+            }
+        });
+        // Show the banner
+        messageBanner.classList.remove('hidden');
+
+        // Add listener to close button (only once)
+        closeButton.addEventListener('click', () => {
+            messageBanner.classList.add('hidden');
+            // Store dismissal state for the current browser session
+            try {
+                sessionStorage.setItem('adblockMessageDismissed', 'true');
+            } catch (e) {
+                console.warn("Could not save adblock dismissal state to sessionStorage.");
+            }
+        }, { once: true });
+    }
+}
+// --- END: AdBlock Detection Functions ---
+
+// --- Comparison Slider Function ---
+function setupComparisonSliders() {
+    document.querySelectorAll('.comparison-slider-container').forEach(container => {
+        const imgBefore = container.querySelector('.img-before');
+        const imgAfter = container.querySelector('.img-after');
+
+        if (!imgBefore || !imgAfter) return;
+
+        const handleMove = (e) => {
+            const rect = container.getBoundingClientRect();
+            // Use pageX for touch/mouse consistency relative to document
+            const x = (e.pageX || e.touches[0].pageX) - rect.left - window.scrollX;
+            let percentage = (x / rect.width) * 100;
+            percentage = Math.max(0, Math.min(100, percentage)); // Clamp between 0 and 100
+            imgAfter.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        };
+
+        const handleEnd = () => {
+            window.removeEventListener('mousemove', handleMove);
+            window.removeEventListener('touchmove', handleMove);
+            window.removeEventListener('mouseup', handleEnd);
+            window.removeEventListener('touchend', handleEnd);
+        };
+
+        const handleStart = (e) => {
+            // Only activate on direct interaction with the container
+            if (e.target !== container && !container.contains(e.target)) return;
+             e.preventDefault(); // Prevent image drag etc.
+            handleMove(e); // Initial position set
+            window.addEventListener('mousemove', handleMove);
+            window.addEventListener('touchmove', handleMove);
+            window.addEventListener('mouseup', handleEnd);
+            window.addEventListener('touchend', handleEnd);
+        };
+
+        // Use mouseenter/leave for hover effect without needing drag
+        safeAddListener(container, 'mousemove', handleMove);
+         safeAddListener(container, 'touchmove', handleMove);
+
+        // Optional: Reset on mouse leave
+        safeAddListener(container, 'mouseleave', () => {
+             imgAfter.style.clipPath = `inset(0 50% 0 0)`; // Reset to 50%
+        });
+        // Optional: Set initial state
+        imgAfter.style.clipPath = `inset(0 50% 0 0)`;
+    });
 }
 
 
@@ -1946,16 +1860,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoomOutBtn = document.getElementById('zoomOutBtn');
     const zoomResetBtn = document.getElementById('zoomResetBtn');
     const contactForm = document.getElementById('contactForm');
-    const languageToggleBtn = document.getElementById('languageToggleBtn');
-    const languageDropdown = document.getElementById('languageDropdown');
+    const languageToggleBtn = document.getElementById('languageToggleBtn'); // Keep for structure, though funcionality limited
+    const languageDropdown = document.getElementById('languageDropdown');   // Keep for structure
+    const optionsPanel = document.querySelector('.options-panel'); // For attaching tooltip listener
 
-    // 1. Determine and set initial language
+    // 1. Determine and set initial language (simplified to always 'en')
     currentLang = getInitialLanguage();
-    setLanguage(currentLang);
+    setLanguage(currentLang); // Sets to 'en' and translates
 
     // 2. Set up based on page context
     if (landingView || appView) { // On main app page (index.html)
-
         console.log("vectorise.me script initializing (App Mode)...");
 
         // Store initial form values as defaults & populate 'general' preset
@@ -1963,7 +1877,7 @@ document.addEventListener('DOMContentLoaded', () => {
             storeDefaultOptions();
         }
         if (presetSelect) {
-            populatePresetSelect();
+            populatePresetSelect(); // Populate with English names
         }
 
         // --- Attach Event Listeners ---
@@ -1987,10 +1901,11 @@ document.addEventListener('DOMContentLoaded', () => {
         safeAddListener(svgOutputDiv, 'mouseout', handleSvgPathHover);
         safeAddListener(previewOriginalImage, 'load', () => {
             console.log("Original preview image loaded.");
-            debounceCalculateAndApplyWrapperSize(50);
+            debounceCalculateAndApplyWrapperSize(50); // Calculate size once loaded
         });
-        safeAddListener(previewOriginalImage, 'error', () => {
-            console.error("Failed to load original preview image. Check Object URL or file.");
+        safeAddListener(previewOriginalImage, 'error', (e) => {
+            console.error("Failed to load original preview image. Check Object URL or file.", e);
+            updateStatus('status_error_obj_url', 'error', 0, true, {errorMessage: 'Image preview failed.'})
         });
         if (dropZone) {
             safeAddListener(dropZone, 'dragenter', handleDragEnter, false);
@@ -1999,37 +1914,32 @@ document.addEventListener('DOMContentLoaded', () => {
             safeAddListener(dropZone, 'drop', handleDrop, false);
             safeAddListener(dropZone, 'click', (e) => {
                 if (imageInput && e.target !== imageInput && !e.target.closest('button, a, label')) {
-                    imageInput.click();
+                    imageInput.click(); // Trigger file input click when drop zone is clicked
                 }
             });
+        }
+
+        // Attach tooltip listener to the panel containing the info buttons
+        if (optionsPanel) {
+            safeAddListener(optionsPanel, 'click', handleInfoButtonClick);
+        } else if(optionsForm){ // Fallback if panel selector fails
+             console.warn("Options panel not found, attaching tooltip listener to form.");
+             safeAddListener(optionsForm, 'click', handleInfoButtonClick);
         }
 
         // Initial setup calls
         setupZoomPan();
         updateZoomButtons();
         setupNumberInputSync();
-        setupComparisonSliders(); // Initialize comparison sliders
-        updateOptionsAvailability(); // Set VTracer conditional options
+        setupComparisonSliders(); // Initialize comparison sliders on landing
+        updateOptionsAvailability(); // Set initial VTracer conditional options visibility
         showLandingView(); // Start on landing page
-
-        // Initialize Info Tooltip listeners
-        const optionsPanel = document.querySelector('.options-panel');
-        if (optionsPanel) {
-            safeAddListener(optionsPanel, 'click', handleInfoButtonClick);
-        } else if(document.getElementById('optionsForm')){
-             safeAddListener(document.getElementById('optionsForm'), 'click', handleInfoButtonClick);
-        }
-
 
     } else { // On other static pages (contact, privacy, etc.)
         console.log("vectorise.me script initializing (Static Page Mode)...");
-        // Initialize Comparison Sliders if they appear on static pages
+        // Initialize Comparison Sliders if they appear on static pages (currently none)
         setupComparisonSliders();
-         // Initialize Info Tooltip listeners if they appear on static pages
-         const optionsPanelStatic = document.querySelector('.options-panel'); // Adjust selector if needed
-         if (optionsPanelStatic) {
-             safeAddListener(optionsPanelStatic, 'click', handleInfoButtonClick);
-         }
+         // Initialize Info Tooltip listeners if needed on static pages (currently none)
     }
 
     // Common Listeners for all pages
@@ -2037,31 +1947,30 @@ document.addEventListener('DOMContentLoaded', () => {
         safeAddListener(contactForm, 'submit', handleContactFormSubmit);
         console.log("Contact form listeners added.");
     }
+
+    // Language dropdown listener (simplified as it only shows English)
     if (languageToggleBtn && languageDropdown) {
         safeAddListener(languageToggleBtn, 'click', (e) => {
             e.stopPropagation();
+            // Basic toggle, no language change needed
             const isExpanded = languageToggleBtn.getAttribute('aria-expanded') === 'true';
             languageToggleBtn.setAttribute('aria-expanded', String(!isExpanded));
             languageDropdown.classList.toggle('hidden', isExpanded);
         });
+        // Links inside dropdown just close it now
         languageDropdown.querySelectorAll('a[lang]').forEach(link => {
             safeAddListener(link, 'click', (e) => {
                  e.preventDefault();
-                 const selectedLang = link.getAttribute('lang');
-                 if (selectedLang !== currentLang) {
-                     setLanguage(selectedLang);
-                 } else {
-                     languageToggleBtn.setAttribute('aria-expanded', 'false');
-                     languageDropdown.classList.add('hidden');
-                 }
+                 languageToggleBtn.setAttribute('aria-expanded', 'false');
+                 languageDropdown.classList.add('hidden');
             });
         });
-        console.log("Language dropdown listeners added.");
+        console.log("Simplified language dropdown listeners added.");
     } else {
          console.warn("Language toggle button or dropdown element not found.");
     }
 
-    // Global Listeners
+    // Global Listeners (Tooltip closing, resize handling, AdBlock check)
     safeAddListener(document, 'click', handleClickOutsideTooltip); // Close tooltips on outside click
     safeAddListener(document, 'keydown', (event) => { // Close tooltips with Escape key
          if (event.key === 'Escape' && infoTooltipElement && infoTooltipElement.classList.contains('visible')) {
@@ -2073,13 +1982,22 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             const appView = document.getElementById('appView');
-            const previewAreaWrapper = document.getElementById('previewAreaWrapper');
-            if (appView && !appView.classList.contains('hidden') && previewAreaWrapper) {
-                 debounceCalculateAndApplyWrapperSize(); // Use debounced version
+            if (appView && !appView.classList.contains('hidden')) { // Only recalculate if app view is visible
+                 debounceCalculateAndApplyWrapperSize();
+                 if(infoTooltipElement && infoTooltipElement.classList.contains('visible')) {
+                     positionTooltip(); // Reposition visible tooltip on resize
+                 }
             }
         }, 150);
     });
 
-     console.log(`Initialization complete. Current language: ${currentLang}`);
+    // --- AdBlock Check Trigger ---
+    // Wait a short moment after page load before checking
+    setTimeout(() => {
+        checkAdBlocker(); // Perform the check
+        showAdBlockMessage(); // Show message if needed
+    }, 500); // Delay in milliseconds
+
+    console.log(`Initialization complete. Current language: ${currentLang}`);
 
 }); // End DOMContentLoaded

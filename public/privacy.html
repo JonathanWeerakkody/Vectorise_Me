@@ -15,8 +15,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <!-- AdSense Script (Load once in head) -->
+    <!-- START: AdSense Script (Load once in head) -->
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUB_ID" crossorigin="anonymous"></script>
+    <!-- END: AdSense Script -->
 </head>
 <body>
     <div class="page-container">
@@ -117,11 +118,9 @@
                 <ul>
                     <li data-translate="privacy_contact_li_email">By email: jonkarystudio@gmail.com</li>
                     <li>
-                        <span data-translate="privacy_contact_li_web_label">Via our website:</span> <!-- New span and key -->
+                        <span data-translate="privacy_contact_li_web_label">Via our website:</span>
                         <a href="contact.html" data-translate="privacy_contact_page_link">Contact Page</a>
                     </li>
-                    <!-- Apply similar structure with corresponding keys in cookies.html and terms.html -->
-                    <!-- e.g., cookies_contact_li_web_label, terms_contact_li_web_label -->
                 </ul>
             </section>
 
@@ -129,9 +128,7 @@
              <section class="ad-slot-container static-ad-bottom">
                   <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
                  <div id="ad-slot-static-bottom">
-                     <!-- AdSense code goes here -->
                      <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_STATIC -->
-                     <!-- Static Page Bottom Ad -->
                      <ins class="adsbygoogle"
                           style="display:block"
                           data-ad-client="ca-pub-YOUR_PUB_ID"
@@ -160,6 +157,20 @@
                 <span data-translate="footer_copyright">© 2025 JonkaryStudio. All rights reserved.</span>
             </div>
         </footer>
+
+        <!-- START: AdBlock Detection Elements -->
+        <div id="adBlockBait" class="adsbygoogle adbox textads banner_ad" aria-hidden="true" style="height: 1px !important; width: 1px !important; position: absolute !important; left: -9999px !important; top: -9999px !important; visibility: hidden !important;"></div>
+        <div id="adblockMessage" class="adblock-message hidden">
+            <div class="adblock-message-content">
+                <p>
+                    <strong data-translate="adblock_notice_title">Ad Blocker Detected!</strong>
+                    <span data-translate="adblock_notice_text">Vectorise.Me is free thanks to ads. Please consider whitelisting our site to help us keep it running.</span>
+                    <a href="https://www.wikihow.com/Disable-AdBlock" target="_blank" rel="noopener noreferrer" data-translate="adblock_notice_link">How to whitelist?</a>
+                </p>
+            </div>
+            <button id="closeAdblockMessage" class="adblock-message-close" aria-label="Close notice" data-translate-title="adblock_notice_close_title">×</button>
+        </div>
+        <!-- END: AdBlock Detection Elements -->
 
     </div> <!-- End page-container -->
     <script src="script.js"></script>

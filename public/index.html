@@ -19,8 +19,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- AdSense Script (Load once in head) -->
+    <!-- START: AdSense Script (Load once in head) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUB_ID" crossorigin="anonymous"></script>
+    <!-- END: AdSense Script -->
 </head>
 <body>
     <div class="page-container">
@@ -118,9 +119,8 @@
                  <section class="preset-examples-section">
                      <div class="container">
                         <h2 data-translate="presets_h2_seo">Image to SVG Preset Examples</h2>
-                        <p data-translate="presets_p">Hover over the images to see the difference!</p> <!-- Updated text -->
+                        <p data-translate="presets_p">Hover over the images to see the difference!</p>
                         <div class="preset-examples-container">
-
                             <!-- Example 1: Technical Drawing -->
                             <div class="preset-example-card">
                                 <h4 data-translate="preset_photo">Technical Drawings / Blueprints</h4>
@@ -133,7 +133,6 @@
                                     <span data-translate="preset_vectorized">Vectorized</span>
                                  </div>
                             </div>
-
                             <!-- Example 2: Clipart -->
                             <div class="preset-example-card">
                                 <h4 data-translate="preset_clipart">Clipart / Logo</h4>
@@ -146,7 +145,6 @@
                                     <span data-translate="preset_vectorized">Vectorized</span>
                                  </div>
                             </div>
-
                             <!-- Example 3: Pixel Art -->
                             <div class="preset-example-card">
                                 <h4 data-translate="preset_pixel">Pixel Art</h4>
@@ -159,7 +157,6 @@
                                     <span data-translate="preset_vectorized">Vectorized</span>
                                  </div>
                             </div>
-
                         </div> <!-- End .preset-examples-container -->
                     </div>
                  </section>
@@ -168,9 +165,7 @@
                  <section class="ad-slot-container landing-ad-bottom">
                      <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
                      <div id="ad-slot-landing-bottom">
-                         <!-- AdSense code or other ad network code goes here -->
                          <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_LANDING -->
-                         <!-- Landing Bottom Ad -->
                          <ins class="adsbygoogle"
                               style="display:block"
                               data-ad-client="ca-pub-YOUR_PUB_ID"
@@ -203,18 +198,14 @@
                             </div>
                         </div>
 
-                        <!-- Engine Selector REMOVED -->
-
                         <!-- VTracer Preset Controls -->
                         <div class="preset-controls option-group">
                             <label for="presetSelect" data-translate="preset_label">Image Type Preset:</label>
-                            <!-- Info button added -->
                             <button type="button" class="info-button" data-info-key="info_preset" aria-label="Info about Presets" title="More information">
                                 <i class="fas fa-circle-info"></i>
                             </button>
                             <select id="presetSelect">
                                 <option value="" disabled selected data-translate="preset_select_placeholder">Load a Preset...</option>
-                                <!-- Presets populated by JS -->
                             </select>
                         </div>
 
@@ -289,7 +280,6 @@
                                     <div class="input-combo">
                                         <input type="range" id="optPathPrecision" name="path_precision" min="1" max="8" value="3" step="1">
                                         <input type="number" id="optPathPrecisionNum" class="input-number short" value="3" min="1" max="8" step="1">
-                                        <!-- Unit span removed -->
                                     </div>
                                 </div>
                                 <div class="option-group slider-group" id="groupSplineThreshold">
@@ -338,7 +328,6 @@
                                  </div>
                                  <div class="option-group slider-group hidden" id="groupColorPrecision"></div>
                              </fieldset>
-
                         </form>
                         <button id="convertBtn" class="button button-primary convert-button" data-translate="update_vectorization_btn" disabled>Update Vectorization</button>
 
@@ -346,11 +335,9 @@
                         <div class="ad-slot-container options-ad-bottom">
                             <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
                             <div id="ad-slot-options-bottom">
-                                 <!-- AdSense code goes here -->
                                  <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_OPTIONS -->
-                                 <!-- App Options Panel Ad -->
                                  <ins class="adsbygoogle"
-                                      style="display:inline-block;width:300px;height:250px" <!-- Adjust size if needed -->
+                                      style="display:inline-block;width:300px;height:250px" <!-- Medium Rectangle Size -->
                                       data-ad-client="ca-pub-YOUR_PUB_ID"
                                       data-ad-slot="YOUR_AD_SLOT_ID_OPTIONS"></ins>
                                  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -398,9 +385,7 @@
                         <div class="ad-slot-container result-ad-bottom">
                            <div class="ad-label" data-translate="advertisement_label">Advertisement</div>
                            <div id="ad-slot-result-bottom">
-                               <!-- AdSense code goes here -->
                                <!-- Replace YOUR_PUB_ID and YOUR_AD_SLOT_ID_RESULT -->
-                               <!-- App Result Bottom Ad -->
                                <ins class="adsbygoogle"
                                     style="display:block"
                                     data-ad-client="ca-pub-YOUR_PUB_ID"
@@ -435,6 +420,21 @@
 
         <a id="downloadLink" style="display: none;"></a>
         <input type="file" id="optionsFileInput" accept=".json" hidden>
+
+        <!-- START: AdBlock Detection Elements -->
+        <div id="adBlockBait" class="adsbygoogle adbox textads banner_ad" aria-hidden="true" style="height: 1px !important; width: 1px !important; position: absolute !important; left: -9999px !important; top: -9999px !important; visibility: hidden !important;"></div>
+        <div id="adblockMessage" class="adblock-message hidden">
+            <div class="adblock-message-content">
+                <p>
+                    <strong data-translate="adblock_notice_title">Ad Blocker Detected!</strong>
+                    <span data-translate="adblock_notice_text">Vectorise.Me is free thanks to ads. Please consider whitelisting our site to help us keep it running.</span>
+                    <a href="https://www.wikihow.com/Disable-AdBlock" target="_blank" rel="noopener noreferrer" data-translate="adblock_notice_link">How to whitelist?</a>
+                </p>
+            </div>
+            <button id="closeAdblockMessage" class="adblock-message-close" aria-label="Close notice" data-translate-title="adblock_notice_close_title">×</button>
+        </div>
+        <!-- END: AdBlock Detection Elements -->
+
     </div> <!-- End page-container -->
 
     <script src="script.js"></script>

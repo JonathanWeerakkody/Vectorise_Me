@@ -1,4 +1,4 @@
-/* public/style.css - Slick Purple Revamp - VTracer Only + Info Tooltips + Sliders + SVG Fix + Wide Download Btn */
+/* public/style.css - Slick Purple Revamp - VTracer Only + Info Tooltips + Sliders + SVG Fix + Wide Download Btn + Ads + AdBlock Msg */
 
 /* --- Reset & Basic Setup --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -154,9 +154,9 @@ main > section:last-of-type { margin-bottom: 4rem; }
     transform-origin: top right;
     transition: opacity 0.15s ease-out, visibility 0s linear 0.15s, transform 0.15s ease-out;
 }
-.language-dropdown.hidden { display: none; }
+.language-dropdown.hidden { display: none; } /* Keep this to ensure initial state */
 .language-dropdown:not(.hidden) {
-    display: block;
+    display: block; /* Make visible */
     opacity: 1; visibility: visible; transform: translateY(0) scale(1);
     transition: opacity 0.15s ease-out, visibility 0s linear 0s, transform 0.15s ease-out;
 }
@@ -320,7 +320,7 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     border: none;
     transition: background-color 0.15s ease, box-shadow 0.15s ease;
-    margin-top: -6px;
+    margin-top: -6px; /* Adjust for thumb height */
     box-shadow: var(--shadow-md);
 }
 input[type="range"]::-moz-range-thumb {
@@ -753,10 +753,13 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
     box-shadow: var(--shadow-md);
     border: 1px solid var(--light-border);
     position: sticky;
-    top: 85px;
-    max-height: calc(100vh - 110px);
+    top: 85px; /* Header height + spacing */
+    max-height: calc(100vh - 110px); /* Adjust based on header/footer */
     overflow-y: auto;
+    display: flex; /* Use flex for ordering */
+    flex-direction: column; /* Stack content vertically */
 }
+/* Scrollbar styles */
 .options-panel::-webkit-scrollbar { width: 8px; }
 .options-panel::-webkit-scrollbar-track { background: var(--medium-bg); border-radius: 4px;}
 .options-panel::-webkit-scrollbar-thumb { background-color: var(--medium-border); border-radius: 4px; border: 2px solid var(--medium-bg); }
@@ -774,6 +777,7 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 .options-header-buttons .button-tertiary i { display: none; }
 
 .preset-controls { margin-bottom: 1.5rem; }
+#optionsForm { flex-grow: 1; } /* Allow form to take available space */
 .options-fieldset { border: none; padding: 0 0 1.5rem 0; margin: 0 0 1.5rem 0; }
 .options-fieldset:last-of-type { margin-bottom: 0; padding-bottom: 0; }
 .options-fieldset legend { font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; color: var(--text-heading); padding-bottom: 0.5rem; border-bottom: 1px solid var(--light-border); width: 100%; }
@@ -783,7 +787,8 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 .option-group.disabled input,
 .option-group.disabled select { cursor: not-allowed; background-color: var(--medium-bg); }
 
-.convert-button { margin-top: 1.8rem; width: 100%; font-size: 1rem; padding: 0.8rem; }
+.convert-button { margin-top: 1.8rem; width: 100%; font-size: 1rem; padding: 0.8rem; order: 10; } /* Low order to push below ad */
+.options-panel > .ad-slot-container { order: 20; } /* High order to ensure it's last */
 
 /* Result Panel */
 .result-panel {
@@ -801,20 +806,20 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 .result-header h2 { font-size: 1.3rem; font-weight: 600; margin: 0; }
 .zoom-controls { display: flex; gap: 0.5rem; }
 
-/* --- Start: Preview Area Styles (SVG Fix Included) --- */
+/* --- Preview Area Styles (SVG Fix Included) --- */
 .preview-area-wrapper {
     flex-grow: 1;
     background-color: var(--medium-bg);
     border-radius: var(--border-radius);
     margin-bottom: 1.5rem;
-    overflow: hidden; /* Keep this to contain during transforms */
+    overflow: hidden;
     position: relative;
     cursor: grab;
     border: 1px solid var(--light-border);
     min-height: 350px;
-    display: flex; /* Keep flex */
-    align-items: center; /* Keep align-items */
-    justify-content: center; /* Keep justify-content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .preview-area-wrapper.grabbing { cursor: grabbing; }
 
@@ -828,11 +833,10 @@ html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right
 
 .preview-pane {
     background-color: var(--medium-bg);
-    /* padding removed */
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden; /* Prevents content overflowing the pane */
+    overflow: hidden;
 }
 .preview-pane.original-pane::after { /* Divider using ::after */
     content: '';
@@ -853,57 +857,56 @@ html[dir="rtl"] .preview-pane.original-pane::after {
     text-transform: uppercase;
     letter-spacing: 0.8px;
     text-align: center;
-    padding: 0.4rem; /* Smaller padding */
-    margin: 0.6rem; /* Use margin instead of pane padding */
+    padding: 0.4rem;
+    margin: 0.6rem;
     border-bottom: 1px solid var(--light-border);
-    background-color: var(--medium-bg); /* Match pane */
+    background-color: var(--medium-bg);
     z-index: 1;
     flex-shrink: 0;
 }
 
 .image-wrapper {
     flex-grow: 1;
-    position: relative; /* For absolute positioning of child */
-    overflow: hidden; /* Contain during transforms */
-    transform-origin: center center; /* Keep for zoom/pan */
-    display: block; /* Allow JS width/height to take effect */
-    margin: 0 auto; /* Center within the flex column */
+    position: relative;
+    overflow: hidden;
+    transform-origin: center center;
+    display: block;
+    margin: 0 auto;
     /* Width & Height are set by JS */
 }
 
 .image-wrapper img#previewOriginalImage {
      display: block;
-     width: 100%; /* Fill the wrapper */
-     height: 100%; /* Fill the wrapper */
-     object-fit: contain; /* Scale bitmap nicely */
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
      max-width: 100%;
      max-height: 100%;
  }
 
- #vectorImageWrapper #svgOutputWrapper { /* Wrapper for SVG container */
+ #vectorImageWrapper #svgOutputWrapper {
      width: 100%;
      height: 100%;
      display: block;
-     position: absolute; /* Fill parent .image-wrapper */
+     position: absolute;
      top: 0;
      left: 0;
  }
 
-#svgOutput { /* Container for the SVG element itself */
+#svgOutput {
     width: 100%;
     height: 100%;
-    display: flex; /* Center SVG content */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#svgOutput svg { /* The actual <svg> tag */
+#svgOutput svg {
     display: block;
-    width: 100%;   /* Tell SVG to take container width */
-    height: 100%;  /* Tell SVG to take container height */
-    max-width: 100%; /* Ensure it doesn't overflow */
-    max-height: 100%; /* Ensure it doesn't overflow */
-    /* Intrinsic viewBox + preserveAspectRatio handle the scaling */
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .placeholder-text {
@@ -912,16 +915,16 @@ html[dir="rtl"] .preview-pane.original-pane::after {
     padding: 1rem;
     text-align: center;
     max-width: 90%;
-    /* Centering handled by flex on parent (#svgOutput) */
 }
-/* --- End: Preview Area Styles --- */
-
 .placeholder-text.error-text {
     color: var(--danger-dark);
     font-weight: 500;
 }
+#svgOutput.placeholder-active {
+    /* Add styles if needed when placeholder is active */
+}
 
-#svgOutput .path-hover {
+#svgOutput .path-hover { /* For potential future hover effects */
     stroke: var(--primary-color) !important;
     stroke-width: 1.5px !important;
     stroke-opacity: 0.9 !important;
@@ -929,38 +932,32 @@ html[dir="rtl"] .preview-pane.original-pane::after {
     vector-effect: non-scaling-stroke !important;
 }
 
-
-/* --- Start: Wide Download Button --- */
+/* --- Wide Download Button --- */
 .result-controls {
     margin-top: auto; /* Pushes to the bottom */
     padding-top: 1.5rem;
     border-top: 1px solid var(--light-border);
-    flex-shrink: 0; /* Prevent shrinking */
-    padding-left: 1rem; /* Add padding */
+    flex-shrink: 0;
+    padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 0.5rem;
 }
-
 .download-button {
-    /* Keep existing button styles */
     font-size: 1rem;
     padding: 0.8rem 2rem;
-    min-width: auto; /* Override any previous min-width */
-
-    /* New styles */
-    display: block; /* Block element */
-    width: 100%;   /* Fill container */
-    max-width: 700px; /* Limit max width */
-    margin-left: auto;  /* Center */
-    margin-right: auto; /* Center */
+    min-width: auto;
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
-/* --- End: Wide Download Button --- */
 
 
 /* ===== Contact Page Styles ===== */
 .contact-section { text-align: center; }
 .contact-section h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700; margin-bottom: 2.5rem; color: var(--text-heading); }
-.contact-form-container { max-width: 650px; background: var(--panel-bg); padding: 2.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--light-border); margin: 0 auto; text-align: left; }
+.contact-form-container { max-width: 650px; background: var(--panel-bg); padding: 2.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--light-border); margin: 0 auto 3rem auto; text-align: left; } /* Added bottom margin */
 .form-group { margin-bottom: 1.5rem; }
 .form-submit-btn { width: 100%; padding: 0.9rem; font-size: 1.05rem; margin-top: 0.5rem;}
 .form-status {
@@ -998,7 +995,7 @@ html[dir="rtl"] .common-issues-section ul { text-align: right; }
 html[dir="rtl"] .common-issues-section li em span:first-child { margin-left: 0.4em; margin-right: 0; }
 
 /* ===== Legal Content Styles ===== */
-.legal-content { background: var(--panel-bg); padding: 2.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--light-border); }
+.legal-content { background: var(--panel-bg); padding: 2.5rem; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--light-border); margin-bottom: 3rem; } /* Added bottom margin */
 .legal-content h1 { font-size: clamp(1.7rem, 5vw, 2.1rem); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--light-border); color: var(--text-heading); }
 .legal-content h2 { font-size: clamp(1.3rem, 4vw, 1.6rem); margin: 2.5rem 0 1rem 0; font-weight: 600; color: var(--text-heading); }
 .legal-content h3, .legal-content h4 { font-size: clamp(1.1rem, 3vw, 1.2rem); margin: 1.8rem 0 0.8rem 0; font-weight: 600; color: var(--text-heading); }
@@ -1057,6 +1054,166 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     color: var(--secondary-color);
 }
 
+/* --- START: Ad Slot Styling --- */
+.ad-slot-container {
+    margin: 2rem auto; /* Adjust vertical spacing */
+    padding: 1rem 0;
+    text-align: center;
+    border-top: 1px solid var(--light-border); /* Optional separator */
+    border-bottom: 1px solid var(--light-border); /* Optional separator */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    clear: both; /* Help with layout flow if needed */
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Specific adjustments if needed */
+.landing-ad-bottom {
+    max-width: 800px; /* Example width constraint */
+    margin-top: 4rem; /* More space after presets */
+    margin-bottom: 4rem; /* More space before CTA */
+}
+
+.options-ad-bottom {
+    margin-top: auto; /* Push to bottom of flex container */
+    padding: 1rem;
+    background-color: var(--medium-bg); /* Slight background differentiation */
+    border-radius: var(--border-radius);
+    border: none;
+    order: 20; /* Ensure it's last in flex order */
+    flex-shrink: 0; /* Don't let it shrink */
+}
+
+.result-ad-bottom {
+     margin-top: 2rem;
+     border-top: 1px solid var(--light-border);
+     padding-top: 1.5rem;
+     max-width: 760px; /* Example */
+     border-bottom: none;
+}
+
+.static-ad-bottom {
+    max-width: 800px;
+    margin-top: 3rem; /* Space after main content */
+}
+
+/* Ensure ad containers don't cause layout shifts initially */
+/* Use dimensions matching your MOST COMMON ad size */
+#ad-slot-landing-bottom,
+#ad-slot-result-bottom,
+#ad-slot-static-bottom {
+    min-height: 90px; /* Leaderboard height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--medium-bg); /* Placeholder bg */
+    overflow: hidden; /* Prevent ad content spill */
+}
+#ad-slot-options-bottom {
+    min-height: 250px; /* Medium Rectangle height */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--white); /* Placeholder bg */
+     overflow: hidden;
+}
+
+/* Style for the ad itself if needed, AdSense often handles this */
+.adsbygoogle {
+     background-color: #f8f9fa; /* Light placeholder color */
+}
+/* --- END: Ad Slot Styling --- */
+
+
+/* --- START: AdBlock Message Styling --- */
+.adblock-message {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: hsl(var(--primary-hue), 15%, 25%); /* Dark background */
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    z-index: 1100; /* Above most elements */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+}
+
+.adblock-message.hidden {
+    opacity: 0;
+    transform: translateY(100%);
+    pointer-events: none;
+    transition: opacity 0.4s ease-in, transform 0.4s ease-in, visibility 0s linear 0.4s;
+    visibility: hidden; /* Hide from screen readers when not visible */
+}
+
+.adblock-message-content {
+    flex-grow: 1;
+}
+
+.adblock-message p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+html[dir="rtl"] .adblock-message p {
+    text-align: right;
+}
+
+.adblock-message p strong {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2em;
+    font-size: 0.95rem;
+}
+
+.adblock-message a {
+    color: var(--info-color); /* Light blue for link */
+    text-decoration: underline;
+    font-weight: 500;
+    margin-left: 0.5em;
+}
+html[dir="rtl"] .adblock-message a {
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+
+.adblock-message a:hover {
+    color: var(--primary-light);
+}
+
+.adblock-message-close {
+    background: none;
+    border: none;
+    color: var(--text-inverse);
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1;
+    padding: 0.1rem 0.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    align-self: center; /* Align vertically */
+}
+
+.adblock-message-close:hover {
+    opacity: 1;
+}
+/* --- END: AdBlock Message Styling --- */
+
 
 /* --- Responsive --- */
 @media (max-width: 1024px) {
@@ -1071,6 +1228,11 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
         max-height: none;
         overflow-y: visible;
         margin-top: 0;
+        padding-bottom: 1rem; /* Reduce padding slightly */
+    }
+     .options-panel > .ad-slot-container {
+        margin-top: 1.5rem; /* Ensure space above ad */
+        order: 20; /* Keep it last */
     }
     .result-panel { order: 1; min-height: 450px; }
 }
@@ -1114,9 +1276,8 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .preview-pane.original-pane::after {
         display: none; /* Hide vertical divider when stacked */
     }
-    /* Optional: add horizontal divider */
     .preview-pane.original-pane {
-        border-bottom: 1px solid var(--light-border);
+        border-bottom: 1px solid var(--light-border); /* Add horizontal divider */
     }
 
 
@@ -1133,6 +1294,14 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .options-header-buttons .button-tertiary i { display: inline-block; font-size: 1.1rem; margin: 0; }
     .options-header { gap: 0.5rem; }
     .options-header-buttons .button-tertiary { padding: 0.4rem 0.6rem; }
+
+    /* Ad Slot Adjustments for Mobile */
+     #ad-slot-options-bottom {
+        min-height: 100px; /* Adjust height for potentially smaller mobile ads */
+    }
+    .ad-slot-container {
+        margin: 1.5rem auto; /* Reduce vertical margin */
+    }
 }
 
 @media (max-width: 600px) {
@@ -1152,19 +1321,17 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .cta-section p { font-size: 1.1rem; }
 
     .result-controls {
-        padding-left: 0.5rem; /* Adjust padding for mobile */
+        padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
     .result-controls .download-button {
-         padding: 0.7rem 1.5rem; /* Adjust button padding for mobile */
-         /* width: 100% and centering handled by base rules */
+         padding: 0.7rem 1.5rem;
     }
-
 
     .options-header { flex-direction: column; align-items: stretch; }
     .options-header h2 { text-align: center; margin-bottom: 0.8rem; }
     .options-header-buttons { justify-content: center; gap: 0.8rem; margin-left: 0; }
-    .options-header-buttons .button-tertiary i { display: none; }
+    .options-header-buttons .button-tertiary i { display: none; } /* Show text on mobile */
     .options-header-buttons .button-tertiary .btn-text { display: inline; }
 
     .footer-nav ul { flex-direction: column; gap: 0.8rem; align-items: center; }
@@ -1174,6 +1341,35 @@ html[dir="rtl"] .legal-content ul ul { padding-left: 0; padding-right: 1.5rem; }
     .input-combo .unit { min-width: auto; padding-left: 0.5rem; }
     html[dir="rtl"] .input-combo input[type="number"] { text-align: center; }
     html[dir="rtl"] .input-combo .unit { padding-left: 0; padding-right: 0.5rem; }
+
+    /* AdBlock Message Mobile */
+    .adblock-message {
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+    html[dir="rtl"] .adblock-message {
+        align-items: flex-end;
+         text-align: right;
+    }
+    .adblock-message-content {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+     .adblock-message p {
+        font-size: 0.85rem;
+     }
+    .adblock-message-close {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        padding: 0.2rem;
+    }
+    html[dir="rtl"] .adblock-message-close {
+        right: auto;
+        left: 8px;
+    }
 }
 
 /* RTL adjustments */
@@ -1194,6 +1390,9 @@ html[dir="rtl"] .common-issues-section ul { text-align: right; }
 html[dir="rtl"] .contact-form-container { text-align: right; }
 html[dir="rtl"] label { text-align: right; }
 html[dir="rtl"] #fileName { text-align: right; padding-left: 1rem; padding-right: 0; }
+html[dir="rtl"] .ad-label { text-align: right;}
+html[dir="rtl"] .adblock-message p { text-align: right;}
+html[dir="rtl"] .adblock-message a { margin-left: 0; margin-right: 0.5em; }
 
 @media (min-width: 769px) {
     html[dir="rtl"] .preview-pane.original-pane::after {
