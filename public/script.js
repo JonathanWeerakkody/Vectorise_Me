@@ -57,8 +57,14 @@ const translations = {
         load_btn: "Load",
         save_btn: "Save",
         reset_btn: "Reset",
+        // !! Engine Selector Keys !!
+        engine_image_type_label: "Image Type:",
+        engine_option_color: "Color / Photo / Detailed",
+        engine_option_bw: "Black & White / Logo / Outline",
+        // VTracer Preset
         preset_label: "Image Type Preset:",
         preset_select_placeholder: "Load a Preset...",
+        // VTracer Options
         options_legend_color: "Color Settings",
         color_detail_title: "Color Detail",
         color_detail_label: "Color Detail:",
@@ -80,7 +86,7 @@ const translations = {
         options_legend_geo: "Geometry & Path Fitting",
         corner_thr_label: "Corner Threshold:",
         path_prec_label: "Path Precision:",
-        unit_dec: "decimals",
+        // unit_dec: "decimals", // <-- REMOVED THIS LINE
         spline_thr_label: "Spline Threshold:",
         splice_thr_label: "Splice Threshold:",
         segment_len_label: "Segment Length:",
@@ -89,6 +95,17 @@ const translations = {
         layering_stacked: "Stacked",
         layering_cutout: "Cutout",
         gradient_step_label: "Gradient Step:",
+        // !! Potrace Options !!
+        potrace_options_legend: "B&W / Outline Options",
+        potrace_blacklevel_label: "Black/White Threshold:",
+        potrace_turdsize_label: "Despeckle Level:",
+        potrace_alphamax_label: "Corner Smoothing:",
+        potrace_invert_label: "Invert Colors (Trace White):",
+        potrace_optcurve_label: "Optimize Curves:",
+        potrace_color_label: "Output Color:",
+        boolean_true: "Yes",
+        boolean_false: "No",
+        // Common App View
         update_vectorization_btn: "Update Vectorization",
         // App View - Result Panel
         preview_h2: "Preview",
